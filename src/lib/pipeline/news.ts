@@ -79,7 +79,8 @@ export function parseRss(body: string): FeedItem[] {
 
 /** Bing News RSS. Each link carries the original publisher URL in its url= parameter, so no extra request is needed. */
 export function bingNewsUrl(query: string) {
-  return `https://www.bing.com/news/search?q=${encodeURIComponent(query)}&format=rss&setlang=en-IN&cc=IN`;
+  // qft: past month, newest first (the freshness gate then keeps 14 days).
+  return `https://www.bing.com/news/search?q=${encodeURIComponent(query)}&format=rss&setlang=en-IN&cc=IN&qft=${encodeURIComponent('interval="9" sortbydate="1"')}`;
 }
 
 export function resolveBingUrl(link: string): string | null {
@@ -108,6 +109,7 @@ export async function fetchFeed(url: string): Promise<FeedItem[]> {
 /** Google News RSS links point at news.google.com. Resolve them to the original publisher URL. */
 // Circuit breaker: Google throttles its decode endpoint. After 3 failures in a row, stop trying for this process.
 let googleFailures = 0;
+export const googleDecodeAvailable = () => googleFailures < 3;
 export async function resolveGoogleNewsUrl(link: string): Promise<string | null> {
   if (!/news\.google\.com/.test(link)) return link;
   if (googleFailures >= 3) return null;

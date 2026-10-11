@@ -1,7 +1,17 @@
 {
   "_note": "D13 source tiers. T1 = company sites (added per account at runtime from accounts.domain), filings, regulators, exchanges. T2 = established business and HR trade press. Anything else is CONTEXT and never scored.",
   "T1": [
-    "nseindia.com", "bseindia.com", "sebi.gov.in", "mca.gov.in", "labour.gov.in", "epfindia.gov.in", "esic.gov.in", "pib.gov.in", "rbi.org.in", "gem.gov.in", "eprocure.gov.in"
+    "nseindia.com",
+    "bseindia.com",
+    "sebi.gov.in",
+    "mca.gov.in",
+    "labour.gov.in",
+    "epfindia.gov.in",
+    "esic.gov.in",
+    "pib.gov.in",
+    "rbi.org.in",
+    "gem.gov.in",
+    "eprocure.gov.in"
   ],
   "T2": {
     "economictimes.indiatimes.com": "The Economic Times",
@@ -26,6 +36,8 @@
     "cnbctv18.com": "CNBC-TV18",
     "businesstoday.in": "Business Today",
     "fortuneindia.com": "Fortune India",
-    "indianexpress.com": "The Indian Express"
+    "indianexpress.com": "The Indian Express",
+    "bwpeople.in": "BW People",
+    "businessworld.in": "BW Businessworld"
   }
 }

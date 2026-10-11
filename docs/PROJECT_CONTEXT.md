@@ -147,3 +147,10 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Note: the Bing and Google RSS terms allow personal, non-commercial use. This is fine for the exam project; a commercial build needs a licensed news API (added to README limits).
 - Re-running the seed build.
 
+
+### 2026-10-12 03:29 IST, Claude Code (claude-opus-5-5)
+- Bing now uses its date filter (past month, newest first). Added BW People and BW Businessworld to T2 (established HR and business trade press).
+- Seed build 3 (live pipeline, all 50 accounts): 570 discovered, 286 fetched, 18 Gemini calls, 2 events written. Gated out: g1 196, g4 context 109, fetch 403 39, g2 stale 23, g3 12. The run is partial because one publisher timed out.
+- Real events in data/seed/signals.json: Travel Food Services new CHRO (HR Katha, T2, 6 Oct 2026), scored 8 Hot; Thyrocare new lab in Madurai (ETHealthworld, T2, 9 Oct 2026), scored 4. Every other account is Cold, which is the honest result for the window.
+- G3 now also catches price-target, buy-recommendation and stocks-in-focus headlines (real examples from this run, added to the tests).
+

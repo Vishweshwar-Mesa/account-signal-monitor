@@ -39,6 +39,11 @@ describe("gates G1 to G6", () => {
     expect(gateContentType(cand({ url: "https://economictimes.indiatimes.com/opinion/x" }))).toBe(false);
     expect(gateContentType(cand({ url: "https://economictimes.indiatimes.com/brand-connect/x" }))).toBe(false);
     expect(gateContentType(cand({ title: "Travel Food Services shares surge 5%" }))).toBe(false);
+    // real headlines from the seed run that reached Gemini needlessly
+    expect(gateContentType(cand({ title: "Suzlon, NCC, Kaynes Technology: Price targets for multibaggers" }))).toBe(false);
+    expect(gateContentType(cand({ title: "6 'Buy' recommendations by Nuvama, with 17% to 51% upside potential" }))).toBe(false);
+    expect(gateContentType(cand({ title: "Top stocks in focus today: Investors must watch Trent" }))).toBe(false);
+    expect(gateContentType(cand({ title: "Travel Food Services appoints new CHRO" }))).toBe(true);
   });
   it("G4 tiers: company site T1, exchange T1, press T2, other CONTEXT", () => {
     expect(tierFor("https://www.travelfoodservices.com/news/a", ACC.domain).tier).toBe("T1");

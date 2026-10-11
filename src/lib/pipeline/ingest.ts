@@ -1,7 +1,7 @@
 import type { Db } from "../db";
 import { runGates, hostOf, type GateAccount } from "./gates";
 import { validateExtraction, eventKey, subjectKey, urlHash, type Extraction, type ValidatedEvent } from "./validators";
-import { fetchFeed, googleNewsUrl, bingNewsUrl, resolveBingUrl, resolveGoogleNewsUrl, fetchArticle, type FeedItem, type Article } from "./news";
+import { fetchFeed, googleNewsUrl, bingNewsUrl, resolveBingUrl, resolveGoogleNewsUrl, googleDecodeAvailable, fetchArticle, type FeedItem, type Article } from "./news";
 import { extractFacts, geminiCalls, resetGeminiCalls, GeminiCapError } from "../ai/gemini";
 import { rescoreAll } from "./rescore";
 import { startRun, finishRun, type RunCounts, newCounts } from "./runs";
@@ -40,7 +40,7 @@ export const liveDeps: IngestDeps = {
     const q = queryNames(a).map((x) => `"${x}"`).join(" OR ");
     // Bing first (direct publisher URLs). Google adds titles Bing missed; its links need decoding, which may be throttled.
     const bing = await fetchFeed(bingNewsUrl(q)).catch(() => [] as FeedItem[]);
-    const google = await fetchFeed(googleNewsUrl(q)).catch(() => [] as FeedItem[]);
+    const google = googleDecodeAvailable() ? await fetchFeed(googleNewsUrl(q)).catch(() => [] as FeedItem[]) : [];
     const seen = new Set(bing.map((i) => i.title.toLowerCase().slice(0, 60)));
     const items = [...bing, ...google.filter((i) => !seen.has(i.title.toLowerCase().slice(0, 60)))];
     if (a.newsroom_rss) items.push(...(await fetchFeed(a.newsroom_rss).catch(() => [])));

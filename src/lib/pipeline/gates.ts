@@ -63,6 +63,7 @@ const BAD_TITLE = [
   /\b(top|best) \d+\b/, /\bstocks? to (buy|watch|sell)\b/, /\btarget price\b/, /\bbuy or sell\b/, /\bshare price (live|today)\b/,
   /\bstock (tip|pick)s?\b/, /\bsponsored\b/, /\badvertorial\b/, /\bopinion\s*[:|]/, /\bjob (opening|vacanc)/, /\bwalk-?in\b/, /\bapply now\b/,
   /\bstocks? (rally|surge|jump|fall|slump|gain)s?\b/, /\bshares? (rally|surge|jump|fall|slump|gain|rise|zoom|tank)s?\b/,
+  /\bprice targets?\b/, /\bbuy recommendations?\b/, /\bstocks? in focus\b/, /\bstocks? to watch\b/, /\btrade spotlight\b/, /\binitiates (coverage|'?buy'?)\b/, /\b\d+% upside\b/,
 ];
 
 /** G3: news or announcement, not a job listing, listicle, stock tip, opinion or sponsored post. */
