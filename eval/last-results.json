@@ -1,0 +1,579 @@
+{
+ "at": "2026-10-11T21:19:10.826Z",
+ "model": "default",
+ "accuracy": 0.8666666666666667,
+ "rawQuoteRate": 1,
+ "injectionOk": true,
+ "results": [
+  {
+   "id": "e01",
+   "expected": "LEADERSHIP_CHANGE",
+   "predicted": "LEADERSHIP_CHANGE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "LEADERSHIP_CHANGE",
+    "company_match": true,
+    "subject": "Rohith Kumar",
+    "subject_title": "chief human resources officer",
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Consolidated, one of India’s authorised partners for Apple, has appointed Rohith Kumar as its new chief human resources officer.",
+    "one_line_summary": "Consolidated has appointed Rohith Kumar as its new chief human resources officer",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e02",
+   "expected": "LEADERSHIP_CHANGE",
+   "predicted": "LEADERSHIP_CHANGE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "LEADERSHIP_CHANGE",
+    "company_match": true,
+    "subject": "Kalappa K.B.",
+    "subject_title": "Group Chief Human Resources Officer",
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Sparsh Hospitals has appointed Kalappa K.B. as Group Chief Human Resources Officer as the Bengaluru-based healthcare group strengthens its leadership team.",
+    "one_line_summary": "Sparsh Hospitals appointed Kalappa K.B. as Group Chief Human Resources Officer.",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e03",
+   "expected": "LEADERSHIP_CHANGE",
+   "predicted": "LEADERSHIP_CHANGE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "LEADERSHIP_CHANGE",
+    "company_match": true,
+    "subject": "Amit Bhalerao",
+    "subject_title": "Chief Operating Officer",
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Schaeffler India Limited has appointed Amit Bhalerao as its Chief Operating Officer (COO), effective 10 August 2026",
+    "one_line_summary": "Schaeffler India appointed Amit Bhalerao as Chief Operating Officer to lead manufacturing operations across India.",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e04",
+   "expected": "LEADERSHIP_CHANGE",
+   "predicted": "LEADERSHIP_CHANGE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "LEADERSHIP_CHANGE",
+    "company_match": true,
+    "subject": "Thomas F. Maechler",
+    "subject_title": "Senior Vice President and Chief Operating Officer",
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "today announced the appointment of Mr.Thomas F. Maechler as Senior Vice President and Chief Operating Officer",
+    "one_line_summary": "Sujan appointed Thomas F. Maechler as Senior Vice President and Chief Operating Officer.",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e05",
+   "expected": "FUNDING_EVENT",
+   "predicted": "FUNDING_EVENT",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Value retail chain SuperK has raised Rs 100 crore in a funding round led by Binny Bansal’s 3STATE Ventures",
+    "one_line_summary": "SuperK raised 100 crore rupees in funding to expand operations and hiring across 300 new towns",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e06",
+   "expected": "FUNDING_EVENT",
+   "predicted": "FUNDING_EVENT",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Burger Singh has raised Rs 82 crore in a funding round led by venture capital firm Artal Asia Pte Ltd",
+    "one_line_summary": "Burger Singh raised 82 crore rupees in a Series B funding round led by Artal Asia.",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e07",
+   "expected": "HEADCOUNT_HIRING",
+   "predicted": "HEADCOUNT_HIRING",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "HEADCOUNT_HIRING",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "The company said it aims to increase its employee base by more than 2.5 times over the next four years",
+    "one_line_summary": "V Bazaar plans to expand its workforce to 10000 employees as it expands stores in smaller towns",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e08",
+   "expected": "HEADCOUNT_HIRING",
+   "predicted": "HEADCOUNT_HIRING",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "HEADCOUNT_HIRING",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Allcargo Logistics is set to increase its workforce by 20 per cent across its Express Distribution and Consultative Logistics businesses",
+    "one_line_summary": "Allcargo Logistics plans to increase its workforce by twenty percent ahead of festive season demand",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e09",
+   "expected": "HEADCOUNT_HIRING",
+   "predicted": null,
+   "ok": false,
+   "quote_verbatim": null,
+   "extraction": {
+    "trigger_type": null,
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "small",
+    "certainty": "confirmed",
+    "time_scope": "retrospective",
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e10",
+   "expected": "CAPACITY_EXPANSION",
+   "predicted": "CAPACITY_EXPANSION",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "CAPACITY_EXPANSION",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "V2 Retail opened 24 new stores across 11 states in August 2026, its highest number of store launches in a single month",
+    "one_line_summary": "V2 Retail opened 24 new stores across 11 states in August and plans up to 200 stores this fiscal",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e11",
+   "expected": "CAPACITY_EXPANSION",
+   "predicted": "CAPACITY_EXPANSION",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "CAPACITY_EXPANSION",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "is planning to create a network of 150 hospitals across more than 50 cities over the next five to six years",
+    "one_line_summary": "PB Health plans to expand its network to 150 hospitals across more than 50 cities",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e12",
+   "expected": "CAPACITY_EXPANSION",
+   "predicted": "CAPACITY_EXPANSION",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "CAPACITY_EXPANSION",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Amazon has launched its first fulfilment centre and sort centre in Uttar Pradesh's Varanasi ahead of the festive season",
+    "one_line_summary": "Amazon opened its first fulfilment centre and sort centre in Varanasi as part of nationwide expansion",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e13",
+   "expected": "CAPACITY_EXPANSION",
+   "predicted": "FUNDING_EVENT",
+   "ok": false,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "is planning to go for an Initial Public Offering (IPO) in 2026 to support its expansion of infrastructure and reduction of debt burden.",
+    "one_line_summary": "Medicover Hospitals plans to launch an initial public offering in 2026 to support expansion and debt reduction.",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e14",
+   "expected": "OPERATIONAL_CHALLENGE",
+   "predicted": "OPERATIONAL_CHALLENGE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "OPERATIONAL_CHALLENGE",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Around 800 workers at MRF’s Wimco Nagar manufacturing unit in Thiruvottiyur are on an indefinite strike",
+    "one_line_summary": "Around 800 workers went on strike halting operations at MRF Thiruvottiyur facility over insurance and apprenticeship issues",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e15",
+   "expected": "OPERATIONAL_CHALLENGE",
+   "predicted": "OPERATIONAL_CHALLENGE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "OPERATIONAL_CHALLENGE",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "more than 500 employees of the Motherson factory gathered to raise concerns about harsh working conditions.",
+    "one_line_summary": "Over 500 workers protested working conditions and shift issues at Motherson factory in Haldwani",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e16",
+   "expected": "COMPLIANCE_PRESSURE",
+   "predicted": null,
+   "ok": false,
+   "quote_verbatim": null,
+   "extraction": {
+    "trigger_type": null,
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "small",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e17",
+   "expected": "COMPLIANCE_PRESSURE",
+   "predicted": "COMPLIANCE_PRESSURE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "COMPLIANCE_PRESSURE",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "According to the petitioners, the state-level law imposes additional financial liabilities on aggregators and increases the compliance burden",
+    "one_line_summary": "Zepto and other platforms challenged the Karnataka gig workers welfare law citing increased compliance burdens and notices",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e18",
+   "expected": "COMPLIANCE_PRESSURE",
+   "predicted": "COMPLIANCE_PRESSURE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "COMPLIANCE_PRESSURE",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Swiggy said it does not anticipate any material impact from the CoSS (the Code on Social Security, 2020) on its business sustainability",
+    "one_line_summary": "Swiggy addressed the notification of new labour codes requiring aggregator contributions to gig worker social security",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e19",
+   "expected": "HR_TECH_INTENT",
+   "predicted": "HR_TECH_INTENT",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "HR_TECH_INTENT",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "ICSIL will execute the project through a concessionaire selected via a competitive bidding process.",
+    "one_line_summary": "ICSIL will oversee deployment of an HRMS and payroll management system selected via competitive bidding.",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e20",
+   "expected": "HR_TECH_INTENT",
+   "predicted": "HR_TECH_INTENT",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "HR_TECH_INTENT",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "NS Hospital invites proposals for the demo, negotiation, installation, training and testing from reputed vendors for a Comprehensive HRMS Software.",
+    "one_line_summary": "NS Hospital invites vendor proposals for the procurement and implementation of a comprehensive HRMS software.",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e21",
+   "expected": "DIGITALISATION_STATEMENT",
+   "predicted": "DIGITALISATION_STATEMENT",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "DIGITALISATION_STATEMENT",
+    "company_match": true,
+    "subject": "Partha Das",
+    "subject_title": "Chief People Officer",
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Very recently, this healthcare and hospital chain has implemented an AI chatbot, which it calls MiPAL Intelligent Bot.",
+    "one_line_summary": "Manipal Hospitals rolled out an AI chatbot called MiPAL for HR queries across twelve thousand employees.",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e22",
+   "expected": null,
+   "predicted": null,
+   "ok": true,
+   "quote_verbatim": null,
+   "extraction": {
+    "trigger_type": null,
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "small",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e23",
+   "expected": "FUNDING_EVENT",
+   "predicted": "FUNDING_EVENT",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "rumour",
+    "time_scope": "new",
+    "evidence_quote": "Manipal Health Enterprises, India’s largest hospital network operator, is preparing to file a $1 billion initial public offering (IPO) early next year",
+    "one_line_summary": "Manipal Health Enterprises is preparing to file a one billion dollar initial public offering early next year",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e24",
+   "expected": "FUNDING_EVENT",
+   "predicted": "FUNDING_EVENT",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "large",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "Medicover Hospitals said its planned initial public offering (IPO) remains on track",
+    "one_line_summary": "Medicover Hospitals stated its planned initial public offering remains on track amid investment talks",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e25",
+   "expected": null,
+   "predicted": "FUNDING_EVENT",
+   "ok": false,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "medium",
+    "certainty": "rumour",
+    "time_scope": "new",
+    "evidence_quote": "Burger Singh has issued a spicy clarification after reports surfaced claiming it had raised ₹47.15 crore in fresh funding.",
+    "one_line_summary": "Burger Singh clarified it has not yet received forty seven crore rupees in funding despite media reports",
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e26",
+   "expected": null,
+   "predicted": null,
+   "ok": true,
+   "quote_verbatim": null,
+   "extraction": {
+    "trigger_type": null,
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "small",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e27",
+   "expected": null,
+   "predicted": null,
+   "ok": true,
+   "quote_verbatim": null,
+   "extraction": {
+    "trigger_type": null,
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "small",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e28",
+   "expected": null,
+   "predicted": null,
+   "ok": true,
+   "quote_verbatim": null,
+   "extraction": {
+    "trigger_type": null,
+    "company_match": false,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "small",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e29",
+   "expected": null,
+   "predicted": null,
+   "ok": true,
+   "quote_verbatim": null,
+   "extraction": {
+    "trigger_type": null,
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "small",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   }
+  },
+  {
+   "id": "e30",
+   "expected": "OPERATIONAL_CHALLENGE",
+   "predicted": "OPERATIONAL_CHALLENGE",
+   "ok": true,
+   "quote_verbatim": true,
+   "extraction": {
+    "trigger_type": "OPERATIONAL_CHALLENGE",
+    "company_match": true,
+    "subject": null,
+    "subject_title": null,
+    "magnitude": "medium",
+    "certainty": "confirmed",
+    "time_scope": "new",
+    "evidence_quote": "The strike has led to a complete stoppage of work at the unit, one of MRF’s oldest facilities.",
+    "one_line_summary": "Around 800 workers at MRF Thiruvottiyur manufacturing plant went on strike halting operations over disputes",
+    "competitor_hrms_mentioned": null
+   }
+  }
+ ]
+}

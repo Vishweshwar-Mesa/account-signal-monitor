@@ -16,7 +16,7 @@
 Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-market companies in India. This app watches about 50 accounts daily, finds verified trigger events in the news (new HR head, hiring drive, expansion and so on), scores each account from 1 to 10 with a full explanation, emails a Hot List every Monday and Thursday plus a daily morning brief, and never overwrites anything Arjun wrote.
 
 ## Current status (rewritten each session)
-- Phase 0 done except CI and deploy. Phase 1 core logic is written and unit tested. Dashboard, auth, cron routes and deploy are not built yet.
+- Phase 0 done except deploy. CI added. Phase 1 core logic is written and tested (55 tests, write-safety included). Dashboard, auth, cron routes and deploy are not built yet.
 - Database: migration runs in PGlite (tests). Not yet applied to Supabase because DATABASE_URL and the Supabase secret key have not been provided.
 - Research: the account and people research is running. The eval set (30 real articles) is done.
 - HubSpot: token works. Pipeline "Enterprise Leads" and sync are not built yet.
@@ -83,3 +83,11 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Decisions: B02 Cache Components off, B03 half-life tuning, B04 PGlite for tests.
 - Addendum received: added BUILD_SPEC, BUILD_CHECKLIST, this file, CLAUDE.md, AGENTS.md. HubSpot moves to an "Enterprise Leads" deal pipeline.
 - Next: write-safety test and CI.
+
+### 2026-10-12 02:45 to 02:55 IST, Claude Code (claude-opus-5-5)
+- Added src/lib/drafts.ts (soft-touch draft with checks: 45 to 110 words, cites the publication, no pitch, no urgency, no dashes).
+- Tests: tests/write-safety.test.ts (section 6: notes byte-identical after full ingest, scoring and morning job; code throws; trigger blocks bypass and no-writer updates; draft regeneration never touches my_draft; audit; code and DB column lists match) and tests/pipeline-morning.test.ts (fixture pipeline, dedup, idempotency, partial runs, caps, Hot List window, eligibility, no padding, empty note, send lock, Mon and Thu only, stale note, lock release on failure, R6 recipient guard). 55 of 55 pass.
+- CI: .github/workflows/ci.yml with the Anthropic check, secret scan, context-file check, typecheck, tests and the Gemini eval. GEMINI_API_KEY added as a GitHub Actions secret.
+- Eval (scripts/eval.mts, gemini-3.8-flash): trigger accuracy 86.7% (26/30), raw quote verbatim 100% (23/23), injection ignored. Misses: e09, e13, e16, e25. Three were flagged as uncertain labels by the labeller.
+- .env.example added.
+- Next: cron routes, auth, dashboard.
