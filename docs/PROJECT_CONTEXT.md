@@ -154,3 +154,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Real events in data/seed/signals.json: Travel Food Services new CHRO (HR Katha, T2, 6 Oct 2026), scored 8 Hot; Thyrocare new lab in Madurai (ETHealthworld, T2, 9 Oct 2026), scored 4. Every other account is Cold, which is the honest result for the window.
 - G3 now also catches price-target, buy-recommendation and stocks-in-focus headlines (real examples from this run, added to the tests).
 
+
+### 2026-10-12 03:31 IST, Claude Code (claude-opus-5-5)
+- Real emails sent through Resend to ARJUN_EMAIL with scripts/send-test-emails.mts: Hot List (1 account: Travel Food Services, Hot 8, HR Katha source, CHRO as contact, angle from product facts) and the morning brief (4 sections, demo items tagged). Send keys hotlist:2026-10-12 and brief:2026-10-12. Rendered copies checked: no em or en dashes.
+
