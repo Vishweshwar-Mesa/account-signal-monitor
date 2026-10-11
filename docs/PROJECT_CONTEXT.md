@@ -16,7 +16,7 @@
 Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-market companies in India. This app watches about 50 accounts daily, finds verified trigger events in the news (new HR head, hiring drive, expansion and so on), scores each account from 1 to 10 with a full explanation, emails a Hot List every Monday and Thursday plus a daily morning brief, and never overwrites anything Arjun wrote.
 
 ## Current status (rewritten each session)
-- Phase 0 done except deploy. CI added. Phase 1 core logic is written and tested (55 tests, write-safety included). Dashboard, auth, cron routes and API built (next build clean). Not deployed yet.
+- Phase 0 done except deploy. CI added. Phase 1 core logic is written and tested (55 tests, write-safety included). Dashboard, auth, cron routes and API built and deployed to https://account-signal-monitor.vercel.app (CLI deploy; GitHub auto-deploy waits on the user connecting the repo in Vercel). Sign-in needs Arjun's user, which needs the Supabase secret key.
 - Database: migration runs in PGlite (tests). Not yet applied to Supabase because DATABASE_URL and the Supabase secret key have not been provided.
 - Research: the account and people research is running. The eval set (30 real articles) is done.
 - HubSpot: token works. Pipeline "Enterprise Leads" and sync are not built yet.
@@ -100,3 +100,9 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - CI file is local only: the gh token lacks the workflow scope. The user was asked to run gh auth refresh -h github.com -s workflow.
 - Tests 55 of 55 pass; next build clean.
 - Next: Vercel link and deploy, seed data, HubSpot.
+
+### 2026-10-12 03:15 to 03:25 IST, Claude Code (claude-opus-5-5)
+- Vercel project linked (vishu-mesa/account-signal-monitor). Production env vars set by name through the CLI. Deployed with `vercel deploy --prod`: https://account-signal-monitor.vercel.app
+- Checked on the live URL: /login 200; / redirects to /login when signed out; cron routes return 401 with no bearer and with a wrong bearer; /api/run returns 401 unauthenticated; /api/health with the bearer shows database "seed (in-memory)", Gemini, Resend, HubSpot and the cron secret live.
+- `vercel git connect` failed: the Vercel GitHub App needs access to the repo. The user was asked to connect it in the Vercel dashboard. Until then, deploys are made from the CLI.
+- Next: seed data, HubSpot pipeline.
