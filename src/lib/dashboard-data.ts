@@ -2,6 +2,7 @@ import "server-only";
 import { getDb } from "./db";
 import { health, type Health } from "./health";
 import type { ScoreBreakdown } from "./scoring";
+import { dateOnly } from "./time";
 
 export interface DSignal {
   id: string; title: string; url: string; publisher: string; tier: string; published_at: string | null;
@@ -54,8 +55,8 @@ export async function loadDashboard(): Promise<DashboardData> {
     const sigs = by(sig.rows, id);
     return {
       ...(a as unknown as DAccount),
-      employee_count_as_of: a.employee_count_as_of ? String(a.employee_count_as_of).slice(0, 10) : null,
-      renewal_date: a.renewal_date ? new Date(a.renewal_date as string).toISOString().slice(0, 10) : null,
+      employee_count_as_of: dateOnly(a.employee_count_as_of),
+      renewal_date: dateOnly(a.renewal_date),
       last_contacted_at: iso(a.last_contacted_at), snoozed_until: iso(a.snoozed_until), draft_accepted_at: iso(a.draft_accepted_at),
       last_signal_at: iso(a.last_signal_at), scored_at: iso(a.scored_at),
       hubspot_deal_id: (a.hubspot_deal_id as string) ?? null,
@@ -66,7 +67,7 @@ export async function loadDashboard(): Promise<DashboardData> {
         type: (s.type as string) ?? null, certainty: (s.certainty as string) ?? null, feedback: fbMap.get(s.id as string) ?? null,
       })),
       contextCount: sigs.filter((s) => s.gate_result === "g4_context").length,
-      people: by(ppl.rows, id).map((p) => ({ ...(p as unknown as DPerson), as_of: String(p.as_of).slice(0, 10) })),
+      people: by(ppl.rows, id).map((p) => ({ ...(p as unknown as DPerson), as_of: dateOnly(p.as_of)! })),
       tasks: by(tasks.rows, id).map((t) => ({ ...(t as unknown as DTask), due_at: iso(t.due_at) })),
       activities: by(acts.rows, id).map((x) => ({ ...(x as unknown as DActivity), occurred_at: iso(x.occurred_at)! })),
     };

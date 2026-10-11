@@ -31,3 +31,13 @@ export function appUrl() {
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   return "http://localhost:3000";
 }
+
+/** Postgres `date` columns arrive as local-midnight JS Dates (pg and PGlite). Return YYYY-MM-DD without a timezone shift. */
+export function dateOnly(v: unknown): string | null {
+  if (v == null || v === "") return null;
+  if (v instanceof Date) {
+    const p = (n: number) => String(n).padStart(2, "0");
+    return `${v.getFullYear()}-${p(v.getMonth() + 1)}-${p(v.getDate())}`;
+  }
+  return String(v).slice(0, 10);
+}

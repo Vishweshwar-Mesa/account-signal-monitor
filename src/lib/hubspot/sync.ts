@@ -1,6 +1,7 @@
 import type { Db } from "../db";
 import { hubspotClient, HubspotError, SCOPES_NEEDED, type Hs } from "./client";
 import { updateAccountCrmColumns } from "../accounts-write";
+import { dateOnly } from "../time";
 
 // HubSpot integration (section 10 and the addendum). D08: a missing token or a failed call never stops a run.
 // The system never edits deal stages in HubSpot. It only reads them and maps them to accounts.stage (CRM-owned).
@@ -246,7 +247,7 @@ export async function syncHubspot(db: Db, opts: { hs?: Hs; now?: Date } = {}): P
       };
       const current = (k: string) => {
         const v = row![k];
-        if (v instanceof Date) return v.toISOString().slice(0, 10);
+        if (k === "renewal_date") return dateOnly(v);
         return v ?? null;
       };
       const changed = Object.fromEntries(Object.entries(patch).filter(([k, v]) => String(current(k)) !== String(v ?? null)));

@@ -135,3 +135,8 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Added a dev-only sign-in shortcut (SM_DEV_USER, ignored when NODE_ENV is production) so the UI can be checked before Arjun's Supabase user exists.
 - tests/auth-routes.test.ts: cron routes reject a missing or wrong bearer; signed-out API calls get 401; proxy redirects pages to /login; only ARJUN_EMAIL is allowed; the dev shortcut is off in production. 72 tests in total.
 
+
+### 2026-10-12 03:16 IST, Claude Code (claude-opus-5-5)
+- UI checked locally with headless Chrome via puppeteer-core (scratchpad only): dark theme renders, at a 390px viewport scrollWidth is 390 (no horizontal scroll), no console errors or warnings.
+- Fixed a bug found in the screenshot: Postgres date columns showed year 2001. Added dateOnly() in src/lib/time.ts, used for headcount as-of, people as-of and renewal date, and in the HubSpot sync comparison.
+
