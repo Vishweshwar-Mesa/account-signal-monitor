@@ -140,3 +140,10 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - UI checked locally with headless Chrome via puppeteer-core (scratchpad only): dark theme renders, at a 390px viewport scrollWidth is 390 (no horizontal scroll), no console errors or warnings.
 - Fixed a bug found in the screenshot: Postgres date columns showed year 2001. Added dateOnly() in src/lib/time.ts, used for headcount as-of, people as-of and renewal date, and in the HubSpot sync comparison.
 
+
+### 2026-10-12 03:20 IST, Claude Code (claude-opus-5-5)
+- First live seed build: 1,650 items discovered, but 1,450 Google News links could not be decoded (Google throttles the decode endpoint). Only 7 articles were fetched and there were 0 events. Not usable.
+- Fix: Bing News RSS is the primary discovery source (the publisher URL is in the link, so no decode request is needed). Google News is secondary behind a circuit breaker (it stops after 3 failed decodes). Items are processed newest first, and stale items rejected before fetch no longer use the per-account budget.
+- Note: the Bing and Google RSS terms allow personal, non-commercial use. This is fine for the exam project; a commercial build needs a licensed news API (added to README limits).
+- Re-running the seed build.
+

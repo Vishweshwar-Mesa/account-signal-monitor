@@ -71,10 +71,26 @@ export function parseRss(body: string): FeedItem[] {
       title: String(it.title ?? "").trim(),
       link,
       published_at: date ? new Date(date) : null,
-      source_name: typeof src === "string" ? src : src?.["#text"] ?? null,
+      source_name: typeof src === "string" ? src : src?.["#text"] ?? (it["News:Source"] as string | undefined) ?? null,
       source_url: typeof src === "object" ? src?.["@_url"] ?? null : null,
     };
   });
+}
+
+/** Bing News RSS. Each link carries the original publisher URL in its url= parameter, so no extra request is needed. */
+export function bingNewsUrl(query: string) {
+  return `https://www.bing.com/news/search?q=${encodeURIComponent(query)}&format=rss&setlang=en-IN&cc=IN`;
+}
+
+export function resolveBingUrl(link: string): string | null {
+  try {
+    const u = new URL(link);
+    if (!/bing\.com$/.test(u.hostname)) return null;
+    const target = u.searchParams.get("url");
+    return target && /^https?:\/\//.test(target) ? target : null;
+  } catch {
+    return null;
+  }
 }
 
 export function googleNewsUrl(query: string, days = Number(process.env.SM_DISCOVERY_DAYS || 14)) {
@@ -83,14 +99,24 @@ export function googleNewsUrl(query: string, days = Number(process.env.SM_DISCOV
 
 export async function fetchFeed(url: string): Promise<FeedItem[]> {
   await throttle(hostOf(url), 1200);
-  const res = await timedFetch(url, { headers: { "User-Agent": USER_AGENT } });
+  // Bing returns an empty feed to non-browser agents, so feeds use a browser UA; publisher pages use our own UA.
+  const res = await timedFetch(url, { headers: { "User-Agent": /bing\.com/.test(url) ? BROWSER_UA : USER_AGENT } });
   if (!res.ok) throw new Error(`feed ${res.status} ${url}`);
   return parseRss(await res.text());
 }
 
 /** Google News RSS links point at news.google.com. Resolve them to the original publisher URL. */
+// Circuit breaker: Google throttles its decode endpoint. After 3 failures in a row, stop trying for this process.
+let googleFailures = 0;
 export async function resolveGoogleNewsUrl(link: string): Promise<string | null> {
   if (!/news\.google\.com/.test(link)) return link;
+  if (googleFailures >= 3) return null;
+  const r = await decodeGoogle(link);
+  googleFailures = r ? 0 : googleFailures + 1;
+  return r;
+}
+
+async function decodeGoogle(link: string): Promise<string | null> {
   try {
     const id = new URL(link).pathname.split("/").pop();
     if (!id) return null;

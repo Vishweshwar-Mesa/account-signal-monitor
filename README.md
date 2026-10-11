@@ -7,7 +7,7 @@ Arjun sells workforce management software (time and attendance, shifts, leave, p
 **Protected by design.** The accounts table has three column groups. Arjun-owned: notes, last contact, his read, his draft and snooze. CRM-owned: deal stage, customer flag and renewal, written only by the HubSpot sync. System-owned: score, band, lane and drafts. The system can only write its own group. This is enforced three ways: in code (src/lib/accounts-write.ts throws), in Postgres (trigger `sm_guard_accounts`), and by a test (tests/write-safety.test.ts runs a full ingest, scoring and morning job, then checks the notes are byte-identical).
 
 ## What it does
-- **Daily ingest (06:00 IST):** news is discovered through Google News RSS, then fetched from the publisher (robots.txt respected, throttled). Six gates in code, then Gemini Flash extracts facts into a fixed JSON schema, then seven validators in code. Events are clustered so one story from several outlets counts once. Every account is then rescored with time decay.
+- **Daily ingest (06:00 IST):** news is discovered through Bing News RSS (Google News RSS as fallback), then fetched from the publisher (robots.txt respected, throttled). Six gates in code, then Gemini Flash extracts facts into a fixed JSON schema, then seven validators in code. Events are clustered so one story from several outlets counts once. Every account is then rescored with time decay.
 - **Scoring in code, not AI:** score = best event + half of the second best + fit + relationship + activity + convergence + competitor mention. Bands: Hot 8 to 10, Warm 5 to 7, Cold 1 to 4. Hot needs a fresh confirmed T1 or T2 event. Every score has a stored breakdown shown in "Why this rating".
 - **Relationship lanes:** prospects get outreach; customers get churn risk, expansion or re-engage.
 - **Morning job (08:00 IST):** a daily brief, plus the Hot List on Monday and Thursday. The Hot List window runs from the last send, with a minimum of 3 days. Top 10, never padded. Email goes to ARJUN_EMAIL only. A send lock prevents double sends.
@@ -64,7 +64,7 @@ People are shown only from public, cited, role-based sources, with a source link
 
 ## Limits and known gaps
 - Accuracy: on 30 labelled articles, the extractor gets 86.7% of trigger types right (target 90%). Quotes were verbatim in 100% of cases. The labels need a human spot-check (eval/README.md).
-- Google News RSS can miss articles, and some publishers block fetching. Those are logged in the run log, not hidden.
+- Discovery uses Bing News RSS, with Google News RSS as a fallback. Their terms allow personal, non-commercial use, which suits this single-user exam project; a commercial version should use a licensed news API. Feeds can miss articles, and some publishers block fetching. Both are logged in the run log, not hidden.
 - Vercel Hobby limits a function to 300 seconds, so one ingest run handles up to 120 articles. More would need a queue.
 - HubSpot: the token lacks the email scope (demo emails are logged as notes) and the workflows scope (the churn-risk workflow runs in code).
 - Soft-touch drafts and outreach angles are Gemini text checked by code rules. Read them before use. Nothing is ever sent to a prospect automatically.

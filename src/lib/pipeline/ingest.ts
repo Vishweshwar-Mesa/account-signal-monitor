@@ -1,7 +1,7 @@
 import type { Db } from "../db";
 import { runGates, hostOf, type GateAccount } from "./gates";
 import { validateExtraction, eventKey, subjectKey, urlHash, type Extraction, type ValidatedEvent } from "./validators";
-import { fetchFeed, googleNewsUrl, resolveGoogleNewsUrl, fetchArticle, type FeedItem, type Article } from "./news";
+import { fetchFeed, googleNewsUrl, bingNewsUrl, resolveBingUrl, resolveGoogleNewsUrl, fetchArticle, type FeedItem, type Article } from "./news";
 import { extractFacts, geminiCalls, resetGeminiCalls, GeminiCapError } from "../ai/gemini";
 import { rescoreAll } from "./rescore";
 import { startRun, finishRun, type RunCounts, newCounts } from "./runs";
@@ -38,11 +38,16 @@ export function queryNames(a: { name: string; aliases: string[] }) {
 export const liveDeps: IngestDeps = {
   discover: async (a) => {
     const q = queryNames(a).map((x) => `"${x}"`).join(" OR ");
-    const items = await fetchFeed(googleNewsUrl(q));
+    // Bing first (direct publisher URLs). Google adds titles Bing missed; its links need decoding, which may be throttled.
+    const bing = await fetchFeed(bingNewsUrl(q)).catch(() => [] as FeedItem[]);
+    const google = await fetchFeed(googleNewsUrl(q)).catch(() => [] as FeedItem[]);
+    const seen = new Set(bing.map((i) => i.title.toLowerCase().slice(0, 60)));
+    const items = [...bing, ...google.filter((i) => !seen.has(i.title.toLowerCase().slice(0, 60)))];
     if (a.newsroom_rss) items.push(...(await fetchFeed(a.newsroom_rss).catch(() => [])));
+    if (!bing.length && !google.length) throw new Error("no feed reachable");
     return items;
   },
-  resolve: resolveGoogleNewsUrl,
+  resolve: async (link) => resolveBingUrl(link) ?? (/bing\.com/.test(link) ? null : resolveGoogleNewsUrl(link)),
   fetchArticle,
   extract: extractFacts,
   geminiCalls,
@@ -106,7 +111,7 @@ async function storeSignal(db: Db, row: Record<string, unknown>) {
 
 export async function processArticle(
   db: Db, account: AccountRow, item: FeedItem, deps: IngestDeps, counts: RunCounts, now: Date, isSeed = false,
-): Promise<"stored" | "skipped"> {
+): Promise<"stored" | "pregated" | "skipped"> {
   const resolved = await deps.resolve(item.link);
   if (!resolved) { bump(counts.gated_out, "unresolved_link"); return "skipped"; }
   const h = urlHash(resolved);
@@ -118,7 +123,7 @@ export async function processArticle(
   if (pre.result === "g2_stale" || pre.result === "g3_content_type" || pre.result === "g4_context" || pre.result === "g5_speculation") {
     bump(counts.gated_out, pre.result);
     await storeSignal(db, { account_id: account.id, url: resolved, publisher: item.source_name ?? pre.publisher, tier: pre.tier, published_at: item.published_at, title: item.title, gate_result: pre.result, is_seed: isSeed });
-    return "stored";
+    return "pregated";
   }
 
   const art = await deps.fetchArticle(resolved);
@@ -207,6 +212,7 @@ export async function runIngest(db: Db, opts: IngestOptions = {}) {
         continue;
       }
       counts.discovered += items.length;
+      items.sort((x, y) => (y.published_at?.getTime() ?? 0) - (x.published_at?.getTime() ?? 0)); // newest first
       let n = 0;
       for (const it of items) {
         if (n >= perAccount) break;
@@ -215,7 +221,7 @@ export async function runIngest(db: Db, opts: IngestOptions = {}) {
         if (Date.now() > deadline) { counts.stopped = "time_budget"; partial = true; break outer; }
         try {
           const r = await processArticle(db, a, it, deps, counts, now, opts.isSeed);
-          if (r === "stored") { n++; processed++; }
+          if (r === "stored") { n++; processed++; } // only fetched articles use the per-account and per-run budget
         } catch (e) {
           if (e instanceof GeminiCapError) { counts.stopped = "gemini_cap"; partial = true; break outer; }
           partial = true;
