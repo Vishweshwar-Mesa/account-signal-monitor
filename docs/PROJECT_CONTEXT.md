@@ -19,7 +19,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Phase 0 done except deploy. CI added. Phase 1 core logic is written and tested (55 tests, write-safety included). Dashboard, auth, cron routes and API built and deployed to https://account-signal-monitor.vercel.app (CLI deploy; GitHub auto-deploy waits on the user connecting the repo in Vercel). Sign-in needs Arjun's user, which needs the Supabase secret key.
 - Database: migration runs in PGlite (tests). Not yet applied to Supabase because DATABASE_URL and the Supabase secret key have not been provided.
 - Research: the account and people research is running. The eval set (30 real articles) is done.
-- HubSpot: token works. Pipeline "Enterprise Leads" and sync are not built yet.
+- HubSpot: Enterprise Leads pipeline live with 10 demo deals; daily sync built and run (partial only because email scope is missing).
 
 ## Architecture snapshot
 - Next.js 16 App Router on Vercel. `proxy.ts` replaces middleware in Next 16. Cache Components is off (B02).
@@ -115,3 +115,10 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - tests/hubspot.test.ts with an in-memory fake HubSpot: 11 tests (idempotent pipeline, fallback deletes nothing, properties idempotent, stage mapping, Closed Won sets is_customer, only CRM columns, new companies picked up, deal stages never edited, tasks both ways, retention task idempotent, failure banner without crashing the run). Total 66 of 66 pass.
 - scripts/build-seed-signals.mts started: runs the real pipeline over all 50 accounts to produce data/seed/signals.json.
 - Next: HubSpot bootstrap on the real portal, finish the seed, docs.
+
+### 2026-10-12 03:45 to 04:00 IST, Claude Code (claude-opus-5-5)
+- HubSpot bootstrap (src/lib/hubspot/bootstrap.ts, scripts/hubspot-bootstrap.mts) run on the real portal: sm_ properties and the Signal Monitor group created; "Enterprise Leads" deal pipeline created (path: enterprise_pipeline); 10 DEMO companies (sm_demo) and 10 deals "{Company} - Enterprise rollout" (Identified to Pilot, Updater Services and Krsnaa at Closed Won); demo tasks and activities created and associated, titled "[DEMO] ...".
+- Scope gaps: email associations and email search are refused (needs sales-email-read), so demo emails are logged as notes; the automation API (workflows) is refused, so the churn-risk workflow runs in code.
+- Lookups are scoped to the company (shared task titles had collided). Activity pulls are isolated per type. The third bootstrap run created nothing, so it is idempotent.
+- HUBSPOT_PORTAL_ID added (env name only) for "Open in HubSpot" links.
+- Next: finish the seed signals, docs, map v2.

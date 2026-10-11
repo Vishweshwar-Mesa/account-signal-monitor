@@ -150,7 +150,7 @@ async function searchAll(hs: Hs, object: string, filters: { propertyName: string
   return out;
 }
 
-async function assocToCompanies(hs: Hs, from: string, ids: string[]) {
+export async function assocToCompanies(hs: Hs, from: string, ids: string[]) {
   const map = new Map<string, string>();
   for (let i = 0; i < ids.length; i += 100) {
     const r = await hs.req<{ results: { from: { id: string }; to: { toObjectId: string | number }[] }[] }>(
@@ -267,22 +267,45 @@ export async function syncHubspot(db: Db, opts: { hs?: Hs; now?: Date } = {}): P
       for (const t of tasks) {
         const acc = accountByCompany.get(tAssoc.get(t.id) ?? "");
         if (!acc) continue;
-        await db.query(
-          `insert into tasks (account_id, title, due_at, done, hubspot_id, source) values ($1,$2,$3,$4,$5,'hubspot')
-           on conflict (hubspot_id) do update set title = excluded.title, due_at = excluded.due_at, done = excluded.done`,
-          [acc, t.properties.hs_task_subject ?? "Task", t.properties.hs_timestamp, t.properties.hs_task_status === "COMPLETED", t.id]);
+        const title = t.properties.hs_task_subject ?? "Task";
+        const done = t.properties.hs_task_status === "COMPLETED";
+        // Link to a matching unlinked seed row first, so demo rows are not duplicated.
+        const linked = await db.query(
+          `update tasks set hubspot_id = $1, title = $3, due_at = $4, done = $5
+           where id = (select id from tasks where account_id = $2 and hubspot_id is null and title = replace($3, '[DEMO] ', '') limit 1) returning id`,
+          [t.id, acc, title, t.properties.hs_timestamp, done]);
+        if (!linked.rows.length) {
+          await db.query(
+            `insert into tasks (account_id, title, due_at, done, hubspot_id, source) values ($1,$2,$3,$4,$5,'hubspot')
+             on conflict (hubspot_id) do update set title = excluded.title, due_at = excluded.due_at, done = excluded.done`,
+            [acc, title, t.properties.hs_timestamp, done, t.id]);
+        }
         counts.tasks++;
       }
       for (const a of ACTIVITY_OBJECTS) {
-        const items = await searchAll(hs, a.object, [{ propertyName: "hubspot_owner_id", operator: "EQ", value: owner }], [...a.props]);
+        let items: SearchResult[] = [];
+        try {
+          items = await searchAll(hs, a.object, [{ propertyName: "hubspot_owner_id", operator: "EQ", value: owner }], [...a.props]);
+        } catch (e) {
+          // One missing scope (emails need sales-email-read) must not block the other activity types.
+          errors.push(`${a.object}: ${(e as Error).message.slice(0, 120)}`);
+          continue;
+        }
         const assoc = await assocToCompanies(hs, a.object, items.map((x) => x.id));
         for (const x of items) {
           const acc = accountByCompany.get(assoc.get(x.id) ?? "");
           if (!acc || !x.properties.hs_timestamp) continue;
-          await db.query(
-            `insert into activities (account_id, kind, direction, occurred_at, summary, hubspot_id, source) values ($1,$2,$3,$4,$5,$6,'hubspot')
-             on conflict (hubspot_id) do update set occurred_at = excluded.occurred_at, summary = excluded.summary`,
-            [acc, a.kind, a.inbound(x.properties) ? "inbound" : "outbound", x.properties.hs_timestamp, a.summary(x.properties) ?? "", x.id]);
+          const summary = a.summary(x.properties) ?? "";
+          const linked = await db.query(
+            `update activities set hubspot_id = $1, summary = $4
+             where id = (select id from activities where account_id = $2 and kind = $3 and hubspot_id is null and summary = replace($4, '[DEMO] ', '') limit 1) returning id`,
+            [x.id, acc, a.kind, summary]);
+          if (!linked.rows.length) {
+            await db.query(
+              `insert into activities (account_id, kind, direction, occurred_at, summary, hubspot_id, source) values ($1,$2,$3,$4,$5,$6,'hubspot')
+               on conflict (hubspot_id) do update set occurred_at = excluded.occurred_at, summary = excluded.summary`,
+              [acc, a.kind, a.inbound(x.properties) ? "inbound" : "outbound", x.properties.hs_timestamp, summary, x.id]);
+          }
           counts.activities++;
         }
       }
