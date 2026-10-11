@@ -1,7 +1,7 @@
 import "server-only";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
-import { supabaseUrl, supabaseAnonKey, isAllowedUser } from "./config";
+import { supabaseUrl, supabaseAnonKey, isAllowedUser, devUserEmail } from "./config";
 
 export async function supabaseServer() {
   const store = await cookies();
@@ -26,6 +26,8 @@ export interface SessionUser {
 
 /** The signed-in user, or null. Only ARJUN_EMAIL counts as signed in. */
 export async function getUser(): Promise<SessionUser | null> {
+  const dev = devUserEmail();
+  if (dev) return { id: "dev", email: dev };
   try {
     const { data } = await (await supabaseServer()).auth.getUser();
     const u = data.user;

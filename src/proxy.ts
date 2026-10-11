@@ -30,6 +30,8 @@ export async function proxy(request: NextRequest) {
       email = undefined;
     }
   }
+  // Local development shortcut, never active in production (see devUserEmail in src/lib/supabase/config.ts).
+  if (process.env.NODE_ENV !== "production" && process.env.SM_DEV_USER) email = process.env.SM_DEV_USER;
   const allowed = (process.env.ARJUN_EMAIL ?? "").toLowerCase();
   const ok = Boolean(email && allowed && email.toLowerCase() === allowed);
   if (ok) return response;

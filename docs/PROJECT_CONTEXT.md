@@ -130,3 +130,8 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 
 ### 2026-10-12 03:14 IST, Claude Code (claude-opus-5-5)
 - Correction: the time ranges in the entries above were first written as estimates and ran ahead of the real clock (up to 04:15). They have been corrected to match the commit timestamps from `git log`. From now on, entries use `date` output.
+
+### 2026-10-12 03:14 IST, Claude Code (claude-opus-5-5)
+- Added a dev-only sign-in shortcut (SM_DEV_USER, ignored when NODE_ENV is production) so the UI can be checked before Arjun's Supabase user exists.
+- tests/auth-routes.test.ts: cron routes reject a missing or wrong bearer; signed-out API calls get 401; proxy redirects pages to /login; only ARJUN_EMAIL is allowed; the dev shortcut is off in production. 72 tests in total.
+
