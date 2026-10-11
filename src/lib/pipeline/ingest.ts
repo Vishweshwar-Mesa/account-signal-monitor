@@ -23,9 +23,21 @@ export interface AccountRow extends GateAccount {
   is_active: boolean;
 }
 
+/** Search names: the legal name without trailing suffixes, plus up to two multi-word aliases (single words are too generic). */
+export function queryNames(a: { name: string; aliases: string[] }) {
+  const clean = (s: string) => {
+    let x = s.replace(/\(.*?\)/g, " ").replace(/\s+/g, " ").trim();
+    const suffix = /\s(limited|ltd\.?|pvt\.?|private|(?<!\bof\s)india)$/i; // keep "Corporation of India"
+    while (suffix.test(x)) x = x.replace(suffix, "").trim();
+    return x;
+  };
+  const names = [clean(a.name), ...a.aliases.filter((x) => /\s/.test(x.trim()) && x.length >= 6).map(clean)];
+  return [...new Set(names.filter((n) => n.length >= 4))].slice(0, 3);
+}
+
 export const liveDeps: IngestDeps = {
   discover: async (a) => {
-    const q = [`"${a.name}"`, ...a.aliases.filter((x) => x.length >= 6).slice(0, 1).map((x) => `"${x}"`)].join(" OR ");
+    const q = queryNames(a).map((x) => `"${x}"`).join(" OR ");
     const items = await fetchFeed(googleNewsUrl(q));
     if (a.newsroom_rss) items.push(...(await fetchFeed(a.newsroom_rss).catch(() => [])));
     return items;
@@ -45,6 +57,7 @@ export interface IngestOptions {
   timeBudgetMs?: number;
   perAccount?: number;
   isSeed?: boolean;
+  hubspot?: import("../hubspot/client").Hs;
 }
 
 /** Upsert one validated event: same event_key from another outlet raises source_count and keeps the best tier. */
@@ -168,8 +181,11 @@ export async function runIngest(db: Db, opts: IngestOptions = {}) {
     // HubSpot sync runs first inside the ingest job (section 10). Failure never stops ingest (D08).
     try {
       const { syncHubspot } = await import("../hubspot/sync");
-      const r = await syncHubspot(db);
+      const r = await syncHubspot(db, { hs: opts.hubspot, now });
       counts.hubspot = r.status;
+      if (r.path) counts.hubspot_path = r.path;
+      if (r.counts) counts.hubspot_counts = r.counts;
+      if (r.error) errors.push(`hubspot: ${r.error}${r.scopesHint ? ` (${r.scopesHint})` : ""}`);
     } catch (e) {
       counts.hubspot = "failed";
       errors.push(`hubspot: ${(e as Error).message}`);

@@ -1,0 +1,367 @@
+{
+ "_note": "DEMO ONLY. Stages, notes, last-contact dates, tasks, activities, renewals and customer status are invented for the exam demo. Flagged in the DB (crm_is_demo, notes_is_demo, source='demo') and badged DEMO in the UI. Days are relative to seeding time.",
+ "accounts": {
+  "Travel Food Services Limited": {
+   "stage": "Discovery",
+   "is_customer": false,
+   "renewal_in_days": null,
+   "last_contacted_days_ago": 20,
+   "notes": "DEMO. Discovery call with the HR operations team. They run separate attendance setups per airport.",
+   "relationship_read": "Interested. Airport sites make attendance hard to track.",
+   "tasks": [
+    {
+     "title": "Send discovery summary",
+     "due_in_days": 2,
+     "kind": "task"
+    },
+    {
+     "title": "Book follow-up with HR operations",
+     "due_in_days": 9,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 20,
+     "summary": "Discovery call with HR operations team"
+    },
+    {
+     "kind": "email",
+     "direction": "inbound",
+     "days_ago": 6,
+     "summary": "Asked for a multi-site attendance overview"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 19,
+     "summary": "Logged discovery notes"
+    }
+   ]
+  },
+  "United Foodbrands Limited (formerly Barbeque-Nation Hospitality Limited)": {
+   "stage": "Outreach",
+   "is_customer": false,
+   "renewal_in_days": null,
+   "last_contacted_days_ago": 40,
+   "notes": "DEMO. Two emails sent, no reply yet.",
+   "relationship_read": "Cold so far. Rebrand may change priorities.",
+   "tasks": [
+    {
+     "title": "Follow up on intro email",
+     "due_in_days": -2,
+     "kind": "task"
+    },
+    {
+     "title": "Research new brand structure",
+     "due_in_days": 5,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 40,
+     "summary": "Intro email to HR team"
+    },
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 33,
+     "summary": "Follow-up email"
+    }
+   ]
+  },
+  "V-Mart Retail Ltd": {
+   "stage": "Qualified",
+   "is_customer": false,
+   "renewal_in_days": null,
+   "last_contacted_days_ago": 10,
+   "notes": "DEMO. Qualified after second call. Budget review expected next quarter.",
+   "relationship_read": "Qualified. Store payroll consolidation is the pain point.",
+   "tasks": [
+    {
+     "title": "Share payroll compliance checklist",
+     "due_in_days": 3,
+     "kind": "task"
+    },
+    {
+     "title": "Prepare store rollout plan draft",
+     "due_in_days": 12,
+     "kind": "task"
+    },
+    {
+     "title": "Confirm stakeholder list",
+     "due_in_days": -1,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 10,
+     "summary": "Qualification call with HR and finance"
+    },
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": -4,
+     "summary": "Scheduled walkthrough with store operations"
+    },
+    {
+     "kind": "email",
+     "direction": "inbound",
+     "days_ago": 8,
+     "summary": "Asked about PF and ESI handling"
+    }
+   ]
+  },
+  "Go Fashion (India) Ltd": {
+   "stage": "Identified",
+   "is_customer": false,
+   "renewal_in_days": null,
+   "last_contacted_days_ago": null,
+   "notes": "DEMO. Identified from store expansion coverage. No contact yet.",
+   "relationship_read": "Not contacted yet.",
+   "tasks": [
+    {
+     "title": "Find the right HR contact",
+     "due_in_days": 4,
+     "kind": "task"
+    },
+    {
+     "title": "Draft first touch",
+     "due_in_days": 6,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 3,
+     "summary": "Added to target list"
+    }
+   ]
+  },
+  "Krystal Integrated Services Ltd": {
+   "stage": "Pilot",
+   "is_customer": false,
+   "renewal_in_days": null,
+   "last_contacted_days_ago": 5,
+   "notes": "DEMO. Pilot live at two sites. Shift rosters are the main use.",
+   "relationship_read": "Pilot going well at two client sites.",
+   "tasks": [
+    {
+     "title": "Pilot checkpoint review",
+     "due_in_days": 6,
+     "kind": "pilot_checkpoint"
+    },
+    {
+     "title": "Collect pilot feedback from site supervisors",
+     "due_in_days": 3,
+     "kind": "task"
+    },
+    {
+     "title": "Prepare pilot results summary",
+     "due_in_days": 13,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 5,
+     "summary": "Pilot weekly review"
+    },
+    {
+     "kind": "call",
+     "direction": "inbound",
+     "days_ago": 2,
+     "summary": "Site supervisor called about roster export"
+    },
+    {
+     "kind": "email",
+     "direction": "inbound",
+     "days_ago": 9,
+     "summary": "Pilot usage questions"
+    }
+   ]
+  },
+  "Updater Services Ltd": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 25,
+   "last_contacted_days_ago": 12,
+   "notes": "DEMO. Signed customer. Renewal coming up, relationship is good.",
+   "relationship_read": "Customer. Expansion possible to more business units.",
+   "tasks": [
+    {
+     "title": "Renewal prep pack",
+     "due_in_days": 10,
+     "kind": "task"
+    },
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 18,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 12,
+     "summary": "Quarterly check-in"
+    },
+    {
+     "kind": "email",
+     "direction": "inbound",
+     "days_ago": 4,
+     "summary": "Asked about adding a new business unit"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 11,
+     "summary": "QBR notes logged"
+    }
+   ]
+  },
+  "Krsnaa Diagnostics Ltd": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 140,
+   "last_contacted_days_ago": 45,
+   "notes": "DEMO. Signed customer. No contact for over a month.",
+   "relationship_read": "Customer. Quiet lately, needs a check-in.",
+   "tasks": [
+    {
+     "title": "Schedule customer health check",
+     "due_in_days": -3,
+     "kind": "task"
+    },
+    {
+     "title": "Review usage report",
+     "due_in_days": 7,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 45,
+     "summary": "Customer check-in call"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 44,
+     "summary": "Usage steady"
+    }
+   ]
+  },
+  "Yatharth Hospital and Trauma Care Services Ltd": {
+   "stage": "Qualified",
+   "is_customer": false,
+   "renewal_in_days": null,
+   "last_contacted_days_ago": 33,
+   "notes": "DEMO. Qualified. Waiting for internal approval on scope.",
+   "relationship_read": "Qualified. Nursing shift scheduling is the need.",
+   "tasks": [
+    {
+     "title": "Send shift scheduling case outline",
+     "due_in_days": 2,
+     "kind": "task"
+    },
+    {
+     "title": "Check approval status",
+     "due_in_days": 8,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 33,
+     "summary": "Scope call with hospital operations"
+    },
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 30,
+     "summary": "Sent scope summary"
+    }
+   ]
+  },
+  "Gokaldas Exports Ltd": {
+   "stage": "Outreach",
+   "is_customer": false,
+   "renewal_in_days": null,
+   "last_contacted_days_ago": 95,
+   "notes": "DEMO. Early outreach last quarter, went quiet.",
+   "relationship_read": "Long gap. Re-approach with a new angle.",
+   "tasks": [
+    {
+     "title": "Re-engage with fresh angle",
+     "due_in_days": 5,
+     "kind": "task"
+    },
+    {
+     "title": "Map plant HR contacts",
+     "due_in_days": 9,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 95,
+     "summary": "Intro email"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 92,
+     "summary": "Short intro call"
+    }
+   ]
+  },
+  "Sagility Limited": {
+   "stage": "Identified",
+   "is_customer": false,
+   "renewal_in_days": null,
+   "last_contacted_days_ago": null,
+   "notes": "DEMO. Identified. Need to confirm India HR leadership first.",
+   "relationship_read": "Not contacted yet. Large BPO workforce.",
+   "tasks": [
+    {
+     "title": "Confirm HR leadership",
+     "due_in_days": 3,
+     "kind": "task"
+    },
+    {
+     "title": "Draft first touch",
+     "due_in_days": 7,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 2,
+     "summary": "Added to target list"
+    }
+   ]
+  }
+ }
+}

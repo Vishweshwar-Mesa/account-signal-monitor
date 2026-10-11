@@ -26,7 +26,7 @@ export async function health(): Promise<Health> {
       const v = { status: r.status, at: new Date(r.started_at).toISOString() };
       if (r.job === "ingest") {
         lastIngest = v;
-        if (hubspot === "connected" && r.counts?.hubspot && !["ok", "synced"].includes(r.counts.hubspot)) hubspot = "failed";
+        if (hubspot === "connected" && r.counts?.hubspot && !["ok", "synced", "partial"].includes(r.counts.hubspot)) hubspot = "failed";
       } else lastMorning = v;
     }
   } catch {

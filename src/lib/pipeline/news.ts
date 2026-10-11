@@ -77,8 +77,8 @@ export function parseRss(body: string): FeedItem[] {
   });
 }
 
-export function googleNewsUrl(query: string) {
-  return `https://news.google.com/rss/search?q=${encodeURIComponent(`${query} when:14d`)}&hl=en-IN&gl=IN&ceid=IN:en`;
+export function googleNewsUrl(query: string, days = Number(process.env.SM_DISCOVERY_DAYS || 14)) {
+  return `https://news.google.com/rss/search?q=${encodeURIComponent(`${query} when:${days}d`)}&hl=en-IN&gl=IN&ceid=IN:en`;
 }
 
 export async function fetchFeed(url: string): Promise<FeedItem[]> {

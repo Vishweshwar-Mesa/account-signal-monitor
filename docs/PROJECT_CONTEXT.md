@@ -106,3 +106,12 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Checked on the live URL: /login 200; / redirects to /login when signed out; cron routes return 401 with no bearer and with a wrong bearer; /api/run returns 401 unauthenticated; /api/health with the bearer shows database "seed (in-memory)", Gemini, Resend, HubSpot and the cron secret live.
 - `vercel git connect` failed: the Vercel GitHub App needs access to the repo. The user was asked to connect it in the Vercel dashboard. Until then, deploys are made from the CLI.
 - Next: seed data, HubSpot pipeline.
+
+### 2026-10-12 03:25 to 03:45 IST, Claude Code (claude-opus-5-5)
+- Research done: 50 accounts (10 active, 40 watchlist), all sized from BRSR or annual report PDFs (data/research/accounts.json, notes in accounts-notes.md). data/seed/accounts.json generated from it; removed the V-Mart alias "Unlimited" (common word).
+- data/seed/demo-crm.json: DEMO stages across Identified to Pilot plus two Closed Won customers (Updater Services, Krsnaa Diagnostics), notes, tasks, activities, renewals. All relative to seed time.
+- queryNames() in ingest.ts: legal suffixes stripped, multi-word aliases only.
+- HubSpot module rewritten (src/lib/hubspot/client.ts, sync.ts): idempotent sm_ properties, Enterprise Leads pipeline with fallback to the default pipeline then the company property, owner lookup, sync of companies and deals into CRM_COLS only, pull of tasks and activities, push of sm_ properties, retention task per churn-risk event_key, task completion write-back. The workflows API returned a scope error, so the churn-risk workflow runs in code.
+- tests/hubspot.test.ts with an in-memory fake HubSpot: 11 tests (idempotent pipeline, fallback deletes nothing, properties idempotent, stage mapping, Closed Won sets is_customer, only CRM columns, new companies picked up, deal stages never edited, tasks both ways, retention task idempotent, failure banner without crashing the run). Total 66 of 66 pass.
+- scripts/build-seed-signals.mts started: runs the real pipeline over all 50 accounts to produce data/seed/signals.json.
+- Next: HubSpot bootstrap on the real portal, finish the seed, docs.
