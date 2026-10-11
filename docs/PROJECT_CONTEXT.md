@@ -16,21 +16,25 @@
 Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-market companies in India. This app watches about 50 accounts daily, finds verified trigger events in the news (new HR head, hiring drive, expansion and so on), scores each account from 1 to 10 with a full explanation, emails a Hot List every Monday and Thursday plus a daily morning brief, and never overwrites anything Arjun wrote.
 
 ## Current status (rewritten each session)
-- Phase 0 done except deploy. CI added. Phase 1 core logic is written and tested (55 tests, write-safety included). Dashboard, auth, cron routes and API built and deployed to https://account-signal-monitor.vercel.app (CLI deploy; GitHub auto-deploy waits on the user connecting the repo in Vercel). Sign-in needs Arjun's user, which needs the Supabase secret key.
-- Database: migration runs in PGlite (tests). Not yet applied to Supabase because DATABASE_URL and the Supabase secret key have not been provided.
-- Research: the account and people research is running. The eval set (30 real articles) is done.
-- HubSpot: Enterprise Leads pipeline live with 10 demo deals; daily sync built and run (partial only because email scope is missing).
+- Live: https://account-signal-monitor.vercel.app (deployed with the Vercel CLI from main). Repo: https://github.com/Vishweshwar-Mesa/account-signal-monitor
+- Phases 0 to 3 are built. 72 tests pass. `tsc` and `next build` are clean.
+- Production ingest was verified on Vercel (3 min 38 s, Bing discovery, Gemini, HubSpot sync). Real Hot List and brief emails were sent to ARJUN_EMAIL.
+- Database: no DATABASE_URL yet, so the deployed app runs on an in-memory PGlite database loaded with the seed (banner shown). Edits and send locks do not persist across cold starts.
+- Sign-in: Arjun's Supabase user cannot be created until SUPABASE_SERVICE_ROLE_KEY is provided. The live site therefore cannot be signed into yet.
+- CI: .github/workflows/ci.yml is local only; the gh token needs the workflow scope.
+- GitHub to Vercel auto-deploy: not connected (the user must connect the repo in Vercel settings).
+- HubSpot: Enterprise Leads pipeline live with 10 demo deals; daily sync works; email and workflow scopes are missing.
 
 ## Architecture snapshot
 - Next.js 16 App Router on Vercel. `proxy.ts` replaces middleware in Next 16. Cache Components is off (B02).
 - Postgres on Supabase. Server code uses one SQL interface (src/lib/db.ts): `pg` with DATABASE_URL, or PGlite in tests and as a seed fallback (B04).
-- Pipeline: src/lib/pipeline/news.ts (Google News RSS, URL decode, robots, throttle) to gates.ts (G1 to G6) to ai/gemini.ts (extract) to validators.ts (V1 to V7) to ingest.ts (store and cluster) to rescore.ts to scoring.ts.
+- Pipeline: src/lib/pipeline/news.ts (Bing News RSS primary, Google News RSS behind a circuit breaker, robots, throttle) to gates.ts (G1 to G6) to ai/gemini.ts (extract) to validators.ts (V1 to V7) to ingest.ts (store and cluster) to rescore.ts to scoring.ts.
 - Morning job: src/lib/morning.ts (Hot List Mon and Thu, brief daily, send lock), email in src/lib/email/.
 - Config: config/sources.json (tiers), config/scoring.json (weights), config/product-facts.json (only claims allowed in angles).
 
 ## Data ownership rules (D02)
 - Arjun-owned: notes, last_contacted_at, relationship_read, my_draft, snoozed_until, draft_accepted_at, notes_is_demo.
-- CRM-owned: is_active, hubspot_company_id, stage, is_customer, renewal_date, owner_email, crm_is_demo. Written only by the HubSpot sync or the demo seed.
+- CRM-owned: is_active, hubspot_company_id, hubspot_deal_id, stage, is_customer, renewal_date, owner_email, crm_is_demo. Written only by the HubSpot sync or the demo seed.
 - System-owned: profile fields and score, band, confidence, lane, flags, top_signal_*, last_signal_at, score_breakdown, system_draft, draft_tone, scored_at.
 - Enforced three ways: src/lib/cols.ts plus src/lib/accounts-write.ts (throws), the Postgres trigger sm_guard_accounts (reads app.writer), and tests.
 
@@ -38,10 +42,10 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 | Integration | Env vars | Connected |
 |---|---|---|
 | Gemini | GEMINI_API_KEY, GEMINI_MODEL (default gemini-3.8-flash), GEMINI_DAILY_CALL_CAP | Yes, smoke tested |
-| Supabase | NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, DATABASE_URL | Partial: URL and publishable key only |
-| Resend | RESEND_API_KEY, RESEND_FROM, ARJUN_EMAIL | Key present, not tested |
-| HubSpot | HUBSPOT_PRIVATE_APP_TOKEN | Yes, owners API checked |
-| Cron | CRON_SECRET | Generated locally, not deployed |
+| Supabase | NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, DATABASE_URL | Partial: URL and publishable key only. Secret key and DATABASE_URL missing |
+| Resend | RESEND_API_KEY, RESEND_FROM, ARJUN_EMAIL | Yes, real sends verified |
+| HubSpot | HUBSPOT_PRIVATE_APP_TOKEN, HUBSPOT_PORTAL_ID | Yes; missing sales-email-read and automation scopes |
+| Cron | CRON_SECRET | Yes, set in Vercel; bearer verified live |
 | Other | COMPANY_NAME, TEAM_NAME, USER_NAME, MAX_ARTICLES_PER_RUN, APP_URL | |
 
 ## How to run
@@ -49,26 +53,33 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Test: `npm test` (Vitest, uses PGlite, no network)
 - Typecheck: `npx tsc --noEmit`
 - Dev: `npm run dev` (without DATABASE_URL it runs on an in-memory seeded PGlite)
-- Migrate: `node scripts/migrate.mjs` (needs DATABASE_URL) (to be added)
-- Seed: `npx tsx --env-file=.env.local scripts/seed.mts` (to be added)
-- Map: `npm run map -- v1`
-- Deploy: push to main; Vercel deploys from GitHub (to be linked)
+- Migrate: `node --env-file=.env.local scripts/migrate.mjs` (needs DATABASE_URL)
+- Seed: `npx tsx --conditions=react-server --env-file=.env.local scripts/seed.mts` (needs DATABASE_URL; insert-only)
+- Arjun's user: `npx tsx --env-file=.env.local scripts/create-user.mts` (needs SUPABASE_SERVICE_ROLE_KEY)
+- Rebuild seed signals from the live pipeline: `SM_DISCOVERY_DAYS=30 npx tsx --conditions=react-server --env-file=.env.local scripts/build-seed-signals.mts`
+- HubSpot demo setup: `npx tsx --conditions=react-server --env-file=.env.local scripts/hubspot-bootstrap.mts` (idempotent)
+- Test emails: `npx tsx --conditions=react-server --env-file=.env.local scripts/send-test-emails.mts`
+- Eval: `npx tsx --env-file=.env.local scripts/eval.mts`
+- Local UI without Supabase: `SM_DEV_USER=<ARJUN_EMAIL> npm run dev` (dev only, ignored in production)
+- Map: `npm run map -- v2`
+- Deploy: `npx vercel deploy --prod` (until the GitHub repo is connected in Vercel; then pushes to main deploy)
 
 ## Real vs demo data
 - Real: accounts, headcounts (with source URL and date), people (with source URL), signals and events (from fetched articles), eval set.
 - Demo (flagged in DB and badged in UI): stages, notes, last-contact dates, tasks, activities, meetings, renewal dates, customer status, HubSpot deals.
 
 ## Open issues
-- Need from the user: Supabase secret key (service role), DATABASE_URL, confirmation that ARJUN_EMAIL equals the Resend account email.
-- Anthropic's crawler is blocked by several Indian outlets, so the research tools cannot read them. The app's own fetcher can, so seed signals will come from the app's pipeline.
+- Needed from the user: SUPABASE_SERVICE_ROLE_KEY and DATABASE_URL; `gh auth refresh -h github.com -s workflow`; connect the GitHub repo in Vercel; optionally the HubSpot scopes sales-email-read and automation.
+- On the in-memory fallback, the send lock does not persist across cold starts, so a second morning run on the same day could send again. This is fixed once DATABASE_URL is set.
+- Eval accuracy is 86.7% against a 90% target. The labels need a human spot-check (eval/README.md).
+- Two seed events only (Travel Food Services and Thyrocare). That is the honest output of the live pipeline for this window.
 
 ## Next steps (ordered)
-1. Write-safety test with PGlite; CI with Anthropic check and secret scan; .env.example.
-2. Cron routes, auth (proxy.ts), dashboard, run log page, health endpoint.
-3. Seed files from research; seed signals by running the live pipeline; demo CRM.
-4. Vercel link and deploy; Supabase migrate once DATABASE_URL arrives.
-5. HubSpot Enterprise Leads pipeline, properties, deals, sync, tests.
-6. Docs: README, VIVA, DEMO, hubspot-workflow, map v2.
+1. When keys arrive: set SUPABASE_SERVICE_ROLE_KEY and DATABASE_URL in .env.local and Vercel; run migrate, seed, create-user, hubspot-bootstrap (links hubspot ids), then redeploy.
+2. Push .github/workflows/ci.yml after the gh workflow scope is granted; confirm CI is green.
+3. Connect the repo in Vercel for auto-deploys.
+4. Sign in on the live URL and run the DEMO.md script end to end.
+5. Optional: add HubSpot scopes and rerun the bootstrap so demo emails are linked as emails.
 
 ## Session log (append only)
 
@@ -158,3 +169,17 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 ### 2026-10-12 03:31 IST, Claude Code (claude-opus-5-5)
 - Real emails sent through Resend to ARJUN_EMAIL with scripts/send-test-emails.mts: Hot List (1 account: Travel Food Services, Hot 8, HR Katha source, CHRO as contact, angle from product facts) and the morning brief (4 sections, demo items tagged). Send keys hotlist:2026-10-12 and brief:2026-10-12. Rendered copies checked: no em or en dashes.
 
+
+### 2026-10-12 03:36 IST, Claude Code (claude-opus-5-5)
+- Browser checks (puppeteer-core on local Chrome, dev server with seed): light theme full page; Regenerate (Curious) produced a Gemini draft citing HR Katha with one question and no pitch; theme toggle persisted to localStorage with no header height change; no console errors.
+- Redeployed with seed signals. Called the production ingest cron with the bearer: status ok, 631 discovered, 174 fetched, 7 Gemini calls, 1 event, HubSpot sync partial (email scope) with 10 companies, 10 deals, 22 tasks and 22 activities synced, sm_ pushed. Took 3 min 38 s (under the 300 s limit).
+- Did not trigger the production morning cron, to avoid a duplicate email (the in-memory send lock does not persist).
+- Status and next steps rewritten above.
+
+### 2026-10-12 03:38 IST, Claude Code (claude-opus-5-5): handoff check
+Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
+- What is the project: an exam build of a B2B account signal monitor for Arjun (Keka-style HRMS sales). It watches 50 Indian companies, scores verified trigger events 1 to 10 in code, emails a Hot List on Mon and Thu and a daily brief, and never writes Arjun-owned columns.
+- What is done: all phases built and tested (72 tests), deployed to the Vercel URL, real seed signals, real emails, HubSpot Enterprise Leads pipeline and sync, docs.
+- What is next: the ordered list under "Next steps" (keys, migrate, seed, create user, CI push, Vercel git link, sign-in test).
+- How to run: `npm install`, `.env.local` from `.env.example`, `npm test`, `npm run dev` (or with SM_DEV_USER locally), scripts listed under "How to run".
+- Result: all four questions were answerable from the three files. Gaps found on re-reading and fixed: the architecture line still named Google News as primary (now Bing); the CRM-owned list lacked hubspot_deal_id; the script command in CLAUDE.md and AGENTS.md lacked --conditions=react-server (needed by scripts that import server-only modules); the "How to run" list gained the seed builder, bootstrap, test-email and dev sign-in commands.

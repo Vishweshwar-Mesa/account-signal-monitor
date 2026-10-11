@@ -27,4 +27,4 @@ B2B Account Signal Monitor. Next.js 16 on Vercel, Supabase Postgres, Gemini Flas
 
 ## Commands
 - `npm test`, `npx tsc --noEmit`, `npm run dev`, `npm run map -- v2`
-- `npx tsx --env-file=.env.local scripts/<name>.mts` for scripts
+- `npx tsx --conditions=react-server --env-file=.env.local scripts/<name>.mts` for scripts (the flag lets scripts import server-only modules)

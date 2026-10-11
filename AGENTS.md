@@ -30,7 +30,7 @@ The B2B Account Signal Monitor, a university exam project. It watches about 50 I
 
 ## Commands
 - Install `npm install`. Test `npm test`. Typecheck `npx tsc --noEmit`. Dev `npm run dev`.
-- Scripts: `npx tsx --env-file=.env.local scripts/<name>.mts`.
+- Scripts: `npx tsx --conditions=react-server --env-file=.env.local scripts/<name>.mts` (the flag lets scripts import server-only modules). Full list in docs/PROJECT_CONTEXT.md under How to run.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

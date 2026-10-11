@@ -21,11 +21,11 @@ Last verified: 2026-10-12 03:20 IST (72 of 72 Vitest tests passing, `tsc --noEmi
 | Guarded writes (three functions, audit) | DONE | src/lib/accounts-write.ts |
 | Write-safety test (section 6) | DONE | tests/write-safety.test.ts, 7 tests passing |
 | Seed data: accounts and people (research) | DONE | data/seed/accounts.json, 50 accounts with cited headcount; 10 active with people |
-| Seed data: real signals via same gates | PARTIAL | scripts/build-seed-signals.mts running the live pipeline |
+| Seed data: real signals via same gates | DONE | data/seed/signals.json from the live pipeline: 2 events (Travel Food Services CHRO, Thyrocare lab) |
 | Seed data: demo CRM | DONE | data/seed/demo-crm.json |
 | Ingest pipeline (discovery, gates, Gemini, validators, clustering) | DONE | src/lib/pipeline/*; fixture run in tests/pipeline-morning.test.ts; live run via the seed builder |
 | Scoring with decay, hot gate, rumour cap, lanes | DONE | src/lib/scoring.ts, tests/scoring.test.ts |
-| Hot List email with send lock | PARTIAL | tested with a fake mailer (tests/pipeline-morning.test.ts); real Resend send pending |
+| Hot List email with send lock | DONE | real Hot List and brief sent via Resend (send keys hotlist:2026-10-12, brief:2026-10-12); lock tested |
 | Dashboard with detail panel | DONE | src/components/Dashboard.tsx, Detail.tsx; screenshot-checked locally |
 | Sign in and sign out (Supabase Auth) | PARTIAL | proxy, login page and sign-out built and tested for blocking; real sign-in needs Arjun user (Supabase secret key missing) |
 | Theme toggle, no flash | DONE | pre-paint script in src/app/layout.tsx; fixed-width toggle; checked in headless Chrome |
