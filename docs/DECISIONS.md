@@ -24,3 +24,6 @@ Each decision is recorded as written in the build brief, with a one-line reason 
 | ID | Decision | Why | Alternative rejected |
 |----|----------|-----|----------------------|
 | B01 | The Components Map is generated from a small script (scripts/render-map.mjs) into SVG, then PNG. | Same source for v1 and v2, easy to diff. | Drawing by hand in a GUI tool. |
+| B02 | Next.js Cache Components is turned off. | Every page is per-user and behind sign-in, so nothing benefits from static caching. | Keeping it on and wrapping every read in Suspense. |
+| B03 | LEADERSHIP_CHANGE half-life tuned from 10 to 14 days. | With 10 days a 14-day-old leadership change scores 4, but the brief requires 5 or 6. With 14 days: fresh scores 8, 14 days old scores 5. | Raising fit points, which would lift every account. |
+| B04 | Server code talks to Postgres through one small SQL interface: pg in production, PGlite (in-process Postgres) in tests and as a seed fallback. | The real migration, write-guard trigger included, runs in CI with no external database. | Mocking the database in tests. |

@@ -1,0 +1,31 @@
+{
+  "_note": "D13 source tiers. T1 = company sites (added per account at runtime from accounts.domain), filings, regulators, exchanges. T2 = established business and HR trade press. Anything else is CONTEXT and never scored.",
+  "T1": [
+    "nseindia.com", "bseindia.com", "sebi.gov.in", "mca.gov.in", "labour.gov.in", "epfindia.gov.in", "esic.gov.in", "pib.gov.in", "rbi.org.in", "gem.gov.in", "eprocure.gov.in"
+  ],
+  "T2": {
+    "economictimes.indiatimes.com": "The Economic Times",
+    "hr.economictimes.indiatimes.com": "ETHRWorld",
+    "retail.economictimes.indiatimes.com": "ETRetail",
+    "health.economictimes.indiatimes.com": "ETHealthworld",
+    "hospitality.economictimes.indiatimes.com": "ETHospitalityWorld",
+    "infra.economictimes.indiatimes.com": "ETInfra",
+    "manufacturing.economictimes.indiatimes.com": "ETManufacturing",
+    "business-standard.com": "Business Standard",
+    "livemint.com": "Mint",
+    "thehindubusinessline.com": "Hindu BusinessLine",
+    "moneycontrol.com": "Moneycontrol",
+    "reuters.com": "Reuters",
+    "bbc.com": "BBC",
+    "bbc.co.uk": "BBC",
+    "timesofindia.indiatimes.com": "Times of India",
+    "financialexpress.com": "Financial Express",
+    "peoplematters.in": "People Matters",
+    "hrkatha.com": "HR Katha",
+    "thehindu.com": "The Hindu",
+    "cnbctv18.com": "CNBC-TV18",
+    "businesstoday.in": "Business Today",
+    "fortuneindia.com": "Fortune India",
+    "indianexpress.com": "The Indian Express"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "_note": "The ONLY product claims an outreach angle may use (D11). Short wording based on Keka's public website (keka.com).",
+  "source": "https://www.keka.com",
+  "facts": {
+    "attendance": "Time and attendance with biometric, GPS, kiosk and web capture",
+    "shifts": "Shift scheduling and rosters",
+    "leave_overtime": "Leave and overtime rules",
+    "payroll": "Multi-entity payroll",
+    "compliance": "Statutory compliance for PF, ESI, PT, LWF and TDS",
+    "hris": "Core HRIS and employee records",
+    "onboarding": "Onboarding",
+    "hiring": "Hiring and applicant tracking",
+    "performance": "Performance management"
+  },
+  "angles": {
+    "LEADERSHIP_CHANGE": { "angle": "First 90 days, consolidating attendance and payroll across sites", "facts": ["attendance", "payroll"] },
+    "HEADCOUNT_HIRING": { "angle": "Onboarding and shift setup at volume", "facts": ["onboarding", "shifts"] },
+    "CAPACITY_EXPANSION": { "angle": "Attendance and shifts across new sites", "facts": ["attendance", "shifts"] },
+    "OPERATIONAL_CHALLENGE": { "angle": "Visibility into overtime and attendance", "facts": ["leave_overtime", "attendance"] },
+    "FUNDING_EVENT": { "angle": "Scaling HR processes with headcount", "facts": ["hris", "onboarding"] },
+    "DIGITALISATION_STATEMENT": { "angle": "Build on the stated direction", "facts": ["hris", "attendance"] },
+    "COMPLIANCE_PRESSURE": { "angle": "Statutory payroll compliance", "facts": ["compliance", "payroll"] },
+    "HR_TECH_INTENT": { "angle": "Respond to the stated need", "facts": ["attendance", "payroll", "hris"] },
+    "HR_TECH_INTENT_CUSTOMER": { "angle": "Retention check-in, no pitch", "facts": [] }
+  }
+}
