@@ -72,5 +72,5 @@ export async function writeText(prompt: string): Promise<string> {
 }
 
 export function cleanText(s: string) {
-  return s.replace(/\s*[—–]\s*/g, ", ").replace(/!/g, ".").replace(/\s+\n/g, "\n").trim();
+  return s.replace(/\s*[\u2014\u2013]\s*/g, ", ").replace(/!/g, ".").replace(/\s+\n/g, "\n").trim();
 }

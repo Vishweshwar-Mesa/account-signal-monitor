@@ -33,7 +33,7 @@ export interface ValidatedEvent {
   notes: string[];
 }
 
-const BANNED = [/—/, /–/, /!/, /\bgame[- ]chang/i, /\brevolution/i, /\bsynerg/i, /\bguarantee/i, /\bunprecedented\b/i, /\bmassive\b/i];
+const BANNED = [/\u2014/, /\u2013/, /!/, /\bgame[- ]chang/i, /\brevolution/i, /\bsynerg/i, /\bguarantee/i, /\bunprecedented\b/i, /\bmassive\b/i];
 const MAX_QUOTE_WORDS = 25;
 
 export function trimQuote(q: string, maxWords = MAX_QUOTE_WORDS) {

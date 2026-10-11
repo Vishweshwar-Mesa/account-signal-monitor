@@ -12,7 +12,7 @@ const URGENCY = /\b(urgent|asap|limited time|act now|right away|immediately|don'
 export function checkDraft(text: string, publisher: string): string | null {
   const words = text.trim().split(/\s+/).length;
   if (words < 45 || words > 110) return `length ${words} words`;
-  if (/[—–]/.test(text)) return "dash";
+  if (/[\u2014\u2013]/.test(text)) return "dash";
   if (PITCH.test(text)) return "pitch or product claim";
   if (URGENCY.test(text)) return "urgency language";
   if (publisher && !text.toLowerCase().includes(publisher.toLowerCase().split(" ")[0])) return "does not cite the publication";

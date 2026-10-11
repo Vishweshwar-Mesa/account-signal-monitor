@@ -23,7 +23,7 @@ export interface BriefData {
 }
 
 const esc = (s: string | null | undefined) =>
-  (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!).replace(/[—–]/g, ",");
+  (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!).replace(/[\u2014\u2013]/g, ",");
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const LANE: Record<string, string> = { outreach: "Outreach", churn_risk: "Churn risk", expansion: "Expansion", re_engage: "Re-engage" };
 
