@@ -1,5 +1,5 @@
 // D02: three column-owner groups on the accounts table.
-// Keep in sync with sm_writer_cols() in supabase/migrations/0001_schema.sql (tests/cols.test.ts checks this).
+// Keep in sync with sm_writer_cols() in the latest supabase/migrations file (tests/cols.test.ts checks this).
 
 export const ARJUN_COLS = [
   "notes",
@@ -14,6 +14,7 @@ export const ARJUN_COLS = [
 export const CRM_COLS = [
   "is_active",
   "hubspot_company_id",
+  "hubspot_deal_id",
   "stage",
   "is_customer",
   "renewal_date",

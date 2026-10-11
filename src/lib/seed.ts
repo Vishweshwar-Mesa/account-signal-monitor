@@ -12,10 +12,7 @@ import { urlHash } from "./pipeline/validators";
 // Inserts only. Existing rows are left alone, so re-seeding never overwrites anything Arjun wrote.
 
 const DAY = 86_400_000;
-const readJson = <T>(p: string): T | null => {
-  const f = path.join(process.cwd(), p);
-  return existsSync(f) ? (JSON.parse(readFileSync(f, "utf8")) as T) : null;
-};
+const readJson = <T>(f: string): T | null => (existsSync(f) ? (JSON.parse(readFileSync(f, "utf8")) as T) : null);
 
 export interface SeedPerson { name: string; title: string; role_group: string; source_url: string; as_of: string; why?: string }
 export interface SeedAccount {
@@ -105,9 +102,9 @@ export async function seedSignals(db: Db, data: SeedSignals, ids: Map<string, st
 }
 
 export async function seedAll(db: Db, now = new Date()) {
-  const research = readJson<{ accounts: SeedAccount[] }>("data/seed/accounts.json");
-  const crm = readJson<{ accounts: Record<string, DemoCrm> }>("data/seed/demo-crm.json");
-  const sig = readJson<SeedSignals>("data/seed/signals.json");
+  const research = readJson<{ accounts: SeedAccount[] }>(path.join(process.cwd(), "data", "seed", "accounts.json"));
+  const crm = readJson<{ accounts: Record<string, DemoCrm> }>(path.join(process.cwd(), "data", "seed", "demo-crm.json"));
+  const sig = readJson<SeedSignals>(path.join(process.cwd(), "data", "seed", "signals.json"));
   if (!research) return { accounts: 0 };
   const ids = await seedAccounts(db, research.accounts, crm?.accounts ?? {}, now);
   if (sig) await seedSignals(db, sig, ids);

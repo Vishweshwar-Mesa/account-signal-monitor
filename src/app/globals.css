@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
+/* Theme tokens. The inline script in layout.tsx sets data-theme before first paint, so there is no flash. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f8f9fc; --surface: #ffffff; --surface2: #f6f3fc; --border: #e6e1f3; --text: #090014; --muted: #5f5a70;
+  --primary: #7c46f1; --on-primary: #ffffff; --tint: #f0eafe; --link: #5b2fc9;
+  --hot: #c2410c; --warm: #a85a08; --cold: #4b5563; --on-band: #ffffff;
+  --demo-bg: #fdf0c8; --demo-text: #5b4204;
+  color-scheme: light;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="dark"] {
+  --bg: #090014; --surface: #130a24; --surface2: #1a0f30; --border: #2e2050; --text: #f4f1fb; --muted: #a9a3bd;
+  --primary: #7c46f1; --on-primary: #ffffff; --tint: #25164a; --link: #b3a9ff;
+  --hot: #ff9a62; --warm: #f2c14e; --cold: #a9a3bd; --on-band: #090014;
+  --demo-bg: #3a2f0f; --demo-text: #f2dc9a;
+  color-scheme: dark;
 }
-
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --bg: #090014; --surface: #130a24; --surface2: #1a0f30; --border: #2e2050; --text: #f4f1fb; --muted: #a9a3bd;
+    --primary: #7c46f1; --on-primary: #ffffff; --tint: #25164a; --link: #b3a9ff;
+    --hot: #ff9a62; --warm: #f2c14e; --cold: #a9a3bd; --on-band: #090014;
+    --demo-bg: #3a2f0f; --demo-text: #f2dc9a;
+    color-scheme: dark;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-tint: var(--tint);
+  --color-link: var(--link);
+  --color-hot: var(--hot);
+  --color-warm: var(--warm);
+  --color-cold: var(--cold);
+  --color-on-band: var(--on-band);
+  --color-demo-bg: var(--demo-bg);
+  --color-demo-text: var(--demo-text);
+  --font-sans: var(--font-nunito), system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-nunito), system-ui, sans-serif;
+  --radius-card: 14px;
+  --radius-btn: 8px;
 }
+
+html, body { background: var(--bg); color: var(--text); }
+body { font-family: var(--font-sans); overflow-x: hidden; }
+h1, h2, h3, .font-display { font-family: var(--font-display); }
+a { color: var(--link); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+.btn { min-height: 44px; border-radius: 8px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+.btn:hover { background: var(--surface2); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn-primary { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+.btn-primary:hover { background: var(--link); }
+.skeleton { background: linear-gradient(90deg, var(--surface2), var(--border), var(--surface2)); background-size: 200% 100%; animation: sk 1.2s infinite; border-radius: 8px; }
+@keyframes sk { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }

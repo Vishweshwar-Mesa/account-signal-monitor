@@ -12,6 +12,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   // Every page is per-user and dynamic, so Cache Components is left off (see docs/DECISIONS.md B02).
   serverExternalPackages: ["@electric-sql/pglite", "pg"],
+  // Migrations and seed files are read at runtime (seed fallback when DATABASE_URL is missing).
+  outputFileTracingIncludes: { "/**": ["./supabase/**/*.sql", "./data/seed/*.json"] },
   turbopack: {
     rules: {
       "*.css": {

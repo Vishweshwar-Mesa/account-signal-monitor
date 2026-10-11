@@ -16,7 +16,7 @@
 Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-market companies in India. This app watches about 50 accounts daily, finds verified trigger events in the news (new HR head, hiring drive, expansion and so on), scores each account from 1 to 10 with a full explanation, emails a Hot List every Monday and Thursday plus a daily morning brief, and never overwrites anything Arjun wrote.
 
 ## Current status (rewritten each session)
-- Phase 0 done except deploy. CI added. Phase 1 core logic is written and tested (55 tests, write-safety included). Dashboard, auth, cron routes and deploy are not built yet.
+- Phase 0 done except deploy. CI added. Phase 1 core logic is written and tested (55 tests, write-safety included). Dashboard, auth, cron routes and API built (next build clean). Not deployed yet.
 - Database: migration runs in PGlite (tests). Not yet applied to Supabase because DATABASE_URL and the Supabase secret key have not been provided.
 - Research: the account and people research is running. The eval set (30 real articles) is done.
 - HubSpot: token works. Pipeline "Enterprise Leads" and sync are not built yet.
@@ -91,3 +91,12 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Eval (scripts/eval.mts, gemini-3.8-flash): trigger accuracy 86.7% (26/30), raw quote verbatim 100% (23/23), injection ignored. Misses: e09, e13, e16, e25. Three were flagged as uncertain labels by the labeller.
 - .env.example added.
 - Next: cron routes, auth, dashboard.
+
+### 2026-10-12 02:55 to 03:15 IST, Claude Code (claude-opus-5-5)
+- Auth: src/proxy.ts (Next 16 proxy) gates pages and APIs; only ARJUN_EMAIL counts as signed in, because Supabase sign-ups are open on the project. Helpers in src/lib/supabase/.
+- API: cron routes (bearer CRON_SECRET, constant-time compare), /api/run (Run now), /api/health, edit routes for Arjun-owned columns (zod strict), draft, tasks, people removal, feedback. vercel.json crons 30 0 and 30 2 UTC.
+- UI: theme tokens and pre-paint theme script (layout.tsx, globals.css), Header, ThemeToggle (fixed width, no shift), UserMenu, Dashboard (stat cards, filters, list), Detail (why panel, signals with feedback, people with remove, soft-touch draft with tones, tasks with DEMO and HubSpot badges, Arjun notes), run log page with Run now, banners, loading skeleton, error page, login page.
+- Migration 0002: accounts.hubspot_deal_id and the eight Enterprise Leads deal stages; CRM_COLS updated.
+- CI file is local only: the gh token lacks the workflow scope. The user was asked to run gh auth refresh -h github.com -s workflow.
+- Tests 55 of 55 pass; next build clean.
+- Next: Vercel link and deploy, seed data, HubSpot.
