@@ -72,7 +72,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 
 ## Session log (append only)
 
-### 2026-10-12 02:20 to 02:45 IST, Claude Code (claude-opus-5-5)
+### 2026-10-12 02:20 to 02:43 IST, Claude Code (claude-opus-5-5)
 - Asked the user for secrets once. Received Gemini, Supabase URL and publishable key, Resend, HubSpot. Still missing the Supabase secret key and DATABASE_URL.
 - Phase 0: DECISIONS.md and Components Map v1 (scripts/render-map.mjs, docs/components-map-v1.svg and .png), committed before app code (a3474cb), tag phase-0-map.
 - Scaffolded Next.js 16 and installed deps. Created the public GitHub repo. Commit da06859.
@@ -84,7 +84,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Addendum received: added BUILD_SPEC, BUILD_CHECKLIST, this file, CLAUDE.md, AGENTS.md. HubSpot moves to an "Enterprise Leads" deal pipeline.
 - Next: write-safety test and CI.
 
-### 2026-10-12 02:45 to 02:55 IST, Claude Code (claude-opus-5-5)
+### 2026-10-12 02:43 to 02:49 IST, Claude Code (claude-opus-5-5)
 - Added src/lib/drafts.ts (soft-touch draft with checks: 45 to 110 words, cites the publication, no pitch, no urgency, no dashes).
 - Tests: tests/write-safety.test.ts (section 6: notes byte-identical after full ingest, scoring and morning job; code throws; trigger blocks bypass and no-writer updates; draft regeneration never touches my_draft; audit; code and DB column lists match) and tests/pipeline-morning.test.ts (fixture pipeline, dedup, idempotency, partial runs, caps, Hot List window, eligibility, no padding, empty note, send lock, Mon and Thu only, stale note, lock release on failure, R6 recipient guard). 55 of 55 pass.
 - CI: .github/workflows/ci.yml with the Anthropic check, secret scan, context-file check, typecheck, tests and the Gemini eval. GEMINI_API_KEY added as a GitHub Actions secret.
@@ -92,7 +92,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - .env.example added.
 - Next: cron routes, auth, dashboard.
 
-### 2026-10-12 02:55 to 03:15 IST, Claude Code (claude-opus-5-5)
+### 2026-10-12 02:49 to 02:55 IST, Claude Code (claude-opus-5-5)
 - Auth: src/proxy.ts (Next 16 proxy) gates pages and APIs; only ARJUN_EMAIL counts as signed in, because Supabase sign-ups are open on the project. Helpers in src/lib/supabase/.
 - API: cron routes (bearer CRON_SECRET, constant-time compare), /api/run (Run now), /api/health, edit routes for Arjun-owned columns (zod strict), draft, tasks, people removal, feedback. vercel.json crons 30 0 and 30 2 UTC.
 - UI: theme tokens and pre-paint theme script (layout.tsx, globals.css), Header, ThemeToggle (fixed width, no shift), UserMenu, Dashboard (stat cards, filters, list), Detail (why panel, signals with feedback, people with remove, soft-touch draft with tones, tasks with DEMO and HubSpot badges, Arjun notes), run log page with Run now, banners, loading skeleton, error page, login page.
@@ -101,13 +101,13 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Tests 55 of 55 pass; next build clean.
 - Next: Vercel link and deploy, seed data, HubSpot.
 
-### 2026-10-12 03:15 to 03:25 IST, Claude Code (claude-opus-5-5)
+### 2026-10-12 02:55 to 02:58 IST, Claude Code (claude-opus-5-5)
 - Vercel project linked (vishu-mesa/account-signal-monitor). Production env vars set by name through the CLI. Deployed with `vercel deploy --prod`: https://account-signal-monitor.vercel.app
 - Checked on the live URL: /login 200; / redirects to /login when signed out; cron routes return 401 with no bearer and with a wrong bearer; /api/run returns 401 unauthenticated; /api/health with the bearer shows database "seed (in-memory)", Gemini, Resend, HubSpot and the cron secret live.
 - `vercel git connect` failed: the Vercel GitHub App needs access to the repo. The user was asked to connect it in the Vercel dashboard. Until then, deploys are made from the CLI.
 - Next: seed data, HubSpot pipeline.
 
-### 2026-10-12 03:25 to 03:45 IST, Claude Code (claude-opus-5-5)
+### 2026-10-12 02:58 to 03:04 IST, Claude Code (claude-opus-5-5)
 - Research done: 50 accounts (10 active, 40 watchlist), all sized from BRSR or annual report PDFs (data/research/accounts.json, notes in accounts-notes.md). data/seed/accounts.json generated from it; removed the V-Mart alias "Unlimited" (common word).
 - data/seed/demo-crm.json: DEMO stages across Identified to Pilot plus two Closed Won customers (Updater Services, Krsnaa Diagnostics), notes, tasks, activities, renewals. All relative to seed time.
 - queryNames() in ingest.ts: legal suffixes stripped, multi-word aliases only.
@@ -116,14 +116,17 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - scripts/build-seed-signals.mts started: runs the real pipeline over all 50 accounts to produce data/seed/signals.json.
 - Next: HubSpot bootstrap on the real portal, finish the seed, docs.
 
-### 2026-10-12 03:45 to 04:00 IST, Claude Code (claude-opus-5-5)
+### 2026-10-12 03:04 to 03:11 IST, Claude Code (claude-opus-5-5)
 - HubSpot bootstrap (src/lib/hubspot/bootstrap.ts, scripts/hubspot-bootstrap.mts) run on the real portal: sm_ properties and the Signal Monitor group created; "Enterprise Leads" deal pipeline created (path: enterprise_pipeline); 10 DEMO companies (sm_demo) and 10 deals "{Company} - Enterprise rollout" (Identified to Pilot, Updater Services and Krsnaa at Closed Won); demo tasks and activities created and associated, titled "[DEMO] ...".
 - Scope gaps: email associations and email search are refused (needs sales-email-read), so demo emails are logged as notes; the automation API (workflows) is refused, so the churn-risk workflow runs in code.
 - Lookups are scoped to the company (shared task titles had collided). Activity pulls are isolated per type. The third bootstrap run created nothing, so it is idempotent.
 - HUBSPOT_PORTAL_ID added (env name only) for "Open in HubSpot" links.
 - Next: finish the seed signals, docs, map v2.
 
-### 2026-10-12 04:00 to 04:15 IST, Claude Code (claude-opus-5-5)
+### 2026-10-12 03:11 to 03:13 IST, Claude Code (claude-opus-5-5)
 - Scripts: migrate.mjs (tracks schema_migrations), seed.mts (insert-only), create-user.mts (Arjun's Supabase user; prints a generated passcode once).
 - Docs: README (with "Protected by design", DPDP note, limits), VIVA, DEMO, hubspot-workflow (paths used), COMPONENTS-MAP, Components Map v2 (SVG and PNG).
 - Next: finish the seed signals, then the final checks.
+
+### 2026-10-12 03:14 IST, Claude Code (claude-opus-5-5)
+- Correction: the time ranges in the entries above were first written as estimates and ran ahead of the real clock (up to 04:15). They have been corrected to match the commit timestamps from `git log`. From now on, entries use `date` output.
