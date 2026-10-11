@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1565" height="1194" viewBox="0 0 1565 1194" font-family="Helvetica, Arial, sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b2fc9"/></marker></defs>
+<rect width="1565" height="1194" fill="#ffffff"/>
+<text x="20" y="34" font-size="22" font-weight="700" fill="#090014">B2B Account Signal Monitor: Components Map v2 (as built)</text>
+<text x="20" y="60" font-size="13" fill="#5f5a70">Swimlane by actor or tool. Columns follow the flow: Trigger, Input, Context, Processing, AI, Output. Times in IST, stored in UTC.</text>
+<rect x="195" y="96" width="225" height="30" fill="#7c46f1"/>
+<text x="307.5" y="116" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Trigger</text>
+<rect x="420" y="96" width="225" height="30" fill="#7c46f1"/>
+<text x="532.5" y="116" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Input</text>
+<rect x="645" y="96" width="225" height="30" fill="#7c46f1"/>
+<text x="757.5" y="116" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Context</text>
+<rect x="870" y="96" width="225" height="30" fill="#7c46f1"/>
+<text x="982.5" y="116" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Processing</text>
+<rect x="1095" y="96" width="225" height="30" fill="#7c46f1"/>
+<text x="1207.5" y="116" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">AI</text>
+<rect x="1320" y="96" width="225" height="30" fill="#7c46f1"/>
+<text x="1432.5" y="116" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Output</text>
+<rect x="20" y="130" width="1525" height="118" fill="#f6f3fc" stroke="#e6e1f3"/>
+<text x="30" y="194" font-size="13" font-weight="700" fill="#090014">Cron / Vercel</text>
+<rect x="20" y="248" width="1525" height="118" fill="#ffffff" stroke="#e6e1f3"/>
+<text x="30" y="312" font-size="13" font-weight="700" fill="#090014">News and web sources</text>
+<rect x="20" y="366" width="1525" height="118" fill="#f6f3fc" stroke="#e6e1f3"/>
+<text x="30" y="430" font-size="13" font-weight="700" fill="#090014">Gemini Flash</text>
+<rect x="20" y="484" width="1525" height="118" fill="#ffffff" stroke="#e6e1f3"/>
+<text x="30" y="548" font-size="13" font-weight="700" fill="#090014">Code (validators and scorer)</text>
+<rect x="20" y="602" width="1525" height="118" fill="#f6f3fc" stroke="#e6e1f3"/>
+<text x="30" y="666" font-size="13" font-weight="700" fill="#090014">Supabase</text>
+<rect x="20" y="720" width="1525" height="118" fill="#ffffff" stroke="#e6e1f3"/>
+<text x="30" y="784" font-size="13" font-weight="700" fill="#090014">HubSpot</text>
+<rect x="20" y="838" width="1525" height="118" fill="#f6f3fc" stroke="#e6e1f3"/>
+<text x="30" y="902" font-size="13" font-weight="700" fill="#090014">Resend</text>
+<rect x="20" y="956" width="1525" height="118" fill="#ffffff" stroke="#e6e1f3"/>
+<text x="30" y="1020" font-size="13" font-weight="700" fill="#090014">Arjun</text>
+<line x1="195" y1="126" x2="195" y2="1074" stroke="#e6e1f3"/>
+<line x1="420" y1="126" x2="420" y2="1074" stroke="#e6e1f3"/>
+<line x1="645" y1="126" x2="645" y2="1074" stroke="#e6e1f3"/>
+<line x1="870" y1="126" x2="870" y2="1074" stroke="#e6e1f3"/>
+<line x1="1095" y1="126" x2="1095" y2="1074" stroke="#e6e1f3"/>
+<line x1="1320" y1="126" x2="1320" y2="1074" stroke="#e6e1f3"/>
+<rect x="203" y="138" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="211" y="155" font-size="12" font-weight="700" fill="#090014">Vercel Cron</text>
+<text x="211" y="171" font-size="11" fill="#090014">ingest 30 0 * * * (06:00 IST)</text>
+<text x="211" y="185" font-size="11" fill="#090014">morning 30 2 * * * (08:00 IST)</text>
+<text x="211" y="199" font-size="11" fill="#090014">Bearer CRON_SECRET</text>
+<text x="211" y="233" font-size="10" font-style="italic" fill="#5f5a70">runs: Vercel</text>
+<rect x="878" y="138" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="886" y="155" font-size="12" font-weight="700" fill="#090014">Next.js 16 routes + proxy.ts</text>
+<text x="886" y="171" font-size="11" fill="#090014">/api/cron/* (bearer), /api/run</text>
+<text x="886" y="185" font-size="11" fill="#090014">proxy: only ARJUN_EMAIL session</text>
+<text x="886" y="199" font-size="11" fill="#090014">runs table, alert if failed twice</text>
+<text x="886" y="233" font-size="10" font-style="italic" fill="#5f5a70">runs: Vercel serverless</text>
+<rect x="428" y="256" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="436" y="273" font-size="12" font-weight="700" fill="#090014">Google News RSS (decoded URLs)</text>
+<text x="436" y="289" font-size="11" fill="#090014">name + multi-word aliases, 14d</text>
+<text x="436" y="303" font-size="11" fill="#090014">fetch publisher page (cheerio)</text>
+<text x="436" y="317" font-size="11" fill="#090014">robots.txt, 1 req/s/host, URL hash</text>
+<text x="436" y="351" font-size="10" font-style="italic" fill="#5f5a70">runs: Vercel fn, outbound HTTP</text>
+<rect x="1103" y="374" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="1111" y="391" font-size="12" font-weight="700" fill="#090014">gemini-3.8-flash (extract)</text>
+<text x="1111" y="407" font-size="11" fill="#090014">responseJsonSchema, temp 0</text>
+<text x="1111" y="421" font-size="11" fill="#090014">1 retry, backoff, daily cap</text>
+<text x="1111" y="435" font-size="11" fill="#090014">eval: 86.7% type, 100% verbatim</text>
+<text x="1111" y="469" font-size="10" font-style="italic" fill="#5f5a70">runs: Google API via gemini.ts</text>
+<rect x="1328" y="374" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="1336" y="391" font-size="12" font-weight="700" fill="#090014">Gemini Flash (write)</text>
+<text x="1336" y="407" font-size="11" fill="#090014">outreach angle (product facts)</text>
+<text x="1336" y="421" font-size="11" fill="#090014">brief prep notes</text>
+<text x="1336" y="435" font-size="11" fill="#090014">soft-touch draft (no pitch)</text>
+<text x="1336" y="469" font-size="10" font-style="italic" fill="#5f5a70">runs: Google API via gemini.ts</text>
+<rect x="1457" y="379" width="74" height="16" rx="8" fill="#f0eafe" stroke="#7c46f1"/>
+<text x="1494" y="391" font-size="10" font-weight="700" fill="#5b2fc9" text-anchor="middle">Soft-touch</text>
+<rect x="653" y="492" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="661" y="509" font-size="12" font-weight="700" fill="#090014">config/*.json</text>
+<text x="661" y="525" font-size="11" fill="#090014">sources.json (T1, T2 allowlist)</text>
+<text x="661" y="539" font-size="11" fill="#090014">scoring.json (weights, decay)</text>
+<text x="661" y="553" font-size="11" fill="#090014">product-facts.json</text>
+<text x="661" y="587" font-size="10" font-style="italic" fill="#5f5a70">runs: repo, read at runtime</text>
+<rect x="878" y="492" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="886" y="509" font-size="12" font-weight="700" fill="#090014">Gates + validators</text>
+<text x="886" y="525" font-size="11" fill="#090014">G1-G6 before Gemini</text>
+<text x="886" y="539" font-size="11" fill="#090014">V1-V7 after Gemini (verbatim)</text>
+<text x="886" y="553" font-size="11" fill="#090014">cluster by event_key</text>
+<text x="886" y="587" font-size="10" font-style="italic" fill="#5f5a70">runs: Vercel serverless</text>
+<rect x="1328" y="492" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="1336" y="509" font-size="12" font-weight="700" fill="#090014">Scorer (code only)</text>
+<text x="1336" y="525" font-size="11" fill="#090014">points x decay + fit + rel. + act.</text>
+<text x="1336" y="539" font-size="11" fill="#090014">hot gate, rumour cap, lanes</text>
+<text x="1336" y="553" font-size="11" fill="#090014">score_breakdown jsonb</text>
+<text x="1336" y="587" font-size="10" font-style="italic" fill="#5f5a70">runs: Vercel serverless</text>
+<rect x="428" y="610" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="436" y="627" font-size="12" font-weight="700" fill="#090014">accounts: CRM-owned</text>
+<text x="436" y="643" font-size="11" fill="#090014">stage = deal stage, is_customer</text>
+<text x="436" y="657" font-size="11" fill="#090014">hubspot ids, renewal, crm_is_demo</text>
+<text x="436" y="705" font-size="10" font-style="italic" fill="#5f5a70">runs: Postgres (PGlite fallback)</text>
+<rect x="653" y="610" width="209" height="102" rx="10" fill="#fdf0c8" stroke="#c2410c" stroke-width="1.5"/>
+<text x="661" y="627" font-size="12" font-weight="700" fill="#090014">accounts: Arjun-owned</text>
+<text x="661" y="643" font-size="11" fill="#090014">notes, last_contacted_at</text>
+<text x="661" y="657" font-size="11" fill="#090014">relationship_read, my_draft</text>
+<text x="661" y="671" font-size="11" fill="#090014">snoozed_until</text>
+<text x="661" y="705" font-size="10" font-style="italic" fill="#5f5a70">runs: Supabase Postgres</text>
+<rect x="1328" y="610" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="1336" y="627" font-size="12" font-weight="700" fill="#090014">accounts: system-owned</text>
+<text x="1336" y="643" font-size="11" fill="#090014">score, band, lane, breakdown</text>
+<text x="1336" y="657" font-size="11" fill="#090014">signals, events, runs, audit</text>
+<text x="1336" y="671" font-size="11" fill="#090014">sends (unique send lock)</text>
+<text x="1336" y="705" font-size="10" font-style="italic" fill="#5f5a70">runs: Postgres + trigger guard</text>
+<rect x="428" y="728" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="436" y="745" font-size="12" font-weight="700" fill="#090014">HubSpot: Enterprise Leads</text>
+<text x="436" y="761" font-size="11" fill="#090014">deals by stage, companies</text>
+<text x="436" y="775" font-size="11" fill="#090014">tasks + activities ([DEMO])</text>
+<text x="436" y="823" font-size="10" font-style="italic" fill="#5f5a70">runs: HubSpot cloud</text>
+<rect x="594.2" y="733" width="36.8" height="16" rx="8" fill="#f0eafe" stroke="#7c46f1"/>
+<text x="612.6" y="745" font-size="10" font-weight="700" fill="#5b2fc9" text-anchor="middle">Sync</text>
+<rect x="1328" y="728" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="1336" y="745" font-size="12" font-weight="700" fill="#090014">HubSpot sm_ properties</text>
+<text x="1336" y="761" font-size="11" fill="#090014">push score, band, lane, signal</text>
+<text x="1336" y="775" font-size="11" fill="#090014">retention task per event_key</text>
+<text x="1336" y="789" font-size="11" fill="#090014">never edits deal stages</text>
+<text x="1336" y="823" font-size="10" font-style="italic" fill="#5f5a70">runs: HubSpot cloud</text>
+<rect x="1494.2" y="733" width="36.8" height="16" rx="8" fill="#f0eafe" stroke="#7c46f1"/>
+<text x="1512.6" y="745" font-size="10" font-weight="700" fill="#5b2fc9" text-anchor="middle">Sync</text>
+<rect x="878" y="846" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="886" y="863" font-size="12" font-weight="700" fill="#090014">Morning job</text>
+<text x="886" y="879" font-size="11" fill="#090014">Hot List Mon + Thu</text>
+<text x="886" y="893" font-size="11" fill="#090014">window: since last send, min 3d</text>
+<text x="886" y="907" font-size="11" fill="#090014">top 10, never padded</text>
+<text x="886" y="941" font-size="10" font-style="italic" fill="#5f5a70">runs: Vercel serverless</text>
+<rect x="1038" y="851" width="43" height="16" rx="8" fill="#f0eafe" stroke="#7c46f1"/>
+<text x="1059.5" y="863" font-size="10" font-weight="700" fill="#5b2fc9" text-anchor="middle">Brief</text>
+<rect x="1328" y="846" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="1336" y="863" font-size="12" font-weight="700" fill="#090014">Resend email</text>
+<text x="1336" y="879" font-size="11" fill="#090014">Hot List + morning brief</text>
+<text x="1336" y="893" font-size="11" fill="#090014">to ARJUN_EMAIL only</text>
+<text x="1336" y="907" font-size="11" fill="#090014">never to prospects</text>
+<text x="1336" y="941" font-size="10" font-style="italic" fill="#5f5a70">runs: Resend API</text>
+<rect x="203" y="964" width="209" height="102" rx="10" fill="#fdf0c8" stroke="#c2410c" stroke-width="1.5"/>
+<text x="211" y="981" font-size="12" font-weight="700" fill="#090014">Arjun (signed in)</text>
+<text x="211" y="997" font-size="11" fill="#090014">Run now</text>
+<text x="211" y="1011" font-size="11" fill="#090014">snooze, feedback, tasks</text>
+<text x="211" y="1059" font-size="10" font-style="italic" fill="#5f5a70">runs: browser</text>
+<rect x="653" y="964" width="209" height="102" rx="10" fill="#fdf0c8" stroke="#c2410c" stroke-width="1.5"/>
+<text x="661" y="981" font-size="12" font-weight="700" fill="#090014">Arjun edits</text>
+<text x="661" y="997" font-size="11" fill="#090014">notes, last contact, his read</text>
+<text x="661" y="1011" font-size="11" fill="#090014">my_draft (his copy)</text>
+<text x="661" y="1059" font-size="10" font-style="italic" fill="#5f5a70">runs: dashboard</text>
+<rect x="1328" y="964" width="209" height="102" rx="10" fill="#ffffff" stroke="#7c46f1" stroke-width="1.5"/>
+<text x="1336" y="981" font-size="12" font-weight="700" fill="#090014">Dashboard (Next.js)</text>
+<text x="1336" y="997" font-size="11" fill="#090014">Hot, Warm, Cold, why panel</text>
+<text x="1336" y="1011" font-size="11" fill="#090014">signals, people, draft</text>
+<text x="1336" y="1059" font-size="10" font-style="italic" fill="#5f5a70">runs: Vercel + browser</text>
+<rect x="1457" y="969" width="74" height="16" rx="8" fill="#f0eafe" stroke="#7c46f1"/>
+<text x="1494" y="981" font-size="10" font-weight="700" fill="#5b2fc9" text-anchor="middle">Soft-touch</text>
+<path d="M412,189 Q645,189 878,189" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="645" y="185" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">daily</text>
+<path d="M919.8,240 Q778.4,263.3 637,286.6" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="778.4" y="259.3" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">ingest</text>
+<path d="M637,327.4 Q757.5,425 878,522.6" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="757.5" y="421" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">articles</text>
+<path d="M862,543 Q870,543 878,543" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="870" y="539" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">rules</text>
+<path d="M1024.3,492 Q1063.65,463.6 1103,435.2" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="1063.65" y="459.6" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">extract</text>
+<path d="M1165.7,476 Q1126.35,496.75 1087,517.5" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4 3"/>
+<text x="1126.35" y="492.75" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">JSON</text>
+<path d="M1087,568.5 Q1207.5,568.5 1328,568.5" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="1207.5" y="564.5" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">events</text>
+<path d="M1432.5,594 Q1432.5,602 1432.5,610" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="1432.5" y="598" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">system cols only</text>
+<path d="M532.5,728 Q532.5,720 532.5,712" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="532.5" y="716" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">CRM cols only</text>
+<path d="M1432.5,712 Q1432.5,720 1432.5,728" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="1432.5" y="716" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">push</text>
+<path d="M1359.35,712 Q1202.275,779 1045.2,846" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="1202.275" y="775" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">reads</text>
+<path d="M1087,897 Q1207.5,897 1328,897" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="1207.5" y="893" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">send lock</text>
+<path d="M1537,455.6 Q1562,686 1537,866.4" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" stroke-dasharray="4 3"/>
+<text x="1562" y="669.5" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">angle, notes</text>
+<path d="M1432.5,948 Q1432.5,956 1432.5,964" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="1432.5" y="952" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">email links</text>
+<path d="M757.5,964 Q757.5,838 757.5,712" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="757.5" y="834" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">user writes only</text>
+<path d="M307.5,964 Q307.5,602 307.5,240" fill="none" stroke="#5b2fc9" stroke-width="1.5" marker-end="url(#ah)" />
+<text x="307.5" y="598" font-size="10" fill="#5b2fc9" text-anchor="middle" font-weight="700">Run now</text>
+<path d="M645,602 L870,602 L870,1074 M195,956 L645,956 L645,602" fill="none" stroke="#ea580c" stroke-width="3" stroke-dasharray="10 6"/>
+<text x="876" y="616" font-size="11" font-weight="700" fill="#c2410c">CUT: Arjun-owned (left) | system-written (right)</text>
+<text x="20" y="1100" font-size="12" fill="#c2410c" font-weight="700">D02: system never writes Arjun-owned columns. Enforced in code (column allowlists), in Postgres (BEFORE UPDATE trigger) and by test.</text>
+<text x="20" y="1118" font-size="12" fill="#5f5a70" >Yellow boxes are Arjun-owned data and actions. Purple boxes are system. Tags mark HubSpot sync, the morning brief and the soft-touch draft.</text>
+<text x="20" y="1136" font-size="12" fill="#5f5a70" >v2 is as built. Changes from v1: deal pipeline Enterprise Leads, churn workflow in code (API refused), PGlite seed fallback, proxy auth.</text>
+</svg>

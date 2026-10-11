@@ -122,3 +122,8 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Lookups are scoped to the company (shared task titles had collided). Activity pulls are isolated per type. The third bootstrap run created nothing, so it is idempotent.
 - HUBSPOT_PORTAL_ID added (env name only) for "Open in HubSpot" links.
 - Next: finish the seed signals, docs, map v2.
+
+### 2026-10-12 04:00 to 04:15 IST, Claude Code (claude-opus-5-5)
+- Scripts: migrate.mjs (tracks schema_migrations), seed.mts (insert-only), create-user.mts (Arjun's Supabase user; prints a generated passcode once).
+- Docs: README (with "Protected by design", DPDP note, limits), VIVA, DEMO, hubspot-workflow (paths used), COMPONENTS-MAP, Components Map v2 (SVG and PNG).
+- Next: finish the seed signals, then the final checks.
