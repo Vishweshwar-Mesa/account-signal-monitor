@@ -1,0 +1,220 @@
+import type { Db } from "../db";
+import { runGates, hostOf, type GateAccount } from "./gates";
+import { validateExtraction, eventKey, subjectKey, urlHash, type Extraction, type ValidatedEvent } from "./validators";
+import { fetchFeed, googleNewsUrl, resolveGoogleNewsUrl, fetchArticle, type FeedItem, type Article } from "./news";
+import { extractFacts, geminiCalls, resetGeminiCalls, GeminiCapError } from "../ai/gemini";
+import { rescoreAll } from "./rescore";
+import { startRun, finishRun, type RunCounts, newCounts } from "./runs";
+
+// Ingest job (section 7). Discovery, gates, extraction, validators, clustering, then a full rescore.
+// Fetcher and extractor are injectable so the same code runs on fixtures in tests.
+
+export interface IngestDeps {
+  discover: (a: AccountRow) => Promise<FeedItem[]>;
+  resolve: (link: string) => Promise<string | null>;
+  fetchArticle: (url: string) => Promise<Article | { blocked: string }>;
+  extract: (company: string, aliases: string[], title: string, text: string) => Promise<Extraction | null>;
+  geminiCalls: () => number;
+}
+
+export interface AccountRow extends GateAccount {
+  id: string;
+  newsroom_rss: string | null;
+  is_active: boolean;
+}
+
+export const liveDeps: IngestDeps = {
+  discover: async (a) => {
+    const q = [`"${a.name}"`, ...a.aliases.filter((x) => x.length >= 6).slice(0, 1).map((x) => `"${x}"`)].join(" OR ");
+    const items = await fetchFeed(googleNewsUrl(q));
+    if (a.newsroom_rss) items.push(...(await fetchFeed(a.newsroom_rss).catch(() => [])));
+    return items;
+  },
+  resolve: resolveGoogleNewsUrl,
+  fetchArticle,
+  extract: extractFacts,
+  geminiCalls,
+};
+
+export interface IngestOptions {
+  now?: Date;
+  deps?: IngestDeps;
+  accountIds?: string[];
+  maxArticles?: number;
+  geminiCap?: number;
+  timeBudgetMs?: number;
+  perAccount?: number;
+  isSeed?: boolean;
+}
+
+/** Upsert one validated event: same event_key from another outlet raises source_count and keeps the best tier. */
+export async function upsertEvent(db: Db, accountId: string, ev: ValidatedEvent, signalId: string, eventDate: Date, tier: "T1" | "T2", domain: string) {
+  const sk = subjectKey(ev.type, ev.subject);
+  const key = eventKey(accountId, ev.type, sk, eventDate);
+  const existing = await db.query<{ id: string; source_domains: string[]; best_tier: string; evidence_signal_ids: string[] }>(
+    "select id, source_domains, best_tier, evidence_signal_ids from events where event_key = $1",
+    [key],
+  );
+  if (existing.rows.length) {
+    const e = existing.rows[0];
+    if (e.evidence_signal_ids.includes(signalId)) return { key, merged: false };
+    const domains = e.source_domains.includes(domain) ? e.source_domains : [...e.source_domains, domain];
+    const best = e.best_tier === "T1" || tier === "T1" ? "T1" : "T2";
+    // A confirmed report upgrades an earlier rumour; a later rumour never downgrades a confirmed event.
+    await db.query(
+      `update events set source_count = source_count + 1, source_domains = $2, best_tier = $3,
+         evidence_signal_ids = array_append(evidence_signal_ids, $4::uuid),
+         certainty = case when $5 = 'confirmed' then 'confirmed' else certainty end,
+         competitor = coalesce(competitor, $6)
+       where id = $1`,
+      [e.id, domains, best, signalId, ev.certainty, ev.competitor],
+    );
+    return { key, merged: true };
+  }
+  await db.query(
+    `insert into events (account_id, type, event_key, subject_key, summary, event_date, magnitude, certainty, time_scope,
+       source_count, source_domains, best_tier, competitor, evidence_signal_ids)
+     values ($1,$2,$3,$4,$5,$6,$7,$8,$9,1,$10,$11,$12,array[$13::uuid])`,
+    [accountId, ev.type, key, sk, ev.summary, eventDate, ev.magnitude, ev.certainty, ev.time_scope, [domain], tier, ev.competitor, signalId],
+  );
+  return { key, merged: false };
+}
+
+async function storeSignal(db: Db, row: Record<string, unknown>) {
+  const r = await db.query<{ id: string }>(
+    `insert into signals (account_id, url, url_hash, publisher, tier, published_at, title, evidence_quote, extraction, gate_result, rejected_reason, is_seed)
+     values ($1,$2,$3,$4,$5,$6,$7,$8,$9::jsonb,$10,$11,$12)
+     on conflict (url) do nothing returning id`,
+    [row.account_id, row.url, urlHash(String(row.url)), row.publisher, row.tier, row.published_at, row.title, row.evidence_quote ?? null,
+      row.extraction ? JSON.stringify(row.extraction) : null, row.gate_result, row.rejected_reason ?? null, row.is_seed ?? false],
+  );
+  return r.rows[0]?.id ?? null;
+}
+
+export async function processArticle(
+  db: Db, account: AccountRow, item: FeedItem, deps: IngestDeps, counts: RunCounts, now: Date, isSeed = false,
+): Promise<"stored" | "skipped"> {
+  const resolved = await deps.resolve(item.link);
+  if (!resolved) { bump(counts.gated_out, "unresolved_link"); return "skipped"; }
+  const h = urlHash(resolved);
+  const seen = await db.query("select 1 from signals where url_hash = $1 union all select 1 from fetch_cache where url_hash = $1", [h]);
+  if (seen.rows.length) { counts.skipped_seen++; return "skipped"; }
+
+  // Cheap gates on feed metadata first, so we do not fetch pages we would reject anyway.
+  const pre = runGates(account, { url: resolved, title: item.title, text: "x".repeat(300) + item.title, published_at: item.published_at }, now);
+  if (pre.result === "g2_stale" || pre.result === "g3_content_type" || pre.result === "g4_context" || pre.result === "g5_speculation") {
+    bump(counts.gated_out, pre.result);
+    await storeSignal(db, { account_id: account.id, url: resolved, publisher: item.source_name ?? pre.publisher, tier: pre.tier, published_at: item.published_at, title: item.title, gate_result: pre.result, is_seed: isSeed });
+    return "stored";
+  }
+
+  const art = await deps.fetchArticle(resolved);
+  counts.fetched++;
+  if ("blocked" in art) {
+    bump(counts.gated_out, `fetch_${art.blocked}`);
+    await db.query("insert into fetch_cache (url_hash, url, status) values ($1,$2,$3) on conflict do nothing", [h, resolved, art.blocked]);
+    return "skipped";
+  }
+  const published = art.published_at ?? item.published_at;
+  const cand = { url: art.url, title: art.title || item.title, text: art.text, published_at: published };
+  const g = runGates(account, cand, now);
+  const publisher = g.tier === "T2" || g.tier === "T1" ? g.publisher : item.source_name ?? g.publisher;
+  const base = { account_id: account.id, url: resolved, publisher, tier: g.tier, published_at: published, title: cand.title, is_seed: isSeed };
+  if (g.result !== "pass") {
+    bump(counts.gated_out, g.result);
+    await storeSignal(db, { ...base, gate_result: g.result });
+    return "stored";
+  }
+
+  const x = await deps.extract(account.name, account.aliases, cand.title, cand.text);
+  counts.extracted++;
+  if (!x) {
+    bump(counts.rejected_by_validator, "invalid_json");
+    await storeSignal(db, { ...base, gate_result: "rejected", rejected_reason: "invalid_json" });
+    return "stored";
+  }
+  const v = validateExtraction(x, cand.text, published, now, g.rumour);
+  if (!v.ok) {
+    bump(counts.rejected_by_validator, v.reason);
+    await storeSignal(db, { ...base, extraction: x, gate_result: v.reason === "no_trigger" ? "no_trigger" : "rejected", rejected_reason: v.reason });
+    return "stored";
+  }
+  const signalId = await storeSignal(db, { ...base, extraction: { ...x, notes: v.event.notes }, evidence_quote: v.event.quote, gate_result: "accepted" });
+  if (signalId) {
+    await upsertEvent(db, account.id, v.event, signalId, published ?? now, g.tier as "T1" | "T2", hostOf(resolved));
+    counts.events_written++;
+  }
+  return "stored";
+}
+
+function bump(map: Record<string, number>, key: string) {
+  map[key] = (map[key] ?? 0) + 1;
+}
+
+export async function runIngest(db: Db, opts: IngestOptions = {}) {
+  const now = opts.now ?? new Date();
+  const deps = opts.deps ?? liveDeps;
+  const maxArticles = opts.maxArticles ?? Number(process.env.MAX_ARTICLES_PER_RUN || 120);
+  const cap = opts.geminiCap ?? Number(process.env.GEMINI_DAILY_CALL_CAP || 300);
+  const deadline = Date.now() + (opts.timeBudgetMs ?? 240_000);
+  const perAccount = opts.perAccount ?? 6;
+  if (deps === liveDeps) resetGeminiCalls();
+  const runId = await startRun(db, "ingest", now);
+  const counts = newCounts();
+  const errors: string[] = [];
+  let partial = false;
+
+  try {
+    // HubSpot sync runs first inside the ingest job (section 10). Failure never stops ingest (D08).
+    try {
+      const { syncHubspot } = await import("../hubspot/sync");
+      const r = await syncHubspot(db);
+      counts.hubspot = r.status;
+    } catch (e) {
+      counts.hubspot = "failed";
+      errors.push(`hubspot: ${(e as Error).message}`);
+    }
+
+    const acc = await db.query<AccountRow>(
+      `select id, name, aliases, domain, newsroom_rss, is_active from accounts
+       ${opts.accountIds ? "where id = any($1)" : ""} order by is_active desc, name`,
+      opts.accountIds ? [opts.accountIds] : [],
+    );
+    let processed = 0;
+    outer: for (const a of acc.rows) {
+      let items: FeedItem[] = [];
+      try {
+        items = await deps.discover(a);
+      } catch (e) {
+        partial = true;
+        errors.push(`feed ${a.name}: ${(e as Error).message}`);
+        continue;
+      }
+      counts.discovered += items.length;
+      let n = 0;
+      for (const it of items) {
+        if (n >= perAccount) break;
+        if (processed >= maxArticles) { counts.stopped = "max_articles"; partial = true; break outer; }
+        if (deps.geminiCalls() >= cap) { counts.stopped = "gemini_cap"; partial = true; break outer; }
+        if (Date.now() > deadline) { counts.stopped = "time_budget"; partial = true; break outer; }
+        try {
+          const r = await processArticle(db, a, it, deps, counts, now, opts.isSeed);
+          if (r === "stored") { n++; processed++; }
+        } catch (e) {
+          if (e instanceof GeminiCapError) { counts.stopped = "gemini_cap"; partial = true; break outer; }
+          partial = true;
+          errors.push(`${a.name}: ${(e as Error).message}`.slice(0, 300));
+        }
+      }
+    }
+    counts.accounts_rescored = await rescoreAll(db, now);
+    counts.gemini_calls = deps.geminiCalls();
+    const status = partial ? "partial" : "ok";
+    await finishRun(db, runId, status, counts, errors.length ? errors.slice(0, 20).join("\n") : null);
+    return { runId, status, counts, errors };
+  } catch (e) {
+    counts.gemini_calls = deps.geminiCalls();
+    await finishRun(db, runId, "failed", counts, String((e as Error).stack ?? e).slice(0, 2000));
+    throw e;
+  }
+}
