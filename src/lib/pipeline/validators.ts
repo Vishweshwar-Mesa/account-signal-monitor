@@ -72,6 +72,7 @@ export function validateExtraction(
   publishedAt: Date | null,
   now: Date,
   gateRumour = false,
+  freshnessDays?: number,
 ): { ok: true; event: ValidatedEvent } | { ok: false; reason: ValidatorFailure | "schema" } {
   const parsed = ExtractionSchema.safeParse(raw);
   if (!parsed.success) return { ok: false, reason: "schema" };
@@ -82,7 +83,7 @@ export function validateExtraction(
   if (!x.evidence_quote || !isVerbatim(x.evidence_quote, articleText)) return { ok: false, reason: "v1_quote_not_verbatim" };
   const summary = (x.one_line_summary ?? "").trim();
   if (!summary || summary.split(/\s+/).length > 20 || BANNED.some((r) => r.test(summary))) return { ok: false, reason: "v4_summary" };
-  if (!gateFresh({ url: "", title: "", text: "", published_at: publishedAt }, now)) return { ok: false, reason: "v5_date" };
+  if (!gateFresh({ url: "", title: "", text: "", published_at: publishedAt }, now, freshnessDays)) return { ok: false, reason: "v5_date" };
   const type = x.trigger_type as TriggerType;
   const quote = trimQuote(x.evidence_quote.replace(/^["'\s]+|["'\s]+$/g, ""));
   if (type === "LEADERSHIP_CHANGE" && !leaderInQuote(x.subject, x.subject_title, x.evidence_quote)) {

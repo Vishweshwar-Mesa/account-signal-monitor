@@ -269,3 +269,8 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 ### 2026-10-12 19:02 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
 - Added docs/AUTOMATION_BRIEF.md in the Mesa case format the user shared (Case 01 answer key): Why (pain, user, outcome), Journey Today, Nine Checks (kill switches 01 to 03, sizing 04, 05, 08, boundary 06, 07, 09) with evidence from the brief and from measured system data, and The Cut: 07 Judgment Protected (no auto-send of outreach, D12). The baseline for trigger-to-outreach time is not in the brief, so the doc says to measure it rather than assuming it. Linked from the README.
 
+
+### 2026-10-12 20:06 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- The user asked for account context and history, but only what holds up in the viva. Plan: verified 90-day signal history (context, not scored), a score trend from the audit log, a signal-history line in HubSpot. No more invented CRM history.
+- History mode (processArticle historyDays): same gates and validators with a 90-day window; items older than 14 days are stored as gate_result 'history' with no event and no points. Stale-only rows get a proper look in this mode. bingNewsUrl({history}) drops the one-month interval. scripts/build-history.mts. Test: a 40-day-old verified article is g2_stale normally and 'history' in history mode, with no event. 79 tests pass.
+

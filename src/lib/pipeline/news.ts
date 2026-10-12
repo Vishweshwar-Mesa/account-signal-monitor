@@ -78,9 +78,10 @@ export function parseRss(body: string): FeedItem[] {
 }
 
 /** Bing News RSS. Each link carries the original publisher URL in its url= parameter, so no extra request is needed. */
-export function bingNewsUrl(query: string) {
-  // qft: past month, newest first (the freshness gate then keeps 14 days).
-  return `https://www.bing.com/news/search?q=${encodeURIComponent(query)}&format=rss&setlang=en-IN&cc=IN&qft=${encodeURIComponent('interval="9" sortbydate="1"')}`;
+export function bingNewsUrl(query: string, opts: { history?: boolean } = {}) {
+  // Daily: past month, newest first (the freshness gate then keeps 14 days). History: no interval, newest first.
+  const qft = opts.history ? 'sortbydate="1"' : 'interval="9" sortbydate="1"';
+  return `https://www.bing.com/news/search?q=${encodeURIComponent(query)}&format=rss&setlang=en-IN&cc=IN&qft=${encodeURIComponent(qft)}`;
 }
 
 export function resolveBingUrl(link: string): string | null {

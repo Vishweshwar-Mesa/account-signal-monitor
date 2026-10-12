@@ -65,6 +65,23 @@ describe("ingest on fixtures", () => {
   });
 });
 
+describe("history mode (context only, never scored)", () => {
+  it("a verified 40-day-old article is stored as history with no event; normal mode drops it as stale", async () => {
+    const { processArticle } = await import("@/lib/pipeline/ingest");
+    const { newCounts } = await import("@/lib/pipeline/runs");
+    const id = await account("Test Retail Co");
+    const acc = { id, name: "Test Retail Co", aliases: [], domain: null, newsroom_rss: null, is_active: true };
+    const old = new Date(NOW.getTime() - 40 * DAY);
+    const deps = fixtureDeps({ fetchArticle: async (url: string) => ({ url, title: "Test Retail Co names Asha Rao CHRO", text: (await fixtureDeps().fetchArticle(url) as { text: string }).text, published_at: old }) });
+    const item = { title: "Test Retail Co names Asha Rao CHRO", link: "https://hr.economictimes.indiatimes.com/news/old/1", published_at: old, source_name: null, source_url: null };
+    await processArticle(db, acc, item, deps, newCounts(), NOW);
+    expect((await db.query<{ gate_result: string }>("select gate_result from signals")).rows[0].gate_result).toBe("g2_stale");
+    await processArticle(db, acc, item, deps, newCounts(), NOW, false, 90);
+    expect((await db.query<{ gate_result: string }>("select gate_result from signals")).rows.map((r) => r.gate_result)).toEqual(["history"]);
+    expect((await db.query("select 1 from events")).rows).toHaveLength(0);
+  });
+});
+
 describe("Hot List window (B08, daily)", () => {
   it("since the last send when that is longer than a day (for example a missed day)", () => {
     const twoDaysAgo = new Date("2026-10-10T02:30:00Z");

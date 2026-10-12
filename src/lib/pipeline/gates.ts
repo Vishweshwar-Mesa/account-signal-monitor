@@ -103,11 +103,11 @@ export function gateHasText(c: Candidate): boolean {
   return c.text.trim().length >= 200;
 }
 
-export function runGates(a: GateAccount, c: Candidate, now: Date): { result: GateResult; tier: Tier; publisher: string; rumour: boolean } {
+export function runGates(a: GateAccount, c: Candidate, now: Date, freshnessDays = scoring.freshnessDays): { result: GateResult; tier: Tier; publisher: string; rumour: boolean } {
   const { tier, publisher } = tierFor(c.url, a.domain);
   const base = { tier, publisher, rumour: false };
   if (!gateEntity(a, c)) return { ...base, result: "g1_entity" };
-  if (!gateFresh(c, now)) return { ...base, result: "g2_stale" };
+  if (!gateFresh(c, now, freshnessDays)) return { ...base, result: "g2_stale" };
   if (!gateContentType(c)) return { ...base, result: "g3_content_type" };
   if (tier === "CONTEXT") return { ...base, result: "g4_context" };
   const cert = gateCertainty(c);

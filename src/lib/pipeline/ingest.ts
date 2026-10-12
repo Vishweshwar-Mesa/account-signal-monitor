@@ -1,4 +1,5 @@
 import type { Db } from "../db";
+import scoring from "../../../config/scoring.json";
 import { runGates, hostOf, type GateAccount } from "./gates";
 import { validateExtraction, eventKey, subjectKey, urlHash, type Extraction, type ValidatedEvent } from "./validators";
 import { fetchFeed, googleNewsUrl, bingNewsUrl, resolveBingUrl, resolveGoogleNewsUrl, googleDecodeAvailable, fetchArticle, type FeedItem, type Article } from "./news";
@@ -111,15 +112,21 @@ async function storeSignal(db: Db, row: Record<string, unknown>) {
 
 export async function processArticle(
   db: Db, account: AccountRow, item: FeedItem, deps: IngestDeps, counts: RunCounts, now: Date, isSeed = false,
+  historyDays?: number, // history mode: same gates and validators over a longer window; older items are context only, never scored
 ): Promise<"stored" | "pregated" | "skipped"> {
+  const window = historyDays ?? scoring.freshnessDays;
   const resolved = await deps.resolve(item.link);
   if (!resolved) { bump(counts.gated_out, "unresolved_link"); return "skipped"; }
   const h = urlHash(resolved);
   const seen = await db.query("select 1 from signals where url_hash = $1 union all select 1 from fetch_cache where url_hash = $1", [h]);
-  if (seen.rows.length) { counts.skipped_seen++; return "skipped"; }
+  if (seen.rows.length) {
+    // In history mode, items earlier dropped only for being older than 14 days get a proper look.
+    const stale = historyDays ? await db.query("delete from signals where url_hash = $1 and gate_result = 'g2_stale' returning id", [h]) : { rows: [] };
+    if (!stale.rows.length) { counts.skipped_seen++; return "skipped"; }
+  }
 
   // Cheap gates on feed metadata first, so we do not fetch pages we would reject anyway.
-  const pre = runGates(account, { url: resolved, title: item.title, text: "x".repeat(300) + item.title, published_at: item.published_at }, now);
+  const pre = runGates(account, { url: resolved, title: item.title, text: "x".repeat(300) + item.title, published_at: item.published_at }, now, window);
   if (pre.result === "g2_stale" || pre.result === "g3_content_type" || pre.result === "g4_context" || pre.result === "g5_speculation") {
     bump(counts.gated_out, pre.result);
     await storeSignal(db, { account_id: account.id, url: resolved, publisher: item.source_name ?? pre.publisher, tier: pre.tier, published_at: item.published_at, title: item.title, gate_result: pre.result, is_seed: isSeed, fetched_at: now });
@@ -135,7 +142,7 @@ export async function processArticle(
   }
   const published = art.published_at ?? item.published_at;
   const cand = { url: art.url, title: art.title || item.title, text: art.text, published_at: published };
-  const g = runGates(account, cand, now);
+  const g = runGates(account, cand, now, window);
   const publisher = g.tier === "T2" || g.tier === "T1" ? g.publisher : item.source_name ?? g.publisher;
   const base = { account_id: account.id, url: resolved, publisher, tier: g.tier, published_at: published, title: cand.title, is_seed: isSeed, fetched_at: now };
   if (g.result !== "pass") {
@@ -151,10 +158,17 @@ export async function processArticle(
     await storeSignal(db, { ...base, gate_result: "rejected", rejected_reason: "invalid_json" });
     return "stored";
   }
-  const v = validateExtraction(x, cand.text, published, now, g.rumour);
+  const v = validateExtraction(x, cand.text, published, now, g.rumour, window);
   if (!v.ok) {
     bump(counts.rejected_by_validator, v.reason);
     await storeSignal(db, { ...base, extraction: x, gate_result: v.reason === "no_trigger" ? "no_trigger" : "rejected", rejected_reason: v.reason });
+    return "stored";
+  }
+  const ageDays = published ? (now.getTime() - published.getTime()) / 86_400_000 : 0;
+  if (historyDays && ageDays > scoring.freshnessDays) {
+    // Verified, but older than the scoring window: kept as account history, no event, no points.
+    await storeSignal(db, { ...base, extraction: { ...x, notes: v.event.notes }, evidence_quote: v.event.quote, gate_result: "history" });
+    counts.history = Number(counts.history ?? 0) + 1;
     return "stored";
   }
   const signalId = await storeSignal(db, { ...base, extraction: { ...x, notes: v.event.notes }, evidence_quote: v.event.quote, gate_result: "accepted" });
