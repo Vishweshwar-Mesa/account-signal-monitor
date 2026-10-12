@@ -234,3 +234,7 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - docs/DEMO.md rewritten as a 2.5 minute video script for today's features.
 - scripts/send-preview.mts: sends a [Preview] Hot List from the production DB without touching the send lock. Sent: 10 accounts (Zetwerk 8, BMW Industries 8, Carlsberg 7, Himadri 7, Travel Food Services 7, SJS 6, PN Gadgil, Suzlon, Regency, Yatharth 5). Today's real send was already made at 13:40 IST by a Run now.
 
+
+### 2026-10-12 14:36 IST, Claude Code (claude-opus-5-5)
+- The user said the left list was too long and asked for a scroll bar. The list card now scrolls internally (pinned beside the details on desktop, capped at 60% of the viewport height on phones). Added a search box, a 'With signals' default filter plus 'All', a 'Showing N of M' line, and an always-visible brand-coloured scrollbar (.sm-scroll).
+

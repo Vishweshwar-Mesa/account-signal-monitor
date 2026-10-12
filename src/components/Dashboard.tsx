@@ -4,9 +4,9 @@ import type { DashboardData, DAccount } from "@/lib/dashboard-data";
 import { ScoreBadge, Tag, BAND_LABEL, bandText, type Band } from "./ui";
 import Detail from "./Detail";
 
-type Filter = "all" | "hot" | "warm" | "customers";
+type Filter = "signals" | "all" | "hot" | "warm" | "customers";
 const FILTERS: { key: Filter; label: string }[] = [
-  { key: "all", label: "All" }, { key: "hot", label: "Hot" }, { key: "warm", label: "Warm" }, { key: "customers", label: "Customers" },
+  { key: "signals", label: "With signals" }, { key: "hot", label: "Hot" }, { key: "warm", label: "Warm" }, { key: "customers", label: "Customers" }, { key: "all", label: "All" },
 ];
 
 function StatCard({ label, range, count, sub, color }: { label: string; range: string; count: number; sub: string; color: string }) {
@@ -24,7 +24,8 @@ function StatCard({ label, range, count, sub, color }: { label: string; range: s
 
 export default function Dashboard({ data }: { data: DashboardData }) {
   const { accounts } = data;
-  const [filter, setFilter] = useState<Filter>("all");
+  const [filter, setFilter] = useState<Filter>("signals");
+  const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(accounts[0]?.id ?? null);
 
   const counts = useMemo(() => {
@@ -39,8 +40,12 @@ export default function Dashboard({ data }: { data: DashboardData }) {
     return c;
   }, [accounts]);
 
+  const q = query.trim().toLowerCase();
   const list = accounts.filter((a) =>
-    filter === "all" ? true : filter === "customers" ? a.is_customer : a.band === filter,
+    (q ? a.name.toLowerCase().includes(q) : true) &&
+    (filter === "all" ? true
+      : filter === "signals" ? a.signals.length > 0 || a.band === "hot" || a.band === "warm"
+      : filter === "customers" ? a.is_customer : a.band === filter),
   );
   const selected = accounts.find((a) => a.id === selectedId) ?? list[0] ?? null;
 
@@ -62,7 +67,12 @@ export default function Dashboard({ data }: { data: DashboardData }) {
       </div>
 
       <div className="mt-4 flex flex-col lg:flex-row gap-4 items-start">
-        <div className="card w-full lg:max-w-[480px] lg:w-[38%] shrink-0 overflow-hidden">
+        <div className="card w-full lg:max-w-[480px] lg:w-[38%] shrink-0 overflow-hidden flex flex-col max-h-[60dvh] lg:max-h-[calc(100dvh-2rem)] lg:sticky lg:top-4">
+          <div className="p-3 pb-0">
+            <label htmlFor="account-search" className="sr-only">Search accounts</label>
+            <input id="account-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search accounts"
+              className="w-full min-h-[44px] px-3 rounded-[8px] border border-border bg-surface text-text" />
+          </div>
           <div className="p-3 flex gap-2 flex-wrap border-b border-border" role="group" aria-label="Filter accounts">
             {FILTERS.map((f) => (
               <button key={f.key} type="button" aria-pressed={filter === f.key} onClick={() => setFilter(f.key)}
@@ -71,10 +81,11 @@ export default function Dashboard({ data }: { data: DashboardData }) {
               </button>
             ))}
           </div>
+          <p className="px-3 py-1.5 text-xs text-muted border-b border-border">Showing {list.length} of {accounts.length} accounts</p>
           {list.length === 0 ? (
             <p className="p-4 text-muted text-sm">No accounts in this view.</p>
           ) : (
-            <ul className="divide-y divide-border">
+            <ul className="sm-scroll divide-y divide-border overflow-y-scroll overscroll-contain flex-1 min-h-0" aria-label="Accounts">
               {list.map((a) => {
                 const sel = selected?.id === a.id;
                 return (
