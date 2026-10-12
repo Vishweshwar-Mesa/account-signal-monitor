@@ -35,6 +35,18 @@ describe("ingest on fixtures", () => {
     for (const q of quotes) expect(q.evidence_quote.split(/\s+/).length).toBeLessThanOrEqual(25);
   });
 
+  it("the same story on Sunday and Monday (two ISO weeks) is one event", async () => {
+    const { upsertEvent } = await import("@/lib/pipeline/ingest");
+    const id = await account("Test Retail Co");
+    const ev = { type: "OPERATIONAL_CHALLENGE" as const, subject: null, subject_title: null, magnitude: "medium" as const, certainty: "confirmed" as const, time_scope: "new" as const, quote: "q", summary: "s", competitor: null, notes: [] };
+    const sig = async (u: string) => (await db.query<{ id: string }>("insert into signals (account_id, url, url_hash, gate_result) values ($1,$2,$2,'accepted') returning id", [id, u])).rows[0].id;
+    await upsertEvent(db, id, ev, await sig("https://a.test/1"), new Date("2026-10-11T10:00:00Z"), "T2", "economictimes.indiatimes.com");
+    const r = await upsertEvent(db, id, ev, await sig("https://b.test/2"), new Date("2026-10-12T10:00:00Z"), "T2", "retail.economictimes.indiatimes.com");
+    expect(r.merged).toBe(true);
+    const rows = (await db.query<{ source_count: number }>("select source_count from events where account_id = $1", [id])).rows;
+    expect(rows).toEqual([{ source_count: 2 }]);
+  });
+
   it("is idempotent: a second run skips seen URLs and makes no new events", async () => {
     await account("Test Retail Co");
     await runIngest(db, { now: NOW, deps: fixtureDeps() });

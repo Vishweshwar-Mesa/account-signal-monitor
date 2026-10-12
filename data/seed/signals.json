@@ -1,6 +1,6 @@
 {
  "_note": "Real signals that passed the same gates and validators as production (live pipeline runs plus researched URLs run through the pipeline). Quotes max 25 words.",
- "generated_at": "2026-10-12T14:51:56.005Z",
+ "generated_at": "2026-10-12T15:00:41.163Z",
  "signals": [
   {
    "account_name": "Alldigi Tech Ltd",
@@ -1798,42 +1798,6 @@
   },
   {
    "account_name": "Carlsberg India Pvt Ltd",
-   "type": "OPERATIONAL_CHALLENGE",
-   "subject_key": "",
-   "summary": "Rajasthan pollution control board ordered Carlsberg India to shut its Alwar brewery over emission violations.",
-   "event_date": "2026-10-12T02:45:47.000Z",
-   "magnitude": "medium",
-   "certainty": "rumour",
-   "time_scope": "new",
-   "source_domains": [
-    "retail.economictimes.indiatimes.com"
-   ],
-   "best_tier": "T2",
-   "competitor": null,
-   "signal_urls": [
-    "https://retail.economictimes.indiatimes.com/news/food-entertainment/grocery/carlsberg-india-told-to-close-alwar-unit-over-pollution-breach-ahead-of-700-million-ipo-plans/134881123"
-   ]
-  },
-  {
-   "account_name": "Carlsberg India Pvt Ltd",
-   "type": "OPERATIONAL_CHALLENGE",
-   "subject_key": "",
-   "summary": "Carlsberg India has been ordered to shut down its Alwar brewery due to pollution violations",
-   "event_date": "2026-10-11T12:32:00.000Z",
-   "magnitude": "medium",
-   "certainty": "confirmed",
-   "time_scope": "new",
-   "source_domains": [
-    "economictimes.indiatimes.com"
-   ],
-   "best_tier": "T2",
-   "competitor": null,
-   "signal_urls": [
-    "https://economictimes.indiatimes.com/industry/cons-products/liquor/carlsberg-india-told-to-close-alwar-unit-over-pollution-breach-ahead-of-700-million-ipo-plans/articleshow/134876841.cms"
-   ]
-  },
-  {
-   "account_name": "Carlsberg India Pvt Ltd",
    "type": "FUNDING_EVENT",
    "subject_key": "",
    "summary": "Carlsberg India Limited received SEBI approval for its confidential pre-filing for a proposed initial public offering",
@@ -1851,21 +1815,23 @@
    ]
   },
   {
-   "account_name": "Himadri Speciality Chemical Ltd",
-   "type": "CAPACITY_EXPANSION",
+   "account_name": "Carlsberg India Pvt Ltd",
+   "type": "OPERATIONAL_CHALLENGE",
    "subject_key": "",
-   "summary": "Himadri plans to invest in carbon nanotube and cathode material plants under a 2000 crore capex plan",
-   "event_date": "2026-10-12T08:25:48.000Z",
-   "magnitude": "large",
+   "summary": "Carlsberg India has been ordered to shut down its Alwar brewery due to pollution violations",
+   "event_date": "2026-10-12T02:45:47.000Z",
+   "magnitude": "medium",
    "certainty": "confirmed",
    "time_scope": "new",
    "source_domains": [
-    "thehindubusinessline.com"
+    "retail.economictimes.indiatimes.com",
+    "economictimes.indiatimes.com"
    ],
    "best_tier": "T2",
    "competitor": null,
    "signal_urls": [
-    "https://www.thehindubusinessline.com/news/himadri-targets-doubling-profit-to-1100-cr-by-fy28/article71574209.ece"
+    "https://economictimes.indiatimes.com/industry/cons-products/liquor/carlsberg-india-told-to-close-alwar-unit-over-pollution-breach-ahead-of-700-million-ipo-plans/articleshow/134876841.cms",
+    "https://retail.economictimes.indiatimes.com/news/food-entertainment/grocery/carlsberg-india-told-to-close-alwar-unit-over-pollution-breach-ahead-of-700-million-ipo-plans/134881123"
    ]
   },
   {
@@ -1873,17 +1839,19 @@
    "type": "CAPACITY_EXPANSION",
    "subject_key": "",
    "summary": "Himadri Speciality Chemical plans a 5000 crore rupee investment in Andhra Pradesh to expand battery materials capacity.",
-   "event_date": "2026-10-10T03:42:59.000Z",
+   "event_date": "2026-10-12T08:25:48.000Z",
    "magnitude": "large",
    "certainty": "confirmed",
    "time_scope": "new",
    "source_domains": [
-    "manufacturing.economictimes.indiatimes.com"
+    "manufacturing.economictimes.indiatimes.com",
+    "thehindubusinessline.com"
    ],
    "best_tier": "T2",
    "competitor": null,
    "signal_urls": [
-    "https://manufacturing.economictimes.indiatimes.com/news/chemicals/himadri-speciality-chemical-plans-5000-crore-investment-in-andhra-pradesh/134846905"
+    "https://manufacturing.economictimes.indiatimes.com/news/chemicals/himadri-speciality-chemical-plans-5000-crore-investment-in-andhra-pradesh/134846905",
+    "https://www.thehindubusinessline.com/news/himadri-targets-doubling-profit-to-1100-cr-by-fy28/article71574209.ece"
    ]
   },
   {
@@ -2016,37 +1984,21 @@
    "account_name": "Suzlon Energy Ltd",
    "type": "CAPACITY_EXPANSION",
    "subject_key": "",
-   "summary": "Suzlon Group is investing 550 crore rupees to build three blade manufacturing facilities across three states",
+   "summary": "Suzlon is investing 200 crore rupees to establish a new wind blade manufacturing facility in Tamil Nadu.",
    "event_date": "2026-10-12T08:27:58.000Z",
    "magnitude": "large",
    "certainty": "confirmed",
    "time_scope": "new",
    "source_domains": [
+    "manufacturing.economictimes.indiatimes.com",
     "businesstoday.in"
    ],
    "best_tier": "T2",
    "competitor": null,
    "signal_urls": [
-    "https://www.businesstoday.in/markets/stocks/story/suzlon-shares-up-6-rise-most-in-five-months-two-factors-behind-the-rally-560992-2026-10-12"
-   ]
-  },
-  {
-   "account_name": "Suzlon Energy Ltd",
-   "type": "CAPACITY_EXPANSION",
-   "subject_key": "",
-   "summary": "Suzlon is investing 200 crore rupees to establish a new wind blade manufacturing facility in Tamil Nadu.",
-   "event_date": "2026-10-08T05:47:48.000Z",
-   "magnitude": "large",
-   "certainty": "confirmed",
-   "time_scope": "new",
-   "source_domains": [
-    "manufacturing.economictimes.indiatimes.com"
-   ],
-   "best_tier": "T2",
-   "competitor": null,
-   "signal_urls": [
     "https://manufacturing.economictimes.indiatimes.com/news/energy/suzlon-to-invest-200-crore-in-tamil-nadu-wind-blade-plant-create-2000-jobs/134781318",
-    "https://manufacturing.economictimes.indiatimes.com/news/industry/suzlon-to-invest-550-crore-in-three-ai-powered-wind-blade-factories/134866164"
+    "https://manufacturing.economictimes.indiatimes.com/news/industry/suzlon-to-invest-550-crore-in-three-ai-powered-wind-blade-factories/134866164",
+    "https://www.businesstoday.in/markets/stocks/story/suzlon-shares-up-6-rise-most-in-five-months-two-factors-behind-the-rally-560992-2026-10-12"
    ]
   },
   {

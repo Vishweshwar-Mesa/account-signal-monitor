@@ -287,3 +287,9 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Bootstrap created sm_signal_history in HubSpot and pushed it for 73 companies. Rescore and sync: 4 Hot (Zetwerk 10, Himadri 9, Carlsberg 8, Suzlon 8), 6 Warm; one more retention task created.
 - Seed re-exported (73 accounts, 76 signals, 21 events).
 
+
+### 2026-10-12 20:30 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- Live check of Carlsberg showed the score chart and churn lane working, but also a bug: the same story from two outlets on 11 Oct (Sunday, ISO week 41) and 12 Oct (Monday, week 42) became two events, which also created two retention tasks.
+- Fix: upsertEvent now merges into an existing event of the same account, type and subject within 7 days, as well as an exact event_key match. Test: 'the same story on Sunday and Monday (two ISO weeks) is one event'. 80 tests pass.
+- Repair: scripts/merge-duplicate-events.mts merged 3 duplicates in production (Himadri, Carlsberg, Suzlon), deleted the extra Carlsberg retention task in HubSpot and the DB, and rescored. Seed re-exported.
+

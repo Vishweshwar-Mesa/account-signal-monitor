@@ -70,9 +70,13 @@ export interface IngestOptions {
 export async function upsertEvent(db: Db, accountId: string, ev: ValidatedEvent, signalId: string, eventDate: Date, tier: "T1" | "T2", domain: string) {
   const sk = subjectKey(ev.type, ev.subject);
   const key = eventKey(accountId, ev.type, sk, eventDate);
+  // Same key, or the same story reported within 7 days (a story can straddle an ISO-week boundary, e.g. Sunday and Monday).
   const existing = await db.query<{ id: string; source_domains: string[]; best_tier: string; evidence_signal_ids: string[] }>(
-    "select id, source_domains, best_tier, evidence_signal_ids from events where event_key = $1",
-    [key],
+    `select id, source_domains, best_tier, evidence_signal_ids from events
+     where event_key = $1
+        or (account_id = $2 and type = $3 and subject_key = $4 and abs(extract(epoch from (event_date - $5::timestamptz))) <= 7 * 86400)
+     order by (event_key = $1) desc limit 1`,
+    [key, accountId, ev.type, sk, eventDate],
   );
   if (existing.rows.length) {
     const e = existing.rows[0];
