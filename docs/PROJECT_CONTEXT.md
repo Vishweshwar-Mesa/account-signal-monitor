@@ -301,3 +301,9 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 ### 2026-10-12 21:04 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
 - The user asked for GSAP animations and suggested 21st.dev. Added gsap and @gsap/react; src/lib/motion.ts (reduced-motion guard, countUp). Animations in Dashboard (stat cards, count-up, list cascade on filter or search), Detail (sections, score pop, why-chips) and ScoreTrend (line draws, projection fades in). Spotlight hover card (21st.dev pattern) rebuilt in CSS on the stat cards. B15. Build clean, 80 tests pass.
 
+
+### 2026-10-12 21:20 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- The Git-triggered Vercel deploy of the GSAP commit failed with 'Git information retrieval failed' (Vercel-side, git_info_fail); the previous version stayed live. Redeployed the same commit with the CLI: Ready.
+- Live check, headless Chrome, with reduce-motion off and on: CLS 0, count-ups end on the right values (4 Hot, 6 Warm, 63 Cold, 3 customer health), no element left hidden, no console errors.
+- If a Git deploy shows Error with git_info_fail, run 'npx vercel deploy --prod' from main.
+

@@ -45,3 +45,4 @@ Every commit, oldest first. Times are IST. "Claude Code for X" means the commit 
 | 12 Oct 2026, 20:22 | Claude Code for Vishweshwar-Mesa | `d611daa` | History run results, HubSpot signal history pushed, seed export |
 | 12 Oct 2026, 20:30 | Claude Code for Vishweshwar-Mesa | `03d03de` | Fix duplicate events across ISO-week boundary; repair script for production duplicates |
 | 12 Oct 2026, 20:52 | Claude Code for Vishweshwar-Mesa | `f812e39` | Remove viva notes file from the repo |
+| 12 Oct 2026, 21:04 | Claude Code for Vishweshwar-Mesa | `84d9e11` | GSAP motion (count-up, cascades, chart draw) and spotlight hover cards; reduced-motion respected |
