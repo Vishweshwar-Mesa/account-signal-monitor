@@ -196,3 +196,8 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - HubSpot sync on the real DB: 10 deals mapped (Updater and Krsnaa Closed Won, so customers). Found 8 duplicate activity rows: demo emails stored in HubSpot as "Email:" notes (email scope missing) did not match the seed emails. Fixed the sync matching rule, removed the 8 rows, re-synced: 22 of 22 activities linked, none duplicated.
 - Redeployed: health shows database postgres. A live ingest wrote to Supabase but took 4 min 47 s and stopped at the time budget, because functions ran in iad1 and the DB is in Tokyo. Pinned functions to hnd1 (B06).
 - `vercel git connect` now succeeds (the user installed the Vercel GitHub App). Pushes to main deploy the original project.
+
+### 2026-10-12 10:22 IST, Claude Code (claude-opus-5-5)
+- The push auto-deployed the original Vercel project from GitHub main (deploy Ready in 22 s).
+- Live ingest from hnd1: status ok, 3 min 38 s (it was 4 min 47 s and partial from iad1). 644 discovered, 120 fetched, 3 Gemini calls, HubSpot sync partial (email scope only).
+
