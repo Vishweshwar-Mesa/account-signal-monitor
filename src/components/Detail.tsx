@@ -2,6 +2,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import type { DAccount, DashboardData } from "@/lib/dashboard-data";
+import ScoreTrend from "./ScoreTrend";
 import { ScoreBadge, Tag, DemoBadge, SegmentTag, Section, Empty, BAND_LABEL, LANE_LABEL, bandText, type Band } from "./ui";
 
 const TYPE_LABEL: Record<string, string> = {
@@ -131,6 +132,20 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
         )}
       </Section>
 
+      {/* Score over time */}
+      {a.trend.length > 0 && (
+        <Section title="Score over time">
+          <ScoreTrend points={a.trend} />
+          {a.trendNote && <p className="text-sm mt-1">{a.trendNote}</p>}
+          <details className="mt-1 text-xs">
+            <summary className="cursor-pointer text-link min-h-[44px] flex items-center">Show as table</summary>
+            <table className="w-full text-left"><thead><tr className="text-muted"><th className="pr-2">Day</th><th className="pr-2">Score</th><th>Type</th></tr></thead>
+              <tbody>{a.trend.map((p) => <tr key={p.day}><td className="pr-2">{p.day}</td><td className="pr-2">{p.score}</td><td>{p.projected ? "projected" : "computed"}</td></tr>)}</tbody>
+            </table>
+          </details>
+        </Section>
+      )}
+
       {/* Signals */}
       <Section title="Signals" right={a.contextCount ? <span className="text-xs text-muted">{a.contextCount} context-only item(s) not scored</span> : null}>
         {a.signals.length === 0 ? <Empty>No verified signals in the last 14 days. This account stays Cold until one appears.</Empty> : (
@@ -159,6 +174,23 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
                       ))}
                     </span>
                   </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
+      </Section>
+
+      {/* Signal history: verified, older than 14 days, never scored */}
+      <Section title="Earlier signals (90 days)" right={<Tag title="Verified by the same pipeline, but older than 14 days, so they add no points">Context, not scored</Tag>}>
+        {a.history.length === 0 ? <Empty>No verified signals from 15 to 90 days ago.</Empty> : (
+          <ol className="space-y-2">
+            {a.history.map((s) => (
+              <li key={s.id} className="text-sm flex gap-3">
+                <span className="mt-1.5 w-2 h-2 rounded-full shrink-0 bg-cold" aria-hidden="true" />
+                <div className="min-w-0">
+                  <div>{s.summary ?? s.title}</div>
+                  <div className="text-xs text-muted">{s.type ? TYPE_LABEL[s.type] ?? s.type : ""} · <a href={s.url} target="_blank" rel="noopener noreferrer">{s.publisher}, {fmtDate(s.published_at)}</a></div>
                 </div>
               </li>
             ))}

@@ -274,3 +274,9 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - The user asked for account context and history, but only what holds up in the viva. Plan: verified 90-day signal history (context, not scored), a score trend from the audit log, a signal-history line in HubSpot. No more invented CRM history.
 - History mode (processArticle historyDays): same gates and validators with a 90-day window; items older than 14 days are stored as gate_result 'history' with no event and no points. Stale-only rows get a proper look in this mode. bingNewsUrl({history}) drops the one-month interval. scripts/build-history.mts. Test: a 40-day-old verified article is g2_stale normally and 'history' in history mode, with no event. 79 tests pass.
 
+
+### 2026-10-12 20:08 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- Dashboard: 'Score over time' (ScoreTrend.tsx, single-series SVG line, thresholds as reference lines, hover tooltip, table view) computed in dashboard-data.ts from verified events with the real scorer, plus a projection note ('drops from Hot to Warm around ...'). 'Earlier signals (90 days)' section tagged 'Context, not scored'. B14.
+- HubSpot: sm_signal_history (textarea) company property; the sync pushes each account's last 5 verified signals (date, summary, publisher, with ', context' for history items).
+- 79 tests pass. The history build is running on production.
+

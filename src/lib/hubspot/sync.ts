@@ -40,6 +40,7 @@ const COMPANY_PROPS = [
   { name: "sm_top_signal_url", label: "SM top signal URL", type: "string", fieldType: "text" },
   { name: "sm_last_signal_at", label: "SM last signal at", type: "datetime", fieldType: "date" },
   { name: "sm_updated_at", label: "SM updated at", type: "datetime", fieldType: "date" },
+  { name: "sm_signal_history", label: "SM signal history (last 90 days)", type: "string", fieldType: "textarea" },
   { name: "sm_relationship_stage", label: "SM relationship stage", type: "enumeration", fieldType: "select", options: opt(STAGES.map((s) => s.label)) },
   { name: "sm_renewal_date", label: "SM renewal date", type: "date", fieldType: "date" },
   { name: "sm_demo", label: "SM demo record", type: "bool", fieldType: "booleancheckbox", options: [{ label: "Yes", value: "true", displayOrder: 0 }, { label: "No", value: "false", displayOrder: 1 }] },
@@ -318,8 +319,14 @@ export async function syncHubspot(db: Db, opts: { hs?: Hs; now?: Date } = {}): P
     }
 
     // 4. Push system columns back to sm_ company properties. Arjun's notes are never pushed.
-    const sys = (await db.query<{ hubspot_company_id: string; score: number | null; band: string | null; lane: string | null; top_signal_summary: string | null; top_signal_url: string | null; last_signal_at: string | null }>(
-      "select hubspot_company_id, score, band, lane, top_signal_summary, top_signal_url, last_signal_at from accounts where hubspot_company_id is not null")).rows;
+    const sys = (await db.query<{ hubspot_company_id: string; score: number | null; band: string | null; lane: string | null; top_signal_summary: string | null; top_signal_url: string | null; last_signal_at: string | null; history: string | null }>(
+      `select a.hubspot_company_id, a.score, a.band, a.lane, a.top_signal_summary, a.top_signal_url, a.last_signal_at,
+              (select string_agg(line, E'\n') from (
+                 select to_char(coalesce(s.published_at, s.fetched_at), 'DD Mon YYYY') || ': ' || coalesce(s.extraction->>'one_line_summary', s.title)
+                        || ' (' || s.publisher || case when s.gate_result = 'history' then ', context' else '' end || ')' as line
+                 from signals s where s.account_id = a.id and s.gate_result in ('accepted','history')
+                 order by coalesce(s.published_at, s.fetched_at) desc limit 5) h) as history
+       from accounts a where a.hubspot_company_id is not null`)).rows;
     const now = (opts.now ?? new Date()).toISOString();
     for (let i = 0; i < sys.length; i += 100) {
       await hs.req("POST", "/crm/v3/objects/companies/batch/update", {
@@ -329,6 +336,7 @@ export async function syncHubspot(db: Db, opts: { hs?: Hs; now?: Date } = {}): P
             sm_score: s.score ?? "", sm_band: s.band ?? "", sm_lane: s.lane ?? "",
             sm_top_signal: (s.top_signal_summary ?? "").slice(0, 250), sm_top_signal_url: s.top_signal_url ?? "",
             sm_last_signal_at: s.last_signal_at ? new Date(s.last_signal_at).toISOString() : "", sm_updated_at: now,
+            sm_signal_history: s.history ?? "No verified signals in the last 90 days.",
           },
         })),
       });
