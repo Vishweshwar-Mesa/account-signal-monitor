@@ -1,0 +1,35 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Anthropic dependency check
+        run: node scripts/check-no-anthropic.mjs
+      - name: Secret scan
+        run: node scripts/check-secrets.mjs
+      - name: Context file updated with code
+        run: scripts/check-context-updated.sh "${{ github.event.before || github.event.pull_request.base.sha }}" "${{ github.sha }}"
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Unit and integration tests
+        run: npm test
+      - name: AI eval (Gemini)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then echo "GEMINI_API_KEY secret not set, eval skipped"; exit 0; fi
+          npx tsx scripts/eval.mts

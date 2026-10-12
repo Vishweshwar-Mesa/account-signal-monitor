@@ -238,3 +238,9 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 ### 2026-10-12 14:36 IST, Claude Code (claude-opus-5-5)
 - The user said the left list was too long and asked for a scroll bar. The list card now scrolls internally (pinned beside the details on desktop, capped at 60% of the viewport height on phones). Added a search box, a 'With signals' default filter plus 'All', a 'Showing N of M' line, and an always-visible brand-coloured scrollbar (.sm-scroll).
 
+
+### 2026-10-12 15:05 IST, Claude Code (claude-opus-5-5)
+- Churn example: Carlsberg India (real Oct 12 OPERATIONAL_CHALLENGE, ETRetail: Alwar brewery shut order) and Himadri (real CAPACITY_EXPANSION) made DEMO customers by creating Closed Won deals in HubSpot (scripts/hubspot-demo-deals.mts) plus demo history (demo-crm.json, sync-demo-crm). The sync pulled them as customers; the scorer set Carlsberg to churn_risk and Himadri to expansion; the code workflow created the HubSpot task 'Retention check-in, signal detected' for Carlsberg (one per event_key).
+- Research on publicly named Keka customers with risk signals is running in the background.
+- gh workflow scope granted by the user; pushing .github/workflows/ci.yml.
+

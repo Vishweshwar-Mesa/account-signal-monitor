@@ -488,6 +488,87 @@
      "summary": "Researched India delivery centre locations"
     }
    ]
+  },
+  "Carlsberg India Pvt Ltd": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 40,
+   "last_contacted_days_ago": 22,
+   "notes": "DEMO. Customer since early 2026 for attendance and payroll across breweries. Renewal coming up.",
+   "relationship_read": "Customer. Plant operations are under pressure.",
+   "tasks": [
+    {
+     "title": "Renewal proposal draft",
+     "due_in_days": 12,
+     "kind": "task"
+    },
+    {
+     "title": "Check in with plant HR on Alwar staff",
+     "due_in_days": 3,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 240,
+     "summary": "Kickoff and go-live planning for brewery sites"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 60,
+     "summary": "Quarterly review with HR operations"
+    },
+    {
+     "kind": "call",
+     "direction": "inbound",
+     "days_ago": 22,
+     "summary": "Plant HR asked about shift changes during maintenance shutdown"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 21,
+     "summary": "Logged shift change request for Alwar plant"
+    }
+   ]
+  },
+  "Himadri Speciality Chemical Ltd": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 150,
+   "last_contacted_days_ago": 9,
+   "notes": "DEMO. Customer for HRIS and payroll at existing plants.",
+   "relationship_read": "Customer. Happy, growing fast.",
+   "tasks": [
+    {
+     "title": "Share multi-site attendance plan for new plant",
+     "due_in_days": 7,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 200,
+     "summary": "Go-live review for payroll"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 9,
+     "summary": "Account check-in with HR head"
+    },
+    {
+     "kind": "email",
+     "direction": "inbound",
+     "days_ago": 4,
+     "summary": "Asked how to add a new plant entity"
+    }
+   ]
   }
  }
 }
