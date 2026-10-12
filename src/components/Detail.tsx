@@ -1,5 +1,6 @@
 "use client";
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
+import { gsap, useGSAP, motionOK } from "@/lib/motion";
 import { useRouter } from "next/navigation";
 import type { DAccount, DashboardData } from "@/lib/dashboard-data";
 import ScoreTrend from "./ScoreTrend";
@@ -46,6 +47,15 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
     });
   };
   const b = a.score_breakdown;
+  const root = useRef<HTMLElement>(null);
+  // On opening an account: sections rise in sequence, the score badge pops, the why-chips cascade.
+  useGSAP(() => {
+    motionOK(() => {
+      gsap.from(root.current!.querySelectorAll(":scope > section, :scope > div"), { y: 10, opacity: 0, duration: 0.35, stagger: 0.04, ease: "power2.out" });
+      gsap.from(".score-pop", { scale: 0.6, opacity: 0, duration: 0.45, ease: "back.out(2)" });
+      gsap.from(".why-chip", { y: 6, opacity: 0, duration: 0.25, stagger: 0.04, delay: 0.15, ease: "power1.out" });
+    });
+  }, { scope: root });
   const snoozed = a.snoozed_until && new Date(a.snoozed_until) > new Date();
   const hubspotUrl = a.hubspot_company_id && data.hubspotPortal
     ? `https://app-na2.hubspot.com/contacts/${data.hubspotPortal}/record/0-2/${a.hubspot_company_id}` : null;
@@ -53,7 +63,7 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
     ? `https://app-na2.hubspot.com/contacts/${data.hubspotPortal}/record/0-3/${a.hubspot_deal_id}` : null;
 
   return (
-    <article className="card p-4 sm:p-5" aria-busy={pending}>
+    <article ref={root} className="card p-4 sm:p-5" aria-busy={pending}>
       {/* Title and about */}
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
@@ -79,7 +89,7 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
           </div>
         </div>
         <div className="text-right shrink-0">
-          <ScoreBadge score={a.score} band={a.band} size="lg" />
+          <span className="score-pop inline-block"><ScoreBadge score={a.score} band={a.band} size="lg" /></span>
           <div className={`text-sm font-semibold mt-1 ${bandText(a.band)}`}>{a.band ? BAND_LABEL[a.band as Band] : "Not scored"}</div>
           <div className="text-xs text-muted">{a.confidence ? `${a.confidence} confidence` : ""}</div>
         </div>
@@ -107,7 +117,7 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
           <>
             <ul className="flex flex-wrap gap-2">
               {b.contributions.map((c, i) => (
-                <li key={i} className="text-sm bg-surface2 border border-border rounded-full px-3 py-1">
+                <li key={i} className="why-chip text-sm bg-surface2 border border-border rounded-full px-3 py-1">
                   {c.label} <b className={c.points < 0 ? "text-hot" : ""}>{fmtPts(c.points)}</b>
                 </li>
               ))}

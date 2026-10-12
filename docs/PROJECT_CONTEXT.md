@@ -297,3 +297,7 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 ### 2026-10-12 20:52 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
 - Removed docs/VIVA.md from the repo at the user's request, along with its references in the README and the checklist.
 
+
+### 2026-10-12 21:04 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- The user asked for GSAP animations and suggested 21st.dev. Added gsap and @gsap/react; src/lib/motion.ts (reduced-motion guard, countUp). Animations in Dashboard (stat cards, count-up, list cascade on filter or search), Detail (sections, score pop, why-chips) and ScoreTrend (line draws, projection fades in). Spotlight hover card (21st.dev pattern) rebuilt in CSS on the stat cards. B15. Build clean, 80 tests pass.
+

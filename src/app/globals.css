@@ -70,3 +70,12 @@ a { color: var(--link); }
 .sm-scroll::-webkit-scrollbar-track { background: var(--surface2); border-radius: 8px; }
 .sm-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 8px; border: 2px solid var(--surface2); }
 .sm-scroll::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+/* Spotlight card (pattern from 21st.dev): a soft brand glow follows the cursor. Pure paint, no layout change. */
+.spotlight { position: relative; overflow: hidden; isolation: isolate; }
+.spotlight::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .25s ease;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--primary) 16%, transparent), transparent 70%);
+}
+.spotlight:hover::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .spotlight::before { transition: none; } }

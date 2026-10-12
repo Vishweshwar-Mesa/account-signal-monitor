@@ -1,5 +1,6 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { gsap, useGSAP, motionOK, countUp } from "@/lib/motion";
 import type { DashboardData, DAccount } from "@/lib/dashboard-data";
 import { ScoreBadge, Tag, SegmentTag, BAND_LABEL, bandText, type Band } from "./ui";
 import Detail from "./Detail";
@@ -11,12 +12,17 @@ const FILTERS: { key: Filter; label: string }[] = [
 
 function StatCard({ label, range, count, sub, color }: { label: string; range: string; count: number; sub: string; color: string }) {
   return (
-    <div className="card p-4 border-t-4" style={{ borderTopColor: `var(${color})` }}>
+    <div className="card p-4 border-t-4 stat-card spotlight" style={{ borderTopColor: `var(${color})` }}
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }}>
       <div className="flex items-baseline justify-between gap-2">
         <span className="font-semibold">{label}</span>
         <span className="text-xs text-muted">{range}</span>
       </div>
-      <div className="font-display font-bold text-3xl mt-1">{count}</div>
+      <div className="font-display font-bold text-3xl mt-1" data-count>{count}</div>
       <div className="text-sm text-muted mt-1">{sub}</div>
     </div>
   );
@@ -26,6 +32,21 @@ export default function Dashboard({ data }: { data: DashboardData }) {
   const { accounts } = data;
   const [filter, setFilter] = useState<Filter>("signals");
   const [query, setQuery] = useState("");
+  const root = useRef<HTMLDivElement>(null);
+  // Entrance: stat cards rise in sequence and their numbers count up (once).
+  useGSAP(() => {
+    motionOK(() => {
+      gsap.from(".stat-card", { y: 14, opacity: 0, duration: 0.45, stagger: 0.07, ease: "power2.out" });
+      root.current?.querySelectorAll("[data-count]").forEach((el) => countUp(el));
+    });
+  }, { scope: root });
+  // List rows cascade in on load and whenever the filter or search changes (first 15 rows only, to stay quick).
+  useGSAP(() => {
+    motionOK(() => {
+      const rows = gsap.utils.toArray<HTMLElement>(".account-row").slice(0, 15);
+      gsap.from(rows, { x: -10, opacity: 0, duration: 0.3, stagger: 0.025, ease: "power2.out" });
+    });
+  }, { scope: root, dependencies: [filter, query], revertOnUpdate: true });
   const [selectedId, setSelectedId] = useState<string | null>(accounts[0]?.id ?? null);
 
   const counts = useMemo(() => {
@@ -57,7 +78,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
   }
 
   return (
-    <>
+    <div ref={root}>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard label="Hot" range="8 to 10" count={counts.hot} color="--hot" sub={counts.hot ? "Fresh verified trigger, reach out" : "No account is hot right now"} />
         <StatCard label="Warm" range="5 to 7" count={counts.warm} color="--warm" sub="Worth a light touch this week" />
@@ -89,7 +110,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
               {list.map((a) => {
                 const sel = selected?.id === a.id;
                 return (
-                  <li key={a.id}>
+                  <li key={a.id} className="account-row">
                     <button type="button" onClick={() => select(a)} aria-current={sel ? "true" : undefined}
                       className={`w-full text-left flex items-center gap-3 p-3 min-h-[64px] border-l-[3px] ${sel ? "bg-tint border-primary" : "border-transparent hover:bg-surface2"}`}>
                       <ScoreBadge score={a.score} band={a.band} />
@@ -114,6 +135,6 @@ export default function Dashboard({ data }: { data: DashboardData }) {
           {selected ? <Detail key={selected.id} a={selected} data={data} /> : <div className="card p-6 text-muted">Select an account.</div>}
         </div>
       </div>
-    </>
+    </div>
   );
 }

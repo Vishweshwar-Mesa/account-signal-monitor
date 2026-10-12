@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { gsap, useGSAP, motionOK } from "@/lib/motion";
 
 type Point = { day: string; score: number; projected: boolean };
 const W = 560, H = 150, L = 28, R = 12, T = 10, B = 24;
@@ -7,6 +8,17 @@ const W = 560, H = 150, L = 28, R = 12, T = 10, B = 24;
 /** Single-series line: computed score by day. Solid = past and today, dashed = projection. One y-axis (1 to 10). */
 export default function ScoreTrend({ points }: { points: Point[] }) {
   const [hover, setHover] = useState<number | null>(null);
+  const svg = useRef<SVGSVGElement>(null);
+  // The computed line draws left to right, then the projection fades in.
+  useGSAP(() => {
+    motionOK(() => {
+      const line = svg.current?.querySelector<SVGPathElement>(".trend-past");
+      if (!line) return;
+      const len = line.getTotalLength();
+      gsap.fromTo(line, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut", clearProps: "strokeDasharray,strokeDashoffset" });
+      gsap.from(".trend-future, .trend-today", { opacity: 0, duration: 0.4, delay: 0.75 });
+    });
+  }, { scope: svg, dependencies: [points] });
   if (!points.length) return null;
   const x = (i: number) => L + (i * (W - L - R)) / (points.length - 1);
   const y = (s: number) => T + ((10 - s) * (H - T - B)) / 9;
@@ -19,7 +31,7 @@ export default function ScoreTrend({ points }: { points: Point[] }) {
   const h = hover != null ? points[hover] : null;
   return (
     <figure className="m-0">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto" role="img"
+      <svg ref={svg} viewBox={`0 0 ${W} ${H}`} className="w-full h-auto" role="img"
         aria-label={`Score by day, ${fmt(points[0].day)} to ${fmt(points[points.length - 1].day)}. Today ${points[todayIdx].score}.`}
         onMouseLeave={() => setHover(null)}>
         {[1, 5, 8, 10].map((s) => (
@@ -34,9 +46,9 @@ export default function ScoreTrend({ points }: { points: Point[] }) {
         <text x={x(todayIdx)} y={H - 8} textAnchor="middle" fontSize="10" fill="var(--muted)">today</text>
         <text x={L} y={H - 8} fontSize="10" fill="var(--muted)">{fmt(points[0].day)}</text>
         <text x={W - R} y={H - 8} textAnchor="end" fontSize="10" fill="var(--muted)">{fmt(points[points.length - 1].day)}</text>
-        <path d={path(past)} fill="none" stroke="var(--primary)" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
-        <path d={path(future)} fill="none" stroke="var(--primary)" strokeWidth={2} strokeDasharray="5 4" strokeLinecap="round" />
-        <circle cx={x(todayIdx)} cy={y(points[todayIdx].score)} r={5} fill="var(--primary)" stroke="var(--surface)" strokeWidth={2} />
+        <path className="trend-past" d={path(past)} fill="none" stroke="var(--primary)" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+        <path className="trend-future" d={path(future)} fill="none" stroke="var(--primary)" strokeWidth={2} strokeDasharray="5 4" strokeLinecap="round" />
+        <circle className="trend-today" cx={x(todayIdx)} cy={y(points[todayIdx].score)} r={5} fill="var(--primary)" stroke="var(--surface)" strokeWidth={2} />
         {hover != null && (
           <>
             <line x1={x(hover)} x2={x(hover)} y1={T} y2={H - B} stroke="var(--muted)" strokeWidth={1} />
