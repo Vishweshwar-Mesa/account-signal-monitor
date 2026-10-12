@@ -265,3 +265,7 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Secrets: audited every value in .env.local against the full git history, all tracked files and the live site's JS: none found (only the publishable Supabase key is public by design). Removed SUPABASE_SERVICE_ROLE_KEY from Vercel (not used at runtime; local only). GitHub secrets hold only GEMINI_API_KEY for CI. README has a 'Secrets: where each key lives' section.
 - Handoff: docs/CHANGELOG.md generated from git (when IST, who, what) by scripts/changelog.mjs (npm run changelog). The read-first and update instruction is in README, CHANGELOG, PROJECT_CONTEXT, CLAUDE.md and AGENTS.md. Session-log entries now name who made the change. Commits now carry a Co-Authored-By trailer.
 - VIVA: added Q13 (ICP and segments) and Q14 (key protection). 78 tests pass.
+
+### 2026-10-12 19:02 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- Added docs/AUTOMATION_BRIEF.md in the Mesa case format the user shared (Case 01 answer key): Why (pain, user, outcome), Journey Today, Nine Checks (kill switches 01 to 03, sizing 04, 05, 08, boundary 06, 07, 09) with evidence from the brief and from measured system data, and The Cut: 07 Judgment Protected (no auto-send of outreach, D12). The baseline for trigger-to-outreach time is not in the brief, so the doc says to measure it rather than assuming it. Linked from the README.
+
