@@ -27,7 +27,7 @@ Last verified: 2026-10-12 03:20 IST (72 of 72 Vitest tests passing, `tsc --noEmi
 | Scoring with decay, hot gate, rumour cap, lanes | DONE | src/lib/scoring.ts, tests/scoring.test.ts |
 | Hot List email with send lock | DONE | real Hot List and brief sent via Resend (send keys hotlist:2026-10-12, brief:2026-10-12); lock tested |
 | Dashboard with detail panel | DONE | src/components/Dashboard.tsx, Detail.tsx; screenshot-checked locally |
-| Sign in and sign out (Supabase Auth) | PARTIAL | proxy, login page and sign-out built and tested for blocking; real sign-in needs Arjun user (Supabase secret key missing) |
+| Sign in and sign out (Supabase Auth) | DONE | user created; live sign-in and sign-out verified in headless Chrome |
 | Theme toggle, no flash | DONE | pre-paint script in src/app/layout.tsx; fixed-width toggle; checked in headless Chrome |
 | Cron routes with bearer check, vercel.json | DONE | tests/auth-routes.test.ts; 401 checked on the live URL |
 | Deploy | DONE | https://account-signal-monitor.vercel.app (CLI deploy, env vars set) |

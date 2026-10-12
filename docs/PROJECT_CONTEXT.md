@@ -20,7 +20,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Phases 0 to 3 are built. 72 tests pass. `tsc` and `next build` are clean.
 - Production ingest was verified on Vercel (3 min 38 s, Bing discovery, Gemini, HubSpot sync). Real Hot List and brief emails were sent to ARJUN_EMAIL.
 - Database: no DATABASE_URL yet, so the deployed app runs on an in-memory PGlite database loaded with the seed (banner shown). Edits and send locks do not persist across cold starts.
-- Sign-in: Arjun's Supabase user cannot be created until SUPABASE_SERVICE_ROLE_KEY is provided. The live site therefore cannot be signed into yet.
+- Sign-in: works on the live URL. Arjun's Supabase user was created with scripts/create-user.mts; the passcode is in .env.local only. Sign-in, dashboard and sign-out were verified in a headless browser.
 - CI: .github/workflows/ci.yml is local only; the gh token needs the workflow scope.
 - GitHub to Vercel auto-deploy: not connected (the user must connect the repo in Vercel settings).
 - HubSpot: Enterprise Leads pipeline live with 10 demo deals; daily sync works; email and workflow scopes are missing.
@@ -42,7 +42,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 | Integration | Env vars | Connected |
 |---|---|---|
 | Gemini | GEMINI_API_KEY, GEMINI_MODEL (default gemini-3.8-flash), GEMINI_DAILY_CALL_CAP | Yes, smoke tested |
-| Supabase | NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, DATABASE_URL | Partial: URL and publishable key only. Secret key and DATABASE_URL missing |
+| Supabase | NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, DATABASE_URL | Auth live (secret key set, server-only in Vercel). DATABASE_URL missing: the database password is needed |
 | Resend | RESEND_API_KEY, RESEND_FROM, ARJUN_EMAIL | Yes, real sends verified |
 | HubSpot | HUBSPOT_PRIVATE_APP_TOKEN, HUBSPOT_PORTAL_ID | Yes; missing sales-email-read and automation scopes |
 | Cron | CRON_SECRET | Yes, set in Vercel; bearer verified live |
@@ -69,13 +69,13 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Demo (flagged in DB and badged in UI): stages, notes, last-contact dates, tasks, activities, meetings, renewal dates, customer status, HubSpot deals.
 
 ## Open issues
-- Needed from the user: SUPABASE_SERVICE_ROLE_KEY and DATABASE_URL; `gh auth refresh -h github.com -s workflow`; connect the GitHub repo in Vercel; optionally the HubSpot scopes sales-email-read and automation.
+- Needed from the user: the Supabase database password (for DATABASE_URL); `gh auth refresh -h github.com -s workflow`; connect the GitHub repo in Vercel; optionally the HubSpot scopes sales-email-read and automation.
 - On the in-memory fallback, the send lock does not persist across cold starts, so a second morning run on the same day could send again. This is fixed once DATABASE_URL is set.
 - Eval accuracy is 86.7% against a 90% target. The labels need a human spot-check (eval/README.md).
 - Two seed events only (Travel Food Services and Thyrocare). That is the honest output of the live pipeline for this window.
 
 ## Next steps (ordered)
-1. When keys arrive: set SUPABASE_SERVICE_ROLE_KEY and DATABASE_URL in .env.local and Vercel; run migrate, seed, create-user, hubspot-bootstrap (links hubspot ids), then redeploy.
+1. When the database password arrives: build DATABASE_URL (session pooler) in .env.local and Vercel; run migrate, seed, hubspot-bootstrap (links hubspot ids), then redeploy.
 2. Push .github/workflows/ci.yml after the gh workflow scope is granted; confirm CI is green.
 3. Connect the repo in Vercel for auto-deploys.
 4. Sign in on the live URL and run the DEMO.md script end to end.
@@ -183,3 +183,9 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - What is next: the ordered list under "Next steps" (keys, migrate, seed, create user, CI push, Vercel git link, sign-in test).
 - How to run: `npm install`, `.env.local` from `.env.example`, `npm test`, `npm run dev` (or with SM_DEV_USER locally), scripts listed under "How to run".
 - Result: all four questions were answerable from the three files. Gaps found on re-reading and fixed: the architecture line still named Google News as primary (now Bing); the CRM-owned list lacked hubspot_deal_id; the script command in CLAUDE.md and AGENTS.md lacked --conditions=react-server (needed by scripts that import server-only modules); the "How to run" list gained the seed builder, bootstrap, test-email and dev sign-in commands.
+
+### 2026-10-12 09:59 IST, Claude Code (claude-opus-5-5)
+- Received the Supabase secret key: saved to .env.local and to Vercel as a sensitive, server-only variable.
+- Ran scripts/create-user.mts: Arjun's user was created with a confirmed email and a generated passcode (kept only in .env.local; given to the user in chat).
+- Live check with headless Chrome on the production URL: / redirects to /login; sign-in lands on the dashboard (Travel Food Services first); sign-out returns to /login, and revisiting / stays there. No console errors.
+- Still missing: the database password for DATABASE_URL.
