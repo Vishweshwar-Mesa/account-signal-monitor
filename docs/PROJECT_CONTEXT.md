@@ -13,7 +13,7 @@
 10. No em dashes in product text or docs.
 
 ## What the project is
-Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-market companies in India. This app watches about 50 accounts daily, finds verified trigger events in the news (new HR head, hiring drive, expansion and so on), scores each account from 1 to 10 with a full explanation, emails a Hot List every Monday and Thursday plus a daily morning brief, and never overwrites anything Arjun wrote.
+Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-market companies in India. This app watches about 50 accounts daily, finds verified trigger events in the news (new HR head, hiring drive, expansion and so on), scores each account from 1 to 10 with a full explanation, emails a Hot List and a morning brief every day, and never overwrites anything Arjun wrote.
 
 ## Current status (rewritten each session)
 - Live: https://account-signal-monitor.vercel.app (deployed with the Vercel CLI from main). Repo: https://github.com/Vishweshwar-Mesa/account-signal-monitor
@@ -29,7 +29,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Next.js 16 App Router on Vercel. `proxy.ts` replaces middleware in Next 16. Cache Components is off (B02).
 - Postgres on Supabase. Server code uses one SQL interface (src/lib/db.ts): `pg` with DATABASE_URL, or PGlite in tests and as a seed fallback (B04).
 - Pipeline: src/lib/pipeline/news.ts (Bing News RSS primary, Google News RSS behind a circuit breaker, robots, throttle) to gates.ts (G1 to G6) to ai/gemini.ts (extract) to validators.ts (V1 to V7) to ingest.ts (store and cluster) to rescore.ts to scoring.ts.
-- Morning job: src/lib/morning.ts (Hot List Mon and Thu, brief daily, send lock), email in src/lib/email/.
+- Morning job: src/lib/morning.ts (daily Hot List built in src/lib/hotlist.ts with new, updates, still-hot, why-now, articles and HubSpot brief; daily brief; send lock), email in src/lib/email/.
 - Config: config/sources.json (tiers), config/scoring.json (weights), config/product-facts.json (only claims allowed in angles).
 
 ## Data ownership rules (D02)
@@ -208,3 +208,13 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - No Hot lead on live: Travel Food Services decayed from 7.56 to 7.48 raw, which rounds to 7 (Warm), as designed by D03. Of 333 G1 rejections, sampled ones were genuinely off-topic (Bing noise), so the gates are correct; the account list simply has few fresh triggers.
 - Started research on companies with verified triggers in the last 14 days (data/research/fresh-signals.json).
 - Test build (B07): SM_TEST_MODE env, /api/test-login (server signs in as the demo user), login page note and prefilled email, TEST BUILD badge in the header and on login. SM_TEST_MODE and ARJUN_PASSWORD set in Vercel (password as sensitive). Tests: test-login refused when the flag is off. 74 tests pass.
+
+### 2026-10-12 13:46 IST, Claude Code (claude-opus-5-5)
+- The user asked for a daily Hot List with follow-ups, a why-now note, supporting articles, and a HubSpot brief per account (B08).
+- New src/lib/hotlist.ts: daily window (since the last send, minimum 1 day, 3 days for the first send); sections new, updates (articles fetched after the previous send) and still on the list; crmBrief() (stage line including deal won or lost, last touch, days since, activities in 15 days, in contact since, open tasks, HubSpot link, DEMO flag); whyNowPrompt in prompts.ts (verified fields only); sends.account_ids now recorded.
+- Fixed: ingest now stamps signals.fetched_at with the run time rather than the database clock (found by the new day-2 test).
+- Templates: new item layout with articles and the HubSpot box, an Updates section and a still-on-the-list section.
+- Tests: daily window, day-2 still-hot then update on a continuation article, CRM brief, daily send. 76 of 76 pass.
+- BSE announcements API probed for T1 filings: Access Denied (Akamai), so it is not used.
+- Docs: README, VIVA Q6, AGENTS, map v2, run log page text updated; B08 recorded.
+

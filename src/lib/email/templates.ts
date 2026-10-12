@@ -1,8 +1,13 @@
 // Plain HTML emails to Arjun. No em dashes in any generated text.
 
+export interface HotArticle { publisher: string; title: string; url: string; date: string; quote: string | null; summary: string | null; isNew: boolean }
+export interface CrmBrief {
+  inCrm: boolean; demo: boolean; stage: string; lastTouch: string; daysSinceTouch: number | null; activity15d: number;
+  relationshipSince: string | null; openTasks: string[]; openTaskCount: number; url: string | null;
+}
 export interface HotItem {
   name: string; score: number; band: string; lane: string | null; isCustomer: boolean;
-  summary: string; sourceName: string; sourceUrl: string; sourceDate: string;
+  summary: string; why: string; articles: HotArticle[]; crm: CrmBrief;
   person: { name: string; title: string; url: string } | null;
   angle: string;
   acceptedDraft: string | null;
@@ -33,30 +38,54 @@ const wrap = (body: string) => `<!doctype html><html><body style="margin:0;paddi
 const staleNote = (stale: boolean) =>
   stale ? `<p style="background:#fdf0c8;color:#5b4204;padding:8px 12px;border-radius:8px">Data may be stale. The last ingest run did not finish cleanly.</p>` : "";
 
-export function hotListHtml(input: { items: HotItem[]; date: string; warmCount: number; nextDay: string; stale: boolean; dashboardUrl: string }) {
+function itemHtml(it: HotItem, i: number, update: boolean) {
+  const arts = it.articles.map((x) => `<li style="margin-bottom:6px">${update && x.isNew ? '<b style="color:#c2410c">New:</b> ' : ""}<a href="${esc(x.url)}" style="color:#5b2fc9">${esc(x.title || x.summary)}</a><br><span style="color:#5f5a70">${esc(x.publisher)}${x.date ? `, ${esc(x.date)}` : ""}</span>${x.quote ? `<br><i>"${esc(x.quote)}"</i>` : ""}</li>`).join("");
+  const c = it.crm;
+  const crm = `<div style="font-size:13px;background:#f6f3fc;border-radius:8px;padding:8px 10px;margin-top:8px">
+    <b>From HubSpot${c.demo ? ' <span style="background:#fdf0c8;color:#5b4204;border-radius:4px;padding:0 4px;font-size:11px">DEMO</span>' : ""}:</b> ${esc(c.stage)}.
+    ${c.inCrm ? `Last touch: ${esc(c.lastTouch)}${c.daysSinceTouch != null ? ` (${c.daysSinceTouch} days ago)` : ""}. ${c.activity15d} activities in the last 15 days${c.relationshipSince ? `, in contact since ${esc(c.relationshipSince)}` : ""}.` : ""}
+    ${c.openTaskCount ? `<br>Open tasks (${c.openTaskCount}): ${c.openTasks.map(esc).join("; ")}.` : ""}
+    ${c.url ? `<br><a href="${esc(c.url)}" style="color:#5b2fc9">Open in HubSpot</a>` : ""}
+  </div>`;
+  return `
+<div style="border-top:1px solid #e6e1f3;padding:14px 0">
+  <div style="font-size:16px;font-weight:bold">${i + 1}. ${esc(it.name)} <span style="font-weight:normal;color:#5f5a70">${cap(it.band)} ${it.score}/10${it.isCustomer ? " · Customer" : ""}${it.lane ? ` · ${LANE[it.lane] ?? it.lane}` : ""}</span></div>
+  <div style="margin-top:4px"><b>Why this account, why now:</b> ${esc(it.why)}</div>
+  <div style="font-size:13px;margin-top:6px"><b>Supporting articles</b><ul style="padding-left:18px;margin:4px 0">${arts}</ul></div>
+  <div style="font-size:13px">Who to approach: ${it.person ? `${esc(it.person.name)}, ${esc(it.person.title)} (<a href="${esc(it.person.url)}" style="color:#5b2fc9">source</a>)` : "No verified contact found"}</div>
+  <div style="font-size:13px"><b>Outreach angle:</b> ${esc(it.angle)}</div>
+  ${crm}
+  ${it.acceptedDraft ? `<div style="font-size:13px;background:#f6f3fc;padding:8px;border-radius:8px;margin-top:6px"><b>Accepted draft:</b><br>${esc(it.acceptedDraft).replace(/\n/g, "<br>")}</div>` : ""}
+</div>`;
+}
+
+export function hotListHtml(input: {
+  items: HotItem[]; updates?: HotItem[]; stillHot?: { name: string; score: number; band: string; summary: string }[];
+  date: string; warmCount: number; nextDay: string; stale: boolean; dashboardUrl: string;
+}) {
   const { items } = input;
-  const footer = `<p style="color:#5f5a70;font-size:12px;margin-top:24px">Scores are computed from verified sources. Open the dashboard to see why.</p>`;
-  if (!items.length) {
+  const updates = input.updates ?? [];
+  const still = input.stillHot ?? [];
+  const n = items.length + updates.length;
+  const footer = `<p style="color:#5f5a70;font-size:12px;margin-top:24px">Scores are computed from verified sources. Open the dashboard to see why. HubSpot details marked DEMO are demo CRM data.</p>`;
+  const stillHtml = still.length
+    ? `<h3 style="margin:20px 0 6px">Still on the list (no new articles)</h3><ul style="padding-left:18px;margin:0">${still.map((s) => `<li>${esc(s.name)} (${cap(s.band)} ${s.score}/10)${s.summary ? `: ${esc(s.summary)}` : ""}</li>`).join("")}</ul>`
+    : "";
+  if (!n) {
     return {
       subject: `Hot List: 0 accounts to reach out to (${input.date})`,
       html: wrap(`<h2 style="margin-top:0">Hot List, ${esc(input.date)}</h2>${staleNote(input.stale)}
-<p>Nothing hot this time. ${input.warmCount} accounts are warm. Next list on ${esc(input.nextDay)}.</p>
+<p>Nothing hot this time. ${input.warmCount} accounts are warm. Next list on ${esc(input.nextDay)}.</p>${stillHtml}
 <p><a href="${input.dashboardUrl}" style="color:#5b2fc9">View in dashboard</a></p>${footer}`),
     };
   }
-  const rows = items.map((it, i) => `
-<div style="border-top:1px solid #e6e1f3;padding:14px 0">
-  <div style="font-size:16px;font-weight:bold">${i + 1}. ${esc(it.name)} <span style="font-weight:normal;color:#5f5a70">${cap(it.band)} ${it.score}/10${it.isCustomer ? " · Customer" : ""}${it.lane ? ` · ${LANE[it.lane] ?? it.lane}` : ""}</span></div>
-  <div>${esc(it.summary)}</div>
-  ${it.sourceUrl ? `<div style="font-size:13px">Source: <a href="${esc(it.sourceUrl)}" style="color:#5b2fc9">${esc(it.sourceName)}</a>${it.sourceDate ? `, ${esc(it.sourceDate)}` : ""}</div>` : ""}
-  <div style="font-size:13px">Who to approach: ${it.person ? `${esc(it.person.name)}, ${esc(it.person.title)} (<a href="${esc(it.person.url)}" style="color:#5b2fc9">source</a>)` : "No verified contact found"}</div>
-  <div style="font-size:13px"><b>Outreach angle:</b> ${esc(it.angle)}</div>
-  ${it.acceptedDraft ? `<div style="font-size:13px;background:#f6f3fc;padding:8px;border-radius:8px;margin-top:6px"><b>Accepted draft:</b><br>${esc(it.acceptedDraft).replace(/\n/g, "<br>")}</div>` : ""}
-</div>`).join("");
   return {
-    subject: `Hot List: ${items.length} accounts to reach out to (${input.date})`,
+    subject: `Hot List: ${n} accounts to reach out to (${input.date})`,
     html: wrap(`<h2 style="margin-top:0">Hot List, ${esc(input.date)}</h2>${staleNote(input.stale)}
-<p>${items.length} account${items.length === 1 ? "" : "s"} with fresh verified signals. Nothing is sent to prospects automatically.</p>${rows}
+<p>${items.length} new account${items.length === 1 ? "" : "s"}${updates.length ? ` and ${updates.length} update${updates.length === 1 ? "" : "s"}` : ""} with fresh verified signals. Nothing is sent to prospects automatically.</p>
+${items.length ? `<h3 style="margin:16px 0 0">New on the list</h3>${items.map((it, i) => itemHtml(it, i, false)).join("")}` : ""}
+${updates.length ? `<h3 style="margin:20px 0 0">Updates on accounts already sent</h3>${updates.map((it, i) => itemHtml(it, i, true)).join("")}` : ""}
+${stillHtml}
 <p style="margin-top:16px"><a href="${input.dashboardUrl}" style="background:#7c46f1;color:#ffffff;padding:10px 16px;border-radius:8px;text-decoration:none">View in dashboard</a></p>${footer}`),
   };
 }

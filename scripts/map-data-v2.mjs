@@ -16,7 +16,7 @@ export default {
     { id: "dbS", row: "Supabase", col: "Output", tool: "accounts: system-owned", action: ["score, band, lane, breakdown", "signals, events, runs, audit", "sends (unique send lock)"], runs: "Postgres + trigger guard" },
     { id: "hsIn", row: "HubSpot", col: "Input", tool: "HubSpot: Enterprise Leads", action: ["deals by stage, companies", "tasks + activities ([DEMO])"], runs: "HubSpot cloud", tag: "Sync" },
     { id: "hsOut", row: "HubSpot", col: "Output", tool: "HubSpot sm_ properties", action: ["push score, band, lane, signal", "retention task per event_key", "never edits deal stages"], runs: "HubSpot cloud", tag: "Sync" },
-    { id: "morning", row: "Resend", col: "Processing", tool: "Morning job", action: ["Hot List Mon + Thu", "window: since last send, min 3d", "top 10, never padded"], runs: "Vercel serverless", tag: "Brief" },
+    { id: "morning", row: "Resend", col: "Processing", tool: "Morning job", action: ["Hot List daily: new, updates", "why now + articles + HubSpot brief", "since last send, top 10"], runs: "Vercel serverless", tag: "Brief" },
     { id: "resend", row: "Resend", col: "Output", tool: "Resend email", action: ["Hot List + morning brief", "to ARJUN_EMAIL only", "never to prospects"], runs: "Resend API" },
     { id: "arjunT", row: "Arjun", col: "Trigger", tool: "Arjun (signed in)", action: ["Run now", "snooze, feedback, tasks"], runs: "browser", arjun: true },
     { id: "arjunC", row: "Arjun", col: "Context", tool: "Arjun edits", action: ["notes, last contact, his read", "my_draft (his copy)"], runs: "dashboard", arjun: true },

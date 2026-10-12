@@ -3,7 +3,7 @@
 Instructions for any AI coding tool working on this repo. This file stands alone; you do not need any chat history.
 
 ## What this is
-The B2B Account Signal Monitor, a university exam project. It watches about 50 Indian companies daily for verified trigger events in the news, scores each account from 1 to 10 with an explanation, emails a Hot List to one salesperson (Arjun) every Monday and Thursday plus a daily brief, and never overwrites anything Arjun wrote. Stack: Next.js 16 (App Router, TypeScript, Tailwind) on Vercel, Supabase Postgres and Auth, Gemini Flash via @google/genai, Resend, HubSpot, Vitest, GitHub Actions.
+The B2B Account Signal Monitor, a university exam project. It watches about 50 Indian companies daily for verified trigger events in the news, scores each account from 1 to 10 with an explanation, emails a Hot List and a brief to one salesperson (Arjun) every morning, and never overwrites anything Arjun wrote. Stack: Next.js 16 (App Router, TypeScript, Tailwind) on Vercel, Supabase Postgres and Auth, Gemini Flash via @google/genai, Resend, HubSpot, Vitest, GitHub Actions.
 
 ## Before you change anything
 1. `git pull --rebase origin main`

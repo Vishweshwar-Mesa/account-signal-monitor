@@ -62,6 +62,13 @@ Do not invent facts about the company beyond the trigger. ${STYLE}
 Return only the line.`;
 }
 
+export function whyNowPrompt(input: { company: string; verified: string }) {
+  return `Explain to a salesperson, in 2 to 3 short sentences, why ${input.company} is worth engaging now and why it matters for a workforce management (attendance, shifts, payroll, HR) conversation.
+Use ONLY these verified fields. Do not add any fact that is not here. Mention the source publication of the main article.
+${input.verified}
+${STYLE} Return only the sentences.`;
+}
+
 export function prepNotePrompt(input: { company: string; item: string; facts: string }) {
   return `Write a 1 to 2 sentence prep note for a salesperson about ${input.company}.
 Item: ${input.item}

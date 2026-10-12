@@ -1,7 +1,8 @@
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import { createPgliteDb, type Db } from "@/lib/db";
 import { runIngest } from "@/lib/pipeline/ingest";
-import { runMorning, hotListWindow, acquireSendLock, hotListItems } from "@/lib/morning";
+import { runMorning, hotListWindow, acquireSendLock } from "@/lib/morning";
+import { buildHotList, crmBrief } from "@/lib/hotlist";
 import { hotListHtml } from "@/lib/email/templates";
 import { resendMailer } from "@/lib/email/send";
 import { NOW, fixtureDeps, fakeMailer, fakeText } from "./helpers/fixtures";
@@ -64,37 +65,79 @@ describe("ingest on fixtures", () => {
   });
 });
 
-describe("Hot List window (D06)", () => {
-  it("Thursday to Monday: since last send, which is longer than 3 days", () => {
-    const thu = new Date("2026-10-08T02:30:00Z");
-    const mon = new Date("2026-10-12T02:30:00Z");
-    expect(hotListWindow(thu, mon).start).toEqual(thu);
-  });
-  it("minimum 3 days when the last send was recent or missing", () => {
+describe("Hot List window (B08, daily)", () => {
+  it("since the last send when that is longer than a day (for example a missed day)", () => {
+    const twoDaysAgo = new Date("2026-10-10T02:30:00Z");
     const now = new Date("2026-10-12T02:30:00Z");
-    expect(hotListWindow(new Date(now.getTime() - DAY), now).start).toEqual(new Date(now.getTime() - 3 * DAY));
+    expect(hotListWindow(twoDaysAgo, now).start).toEqual(twoDaysAgo);
+  });
+  it("minimum 1 day after a recent send, 3 days for the very first send", () => {
+    const now = new Date("2026-10-12T02:30:00Z");
+    expect(hotListWindow(new Date(now.getTime() - 3600_000), now).start).toEqual(new Date(now.getTime() - DAY));
     expect(hotListWindow(null, now).start).toEqual(new Date(now.getTime() - 3 * DAY));
   });
 });
 
 describe("Hot List eligibility and emails", () => {
-  it("only score >= 5 with an event in the window; never padded", async () => {
-    const id = await account("Test Retail Co");
+  it("only score >= 5 with a fresh qualifying event; never padded; items carry why, articles and the CRM brief", async () => {
+    await account("Test Retail Co");
     await account("Quiet Co");
     await runIngest(db, { now: NOW, deps: fixtureDeps({ discover: async (a) => (a.name === "Quiet Co" ? [] : fixtureDeps().discover(a)) }) });
-    const items = await hotListItems(db, new Date(NOW.getTime() - 3 * DAY), NOW, fakeText);
-    expect(items.map((i) => i.name)).toEqual(["Test Retail Co"]);
-    expect(items[0].sourceUrl).toMatch(/^https:\/\//);
-    // an event outside the window does not qualify
-    const later = await hotListItems(db, new Date(NOW.getTime() + DAY), NOW, fakeText);
-    expect(later).toHaveLength(0);
-    void id;
+    const list = await buildHotList(db, new Date(NOW.getTime() - 3 * DAY), NOW, fakeText);
+    expect(list.items.map((i) => i.name)).toEqual(["Test Retail Co"]);
+    const it0 = list.items[0];
+    expect(it0.articles.length).toBe(2);
+    expect(it0.articles[0].url).toMatch(/^https:\/\//);
+    expect(it0.why.length).toBeGreaterThan(0);
+    expect(it0.crm.stage).toBe("Not in HubSpot yet");
+  });
+
+  it("next day: an account already sent shows as an update only when a new article arrives", async () => {
+    const id = await account("Test Retail Co");
+    await runIngest(db, { now: NOW, deps: fixtureDeps() });
+    const m = fakeMailer();
+    await runMorning(db, { now: NOW, mailer: m, text: fakeText });
+    // Day 2, nothing new: still on the list, no detail
+    const day2 = new Date(NOW.getTime() + DAY);
+    let list = await buildHotList(db, hotListWindow(NOW, day2).start, day2, fakeText);
+    expect(list.items).toHaveLength(0);
+    expect(list.updates).toHaveLength(0);
+    expect(list.stillHot.map((s) => s.name)).toEqual(["Test Retail Co"]);
+    // A continuation article arrives on day 2
+    const sig = (await db.query<{ id: string }>(
+      `insert into signals (account_id, url, url_hash, publisher, tier, published_at, fetched_at, title, evidence_quote, extraction, gate_result)
+       values ($1, 'https://www.business-standard.com/x', 'h-x', 'Business Standard', 'T2', $2, $2, 'Test Retail Co CHRO outlines HR plan', 'outlines HR plan', '{"one_line_summary":"New CHRO outlines HR plan."}', 'accepted') returning id`,
+      [id, new Date(day2.getTime() - 3600_000)])).rows[0].id;
+    void sig;
+    list = await buildHotList(db, hotListWindow(NOW, day2).start, day2, fakeText);
+    expect(list.updates.map((u) => u.name)).toEqual(["Test Retail Co"]);
+    expect(list.updates[0].articles.filter((a) => a.isNew).map((a) => a.publisher)).toEqual(["Business Standard"]);
+  });
+
+  it("CRM brief: stage, deal status, last touch and open tasks from HubSpot-synced rows", async () => {
+    const id = await account("Test Retail Co");
+    await db.tx(async (q) => {
+      await q.query("select set_config('app.writer','crm',true)");
+      await q.query("update accounts set hubspot_company_id = '1', stage = 'Closed Won', is_customer = true, crm_is_demo = true where id = $1", [id]);
+    });
+    await db.query("insert into activities (account_id, kind, direction, occurred_at, summary) values ($1, 'call', 'inbound', $2, '[DEMO] Asked about payroll')", [id, new Date(NOW.getTime() - 4 * DAY)]);
+    await db.query("insert into activities (account_id, kind, occurred_at, summary) values ($1, 'meeting', $2, 'Kickoff')", [id, new Date(NOW.getTime() - 180 * DAY)]);
+    await db.query("insert into tasks (account_id, title, due_at) values ($1, 'Send QBR deck', $2)", [id, new Date(NOW.getTime() + 2 * DAY)]);
+    const c = await crmBrief(db, { id, stage: "Closed Won", is_customer: true, crm_is_demo: true, hubspot_company_id: "1", hubspot_deal_id: null }, NOW);
+    expect(c.stage).toBe("Deal won (customer)");
+    expect(c.lastTouch).toMatch(/^call \(inbound\) on .*: Asked about payroll$/);
+    expect(c.daysSinceTouch).toBe(4);
+    expect(c.activity15d).toBe(1);
+    expect(c.relationshipSince).toMatch(/Apr 2026/);
+    expect(c.openTaskCount).toBe(1);
+    expect(c.demo).toBe(true);
   });
 
   it("empty list sends the short note", () => {
     const { subject, html } = hotListHtml({ items: [], date: "12 Oct 2026", warmCount: 3, nextDay: "Thursday 15 Oct", stale: false, dashboardUrl: "https://x" });
     expect(subject).toBe("Hot List: 0 accounts to reach out to (12 Oct 2026)");
     expect(html).toContain("Nothing hot this time. 3 accounts are warm. Next list on Thursday 15 Oct.");
+    expect(html).not.toContain("Still on the list");
     expect(html).not.toMatch(/[—]/);
   });
 
@@ -110,12 +153,12 @@ describe("Hot List eligibility and emails", () => {
     expect(await acquireSendLock(db, "brief", NOW, "arjun@example.com")).toBeNull();
   });
 
-  it("Hot List only goes out on Monday and Thursday", async () => {
+  it("Hot List goes out every day, including midweek", async () => {
     const m = fakeMailer();
     const wed = new Date("2026-10-14T02:30:00Z");
     const r = await runMorning(db, { now: wed, mailer: m, text: fakeText });
-    expect(r.counts.hotlist).toBe("not_today");
-    expect(m.sent.map((s) => s.subject)[0]).toMatch(/^Morning brief/);
+    expect(r.counts.hotlist).toEqual({ new: 0, updates: 0, still: 0 });
+    expect(m.sent.map((s) => s.subject)).toEqual([expect.stringMatching(/^Hot List: 0/), expect.stringMatching(/^Morning brief/)]);
   });
 
   it("brief says data may be stale after a partial ingest", async () => {
@@ -131,7 +174,7 @@ describe("Hot List eligibility and emails", () => {
     await expect(runMorning(db, { now: new Date("2026-10-14T02:30:00Z"), mailer: bad, text: fakeText })).rejects.toThrow();
     const m = fakeMailer();
     await runMorning(db, { now: new Date("2026-10-14T03:30:00Z"), mailer: m, text: fakeText });
-    expect(m.sent).toHaveLength(1);
+    expect(m.sent).toHaveLength(2);
   });
 
   it("R6: the mailer refuses any recipient other than ARJUN_EMAIL", async () => {

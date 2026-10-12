@@ -29,7 +29,7 @@ export default async function Runs() {
       <div className="card p-4">
         <h1 className="font-display font-bold text-xl mb-3">Run log</h1>
         <RunNow />
-        <p className="text-sm text-muted mt-2">Ingest runs daily at 06:00 IST, the morning job at 08:00 IST (Vercel Cron, about plus or minus an hour on the Hobby plan). Hot List goes out on Monday and Thursday.</p>
+        <p className="text-sm text-muted mt-2">Ingest runs daily at 06:00 IST, the morning job at 08:00 IST (Vercel Cron, about plus or minus an hour on the Hobby plan). The Hot List and the brief go out every morning.</p>
         <h2 className="font-display font-semibold mt-4 mb-2">Integrations</h2>
         <ul className="text-sm grid sm:grid-cols-3 gap-1">
           <li>Database: {live(h.database)}</li><li>Supabase Auth: {live(h.supabaseAuth)}</li><li>Gemini: {live(h.gemini)}</li>

@@ -1,28 +1,17 @@
 import type { Db } from "./db";
-import productFacts from "../../config/product-facts.json";
-import { istDate, istWeekday, fmtIst, appUrl } from "./time";
+import { istDate, fmtIst, appUrl } from "./time";
 import { type Mailer, resendMailer, arjunEmail } from "./email/send";
-import { hotListHtml, briefHtml, type HotItem, type BriefData } from "./email/templates";
+import { hotListHtml, briefHtml, type BriefData } from "./email/templates";
+import { buildHotList, hotListWindow } from "./hotlist";
 import { writeText, geminiConfigured } from "./ai/gemini";
-import { outreachAnglePrompt, prepNotePrompt } from "./ai/prompts";
+import { prepNotePrompt } from "./ai/prompts";
 import { startRun, finishRun, failedTwice } from "./pipeline/runs";
 
 const DAY = 86_400_000;
-export const HOTLIST_DAYS = ["Mon", "Thu"];
-
-/** D06: window is since the previous Hot List send, but never shorter than 3 days. */
-export function hotListWindow(lastSend: Date | null, now: Date) {
-  const minStart = new Date(now.getTime() - 3 * DAY);
-  const start = lastSend && lastSend < minStart ? lastSend : minStart;
-  return { start, end: now };
-}
+export { hotListWindow } from "./hotlist";
 
 export function nextHotListDay(now: Date) {
-  for (let i = 1; i <= 7; i++) {
-    const d = new Date(now.getTime() + i * DAY);
-    if (HOTLIST_DAYS.includes(istWeekday(d))) return `${istWeekday(d) === "Mon" ? "Monday" : "Thursday"} ${fmtIst(d, { day: "numeric", month: "short" })}`;
-  }
-  return "Monday";
+  return `tomorrow, ${fmtIst(new Date(now.getTime() + DAY), { weekday: "long", day: "numeric", month: "short" })}`;
 }
 
 /** Send lock: one row per kind and IST date. A second insert fails, so retries never double-send. */
@@ -34,54 +23,6 @@ export async function acquireSendLock(db: Db, kind: "hotlist" | "brief" | "alert
     [kind, key, now, extra.start ?? null, extra.end ?? null, recipient, extra.accountIds ?? []],
   );
   return r.rows[0]?.id ?? null;
-}
-
-interface Candidate {
-  id: string; name: string; score: number; band: string; lane: string | null; is_customer: boolean;
-  my_draft: string | null; system_draft: string | null; draft_accepted_at: string | null; snoozed_until: string | null;
-}
-
-export async function hotListItems(db: Db, start: Date, now: Date, text: (p: string) => Promise<string>) {
-  const rows = await db.query<Candidate>(
-    `select a.id, a.name, a.score, a.band, a.lane, a.is_customer, a.my_draft, a.system_draft, a.draft_accepted_at, a.snoozed_until
-     from accounts a
-     where a.score >= 5 and (a.snoozed_until is null or a.snoozed_until < $2)
-       and exists (select 1 from events e where e.account_id = a.id and e.best_tier in ('T1','T2') and e.points > 0
-                   and (e.event_date >= $1 or e.first_seen_at >= $1))
-     order by a.score desc, a.last_signal_at desc nulls last
-     limit 10`,
-    [start, now],
-  );
-  const items: HotItem[] = [];
-  for (const a of rows.rows) {
-    const ev = (await db.query<{ type: string; summary: string; event_date: string; evidence_signal_ids: string[] }>(
-      `select type, summary, event_date, evidence_signal_ids from events where account_id = $1 and best_tier in ('T1','T2')
-       order by points desc limit 1`, [a.id])).rows[0];
-    const sig = ev ? (await db.query<{ url: string; publisher: string; published_at: string }>(
-      "select url, publisher, published_at from signals where id = any($1) order by tier asc limit 1", [ev.evidence_signal_ids])).rows[0] : undefined;
-    const person = (await db.query<{ name: string; title: string; source_url: string }>(
-      `select name, title, source_url from people where account_id = $1 and removed_at is null
-       order by case role_group when 'hr_head' then 0 when 'ops_head' then 1 else 2 end limit 1`, [a.id])).rows[0];
-    const angleKey = a.is_customer && (ev?.type === "HR_TECH_INTENT" || a.lane === "churn_risk") ? "HR_TECH_INTENT_CUSTOMER" : ev?.type;
-    const angleCfg = (productFacts.angles as Record<string, { angle: string; facts: string[] }>)[angleKey ?? ""] ?? { angle: "Check in", facts: [] };
-    const facts = angleCfg.facts.map((f) => (productFacts.facts as Record<string, string>)[f]);
-    let angle = angleCfg.angle;
-    if (ev) {
-      try {
-        angle = await text(outreachAnglePrompt({ company: a.name, trigger: ev.type, summary: ev.summary, angle: angleCfg.angle, facts }));
-      } catch {
-        angle = angleCfg.angle; // template fallback, still product facts only
-      }
-    }
-    items.push({
-      name: a.name, score: a.score, band: a.band, lane: a.lane, isCustomer: a.is_customer,
-      summary: ev?.summary ?? "", sourceName: sig?.publisher ?? "", sourceUrl: sig?.url ?? "", sourceDate: sig?.published_at ? fmtIst(sig.published_at) : "",
-      person: person ? { name: person.name, title: person.title, url: person.source_url } : null,
-      angle,
-      acceptedDraft: a.draft_accepted_at ? a.my_draft || a.system_draft : null,
-    });
-  }
-  return items;
 }
 
 async function briefData(db: Db, now: Date, text: (p: string) => Promise<string>, stale: boolean): Promise<BriefData> {
@@ -161,8 +102,8 @@ export async function runMorning(db: Db, opts: MorningOptions = {}) {
     const stale = !lastIngest || lastIngest.status !== "ok" || now.getTime() - new Date(lastIngest.started_at).getTime() > 26 * 3600_000;
     counts.stale = stale;
 
-    // Hot List on Monday and Thursday (D10)
-    if (opts.forceHotList || HOTLIST_DAYS.includes(istWeekday(now))) {
+    // Hot List every morning (B08): new accounts, updates with continuation articles, still-hot one-liners.
+    {
       const last = (await db.query<{ sent_at: string }>(
         "select sent_at from sends where kind = 'hotlist' and status = 'sent' order by sent_at desc limit 1")).rows[0];
       const win = hotListWindow(last ? new Date(last.sent_at) : null, now);
@@ -170,18 +111,18 @@ export async function runMorning(db: Db, opts: MorningOptions = {}) {
       if (!lock) counts.hotlist = "already_sent";
       else {
         try {
-          const items = await hotListItems(db, win.start, now, text);
+          const list = await buildHotList(db, win.start, now, text);
           const warm = Number((await db.query<{ n: string }>("select count(*) n from accounts where band = 'warm'")).rows[0].n);
-          const { subject, html } = hotListHtml({ items, date: fmtIst(now, { day: "numeric", month: "short", year: "numeric" }), warmCount: warm, nextDay: nextHotListDay(now), stale, dashboardUrl: appUrl() });
+          const { subject, html } = hotListHtml({ ...list, date: fmtIst(now, { day: "numeric", month: "short", year: "numeric" }), warmCount: warm, nextDay: nextHotListDay(now), stale, dashboardUrl: appUrl() });
           await mailer.send(to, subject, html);
-          await db.query("update sends set status = 'sent', account_ids = $2 where id = $1", [lock, []]);
-          counts.hotlist = items.length;
+          await db.query("update sends set status = 'sent', account_ids = $2 where id = $1", [lock, list.accountIds]);
+          counts.hotlist = { new: list.items.length, updates: list.updates.length, still: list.stillHot.length };
         } catch (e) {
           await db.query("delete from sends where id = $1", [lock]); // release the lock so a retry can send
           throw e;
         }
       }
-    } else counts.hotlist = "not_today";
+    }
 
     // Morning brief, every day
     const lock = await acquireSendLock(db, "brief", now, to);

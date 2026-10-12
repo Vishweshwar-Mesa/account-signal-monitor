@@ -27,8 +27,8 @@ Three layers (D02).
 - A small scale is easy to read at a glance. Bands are Hot 8 to 10, Warm 5 to 7, Cold 1 to 4 (D14).
 - The Hot gate stops fit, relationship and activity points from making an account Hot on their own. Hot needs a confirmed T1 or T2 event within 14 days worth 4 or more points; otherwise the score is capped at 7. Rumour-only accounts cap at 4.
 
-**6. Why "since the last send, minimum 3 days" for the Hot List?**
-The lists go out Monday and Thursday. Thursday to Monday is 4 days, so a fixed 3-day window would drop Thursday's signals. Since-last-send covers every gap; the 3-day minimum covers the first send and any retries (D06). Tested in "Hot List window (D06)".
+**6. Why is the Hot List daily, and how does its window work?**
+The brief asked for Monday and Thursday with a 3-day window (D06, D10). Arjun then asked for a daily list with follow-ups, so it changed (B08). Every morning the list has: new accounts (fresh T1 or T2 event, not on a list in the last 14 days), updates (accounts already sent that have an article found after the previous send) and a one-line "still on the list". The window runs from the previous send with a 1-day minimum (3 days for the first send), so a missed day is never lost. The send lock still allows one list per IST day. Tested in "Hot List window (B08, daily)" and "next day: an account already sent shows as an update only when a new article arrives".
 
 **7. Why no LinkedIn scraping?**
 LinkedIn's terms forbid it and posts carry personal data (D07). We use news and company pages. People come only from cited public sources such as annual reports, company leadership pages and trade press, each with a role, source link and date. "No verified contact found" is a valid answer (D09). This also fits the DPDP Act idea of purpose limitation.

@@ -100,11 +100,11 @@ export async function upsertEvent(db: Db, accountId: string, ev: ValidatedEvent,
 
 async function storeSignal(db: Db, row: Record<string, unknown>) {
   const r = await db.query<{ id: string }>(
-    `insert into signals (account_id, url, url_hash, publisher, tier, published_at, title, evidence_quote, extraction, gate_result, rejected_reason, is_seed)
-     values ($1,$2,$3,$4,$5,$6,$7,$8,$9::jsonb,$10,$11,$12)
+    `insert into signals (account_id, url, url_hash, publisher, tier, published_at, title, evidence_quote, extraction, gate_result, rejected_reason, is_seed, fetched_at)
+     values ($1,$2,$3,$4,$5,$6,$7,$8,$9::jsonb,$10,$11,$12,coalesce($13, now()))
      on conflict (url) do nothing returning id`,
     [row.account_id, row.url, urlHash(String(row.url)), row.publisher, row.tier, row.published_at, row.title, row.evidence_quote ?? null,
-      row.extraction ? JSON.stringify(row.extraction) : null, row.gate_result, row.rejected_reason ?? null, row.is_seed ?? false],
+      row.extraction ? JSON.stringify(row.extraction) : null, row.gate_result, row.rejected_reason ?? null, row.is_seed ?? false, row.fetched_at ?? null],
   );
   return r.rows[0]?.id ?? null;
 }
@@ -122,7 +122,7 @@ export async function processArticle(
   const pre = runGates(account, { url: resolved, title: item.title, text: "x".repeat(300) + item.title, published_at: item.published_at }, now);
   if (pre.result === "g2_stale" || pre.result === "g3_content_type" || pre.result === "g4_context" || pre.result === "g5_speculation") {
     bump(counts.gated_out, pre.result);
-    await storeSignal(db, { account_id: account.id, url: resolved, publisher: item.source_name ?? pre.publisher, tier: pre.tier, published_at: item.published_at, title: item.title, gate_result: pre.result, is_seed: isSeed });
+    await storeSignal(db, { account_id: account.id, url: resolved, publisher: item.source_name ?? pre.publisher, tier: pre.tier, published_at: item.published_at, title: item.title, gate_result: pre.result, is_seed: isSeed, fetched_at: now });
     return "pregated";
   }
 
@@ -137,7 +137,7 @@ export async function processArticle(
   const cand = { url: art.url, title: art.title || item.title, text: art.text, published_at: published };
   const g = runGates(account, cand, now);
   const publisher = g.tier === "T2" || g.tier === "T1" ? g.publisher : item.source_name ?? g.publisher;
-  const base = { account_id: account.id, url: resolved, publisher, tier: g.tier, published_at: published, title: cand.title, is_seed: isSeed };
+  const base = { account_id: account.id, url: resolved, publisher, tier: g.tier, published_at: published, title: cand.title, is_seed: isSeed, fetched_at: now };
   if (g.result !== "pass") {
     bump(counts.gated_out, g.result);
     await storeSignal(db, { ...base, gate_result: g.result });
