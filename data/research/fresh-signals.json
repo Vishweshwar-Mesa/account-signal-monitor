@@ -1,0 +1,469 @@
+{
+ "researched_at": "2026-10-12",
+ "companies": [
+  {
+   "name": "Yatharth Hospital and Trauma Care Services Ltd",
+   "domain": "yatharthhospitals.com",
+   "aliases": [
+    "Yatharth Hospitals",
+    "Yatharth"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Noida",
+   "employee_count": 7472,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/YATHARTH_03092026220545_BRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY2025-26: 7,440 permanent plus 32 other-than-permanent employees; no separate workers category reported.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "FUNDING_EVENT",
+     "date": "2026-10-02",
+     "headline": "Advent International seeks CCI nod to acquire minority stake in Yatharth Hospitals",
+     "url": "https://health.economictimes.indiatimes.com/news/hospitals/advent-international-seeks-cci-nod-to-acquire-minority-stake-in-yatharth-hospitals/134642697",
+     "publisher": "ETHealthworld",
+     "short_quote": "seeking approval to acquire a 24.9 per cent stake in multi-speciality healthcare provider Yatharth Hospitals"
+    }
+   ]
+  },
+  {
+   "name": "Maxivision Super Specialty Eye Hospitals",
+   "domain": "maxivisioneyehospital.com",
+   "aliases": [
+    "Maxivision",
+    "MaxiVision Eye Hospitals"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Hyderabad",
+   "employee_count": 250,
+   "employee_count_source_url": "https://pitchbook.com/profiles/company/54060-13",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate from PitchBook (about 250, via search snippet; likely understated for a 90+ centre chain). No BRSR as company is unlisted.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "FUNDING_EVENT",
+     "date": "2026-10-02",
+     "headline": "Quadria-backed Maxivision confidentially files for India IPO",
+     "url": "https://health.economictimes.indiatimes.com/news/hospitals/quadria-backed-maxivision-confidentially-files-for-india-ipo/134630263",
+     "publisher": "ETHealthworld (Reuters)",
+     "short_quote": "has confidentially filed for an initial public offering, a newspaper advertisement showed on Friday"
+    }
+   ],
+   "people": [
+    {
+     "name": "Saravanakumar Rajan",
+     "title": "Senior Vice President - Regional Operations",
+     "role_group": "ops_head",
+     "source_url": "https://www.maxivisioneyehospital.com/careers",
+     "as_of": "2026-10-12",
+     "why": "Oversees regional operations across Tamil Nadu, Karnataka and Kerala; owns multi-site clinical workforce ahead of IPO."
+    }
+   ]
+  },
+  {
+   "name": "Regency Healthcare Ltd",
+   "domain": "regencyhealthcare.in",
+   "aliases": [
+    "Regency Hospital",
+    "Regency Super Speciality Hospital"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Kanpur",
+   "employee_count": 4000,
+   "employee_count_source_url": "https://regencyhealthcare.in/locations/regency-super-speciality-hospital-kanpur/",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Company website claims 4000+ medical staff (marketing figure, not audited); older About page cited 3,000+ staff.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "FUNDING_EVENT",
+     "date": "2026-10-07",
+     "headline": "BlackSoil invest Rs 110 crore in Regency Hospital in UP",
+     "url": "https://health.economictimes.indiatimes.com/news/hospitals/blacksoil-invest-110-crore-in-regency-hospital-in-up/134763388",
+     "publisher": "ETHealthworld",
+     "short_quote": "Regency Hospital has raised Rs 110 crore from BlackSoil Capital to fund expansion and healthcare infrastructure"
+    }
+   ]
+  },
+  {
+   "name": "Himadri Speciality Chemical Ltd",
+   "domain": "himadri.com",
+   "aliases": [
+    "Himadri",
+    "HSCL"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Kolkata",
+   "employee_count": 3193,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/HSCL_15052026194024_BRSRFY202526.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY2025-26: 1,395 employees (1,107 permanent) plus 1,798 workers (1,744 other-than-permanent).",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-10",
+     "headline": "Himadri Speciality Chemical plans Rs 5,000 crore investment in Andhra Pradesh",
+     "url": "https://manufacturing.economictimes.indiatimes.com/news/chemicals/himadri-speciality-chemical-plans-5000-crore-investment-in-andhra-pradesh/134846905",
+     "publisher": "ETManufacturing",
+     "short_quote": "Himadri Speciality Chemical Ltd plans to invest ₹5,000 crore in Andhra Pradesh"
+    }
+   ]
+  },
+  {
+   "name": "S.J.S. Enterprises Ltd",
+   "domain": "sjsindia.com",
+   "aliases": [
+    "SJS Enterprises",
+    "SJS"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Bengaluru",
+   "employee_count": 3338,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SJS_10062026195456_IntimationofBRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY2025-26 (consolidated): 485 employees plus 2,853 workers.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-11",
+     "headline": "SJS Enterprises subsidiary to invest Rs 81 crore in Pune manufacturing facility",
+     "url": "https://manufacturing.economictimes.indiatimes.com/news/industry/sjs-enterprises-subsidiary-to-invest-81-crore-in-pune-manufacturing-facility/134868772",
+     "publisher": "ETManufacturing",
+     "short_quote": "will invest approximately ₹81 crore to establish a new manufacturing facility in Pune, Maharashtra"
+    }
+   ]
+  },
+  {
+   "name": "Carlsberg India Pvt Ltd",
+   "domain": "carlsbergindia.com",
+   "aliases": [
+    "Carlsberg India",
+    "Carlsberg India Limited"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Gurugram",
+   "employee_count": 1100,
+   "employee_count_source_url": "https://danskindustri.dk/di-business/arkiv/news/2018/8/carlsberg-uses-elephant-to-open-up-doors-in-india",
+   "employee_count_as_of": "2018-08-01",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Dated 2018 figure (1,100 employees in India) from Danish Industry article via search snippet; no current disclosure until IPO documents are public. Runs 7 owned breweries per company site.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "OPERATIONAL_CHALLENGE",
+     "date": "2026-10-12",
+     "headline": "Carlsberg India told to close Alwar unit over pollution breach ahead of $700 million IPO plans",
+     "url": "https://retail.economictimes.indiatimes.com/news/food-entertainment/grocery/carlsberg-india-told-to-close-alwar-unit-over-pollution-breach-ahead-of-700-million-ipo-plans/134881123",
+     "publisher": "ETRetail",
+     "short_quote": "revoked Carlsberg India's operating consent for its Alwar brewery and ordered its closure"
+    },
+    {
+     "type": "FUNDING_EVENT",
+     "date": "2026-10-03",
+     "headline": "Carlsberg India Limited gets SEBI nod for IPO",
+     "url": "https://hospitality.economictimes.indiatimes.com/news/operations/food-and-beverages/carlsberg-india-limited-gets-sebi-nod-for-ipo/134651797",
+     "publisher": "ETHospitalityWorld",
+     "short_quote": "The SEBI approval marks an important step in Carlsberg India's proposed IPO process"
+    }
+   ]
+  },
+  {
+   "name": "Zetwerk Manufacturing Businesses Ltd",
+   "domain": "zetwerk.com",
+   "aliases": [
+    "Zetwerk"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Bengaluru",
+   "employee_count": 4671,
+   "employee_count_source_url": "https://www.reveliolabs.com/companies/zetwerk-mfg-businesses/employees",
+   "employee_count_as_of": "2025-09-30",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate from Revelio Labs (Sept 2025, via search snippet); RHP headcount not retrieved. Operates 26 owned plants per reports.",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "FUNDING_EVENT",
+     "date": "2026-10-12",
+     "headline": "Zetwerk to launch Rs 5,012 crore IPO on October 15 at Rs 143-151 per share",
+     "url": "https://manufacturing.economictimes.indiatimes.com/news/industry/zetwerk-to-launch-5012-crore-ipo-on-october-15-at-143151-per-share/134885406",
+     "publisher": "ETManufacturing",
+     "short_quote": "Zetwerk Manufacturing Business Ltd is set to tap the primary market on October 15"
+    }
+   ]
+  },
+  {
+   "name": "P N Gadgil Jewellers Ltd",
+   "domain": "pngjewellers.com",
+   "aliases": [
+    "PNG Jewellers",
+    "PNGJL"
+   ],
+   "sector": "retail",
+   "hq_city": "Pune",
+   "employee_count": 2954,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/PNGJEWELLERS_05092026163638_IntimationofBRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY2025-26: 2,950 permanent plus 4 other-than-permanent employees.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-09",
+     "headline": "PNG Jewellers Q2 revenue grows 22.4 per cent, targets 23 new stores in FY27",
+     "url": "https://retail.economictimes.indiatimes.com/news/apparel-fashion/jewellery/png-jewellers-q2-revenue-grows-22-4-per-cent-targets-23-new-stores-in-fy27/134816257",
+     "publisher": "ETRetail",
+     "short_quote": "future expansion plans for 23 new stores across India"
+    }
+   ]
+  },
+  {
+   "name": "BMW Industries Ltd",
+   "domain": "bmwil.co.in",
+   "aliases": [
+    "BMW Industries"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Kolkata",
+   "employee_count": 500,
+   "employee_count_source_url": "https://uk.investing.com/equities/bmw-industries",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate (about 500) from Investing.com and Twelve Data via search snippet; BRSR not retrieved.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-11",
+     "headline": "BMW Industries starts colour-coated steel production at Bokaro plant",
+     "url": "https://manufacturing.economictimes.indiatimes.com/news/industry/bmw-industries-starts-colour-coated-steel-production-at-bokaro-plant/134866058",
+     "publisher": "ETManufacturing",
+     "short_quote": "part of the company's ongoing ₹800-crore expansion plan at Bokaro in Jharkhand"
+    },
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-11",
+     "headline": "BMW Industries starts colour coated steel production to cater demand",
+     "url": "https://www.business-standard.com/companies/news/bmw-industries-starts-colour-coated-steel-production-to-cater-demand-126101100157_1.html",
+     "publisher": "Business Standard",
+     "short_quote": "BMW Industries starts colour coated steel production to cater demand"
+    }
+   ]
+  },
+  {
+   "name": "Royal Orchid Hotels Ltd",
+   "domain": "royalorchidhotels.com",
+   "aliases": [
+    "Royal Orchid",
+    "Regenta"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "Bengaluru",
+   "employee_count": 928,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_31437_ROHLTD_2025_2026_A_11272994_04092026195444.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "Annual Report FY2025-26 (p.61): 928 staff on rolls including contractual, monthly average, standalone; managed-hotel staff likely excluded.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-01",
+     "headline": "Royal Orchid Hotels strengthens presence in Uttar Pradesh with opening of Regenta, Bhadohi",
+     "url": "https://hospitality.economictimes.indiatimes.com/news/hotels/royal-orchid-hotels-strengthens-presence-in-uttar-pradesh-with-opening-of-regenta-bhadohi/134613011",
+     "publisher": "ETHospitalityWorld",
+     "short_quote": "Royal Orchid Hotels strengthens presence in Uttar Pradesh with opening of Regenta, Bhadohi"
+    }
+   ]
+  },
+  {
+   "name": "Spree Hospitality",
+   "domain": "spreehotels.com",
+   "aliases": [
+    "Spree Hotels",
+    "Zip by Spree"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "Bengaluru",
+   "employee_count": 420,
+   "employee_count_source_url": "https://inc42.com/company/spree-hotels/people/",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate (about 420) from Inc42 Datalabs via search snippet.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-01",
+     "headline": "Spree Hospitality signs eight new properties in Q2 FY27, accelerating expansion across India",
+     "url": "https://hospitality.economictimes.indiatimes.com/news/hotels/spree-hospitality-signs-eight-new-properties-in-q2-fy27-accelerating-expansion-across-india/134612690",
+     "publisher": "ETHospitalityWorld",
+     "short_quote": "most of the newly signed properties expected to commence operations within the next six months"
+    }
+   ]
+  },
+  {
+   "name": "Bharat Hotels Ltd (The LaLiT Suri Hospitality Group)",
+   "domain": "thelalit.com",
+   "aliases": [
+    "The LaLiT",
+    "LaLiT Suri Hospitality Group",
+    "Bharat Hotels"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "New Delhi",
+   "employee_count": 3337,
+   "employee_count_source_url": "https://www.easyleadz.com/company/bharat-hotels-new-delhi",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate from EasyLeadz (3,337) via search snippet; other aggregators range 1,001 to 5,000.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "LEADERSHIP_CHANGE",
+     "date": "2026-10-06",
+     "headline": "Kamal Raza takes on expanded corporate leadership role at The LaLiT Suri Hospitality Group, appointed GM, corporate HR & development",
+     "url": "https://hospitality.economictimes.indiatimes.com/news/hotels/kamal-raza-takes-on-expanded-corporate-leadership-role-at-the-lalit-suri-hospitality-group-appointed-gm-corporate-hr-development/134726711",
+     "publisher": "ETHospitalityWorld",
+     "short_quote": "Raza will continue to spearhead hotel development initiatives while also leading the group's human resources function"
+    }
+   ],
+   "people": [
+    {
+     "name": "Kamal Raza",
+     "title": "GM, Corporate HR & Development",
+     "role_group": "hr_head",
+     "source_url": "https://hospitality.economictimes.indiatimes.com/news/hotels/kamal-raza-takes-on-expanded-corporate-leadership-role-at-the-lalit-suri-hospitality-group-appointed-gm-corporate-hr-development/134726711",
+     "as_of": "2026-10-06",
+     "why": "Newly given group HR mandate including HR systems and processes and performance management."
+    }
+   ]
+  },
+  {
+   "name": "Kinder Hospitals",
+   "domain": "kinderhospitals.com",
+   "aliases": [
+    "Kinder Women's Hospital",
+    "Kinder MultiSpeciality Hospital"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Kochi",
+   "employee_count": 350,
+   "employee_count_source_url": "https://prospectoo.com/company/KinderMultiSpecialityHospital-19047968/",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party range 201-500 from Prospectoo via search snippet; midpoint used.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-09",
+     "headline": "Kinder Hospital bets on specialised, affordable mother-and-child healthcare to build a connected network across Kerala",
+     "url": "https://health.economictimes.indiatimes.com/news/industry/kinder-hospital-bets-on-specialised-affordable-mother-and-child-healthcare-to-build-a-connected-network-across-kerala/134829334",
+     "publisher": "ETHealthworld",
+     "short_quote": "is pursuing a state-wide expansion strategy built around specialised maternal, fetal, neonatal and paediatric care"
+    }
+   ]
+  },
+  {
+   "name": "Neuberg Diagnostics Pvt Ltd",
+   "domain": "neubergdiagnostics.com",
+   "aliases": [
+    "Neuberg",
+    "Neuberg Diagnostics",
+    "NM Medical"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Chennai",
+   "employee_count": 1460,
+   "employee_count_source_url": "https://www.reveliolabs.com/companies/neuberg-diagnostics/employees",
+   "employee_count_as_of": "2025-09-30",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate from Revelio Labs (about 1,460, Sept 2025) via search snippet; Business India article cites 5,500 (undated).",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-07",
+     "headline": "Neuberg Diagnostics merges Maharashtra operations with NM Medical",
+     "url": "https://health.economictimes.indiatimes.com/news/diagnostics/neuberg-diagnostics-merges-maharashtra-operations-with-nm-medical/134765066",
+     "publisher": "ETHealthworld",
+     "short_quote": "it will expand across Maharashtra through integrated diagnostic centres, advanced pathology laboratories, wellness and collection centres"
+    }
+   ]
+  },
+  {
+   "name": "Suzlon Energy Ltd",
+   "domain": "suzlon.com",
+   "aliases": [
+    "Suzlon",
+    "Suzlon Group"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Pune",
+   "employee_count": 6662,
+   "employee_count_source_url": "https://kalkinemedia.com/in/companies/nse-suzlon",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate (about 6,662) from Kalkine via search snippet; Revelio shows about 7,700. Above the 5,000 ideal; large-cap.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "events": [
+    {
+     "type": "CAPACITY_EXPANSION",
+     "date": "2026-10-08",
+     "headline": "Suzlon to invest Rs 200 crore in Tamil Nadu wind-blade plant, create 2,000 jobs",
+     "url": "https://manufacturing.economictimes.indiatimes.com/news/energy/suzlon-to-invest-200-crore-in-tamil-nadu-wind-blade-plant-create-2000-jobs/134781318",
+     "publisher": "ETManufacturing",
+     "short_quote": "we expect to add more than 500 direct jobs and around 1,500 indirect employment opportunities"
+    },
+    {
+     "type": "HEADCOUNT_HIRING",
+     "date": "2026-10-11",
+     "headline": "Suzlon to invest Rs 550 crore in three AI-powered wind blade factories",
+     "url": "https://manufacturing.economictimes.indiatimes.com/news/industry/suzlon-to-invest-550-crore-in-three-ai-powered-wind-blade-factories/134866164",
+     "publisher": "ETManufacturing",
+     "short_quote": "expected to create 3,000 direct and 12,000 indirect jobs, with 80 per cent of employment in rural areas"
+    }
+   ]
+  }
+ ]
+}

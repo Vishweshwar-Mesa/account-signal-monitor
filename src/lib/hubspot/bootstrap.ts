@@ -54,8 +54,9 @@ export async function bootstrapHubspot(db: Db, hs: Hs, log: (s: string) => void 
   const pipe = await ensurePipeline(hs);
   log(`pipeline path: ${pipe.path}${pipe.note ? ` (${pipe.note})` : ""}`);
 
-  const accounts = (await db.query<{ id: string; name: string; domain: string | null; stage: string | null; is_customer: boolean }>(
-    "select id, name, domain, stage, is_customer from accounts where is_active order by name")).rows;
+  // Every account lives in Arjun's CRM: active accounts with a deal, watchlist accounts as leads without a deal.
+  const accounts = (await db.query<{ id: string; name: string; domain: string | null; stage: string | null; is_customer: boolean; is_active: boolean }>(
+    "select id, name, domain, stage, is_customer, is_active from accounts order by is_active desc, name")).rows;
   for (const a of accounts) {
     const found = await hs.req<{ results: { id: string }[] }>("POST", "/crm/v3/objects/companies/search", {
       filterGroups: [{ filters: [{ propertyName: "name", operator: "EQ", value: a.name }] }], properties: ["name"], limit: 1 });
@@ -63,7 +64,7 @@ export async function bootstrapHubspot(db: Db, hs: Hs, log: (s: string) => void 
     if (!companyId) {
       const c = await hs.req<{ id: string }>("POST", "/crm/v3/objects/companies", { properties: {
         name: a.name, ...(a.domain ? { domain: a.domain } : {}), hubspot_owner_id: owner, sm_demo: "true",
-        lifecyclestage: a.is_customer ? "customer" : "opportunity", ...(pipe.path === "company_property" && a.stage ? { sm_relationship_stage: a.stage } : {}),
+        lifecyclestage: a.is_customer ? "customer" : a.stage ? "opportunity" : "lead", ...(pipe.path === "company_property" && a.stage ? { sm_relationship_stage: a.stage } : {}),
       } });
       companyId = c.id;
       log(`company created: ${a.name}`);

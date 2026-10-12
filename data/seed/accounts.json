@@ -1,7 +1,215 @@
 {
- "_note": "Real companies. Headcount and people from cited sources (see data/research/accounts-notes.md). Generated from data/research/accounts.json.",
+ "_note": "Real companies. Headcount and people from cited sources (data/research/). Exported from the production database by scripts/export-seed.mts.",
  "generated_at": "2026-10-12",
  "accounts": [
+  {
+   "name": "Go Fashion (India) Ltd",
+   "domain": "gocolors.com",
+   "aliases": [
+    "Go Colors",
+    "Go Fashion",
+    "GOCOLORS"
+   ],
+   "sector": "retail",
+   "hq_city": "Chennai",
+   "employee_count": 4771,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30387_GOCOLORS_2025_2026_A_9911941_17082026183621.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): permanent employees (D) 4,771, other than permanent 0, total 4,771. FY25 BRSR showed 5,410.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": [
+    {
+     "name": "R. Ramakrishnan",
+     "title": "Head - Human Resources",
+     "role_group": "hr_head",
+     "source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30387_GOCOLORS_2025_2026_A_9911941_17082026183621.pdf",
+     "as_of": "2026-08-17",
+     "why": "Listed as senior management HR head in the FY26 corporate governance report. In the role since 19 Jun 2023."
+    },
+    {
+     "name": "Joseph Subash Pinto",
+     "title": "Head - Operations & Projects",
+     "role_group": "ops_head",
+     "source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30387_GOCOLORS_2025_2026_A_9911941_17082026183621.pdf",
+     "as_of": "2026-08-17",
+     "why": "Senior management operations head per the FY26 annual report."
+    }
+   ]
+  },
+  {
+   "name": "Gokaldas Exports Ltd",
+   "domain": "gokaldasexports.com",
+   "aliases": [
+    "Gokaldas Exports",
+    "GEL",
+    "GOKEX"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Bengaluru",
+   "employee_count": 41149,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/GOKEX_05092026193846_BRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (consolidated): permanent employees 6,554 plus permanent workers 34,595 = 41,149. Other than permanent: employees 971, workers 9,660 (total workforce 51,780). Workforce is mostly workers. Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": [
+    {
+     "name": "Amit Sharma",
+     "title": "Chief Human Resources Officer",
+     "role_group": "hr_head",
+     "source_url": "https://www.hrkatha.com/people/movement/volvos-amit-sharma-joins-gokaldas-exports-as-chro/",
+     "as_of": "2024-07-17",
+     "why": "Joined as CHRO from Volvo Group India. Still pictured on the company leadership page in Oct 2026."
+    },
+    {
+     "name": "Balakrishna Shetty",
+     "title": "Chief Operating Officer - India",
+     "role_group": "ops_head",
+     "source_url": "https://scanx.trade/stock-market-news/companies/gokaldas-exports-appoints-balakrishna-shetty-as-chief-operating-officer-india/36773412",
+     "as_of": "2026-04-03",
+     "why": "Appointed COO India effective 2 Apr 2026. Runs the India plant operations."
+    }
+   ]
+  },
+  {
+   "name": "Krsnaa Diagnostics Ltd",
+   "domain": "krsnaadiagnostics.com",
+   "aliases": [
+    "Krsnaa Diagnostics",
+    "Krsnaa",
+    "KRSNAA"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Pune",
+   "employee_count": 3296,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/KRSNAA_05092026190440_543328_Final.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (inside Annual Report 2025-26, standalone): permanent employees 3,296; other than permanent 2,744 (includes part-time consultants); total employees 6,040. Workers reported NA. Q1 FY27 commentary cites onboarding of 4,000 personnel in Rajasthan, so current headcount is likely much higher.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": [
+    {
+     "name": "Mitesh Dave",
+     "title": "Group Chief Executive Officer",
+     "role_group": "ops_head",
+     "source_url": "https://nsearchives.nseindia.com/corporate/KRSNAA_05092026190440_543328_Final.pdf",
+     "as_of": "2026-03-31",
+     "why": "Listed KMP running group operations; no HR head is disclosed (AR says the company had no Senior Management Personnel as on 31 Mar 2026)"
+    },
+    {
+     "name": "Yash Mutha",
+     "title": "Managing Director",
+     "role_group": "ops_head",
+     "source_url": "https://nsearchives.nseindia.com/corporate/KRSNAA_05092026190440_543328_Final.pdf",
+     "as_of": "2026-03-31",
+     "why": "Executive MD and promoter family, a key decision maker for operations"
+    }
+   ]
+  },
+  {
+   "name": "Krystal Integrated Services Ltd",
+   "domain": "krystal-group.com",
+   "aliases": [
+    "Krystal",
+    "KISL",
+    "Krystal Group"
+   ],
+   "sector": "facility_staffing",
+   "hq_city": "Mumbai",
+   "employee_count": 42151,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/KISL123_27082026153938_Intimation_SE_Annual_Report.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "FY26 Annual Report (no BRSR found): 41,676 on-site personnel plus 475 back-office staff = 42,151 total workforce (core to associate ratio 1:88). Directors' Report says permanent employees on the roll of company were only 478 as of 31 Mar 2026. Above 5,000 band. FY25 AR: 43,324 on-site, 450 permanent on rolls.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": "https://krystal-group.com/news/",
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": [
+    {
+     "name": "Mrunalini Salian",
+     "title": "General Manager - HR",
+     "role_group": "hr_head",
+     "source_url": "https://nsearchives.nseindia.com/corporate/KISL123_27082026153938_Intimation_SE_Annual_Report.pdf",
+     "as_of": "2026-08-27",
+     "why": "Listed as Senior Management Personnel heading HR, appointed SMP w.e.f. 31 Jul 2025 per FY26 Corporate Governance Report"
+    },
+    {
+     "name": "Rahul Kamble",
+     "title": "President - Group Operations",
+     "role_group": "ops_head",
+     "source_url": "https://nsearchives.nseindia.com/corporate/KISL123_27082026153938_Intimation_SE_Annual_Report.pdf",
+     "as_of": "2026-08-27",
+     "why": "Senior Management Personnel heading group operations across 4,068 client locations"
+    },
+    {
+     "name": "P M Sreeram",
+     "title": "Sr. Vice President - Operation",
+     "role_group": "ops_head",
+     "source_url": "https://nsearchives.nseindia.com/corporate/KISL123_27082026153938_Intimation_SE_Annual_Report.pdf",
+     "as_of": "2026-08-27",
+     "why": "Senior operations leader listed in FY26 senior management table"
+    }
+   ]
+  },
+  {
+   "name": "Sagility Limited",
+   "domain": "sagility.com",
+   "aliases": [
+    "Sagility",
+    "Sagility India Ltd",
+    "Sagility India Limited"
+   ],
+   "sector": "bpo",
+   "hq_city": "Bengaluru",
+   "employee_count": 46860,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SAGILITY_27072026151402_IntimationBRSRsigned.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (consolidated across India, USA, Philippines, Jamaica, Colombia): permanent employees 46,860. No other than permanent employees. 455 other than permanent workers not included. Above 5,000 band.",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": "https://sagility.com/newsroom/",
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": [
+    {
+     "name": "Tina Vas",
+     "title": "Executive Vice President, Chief Human Resources Officer",
+     "role_group": "hr_head",
+     "source_url": "https://sagility.com/about/leadership/",
+     "as_of": "2026-10-12",
+     "why": "Listed as CHRO on the company leadership page."
+    },
+    {
+     "name": "Mohit Saxena",
+     "title": "Executive Vice President, Chief Delivery Officer",
+     "role_group": "ops_head",
+     "source_url": "https://sagility.com/about/leadership/",
+     "as_of": "2026-10-12",
+     "why": "Heads delivery operations across the delivery centers."
+    }
+   ]
+  },
   {
    "name": "Travel Food Services Limited",
    "domain": "travelfoodservices.com",
@@ -83,500 +291,6 @@
    ]
   },
   {
-   "name": "Westlife Foodworld Limited",
-   "domain": "westlife.co.in",
-   "aliases": [
-    "Westlife Foodworld",
-    "Westlife",
-    "McDonald's India West and South"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "Mumbai",
-   "employee_count": 10473,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/BRSR_505533_04082026145028.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: permanent employees (D) 10,473 (total D+E same); all in-store crew counted as employees; plus 2,487 apprentices not included. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Sapphire Foods India Limited",
-   "domain": "sapphirefoods.in",
-   "aliases": [
-    "Sapphire Foods",
-    "SFIL"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "Mumbai",
-   "employee_count": 13817,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SAPPHIRE_27062026180548_SapphireFoodsBRSRIntimation.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: permanent employees (D) 13,817; total employees (D+E) 13,823; no workers. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Restaurant Brands Asia Limited",
-   "domain": "burgerking.in",
-   "aliases": [
-    "Burger King India",
-    "RBA",
-    "Restaurant Brands Asia"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "Mumbai",
-   "employee_count": 10620,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/BRSR_543248_28072026211757.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): permanent employees (D) 10,620; other than permanent 1,752; total employees (D+E) 12,372. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Devyani International Limited",
-   "domain": "dil-rjcorp.com",
-   "aliases": [
-    "Devyani International",
-    "Devyani",
-    "DIL"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "Gurugram",
-   "employee_count": 15955,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29971_DEVYANI_2025_2026_A_14262910_23072026204743.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone, within FY26 annual report): permanent employees (D) 15,955, no other-than-permanent, no workers. Above 5,000 band (large account).",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Lemon Tree Hotels Limited",
-   "domain": "lemontreehotels.com",
-   "aliases": [
-    "Lemon Tree Hotels",
-    "Lemon Tree"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "New Delhi",
-   "employee_count": 3488,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/LEMONTREE_26082026182025_BRSR.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: permanent employees (D) 3,488; other than permanent 289; total employees (D+E) 3,777; workers N.A.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Chalet Hotels Limited",
-   "domain": "chalethotels.com",
-   "aliases": [
-    "Chalet Hotels",
-    "Chalet"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "Mumbai",
-   "employee_count": 3032,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/BRSR_542399_31082026171727.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: summed permanent employees (supervisor and above) 1,535 + permanent workers (line staff, on-roll) 1,497 = 3,032 on-roll. Excludes 468 FTC/outsourced workers (total workforce 3,500).",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "SAMHI Hotels Limited",
-   "domain": "samhi.co.in",
-   "aliases": [
-    "SAMHI Hotels",
-    "SAMHI"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "New Delhi",
-   "employee_count": 2774,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/BRSR_543984_11082026200847.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: permanent employees (D) 2,774; other than permanent 706; total employees (D+E) 3,480.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Speciality Restaurants Limited",
-   "domain": "speciality.co.in",
-   "aliases": [
-    "Speciality Restaurants",
-    "Mainland China",
-    "Oh! Calcutta"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "Mumbai",
-   "employee_count": 2512,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SPECIALITY_18082026200025_BSENSELETTERDATED18082026.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: permanent employees (D) 2,512; other than permanent 58; total employees (D+E) 2,570; plus 78 permanent workers (total workforce 2,648).",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Ventive Hospitality Limited",
-   "domain": "ventivehospitality.com",
-   "aliases": [
-    "Ventive Hospitality",
-    "Ventive"
-   ],
-   "sector": "hospitality_qsr",
-   "hq_city": "Pune",
-   "employee_count": 3108,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/VENTIVE_03082026234157_VHL_BRSR_Intimation.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: total employees 3,108 (only 38 permanent, 3,070 other than permanent); plus 3 other-than-permanent workers. Used total employees since nearly all staff are non-permanent.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "V-Mart Retail Ltd",
-   "domain": "vmart.co.in",
-   "aliases": [
-    "V-Mart",
-    "V Mart",
-    "VMART"
-   ],
-   "sector": "retail",
-   "hq_city": "Gurugram",
-   "employee_count": 13929,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29529_VMART_2025_2026_A_53359932_02072026124242.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 13,929, of which permanent (D) 11,691 and other than permanent (E) 2,238. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": true,
-   "people": [
-    {
-     "name": "Anjali Goel",
-     "title": "Vice President (Human Resources & CSR)",
-     "role_group": "hr_head",
-     "source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29529_VMART_2025_2026_A_53359932_02072026124242.pdf",
-     "as_of": "2026-07-02",
-     "why": "Listed as senior management HR head in the FY26 annual report. Also VP Human Resource in the FY25 report, with no cessation noted."
-    },
-    {
-     "name": "Anand Agarwal",
-     "title": "Chief Financial Officer, with additional charge of COO",
-     "role_group": "ops_head",
-     "source_url": "https://apparelresources.com/business-news/trade-business-news/v-mart-retail-coo-vineet-jain-resigns-cfo-anand-agarwal-take-additional-charge/",
-     "as_of": "2026-06-11",
-     "why": "Took over COO responsibilities after COO Vineet Jain left on 15 Jul 2026."
-    }
-   ]
-  },
-  {
-   "name": "Go Fashion (India) Ltd",
-   "domain": "gocolors.com",
-   "aliases": [
-    "Go Colors",
-    "Go Fashion",
-    "GOCOLORS"
-   ],
-   "sector": "retail",
-   "hq_city": "Chennai",
-   "employee_count": 4771,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30387_GOCOLORS_2025_2026_A_9911941_17082026183621.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): permanent employees (D) 4,771, other than permanent 0, total 4,771. FY25 BRSR showed 5,410.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": true,
-   "people": [
-    {
-     "name": "R. Ramakrishnan",
-     "title": "Head - Human Resources",
-     "role_group": "hr_head",
-     "source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30387_GOCOLORS_2025_2026_A_9911941_17082026183621.pdf",
-     "as_of": "2026-08-17",
-     "why": "Listed as senior management HR head in the FY26 corporate governance report. In the role since 19 Jun 2023."
-    },
-    {
-     "name": "Joseph Subash Pinto",
-     "title": "Head - Operations & Projects",
-     "role_group": "ops_head",
-     "source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30387_GOCOLORS_2025_2026_A_9911941_17082026183621.pdf",
-     "as_of": "2026-08-17",
-     "why": "Senior management operations head per the FY26 annual report."
-    }
-   ]
-  },
-  {
-   "name": "Shoppers Stop Ltd",
-   "domain": "shoppersstop.com",
-   "aliases": [
-    "Shoppers Stop",
-    "SHOPERSTOP",
-    "INTUNE",
-    "Homestop"
-   ],
-   "sector": "retail",
-   "hq_city": "Mumbai",
-   "employee_count": 9684,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29443_SHOPERSTOP_2025_2026_A_13156619_25062026131817.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 9,684, of which permanent (D) 7,055 and other than permanent (E) 2,629. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Baazar Style Retail Ltd",
-   "domain": "stylebaazar.in",
-   "aliases": [
-    "Style Baazar",
-    "Baazar Style",
-    "STYLEBAAZA"
-   ],
-   "sector": "retail",
-   "hq_city": "Kolkata",
-   "employee_count": 5363,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_31315_STYLEBAAZA_2025_2026_A_27392528_03092026204713.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 5,363, of which permanent (D) 4,132 and other than permanent (E) 1,231. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Sai Silks (Kalamandir) Ltd",
-   "domain": "sskl.co.in",
-   "aliases": [
-    "Sai Silks",
-    "Kalamandir",
-    "SSKL",
-    "KALAMANDIR"
-   ],
-   "sector": "retail",
-   "hq_city": "Hyderabad",
-   "employee_count": 6315,
-   "employee_count_source_url": "https://sskl.co.in/wp-content/uploads/2026/07/brsr.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: permanent employees 6,315, other than permanent nil, total 6,315. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Senco Gold Ltd",
-   "domain": "sencogoldanddiamonds.com",
-   "aliases": [
-    "Senco Gold",
-    "Senco Gold & Diamonds",
-    "Sennes"
-   ],
-   "sector": "retail",
-   "hq_city": "Kolkata",
-   "employee_count": 3137,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30248_SENCO_2025_2026_A_14912780_07082026191502.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 3,137, of which permanent (D) 3,037 and other than permanent (E) 100.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Metro Brands Ltd",
-   "domain": "metrobrands.com",
-   "aliases": [
-    "Metro Brands",
-    "Metro Shoes",
-    "Mochi",
-    "Walkway",
-    "METROBRAND"
-   ],
-   "sector": "retail",
-   "hq_city": "Mumbai",
-   "employee_count": 6854,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30570_METROBRAND_2025_2026_A_29257698_24082026201719.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 6,854, of which permanent (D) 5,179 and other than permanent (E) 1,675. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Cantabil Retail India Ltd",
-   "domain": "cantabilinternational.com",
-   "aliases": [
-    "Cantabil",
-    "CANTABIL"
-   ],
-   "sector": "retail",
-   "hq_city": "New Delhi",
-   "employee_count": 5178,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30353_CANTABIL_2025_2026_A_12503664_14082026173051.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26: total workforce = employees 890 (all permanent) + permanent workers 2,802 + other than permanent workers 1,486 = 5,178. Employees alone are 890. Above 5,000 band on total workforce basis.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Ethos Ltd",
-   "domain": "ethoswatches.com",
-   "aliases": [
-    "Ethos",
-    "Ethos Watches",
-    "ETHOSLTD"
-   ],
-   "sector": "retail",
-   "hq_city": "Chandigarh",
-   "employee_count": 1109,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_32161_ETHOSLTD_2025_2026_A_18227961_06102026133421.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 1,109, of which permanent (D) 1,069 and other than permanent (E) 40.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Krystal Integrated Services Ltd",
-   "domain": "krystal-group.com",
-   "aliases": [
-    "Krystal",
-    "KISL",
-    "Krystal Group"
-   ],
-   "sector": "facility_staffing",
-   "hq_city": "Mumbai",
-   "employee_count": 42151,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/KISL123_27082026153938_Intimation_SE_Annual_Report.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "FY26 Annual Report (no BRSR found): 41,676 on-site personnel plus 475 back-office staff = 42,151 total workforce (core to associate ratio 1:88). Directors' Report says permanent employees on the roll of company were only 478 as of 31 Mar 2026. Above 5,000 band. FY25 AR: 43,324 on-site, 450 permanent on rolls.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": "https://krystal-group.com/news/",
-   "newsroom_rss": null,
-   "is_active": true,
-   "people": [
-    {
-     "name": "Mrunalini Salian",
-     "title": "General Manager - HR",
-     "role_group": "hr_head",
-     "source_url": "https://nsearchives.nseindia.com/corporate/KISL123_27082026153938_Intimation_SE_Annual_Report.pdf",
-     "as_of": "2026-08-27",
-     "why": "Listed as Senior Management Personnel heading HR, appointed SMP w.e.f. 31 Jul 2025 per FY26 Corporate Governance Report"
-    },
-    {
-     "name": "Rahul Kamble",
-     "title": "President - Group Operations",
-     "role_group": "ops_head",
-     "source_url": "https://nsearchives.nseindia.com/corporate/KISL123_27082026153938_Intimation_SE_Annual_Report.pdf",
-     "as_of": "2026-08-27",
-     "why": "Senior Management Personnel heading group operations across 4,068 client locations"
-    },
-    {
-     "name": "P M Sreeram",
-     "title": "Sr. Vice President - Operation",
-     "role_group": "ops_head",
-     "source_url": "https://nsearchives.nseindia.com/corporate/KISL123_27082026153938_Intimation_SE_Annual_Report.pdf",
-     "as_of": "2026-08-27",
-     "why": "Senior operations leader listed in FY26 senior management table"
-    }
-   ]
-  },
-  {
    "name": "Updater Services Ltd",
    "domain": "uds.in",
    "aliases": [
@@ -617,175 +331,20 @@
    ]
   },
   {
-   "name": "TCI Express Ltd",
-   "domain": "tciexpress.in",
+   "name": "V-Mart Retail Ltd",
+   "domain": "vmart.co.in",
    "aliases": [
-    "TCI Express",
-    "TCIEXP"
+    "V-Mart",
+    "V Mart",
+    "VMART"
    ],
-   "sector": "logistics",
+   "sector": "retail",
    "hq_city": "Gurugram",
-   "employee_count": 2769,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/TCIEXP_15072026213518_BRSRUploading.pdf",
+   "employee_count": 13929,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29529_VMART_2025_2026_A_53359932_02072026124242.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): total employees (D+E) 2,769 = permanent 2,441 + other than permanent 328. Plus 40 other-than-permanent workers (not included).",
-   "frontline_share": "medium",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Mahindra Logistics Ltd",
-   "domain": "mahindralogistics.com",
-   "aliases": [
-    "MLL",
-    "Mahindra Logistics"
-   ],
-   "sector": "logistics",
-   "hq_city": "Mumbai",
-   "employee_count": 4191,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/MAHLOG18_23062026182034_SEintimationBRSR2026SD.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): total employees (D+E) 4,191 = permanent 3,988 + other than permanent 203. Workers reported as 0 because the operations workforce is managed by business associates (not counted).",
-   "frontline_share": "medium",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Transport Corporation of India Ltd",
-   "domain": "tcil.com",
-   "aliases": [
-    "TCI",
-    "TCI Group",
-    "Transport Corporation of India"
-   ],
-   "sector": "logistics",
-   "hq_city": "Gurugram",
-   "employee_count": 4776,
-   "employee_count_source_url": "https://tcil.com/wp-content/uploads/2026/07/Business-Responsibility-and-Sustainability-Reporting-2025-%E2%80%93-26.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): total employees (D+E) 4,776 = permanent 4,165 + other than permanent 611. Separately 8,904 other-than-permanent workers (not included).",
-   "frontline_share": "medium",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Blue Dart Express Ltd",
-   "domain": "bluedart.com",
-   "aliases": [
-    "Blue Dart",
-    "BlueDart"
-   ],
-   "sector": "logistics",
-   "hq_city": "Mumbai",
-   "employee_count": 13251,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/pooja_sanghvi_28082026165947_SE_BRSR_Report_.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): permanent employees 3,852 + permanent workers 9,399 = 13,251 (no other-than-permanent reported). Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": "https://www.bluedart.com/press-releases",
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Gateway Distriparks Ltd",
-   "domain": "gatewaydistriparks.com",
-   "aliases": [
-    "GDL",
-    "Gateway Distriparks",
-    "Gateway Rail"
-   ],
-   "sector": "logistics",
-   "hq_city": "New Delhi",
-   "employee_count": 839,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/GATEWAY_03092026171648_BRSR.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): permanent employees 509 + permanent workers 330 = 839. Also 6 other-than-permanent employees and 1,990 other-than-permanent workers (total workforce 2,835 if all summed).",
-   "frontline_share": "medium",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Snowman Logistics Ltd",
-   "domain": "snowman.in",
-   "aliases": [
-    "Snowman",
-    "Snowman Logistics"
-   ],
-   "sector": "logistics",
-   "hq_city": "New Delhi",
-   "employee_count": 532,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SNOWMAN8_03092026175547_AGM_Notice_and__Annual_Report_2025-26.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "FY26 Annual Report (Directors' Report remuneration annexure): 532 permanent employees on rolls as of 31 Mar 2026. No BRSR in the filing.",
-   "frontline_share": "medium",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "TeamLease Services Ltd",
-   "domain": "teamlease.com",
-   "aliases": [
-    "TeamLease"
-   ],
-   "sector": "facility_staffing",
-   "hq_city": "Bengaluru",
-   "employee_count": 2504,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/TEAMLEASE_20052026181256_TeamLeaseInvestorPresentationQ4FY26.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "Q4 FY26 investor presentation: total core headcount 2,504 (across staffing, edtech, HCM, regtech, support). Associates (total staffing headcount) 3,40,600 in Q4 FY26, not included. FY26 BRSR not found; FY25 BRSR (https://nsearchives.nseindia.com/corporate/TEAMLEASE_26082025172620_TeamLeaseBRSRFY2425.pdf) classifies all as employees, none as workers.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Krsnaa Diagnostics Ltd",
-   "domain": "krsnaadiagnostics.com",
-   "aliases": [
-    "Krsnaa Diagnostics",
-    "Krsnaa",
-    "KRSNAA"
-   ],
-   "sector": "healthcare",
-   "hq_city": "Pune",
-   "employee_count": 3296,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/KRSNAA_05092026190440_543328_Final.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (inside Annual Report 2025-26, standalone): permanent employees 3,296; other than permanent 2,744 (includes part-time consultants); total employees 6,040. Workers reported NA. Q1 FY27 commentary cites onboarding of 4,000 personnel in Rajasthan, so current headcount is likely much higher.",
+   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 13,929, of which permanent (D) 11,691 and other than permanent (E) 2,238. Above 5,000 band.",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -794,20 +353,20 @@
    "is_active": true,
    "people": [
     {
-     "name": "Mitesh Dave",
-     "title": "Group Chief Executive Officer",
-     "role_group": "ops_head",
-     "source_url": "https://nsearchives.nseindia.com/corporate/KRSNAA_05092026190440_543328_Final.pdf",
-     "as_of": "2026-03-31",
-     "why": "Listed KMP running group operations; no HR head is disclosed (AR says the company had no Senior Management Personnel as on 31 Mar 2026)"
+     "name": "Anjali Goel",
+     "title": "Vice President (Human Resources & CSR)",
+     "role_group": "hr_head",
+     "source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29529_VMART_2025_2026_A_53359932_02072026124242.pdf",
+     "as_of": "2026-07-02",
+     "why": "Listed as senior management HR head in the FY26 annual report. Also VP Human Resource in the FY25 report, with no cessation noted."
     },
     {
-     "name": "Yash Mutha",
-     "title": "Managing Director",
+     "name": "Anand Agarwal",
+     "title": "Chief Financial Officer, with additional charge of COO",
      "role_group": "ops_head",
-     "source_url": "https://nsearchives.nseindia.com/corporate/KRSNAA_05092026190440_543328_Final.pdf",
-     "as_of": "2026-03-31",
-     "why": "Executive MD and promoter family, a key decision maker for operations"
+     "source_url": "https://apparelresources.com/business-news/trade-business-news/v-mart-retail-coo-vineet-jain-resigns-cfo-anand-agarwal-take-additional-charge/",
+     "as_of": "2026-06-11",
+     "why": "Took over COO responsibilities after COO Vineet Jain left on 15 Jul 2026."
     }
    ]
   },
@@ -861,20 +420,42 @@
    ]
   },
   {
-   "name": "Vijaya Diagnostic Centre Ltd",
-   "domain": "vijayadiagnostic.com",
+   "name": "Alldigi Tech Ltd",
+   "domain": "alldigitech.com",
    "aliases": [
-    "Vijaya Diagnostic",
-    "Vijaya Diagnostics",
-    "VIJAYA"
+    "Alldigi",
+    "Allsec Technologies",
+    "Allsec"
    ],
-   "sector": "healthcare",
-   "hq_city": "Hyderabad",
-   "employee_count": 2507,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30671_VIJAYA_2025_2026_A_7192773_26082026173234.pdf",
+   "sector": "bpo",
+   "hq_city": "Chennai",
+   "employee_count": 4817,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/ALLSEC_14072025172310_SEIntimation_BRSR.pdf",
+   "employee_count_as_of": "2025-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY25 (standalone, filed voluntarily): permanent employees 4,817. No other than permanent staff and no workers category. No FY26 BRSR found.",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Avalon Technologies Ltd",
+   "domain": "avalontec.com",
+   "aliases": [
+    "Avalon Technologies",
+    "Avalon"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Chennai",
+   "employee_count": 1525,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_31448_AVALON_2025_2026_A_3142067_04092026203920.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (in Annual Report 2025-26, standalone): permanent employees 2,507; other than permanent 737; total employees 3,244; no workers reported. The Directors' Report gives the same 2,507 permanent employees on rolls.",
+   "employee_count_note": "Annual Report FY26, BRSR section (standalone, AR page 129): permanent employees 557 plus permanent workers 968 = 1,525. Other than permanent: employees 5, workers 383.",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -884,20 +465,95 @@
    "people": []
   },
   {
-   "name": "Metropolis Healthcare Ltd",
-   "domain": "metropolisindia.com",
+   "name": "Baazar Style Retail Ltd",
+   "domain": "stylebaazar.in",
    "aliases": [
-    "Metropolis",
-    "Metropolis Healthcare",
-    "METROPOLIS"
+    "Style Baazar",
+    "Baazar Style",
+    "STYLEBAAZA"
    ],
-   "sector": "healthcare",
+   "sector": "retail",
+   "hq_city": "Kolkata",
+   "employee_count": 5363,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_31315_STYLEBAAZA_2025_2026_A_27392528_03092026204713.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 5,363, of which permanent (D) 4,132 and other than permanent (E) 1,231. Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Bharat Hotels Ltd (The LaLiT Suri Hospitality Group)",
+   "domain": "thelalit.com",
+   "aliases": [
+    "The LaLiT",
+    "LaLiT Suri Hospitality Group",
+    "Bharat Hotels"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "New Delhi",
+   "employee_count": 3337,
+   "employee_count_source_url": "https://www.easyleadz.com/company/bharat-hotels-new-delhi",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate from EasyLeadz (3,337) via search snippet; other aggregators range 1,001 to 5,000.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": [
+    {
+     "name": "Kamal Raza",
+     "title": "GM, Corporate HR & Development",
+     "role_group": "hr_head",
+     "source_url": "https://hospitality.economictimes.indiatimes.com/news/hotels/kamal-raza-takes-on-expanded-corporate-leadership-role-at-the-lalit-suri-hospitality-group-appointed-gm-corporate-hr-development/134726711",
+     "as_of": "2026-10-06",
+     "why": "Newly given group HR mandate including HR systems and processes and performance management."
+    }
+   ]
+  },
+  {
+   "name": "Blue Dart Express Ltd",
+   "domain": "bluedart.com",
+   "aliases": [
+    "Blue Dart",
+    "BlueDart"
+   ],
+   "sector": "logistics",
    "hq_city": "Mumbai",
-   "employee_count": 4484,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/METROPOLIS_27072026203959_BRSR_MHL_25-26.pdf",
+   "employee_count": 13251,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/pooja_sanghvi_28082026165947_SE_BRSR_Report_.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): permanent employees 3,279 plus permanent workers 1,205 = 4,484. Including non-permanent staff: total employees 3,578 (3,279 + 299) and total workers 1,266 (1,205 + 61), so total workforce 4,844.",
+   "employee_count_note": "BRSR FY26 (standalone): permanent employees 3,852 + permanent workers 9,399 = 13,251 (no other-than-permanent reported). Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": "https://www.bluedart.com/press-releases",
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "BMW Industries Ltd",
+   "domain": "bmwil.co.in",
+   "aliases": [
+    "BMW Industries"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Kolkata",
+   "employee_count": 500,
+   "employee_count_source_url": "https://uk.investing.com/equities/bmw-industries",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate (about 500) from Investing.com and Twelve Data via search snippet; BRSR not retrieved.",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -907,19 +563,19 @@
    "people": []
   },
   {
-   "name": "Thyrocare Technologies Ltd",
-   "domain": "thyrocare.com",
+   "name": "Cantabil Retail India Ltd",
+   "domain": "cantabilinternational.com",
    "aliases": [
-    "Thyrocare",
-    "THYROCARE"
+    "Cantabil",
+    "CANTABIL"
    ],
-   "sector": "healthcare",
-   "hq_city": "Navi Mumbai",
-   "employee_count": 1906,
-   "employee_count_source_url": "https://investor.thyrocare.com/wp-content/uploads/2026/06/Annual-Report_25-26.pdf",
+   "sector": "retail",
+   "hq_city": "New Delhi",
+   "employee_count": 5178,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30353_CANTABIL_2025_2026_A_12503664_14082026173051.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (in Annual Report 2025-26, standalone): permanent employees 1,906; other than permanent 186; total employees 2,092; workers NA.",
+   "employee_count_note": "BRSR FY26: total workforce = employees 890 (all permanent) + permanent workers 2,802 + other than permanent workers 1,486 = 5,178. Employees alone are 890. Above 5,000 band on total workforce basis.",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -929,44 +585,19 @@
    "people": []
   },
   {
-   "name": "Rainbow Children's Medicare Ltd",
-   "domain": "rainbowhospitals.in",
+   "name": "Carlsberg India Pvt Ltd",
+   "domain": "carlsbergindia.com",
    "aliases": [
-    "Rainbow Children's Hospital",
-    "Rainbow Hospitals",
-    "Rainbow Children's Medicare",
-    "RAINBOW"
+    "Carlsberg India",
+    "Carlsberg India Limited"
    ],
-   "sector": "healthcare",
-   "hq_city": "Hyderabad",
-   "employee_count": 4724,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/RAINBOWUSER_04072026161610_Intimation_notice.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (in Integrated Annual Report 2025-26, consolidated boundary): permanent employees 4,724; other than permanent 1,673; total employees 6,397; workers not applicable.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": "https://www.rainbowhospitals.in/media",
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Krishna Institute of Medical Sciences Ltd",
-   "domain": "kimshospitals.com",
-   "aliases": [
-    "KIMS",
-    "KIMS Hospitals",
-    "Krishna Institute of Medical Sciences"
-   ],
-   "sector": "healthcare",
-   "hq_city": "Hyderabad",
-   "employee_count": 18491,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/KIMS_05082026214239_Annualreportfinal.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "Integrated Annual Report FY26, Workforce Profile: total employees 18,491 as of 31 Mar 2026, excluding those on contractual basis (group level). Standalone permanent employees on rolls: 6,155 (Directors' Report). Above 5,000 band.",
+   "sector": "manufacturing",
+   "hq_city": "Gurugram",
+   "employee_count": 1100,
+   "employee_count_source_url": "https://danskindustri.dk/di-business/arkiv/news/2018/8/carlsberg-uses-elephant-to-open-up-doors-in-india",
+   "employee_count_as_of": "2018-08-01",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Dated 2018 figure (1,100 employees in India) from Danish Industry article via search snippet; no current disclosure until IPO documents are public. Runs 7 owned breweries per company site.",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -976,21 +607,19 @@
    "people": []
   },
   {
-   "name": "Shalby Ltd",
-   "domain": "shalby.org",
+   "name": "Chalet Hotels Limited",
+   "domain": "chalethotels.com",
    "aliases": [
-    "Shalby",
-    "Shalby Hospitals",
-    "Shalby Multi-Specialty Hospitals",
-    "SHALBY"
+    "Chalet Hotels",
+    "Chalet"
    ],
-   "sector": "healthcare",
-   "hq_city": "Ahmedabad",
-   "employee_count": 2217,
-   "employee_count_source_url": "https://www.shalby.org/wp-content/uploads/2026/08/BRSR-Report-2025-26.pdf",
+   "sector": "hospitality_qsr",
+   "hq_city": "Mumbai",
+   "employee_count": 3032,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/BRSR_542399_31082026171727.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): permanent employees 2,217; other than permanent 621; total employees 2,838; no workers as defined.",
+   "employee_count_note": "BRSR FY26: summed permanent employees (supervisor and above) 1,535 + permanent workers (line staff, on-roll) 1,497 = 3,032 on-roll. Excludes 468 FTC/outsourced workers (total workforce 3,500).",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -1000,22 +629,88 @@
    "people": []
   },
   {
-   "name": "Jupiter Life Line Hospitals Ltd",
-   "domain": "jupiterhospital.com",
+   "name": "Devyani International Limited",
+   "domain": "dil-rjcorp.com",
    "aliases": [
-    "Jupiter Hospital",
-    "Jupiter Hospitals",
-    "Jupiter Life Line",
-    "JLHL"
+    "Devyani International",
+    "Devyani",
+    "DIL"
    ],
-   "sector": "healthcare",
-   "hq_city": "Thane",
-   "employee_count": 3002,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29421_JLHL_2025_2026_A_10732529_22062026134423.pdf",
+   "sector": "hospitality_qsr",
+   "hq_city": "Gurugram",
+   "employee_count": 15955,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29971_DEVYANI_2025_2026_A_14262910_23072026204743.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (in Annual Report 2025-26, standalone): permanent (on-roll) employees 3,002; other than permanent 1,945 (retainership consultants and students); total 4,947; workers NA.",
+   "employee_count_note": "BRSR FY26 (standalone, within FY26 annual report): permanent employees (D) 15,955, no other-than-permanent, no workers. Above 5,000 band (large account).",
    "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "eClerx Services Ltd",
+   "domain": "eclerx.com",
+   "aliases": [
+    "eClerx"
+   ],
+   "sector": "bpo",
+   "hq_city": "Mumbai",
+   "employee_count": 12641,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/ECLERX_17082026181124_BSENSEFY2026BRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (eClerx and its India entities): permanent employees 12,641. Other than permanent 5,525 (total 18,166). All staff are classed as employees. Above 5,000 band.",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Ethos Ltd",
+   "domain": "ethoswatches.com",
+   "aliases": [
+    "Ethos",
+    "Ethos Watches",
+    "ETHOSLTD"
+   ],
+   "sector": "retail",
+   "hq_city": "Chandigarh",
+   "employee_count": 1109,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_32161_ETHOSLTD_2025_2026_A_18227961_06102026133421.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 1,109, of which permanent (D) 1,069 and other than permanent (E) 40.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Gateway Distriparks Ltd",
+   "domain": "gatewaydistriparks.com",
+   "aliases": [
+    "GDL",
+    "Gateway Distriparks",
+    "Gateway Rail"
+   ],
+   "sector": "logistics",
+   "hq_city": "New Delhi",
+   "employee_count": 839,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/GATEWAY_03092026171648_BRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (standalone): permanent employees 509 + permanent workers 330 = 839. Also 6 other-than-permanent employees and 1,990 other-than-permanent workers (total workforce 2,835 if all summed).",
+   "frontline_share": "medium",
    "multi_site": true,
    "india_footprint": true,
    "newsroom_url": null,
@@ -1048,20 +743,19 @@
    "people": []
   },
   {
-   "name": "Suraksha Diagnostic Ltd",
-   "domain": "surakshanet.com",
+   "name": "Himadri Speciality Chemical Ltd",
+   "domain": "himadri.com",
    "aliases": [
-    "Suraksha Diagnostic",
-    "Suraksha Diagnostics",
-    "SURAKSHA"
+    "Himadri",
+    "HSCL"
    ],
-   "sector": "healthcare",
+   "sector": "manufacturing",
    "hq_city": "Kolkata",
-   "employee_count": 1600,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SURAKSHA_27082026195739_Suraksha_Annual_Report_FY_2025-26.pdf",
+   "employee_count": 3193,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/HSCL_15052026194024_BRSRFY202526.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "Annual Report FY26, Directors' Report remuneration disclosure: 1,600 permanent employees on the rolls as on 31 Mar 2026. No BRSR table found in the AR.",
+   "employee_count_note": "BRSR FY2025-26: 1,395 employees (1,107 permanent) plus 1,798 workers (1,744 other-than-permanent).",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -1071,99 +765,43 @@
    "people": []
   },
   {
-   "name": "Gokaldas Exports Ltd",
-   "domain": "gokaldasexports.com",
+   "name": "Hinduja Global Solutions Ltd",
+   "domain": "hgs.cx",
    "aliases": [
-    "Gokaldas Exports",
-    "GEL",
-    "GOKEX"
+    "HGS",
+    "Hinduja Global"
    ],
-   "sector": "manufacturing",
-   "hq_city": "Bengaluru",
-   "employee_count": 41149,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/GOKEX_05092026193846_BRSR.pdf",
-   "employee_count_as_of": "2026-03-31",
+   "sector": "bpo",
+   "hq_city": "Mumbai",
+   "employee_count": 6648,
+   "employee_count_source_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/221309bd-c398-41a4-9c86-574feeac4cfd.pdf",
+   "employee_count_as_of": "2024-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (consolidated): permanent employees 6,554 plus permanent workers 34,595 = 41,149. Other than permanent: employees 971, workers 9,660 (total workforce 51,780). Workforce is mostly workers. Above 5,000 band.",
-   "frontline_share": "high",
+   "employee_count_note": "BRSR FY24 (standalone, part of Annual Report 2023-24): permanent employees 6,648. Other than permanent 4,413 (total 11,061). This is the latest BRSR found; no FY25 or FY26 BRSR located. Above 5,000 band.",
+   "frontline_share": "medium",
    "multi_site": true,
    "india_footprint": true,
    "newsroom_url": null,
    "newsroom_rss": null,
-   "is_active": true,
-   "people": [
-    {
-     "name": "Amit Sharma",
-     "title": "Chief Human Resources Officer",
-     "role_group": "hr_head",
-     "source_url": "https://www.hrkatha.com/people/movement/volvos-amit-sharma-joins-gokaldas-exports-as-chro/",
-     "as_of": "2024-07-17",
-     "why": "Joined as CHRO from Volvo Group India. Still pictured on the company leadership page in Oct 2026."
-    },
-    {
-     "name": "Balakrishna Shetty",
-     "title": "Chief Operating Officer - India",
-     "role_group": "ops_head",
-     "source_url": "https://scanx.trade/stock-market-news/companies/gokaldas-exports-appoints-balakrishna-shetty-as-chief-operating-officer-india/36773412",
-     "as_of": "2026-04-03",
-     "why": "Appointed COO India effective 2 Apr 2026. Runs the India plant operations."
-    }
-   ]
+   "is_active": false,
+   "people": []
   },
   {
-   "name": "Sagility Limited",
-   "domain": "sagility.com",
+   "name": "Jupiter Life Line Hospitals Ltd",
+   "domain": "jupiterhospital.com",
    "aliases": [
-    "Sagility",
-    "Sagility India Ltd",
-    "Sagility India Limited"
+    "Jupiter Hospital",
+    "Jupiter Hospitals",
+    "Jupiter Life Line",
+    "JLHL"
    ],
-   "sector": "bpo",
-   "hq_city": "Bengaluru",
-   "employee_count": 46860,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SAGILITY_27072026151402_IntimationBRSRsigned.pdf",
+   "sector": "healthcare",
+   "hq_city": "Thane",
+   "employee_count": 3002,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29421_JLHL_2025_2026_A_10732529_22062026134423.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (consolidated across India, USA, Philippines, Jamaica, Colombia): permanent employees 46,860. No other than permanent employees. 455 other than permanent workers not included. Above 5,000 band.",
-   "frontline_share": "medium",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": "https://sagility.com/newsroom/",
-   "newsroom_rss": null,
-   "is_active": true,
-   "people": [
-    {
-     "name": "Tina Vas",
-     "title": "Executive Vice President, Chief Human Resources Officer",
-     "role_group": "hr_head",
-     "source_url": "https://sagility.com/about/leadership/",
-     "as_of": "2026-10-12",
-     "why": "Listed as CHRO on the company leadership page."
-    },
-    {
-     "name": "Mohit Saxena",
-     "title": "Executive Vice President, Chief Delivery Officer",
-     "role_group": "ops_head",
-     "source_url": "https://sagility.com/about/leadership/",
-     "as_of": "2026-10-12",
-     "why": "Heads delivery operations across the delivery centers."
-    }
-   ]
-  },
-  {
-   "name": "Syrma SGS Technology Ltd",
-   "domain": "syrmasgs.com",
-   "aliases": [
-    "Syrma SGS",
-    "Syrma"
-   ],
-   "sector": "manufacturing",
-   "hq_city": "Chennai",
-   "employee_count": 1552,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SYRMASGS_03082026160937_BRSRSyrmacovering2026.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (standalone): permanent employees 1,379 plus permanent workers 173 = 1,552. Other than permanent: employees 241, workers 8,253 (total workforce 10,046, mostly contract workers).",
+   "employee_count_note": "BRSR FY26 (in Annual Report 2025-26, standalone): permanent (on-roll) employees 3,002; other than permanent 1,945 (retainership consultants and students); total 4,947; workers NA.",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -1195,19 +833,210 @@
    "people": []
   },
   {
-   "name": "Avalon Technologies Ltd",
-   "domain": "avalontec.com",
+   "name": "Kinder Hospitals",
+   "domain": "kinderhospitals.com",
    "aliases": [
-    "Avalon Technologies",
-    "Avalon"
+    "Kinder Women's Hospital",
+    "Kinder MultiSpeciality Hospital"
    ],
-   "sector": "manufacturing",
-   "hq_city": "Chennai",
-   "employee_count": 1525,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_31448_AVALON_2025_2026_A_3142067_04092026203920.pdf",
+   "sector": "healthcare",
+   "hq_city": "Kochi",
+   "employee_count": 350,
+   "employee_count_source_url": "https://prospectoo.com/company/KinderMultiSpecialityHospital-19047968/",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party range 201-500 from Prospectoo via search snippet; midpoint used.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Krishna Institute of Medical Sciences Ltd",
+   "domain": "kimshospitals.com",
+   "aliases": [
+    "KIMS",
+    "KIMS Hospitals",
+    "Krishna Institute of Medical Sciences"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Hyderabad",
+   "employee_count": 18491,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/KIMS_05082026214239_Annualreportfinal.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "Annual Report FY26, BRSR section (standalone, AR page 129): permanent employees 557 plus permanent workers 968 = 1,525. Other than permanent: employees 5, workers 383.",
+   "employee_count_note": "Integrated Annual Report FY26, Workforce Profile: total employees 18,491 as of 31 Mar 2026, excluding those on contractual basis (group level). Standalone permanent employees on rolls: 6,155 (Directors' Report). Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Lemon Tree Hotels Limited",
+   "domain": "lemontreehotels.com",
+   "aliases": [
+    "Lemon Tree Hotels",
+    "Lemon Tree"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "New Delhi",
+   "employee_count": 3488,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/LEMONTREE_26082026182025_BRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26: permanent employees (D) 3,488; other than permanent 289; total employees (D+E) 3,777; workers N.A.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Mahindra Logistics Ltd",
+   "domain": "mahindralogistics.com",
+   "aliases": [
+    "MLL",
+    "Mahindra Logistics"
+   ],
+   "sector": "logistics",
+   "hq_city": "Mumbai",
+   "employee_count": 4191,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/MAHLOG18_23062026182034_SEintimationBRSR2026SD.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (standalone): total employees (D+E) 4,191 = permanent 3,988 + other than permanent 203. Workers reported as 0 because the operations workforce is managed by business associates (not counted).",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Maxivision Super Specialty Eye Hospitals",
+   "domain": "maxivisioneyehospital.com",
+   "aliases": [
+    "Maxivision",
+    "MaxiVision Eye Hospitals"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Hyderabad",
+   "employee_count": 250,
+   "employee_count_source_url": "https://pitchbook.com/profiles/company/54060-13",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate from PitchBook (about 250, via search snippet; likely understated for a 90+ centre chain). No BRSR as company is unlisted.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": [
+    {
+     "name": "Saravanakumar Rajan",
+     "title": "Senior Vice President - Regional Operations",
+     "role_group": "ops_head",
+     "source_url": "https://www.maxivisioneyehospital.com/careers",
+     "as_of": "2026-10-12",
+     "why": "Oversees regional operations across Tamil Nadu, Karnataka and Kerala; owns multi-site clinical workforce ahead of IPO."
+    }
+   ]
+  },
+  {
+   "name": "Metro Brands Ltd",
+   "domain": "metrobrands.com",
+   "aliases": [
+    "Metro Brands",
+    "Metro Shoes",
+    "Mochi",
+    "Walkway",
+    "METROBRAND"
+   ],
+   "sector": "retail",
+   "hq_city": "Mumbai",
+   "employee_count": 6854,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30570_METROBRAND_2025_2026_A_29257698_24082026201719.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 6,854, of which permanent (D) 5,179 and other than permanent (E) 1,675. Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Metropolis Healthcare Ltd",
+   "domain": "metropolisindia.com",
+   "aliases": [
+    "Metropolis",
+    "Metropolis Healthcare",
+    "METROPOLIS"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Mumbai",
+   "employee_count": 4484,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/METROPOLIS_27072026203959_BRSR_MHL_25-26.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (standalone): permanent employees 3,279 plus permanent workers 1,205 = 4,484. Including non-permanent staff: total employees 3,578 (3,279 + 299) and total workers 1,266 (1,205 + 61), so total workforce 4,844.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Neuberg Diagnostics Pvt Ltd",
+   "domain": "neubergdiagnostics.com",
+   "aliases": [
+    "Neuberg",
+    "Neuberg Diagnostics",
+    "NM Medical"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Chennai",
+   "employee_count": 1460,
+   "employee_count_source_url": "https://www.reveliolabs.com/companies/neuberg-diagnostics/employees",
+   "employee_count_as_of": "2025-09-30",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate from Revelio Labs (about 1,460, Sept 2025) via search snippet; Business India article cites 5,500 (undated).",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "P N Gadgil Jewellers Ltd",
+   "domain": "pngjewellers.com",
+   "aliases": [
+    "PNG Jewellers",
+    "PNGJL"
+   ],
+   "sector": "retail",
+   "hq_city": "Pune",
+   "employee_count": 2954,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/PNGJEWELLERS_05092026163638_IntimationofBRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY2025-26: 2,950 permanent plus 4 other-than-permanent employees.",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
@@ -1261,19 +1090,44 @@
    "people": []
   },
   {
-   "name": "eClerx Services Ltd",
-   "domain": "eclerx.com",
+   "name": "Rainbow Children's Medicare Ltd",
+   "domain": "rainbowhospitals.in",
    "aliases": [
-    "eClerx"
+    "Rainbow Children's Hospital",
+    "Rainbow Hospitals",
+    "Rainbow Children's Medicare",
+    "RAINBOW"
    ],
-   "sector": "bpo",
-   "hq_city": "Mumbai",
-   "employee_count": 12641,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/ECLERX_17082026181124_BSENSEFY2026BRSR.pdf",
+   "sector": "healthcare",
+   "hq_city": "Hyderabad",
+   "employee_count": 4724,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/RAINBOWUSER_04072026161610_Intimation_notice.pdf",
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY26 (eClerx and its India entities): permanent employees 12,641. Other than permanent 5,525 (total 18,166). All staff are classed as employees. Above 5,000 band.",
-   "frontline_share": "medium",
+   "employee_count_note": "BRSR FY26 (in Integrated Annual Report 2025-26, consolidated boundary): permanent employees 4,724; other than permanent 1,673; total employees 6,397; workers not applicable.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": "https://www.rainbowhospitals.in/media",
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Regency Healthcare Ltd",
+   "domain": "regencyhealthcare.in",
+   "aliases": [
+    "Regency Hospital",
+    "Regency Super Speciality Hospital"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Kanpur",
+   "employee_count": 4000,
+   "employee_count_source_url": "https://regencyhealthcare.in/locations/regency-super-speciality-hospital-kanpur/",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Company website claims 4000+ medical staff (marketing figure, not audited); older About page cited 3,000+ staff.",
+   "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,
    "newsroom_url": null,
@@ -1282,42 +1136,514 @@
    "people": []
   },
   {
-   "name": "Alldigi Tech Ltd",
-   "domain": "alldigitech.com",
+   "name": "Restaurant Brands Asia Limited",
+   "domain": "burgerking.in",
    "aliases": [
-    "Alldigi",
-    "Allsec Technologies",
-    "Allsec"
+    "Burger King India",
+    "RBA",
+    "Restaurant Brands Asia"
    ],
-   "sector": "bpo",
-   "hq_city": "Chennai",
-   "employee_count": 4817,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/ALLSEC_14072025172310_SEIntimation_BRSR.pdf",
-   "employee_count_as_of": "2025-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY25 (standalone, filed voluntarily): permanent employees 4,817. No other than permanent staff and no workers category. No FY26 BRSR found.",
-   "frontline_share": "medium",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Hinduja Global Solutions Ltd",
-   "domain": "hgs.cx",
-   "aliases": [
-    "HGS",
-    "Hinduja Global"
-   ],
-   "sector": "bpo",
+   "sector": "hospitality_qsr",
    "hq_city": "Mumbai",
-   "employee_count": 6648,
-   "employee_count_source_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/221309bd-c398-41a4-9c86-574feeac4cfd.pdf",
-   "employee_count_as_of": "2024-03-31",
+   "employee_count": 10620,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/BRSR_543248_28072026211757.pdf",
+   "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY24 (standalone, part of Annual Report 2023-24): permanent employees 6,648. Other than permanent 4,413 (total 11,061). This is the latest BRSR found; no FY25 or FY26 BRSR located. Above 5,000 band.",
+   "employee_count_note": "BRSR FY26 (standalone): permanent employees (D) 10,620; other than permanent 1,752; total employees (D+E) 12,372. Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Royal Orchid Hotels Ltd",
+   "domain": "royalorchidhotels.com",
+   "aliases": [
+    "Royal Orchid",
+    "Regenta"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "Bengaluru",
+   "employee_count": 928,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_31437_ROHLTD_2025_2026_A_11272994_04092026195444.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "Annual Report FY2025-26 (p.61): 928 staff on rolls including contractual, monthly average, standalone; managed-hotel staff likely excluded.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "S.J.S. Enterprises Ltd",
+   "domain": "sjsindia.com",
+   "aliases": [
+    "SJS Enterprises",
+    "SJS"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Bengaluru",
+   "employee_count": 3338,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SJS_10062026195456_IntimationofBRSR.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY2025-26 (consolidated): 485 employees plus 2,853 workers.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Sai Silks (Kalamandir) Ltd",
+   "domain": "sskl.co.in",
+   "aliases": [
+    "Sai Silks",
+    "Kalamandir",
+    "SSKL",
+    "KALAMANDIR"
+   ],
+   "sector": "retail",
+   "hq_city": "Hyderabad",
+   "employee_count": 6315,
+   "employee_count_source_url": "https://sskl.co.in/wp-content/uploads/2026/07/brsr.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26: permanent employees 6,315, other than permanent nil, total 6,315. Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "SAMHI Hotels Limited",
+   "domain": "samhi.co.in",
+   "aliases": [
+    "SAMHI Hotels",
+    "SAMHI"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "New Delhi",
+   "employee_count": 2774,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/BRSR_543984_11082026200847.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26: permanent employees (D) 2,774; other than permanent 706; total employees (D+E) 3,480.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Sapphire Foods India Limited",
+   "domain": "sapphirefoods.in",
+   "aliases": [
+    "Sapphire Foods",
+    "SFIL"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "Mumbai",
+   "employee_count": 13817,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SAPPHIRE_27062026180548_SapphireFoodsBRSRIntimation.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26: permanent employees (D) 13,817; total employees (D+E) 13,823; no workers. Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Senco Gold Ltd",
+   "domain": "sencogoldanddiamonds.com",
+   "aliases": [
+    "Senco Gold",
+    "Senco Gold & Diamonds",
+    "Sennes"
+   ],
+   "sector": "retail",
+   "hq_city": "Kolkata",
+   "employee_count": 3137,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30248_SENCO_2025_2026_A_14912780_07082026191502.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 3,137, of which permanent (D) 3,037 and other than permanent (E) 100.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Shalby Ltd",
+   "domain": "shalby.org",
+   "aliases": [
+    "Shalby",
+    "Shalby Hospitals",
+    "Shalby Multi-Specialty Hospitals",
+    "SHALBY"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Ahmedabad",
+   "employee_count": 2217,
+   "employee_count_source_url": "https://www.shalby.org/wp-content/uploads/2026/08/BRSR-Report-2025-26.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (standalone): permanent employees 2,217; other than permanent 621; total employees 2,838; no workers as defined.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Shoppers Stop Ltd",
+   "domain": "shoppersstop.com",
+   "aliases": [
+    "Shoppers Stop",
+    "SHOPERSTOP",
+    "INTUNE",
+    "Homestop"
+   ],
+   "sector": "retail",
+   "hq_city": "Mumbai",
+   "employee_count": 9684,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29443_SHOPERSTOP_2025_2026_A_13156619_25062026131817.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (Annual Report 2025-26): total employees (D+E) 9,684, of which permanent (D) 7,055 and other than permanent (E) 2,629. Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Snowman Logistics Ltd",
+   "domain": "snowman.in",
+   "aliases": [
+    "Snowman",
+    "Snowman Logistics"
+   ],
+   "sector": "logistics",
+   "hq_city": "New Delhi",
+   "employee_count": 532,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SNOWMAN8_03092026175547_AGM_Notice_and__Annual_Report_2025-26.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "FY26 Annual Report (Directors' Report remuneration annexure): 532 permanent employees on rolls as of 31 Mar 2026. No BRSR in the filing.",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Speciality Restaurants Limited",
+   "domain": "speciality.co.in",
+   "aliases": [
+    "Speciality Restaurants",
+    "Mainland China",
+    "Oh! Calcutta"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "Mumbai",
+   "employee_count": 2512,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SPECIALITY_18082026200025_BSENSELETTERDATED18082026.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26: permanent employees (D) 2,512; other than permanent 58; total employees (D+E) 2,570; plus 78 permanent workers (total workforce 2,648).",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Spree Hospitality",
+   "domain": "spreehotels.com",
+   "aliases": [
+    "Spree Hotels",
+    "Zip by Spree"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "Bengaluru",
+   "employee_count": 420,
+   "employee_count_source_url": "https://inc42.com/company/spree-hotels/people/",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate (about 420) from Inc42 Datalabs via search snippet.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Suraksha Diagnostic Ltd",
+   "domain": "surakshanet.com",
+   "aliases": [
+    "Suraksha Diagnostic",
+    "Suraksha Diagnostics",
+    "SURAKSHA"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Kolkata",
+   "employee_count": 1600,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SURAKSHA_27082026195739_Suraksha_Annual_Report_FY_2025-26.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "Annual Report FY26, Directors' Report remuneration disclosure: 1,600 permanent employees on the rolls as on 31 Mar 2026. No BRSR table found in the AR.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Suzlon Energy Ltd",
+   "domain": "suzlon.com",
+   "aliases": [
+    "Suzlon",
+    "Suzlon Group"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Pune",
+   "employee_count": 6662,
+   "employee_count_source_url": "https://kalkinemedia.com/in/companies/nse-suzlon",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate (about 6,662) from Kalkine via search snippet; Revelio shows about 7,700. Above the 5,000 ideal; large-cap.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Syrma SGS Technology Ltd",
+   "domain": "syrmasgs.com",
+   "aliases": [
+    "Syrma SGS",
+    "Syrma"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Chennai",
+   "employee_count": 1552,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/SYRMASGS_03082026160937_BRSRSyrmacovering2026.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (standalone): permanent employees 1,379 plus permanent workers 173 = 1,552. Other than permanent: employees 241, workers 8,253 (total workforce 10,046, mostly contract workers).",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "TCI Express Ltd",
+   "domain": "tciexpress.in",
+   "aliases": [
+    "TCI Express",
+    "TCIEXP"
+   ],
+   "sector": "logistics",
+   "hq_city": "Gurugram",
+   "employee_count": 2769,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/TCIEXP_15072026213518_BRSRUploading.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (standalone): total employees (D+E) 2,769 = permanent 2,441 + other than permanent 328. Plus 40 other-than-permanent workers (not included).",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "TeamLease Services Ltd",
+   "domain": "teamlease.com",
+   "aliases": [
+    "TeamLease"
+   ],
+   "sector": "facility_staffing",
+   "hq_city": "Bengaluru",
+   "employee_count": 2504,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/TEAMLEASE_20052026181256_TeamLeaseInvestorPresentationQ4FY26.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "Q4 FY26 investor presentation: total core headcount 2,504 (across staffing, edtech, HCM, regtech, support). Associates (total staffing headcount) 3,40,600 in Q4 FY26, not included. FY26 BRSR not found; FY25 BRSR (https://nsearchives.nseindia.com/corporate/TEAMLEASE_26082025172620_TeamLeaseBRSRFY2425.pdf) classifies all as employees, none as workers.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Thyrocare Technologies Ltd",
+   "domain": "thyrocare.com",
+   "aliases": [
+    "Thyrocare",
+    "THYROCARE"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Navi Mumbai",
+   "employee_count": 1906,
+   "employee_count_source_url": "https://investor.thyrocare.com/wp-content/uploads/2026/06/Annual-Report_25-26.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (in Annual Report 2025-26, standalone): permanent employees 1,906; other than permanent 186; total employees 2,092; workers NA.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Transport Corporation of India Ltd",
+   "domain": "tcil.com",
+   "aliases": [
+    "TCI",
+    "TCI Group",
+    "Transport Corporation of India"
+   ],
+   "sector": "logistics",
+   "hq_city": "Gurugram",
+   "employee_count": 4776,
+   "employee_count_source_url": "https://tcil.com/wp-content/uploads/2026/07/Business-Responsibility-and-Sustainability-Reporting-2025-%E2%80%93-26.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (standalone): total employees (D+E) 4,776 = permanent 4,165 + other than permanent 611. Separately 8,904 other-than-permanent workers (not included).",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Ventive Hospitality Limited",
+   "domain": "ventivehospitality.com",
+   "aliases": [
+    "Ventive Hospitality",
+    "Ventive"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "Pune",
+   "employee_count": 3108,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/VENTIVE_03082026234157_VHL_BRSR_Intimation.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26: total employees 3,108 (only 38 permanent, 3,070 other than permanent); plus 3 other-than-permanent workers. Used total employees since nearly all staff are non-permanent.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Vijaya Diagnostic Centre Ltd",
+   "domain": "vijayadiagnostic.com",
+   "aliases": [
+    "Vijaya Diagnostic",
+    "Vijaya Diagnostics",
+    "VIJAYA"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Hyderabad",
+   "employee_count": 2507,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/annual_reports/AR_30671_VIJAYA_2025_2026_A_7192773_26082026173234.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26 (in Annual Report 2025-26, standalone): permanent employees 2,507; other than permanent 737; total employees 3,244; no workers reported. The Directors' Report gives the same 2,507 permanent employees on rolls.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Westlife Foodworld Limited",
+   "domain": "westlife.co.in",
+   "aliases": [
+    "Westlife Foodworld",
+    "Westlife",
+    "McDonald's India West and South"
+   ],
+   "sector": "hospitality_qsr",
+   "hq_city": "Mumbai",
+   "employee_count": 10473,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/BRSR_505533_04082026145028.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY26: permanent employees (D) 10,473 (total D+E same); all in-store crew counted as employees; plus 2,487 apprentices not included. Above 5,000 band.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": false,
+   "people": []
+  },
+  {
+   "name": "Zetwerk Manufacturing Businesses Ltd",
+   "domain": "zetwerk.com",
+   "aliases": [
+    "Zetwerk"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Bengaluru",
+   "employee_count": 4671,
+   "employee_count_source_url": "https://www.reveliolabs.com/companies/zetwerk-mfg-businesses/employees",
+   "employee_count_as_of": "2025-09-30",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Third-party estimate from Revelio Labs (Sept 2025, via search snippet); RHP headcount not retrieved. Operates 26 owned plants per reports.",
    "frontline_share": "medium",
    "multi_site": true,
    "india_footprint": true,

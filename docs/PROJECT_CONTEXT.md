@@ -218,3 +218,12 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - BSE announcements API probed for T1 filings: Access Denied (Akamai), so it is not used.
 - Docs: README, VIVA Q6, AGENTS, map v2, run log page text updated; B08 recorded.
 
+
+### 2026-10-12 13:58 IST, Claude Code (claude-opus-5-5)
+- The user asked for all companies to live in Arjun's HubSpot (the app pulls companies from HubSpot) and for richer CRM history.
+- Demo history: 21 more [DEMO] activities in data/seed/demo-crm.json (last 15 days for the active accounts; Gokaldas first engaged about 185 days ago). scripts/sync-demo-crm.mts adds missing demo tasks and activities to existing accounts (tasks and activities tables only).
+- Bootstrap now creates every account in HubSpot: active accounts with deals, watchlist accounts as leads with no deal. HubSpot has 63 companies owned by Arjun; sync linked 43 activities and 22 tasks.
+- Fresh-trigger research (data/research/fresh-signals.json, 15 companies, events 29 Sep to 12 Oct, T2 sources). scripts/ingest-urls.mts added them insert-only and ran each article through the same fetch, gates, Gemini and validators: 15 events accepted; LaLiT rejected by V6, Kinder no_trigger, one fetch 403. Merged a duplicate Yatharth account created by a name spelling difference.
+- Result on production: 16 accounts with verified events, 10 scoring 5 or more (Zetwerk and BMW Industries Hot 8; Carlsberg India, Travel Food Services, Himadri, SJS, Yatharth, Suzlon, PN Gadgil and Regency Warm). New companies created in HubSpot as leads.
+- scripts/export-seed.mts wrote data/seed/accounts.json (64) and signals.json (45 signals, 17 events) from production, so the seed fallback matches.
+

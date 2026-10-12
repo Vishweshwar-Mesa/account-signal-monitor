@@ -38,6 +38,24 @@
      "direction": "outbound",
      "days_ago": 19,
      "summary": "Logged discovery notes"
+    },
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 14,
+     "summary": "Intro meeting with HR operations team"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 9,
+     "summary": "Mapped airport outlets and shift patterns"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 3,
+     "summary": "Follow-up call on attendance capture at outlets"
     }
    ]
   },
@@ -72,6 +90,18 @@
      "direction": "outbound",
      "days_ago": 33,
      "summary": "Follow-up email"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 12,
+     "summary": "Tried HR team, left a voicemail"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 7,
+     "summary": "Rebrand to United Foodbrands noted, contacts may change"
     }
    ]
   },
@@ -117,6 +147,18 @@
      "direction": "inbound",
      "days_ago": 8,
      "summary": "Asked about PF and ESI handling"
+    },
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 13,
+     "summary": "Sent store payroll overview"
+    },
+    {
+     "kind": "call",
+     "direction": "inbound",
+     "days_ago": 5,
+     "summary": "HR asked about multi-state PT and LWF"
     }
    ]
   },
@@ -145,6 +187,12 @@
      "direction": "outbound",
      "days_ago": 3,
      "summary": "Added to target list"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 11,
+     "summary": "Store expansion coverage reviewed, HR contact not yet found"
     }
    ]
   },
@@ -190,6 +238,24 @@
      "direction": "inbound",
      "days_ago": 9,
      "summary": "Pilot usage questions"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 14,
+     "summary": "Pilot kickoff call with site supervisors"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 11,
+     "summary": "Pilot sites confirmed"
+    },
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 1,
+     "summary": "Shared pilot week two summary"
     }
    ]
   },
@@ -230,6 +296,18 @@
      "direction": "outbound",
      "days_ago": 11,
      "summary": "QBR notes logged"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 15,
+     "summary": "Account check-in with HR operations"
+    },
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 8,
+     "summary": "Sent renewal timeline"
     }
    ]
   },
@@ -264,6 +342,18 @@
      "direction": "outbound",
      "days_ago": 44,
      "summary": "Usage steady"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 120,
+     "summary": "Usage dipped after the quarter close"
+    },
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 60,
+     "summary": "Sent usage report, no reply"
     }
    ]
   },
@@ -298,6 +388,18 @@
      "direction": "outbound",
      "days_ago": 30,
      "summary": "Sent scope summary"
+    },
+    {
+     "kind": "email",
+     "direction": "inbound",
+     "days_ago": 10,
+     "summary": "Hospital ops asked for nurse rostering examples"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 6,
+     "summary": "Walked through rostering approach"
     }
    ]
   },
@@ -332,6 +434,24 @@
      "direction": "outbound",
      "days_ago": 92,
      "summary": "Short intro call"
+    },
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 185,
+     "summary": "First conversation with plant HR at an industry event"
+    },
+    {
+     "kind": "email",
+     "direction": "outbound",
+     "days_ago": 180,
+     "summary": "Sent follow-up after the first conversation"
+    },
+    {
+     "kind": "call",
+     "direction": "inbound",
+     "days_ago": 170,
+     "summary": "Plant HR asked about biometric attendance"
     }
    ]
   },
@@ -360,6 +480,12 @@
      "direction": "outbound",
      "days_ago": 2,
      "summary": "Added to target list"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 13,
+     "summary": "Researched India delivery centre locations"
     }
    ]
   }
