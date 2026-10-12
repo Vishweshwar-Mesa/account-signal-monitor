@@ -98,6 +98,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
                           <span className="font-semibold truncate">{a.name}</span>
                           {a.is_customer && <Tag tone="primary">Customer</Tag>}
                           {a.flags.includes("gone_quiet") && <Tag>Gone quiet</Tag>}
+                          {a.flags.includes("above_icp_size") && <Tag title="Over 5,000 employees: outside Keka's core mid-market ICP">Above ICP size</Tag>}
                         </span>
                         <span className="block text-sm text-muted truncate">{a.top_signal_summary ?? "No verified signal in the window"}</span>
                       </span>

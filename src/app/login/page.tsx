@@ -16,13 +16,13 @@ export default async function Login() {
         <div className="flex items-center justify-between gap-3 mb-5">
           <div className="flex items-center gap-3">
             <span className="w-10 h-10 rounded-[10px] bg-primary text-on-primary font-display font-bold text-xl inline-flex items-center justify-center" aria-hidden="true">S</span>
-            <h1 className="font-display font-bold text-lg leading-tight">{company} · Signal Monitor{test && <span className="ml-2 align-middle text-[11px] font-bold uppercase tracking-wide bg-demo-bg text-demo-text rounded-[6px] px-1.5 py-0.5">Test build</span>}</h1>
+            <h1 className="font-display font-bold text-lg leading-tight">{company} · Signal Monitor</h1>
           </div>
         </div>
         {test && (
-          <div role="note" className="bg-demo-bg text-demo-text rounded-[10px] px-3 py-2 mb-4 text-sm">
-            <b>Test build.</b> Any email and any passcode will sign you in as the demo user ({process.env.USER_NAME || "Arjun"}). CRM data is demo data; signals and company facts are real and cited.
-          </div>
+          <p role="note" className="text-sm text-muted mb-4">
+            Open access for evaluation: no passcode needed. You will be signed in as {process.env.USER_NAME || "Arjun"}.
+          </p>
         )}
         <LoginForm testMode={test} demoEmail={process.env.ARJUN_EMAIL ?? ""} />
         <div className="mt-4 flex justify-center"><ThemeToggle /></div>

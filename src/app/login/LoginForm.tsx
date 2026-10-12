@@ -31,10 +31,10 @@ export default function LoginForm({ testMode, demoEmail }: { testMode: boolean; 
         <input type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)}
           className="mt-1 w-full min-h-[44px] px-3 rounded-[8px] border border-border bg-surface text-text font-normal" />
       </label>
-      <label className="block text-sm font-semibold">Passcode
-        <input type="password" autoComplete="current-password" required={!testMode} placeholder={testMode ? "Any passcode works in the test build" : undefined} value={password} onChange={(e) => setPassword(e.target.value)}
+      {!testMode && <label className="block text-sm font-semibold">Passcode
+        <input type="password" autoComplete="current-password" required={!testMode} value={password} onChange={(e) => setPassword(e.target.value)}
           className="mt-1 w-full min-h-[44px] px-3 rounded-[8px] border border-border bg-surface text-text font-normal" />
-      </label>
+      </label>}
       {error && <p role="alert" className="text-sm text-hot">{error}</p>}
       <button type="submit" className="btn btn-primary w-full" disabled={busy}>{busy ? "Signing in" : "Sign in"}</button>
     </form>

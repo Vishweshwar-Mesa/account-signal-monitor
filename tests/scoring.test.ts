@@ -76,6 +76,11 @@ describe("scoring scenarios (section 8)", () => {
     expect(many / one).toBeCloseTo(1.3);
   });
 
+  it("flags accounts above the ICP size band", () => {
+    expect(scoreAccount({ ...ACCOUNT, employee_count: 42000 }, [], [], [], NOW).flags).toContain("above_icp_size");
+    expect(scoreAccount(ACCOUNT, [], [], [], NOW).flags).not.toContain("above_icp_size");
+  });
+
   it("an account with no events and no history is cold, gone quiet", () => {
     const r = scoreAccount(ACCOUNT, [], [], [], NOW);
     expect(r.band).toBe("cold");

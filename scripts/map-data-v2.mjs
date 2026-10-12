@@ -4,9 +4,9 @@ export default {
   subtitle: "Swimlane by actor or tool. Columns follow the flow: Trigger, Input, Context, Processing, AI, Output. Times in IST, stored in UTC.",
   boxes: [
     { id: "cron", row: "Cron / Vercel", col: "Trigger", tool: "Vercel Cron", action: ["ingest 30 0 * * * (06:00 IST)", "morning 30 2 * * * (08:00 IST)", "Bearer CRON_SECRET"], runs: "Vercel" },
-    { id: "route", row: "Cron / Vercel", col: "Processing", tool: "Next.js 16 routes + proxy.ts", action: ["/api/cron/* (bearer), /api/run", "proxy: only ARJUN_EMAIL session", "runs table, alert if failed twice"], runs: "Vercel serverless" },
-    { id: "news", row: "News and web sources", col: "Input", tool: "Google News RSS (decoded URLs)", action: ["name + multi-word aliases, 14d", "fetch publisher page (cheerio)", "robots.txt, 1 req/s/host, URL hash"], runs: "Vercel fn, outbound HTTP" },
-    { id: "gem", row: "Gemini Flash", col: "AI", tool: "gemini-3.8-flash (extract)", action: ["responseJsonSchema, temp 0", "1 retry, backoff, daily cap", "eval: 86.7% type, 100% verbatim"], runs: "Google API via gemini.ts" },
+    { id: "route", row: "Cron / Vercel", col: "Processing", tool: "Next.js 16 routes + proxy.ts", action: ["/api/cron/* (bearer), Run now", "proxy auth; open evaluator login", "runs table, alert if failed twice"], runs: "Vercel serverless" },
+    { id: "news", row: "News and web sources", col: "Input", tool: "Bing News RSS (+ Google)", action: ["name + aliases, past month, newest", "fetch publisher page (cheerio)", "robots.txt, 1 req/s/host, URL hash"], runs: "Vercel fn, outbound HTTP" },
+    { id: "gem", row: "Gemini Flash", col: "AI", tool: "gemini-3.8-flash (extract)", action: ["9 trigger types, JSON schema, temp 0", "1 retry, backoff, daily cap", "eval: 86.7% type, 100% verbatim"], runs: "Google API via gemini.ts" },
     { id: "gemText", row: "Gemini Flash", col: "Output", tool: "Gemini Flash (write)", action: ["outreach angle (product facts)", "brief prep notes", "soft-touch draft (no pitch)"], runs: "Google API via gemini.ts", tag: "Soft-touch" },
     { id: "config", row: "Code (validators and scorer)", col: "Context", tool: "config/*.json", action: ["sources.json (T1, T2 allowlist)", "scoring.json (weights, decay)", "product-facts.json"], runs: "repo, read at runtime" },
     { id: "gates", row: "Code (validators and scorer)", col: "Processing", tool: "Gates + validators", action: ["G1-G6 before Gemini", "V1-V7 after Gemini (verbatim)", "cluster by event_key"], runs: "Vercel serverless" },
@@ -14,13 +14,13 @@ export default {
     { id: "dbIn", row: "Supabase", col: "Input", tool: "accounts: CRM-owned", action: ["stage = deal stage, is_customer", "hubspot ids, renewal, crm_is_demo"], runs: "Postgres (PGlite fallback)" },
     { id: "dbA", row: "Supabase", col: "Context", tool: "accounts: Arjun-owned", action: ["notes, last_contacted_at", "relationship_read, my_draft", "snoozed_until"], runs: "Supabase Postgres", arjun: true },
     { id: "dbS", row: "Supabase", col: "Output", tool: "accounts: system-owned", action: ["score, band, lane, breakdown", "signals, events, runs, audit", "sends (unique send lock)"], runs: "Postgres + trigger guard" },
-    { id: "hsIn", row: "HubSpot", col: "Input", tool: "HubSpot: Enterprise Leads", action: ["deals by stage, companies", "tasks + activities ([DEMO])"], runs: "HubSpot cloud", tag: "Sync" },
-    { id: "hsOut", row: "HubSpot", col: "Output", tool: "HubSpot sm_ properties", action: ["push score, band, lane, signal", "retention task per event_key", "never edits deal stages"], runs: "HubSpot cloud", tag: "Sync" },
+    { id: "hsIn", row: "HubSpot", col: "Input", tool: "HubSpot: Arjun's CRM", action: ["73 companies, Enterprise Leads deals", "new companies auto-added", "tasks + activities ([DEMO])"], runs: "HubSpot cloud", tag: "Sync" },
+    { id: "hsOut", row: "HubSpot", col: "Output", tool: "HubSpot sm_ properties", action: ["push score, band, lane, signal", "churn: retention task per event", "never edits deal stages"], runs: "HubSpot cloud", tag: "Sync" },
     { id: "morning", row: "Resend", col: "Processing", tool: "Morning job", action: ["Hot List daily: new, updates", "why now + articles + HubSpot brief", "since last send, top 10"], runs: "Vercel serverless", tag: "Brief" },
     { id: "resend", row: "Resend", col: "Output", tool: "Resend email", action: ["Hot List + morning brief", "to ARJUN_EMAIL only", "never to prospects"], runs: "Resend API" },
     { id: "arjunT", row: "Arjun", col: "Trigger", tool: "Arjun (signed in)", action: ["Run now", "snooze, feedback, tasks"], runs: "browser", arjun: true },
     { id: "arjunC", row: "Arjun", col: "Context", tool: "Arjun edits", action: ["notes, last contact, his read", "my_draft (his copy)"], runs: "dashboard", arjun: true },
-    { id: "dash", row: "Arjun", col: "Output", tool: "Dashboard (Next.js)", action: ["Hot, Warm, Cold, why panel", "signals, people, draft"], runs: "Vercel + browser", tag: "Soft-touch" },
+    { id: "dash", row: "Arjun", col: "Output", tool: "Dashboard (Next.js)", action: ["why panel, signals, people", "lanes: churn, expansion, ICP tag", "draft, search, scroll list"], runs: "Vercel + browser", tag: "Soft-touch" },
   ],
   arrows: [
     { from: "cron", to: "route", label: "daily" },
@@ -43,6 +43,6 @@ export default {
   footnotes: [
     "D02: system never writes Arjun-owned columns. Enforced in code (column allowlists), in Postgres (BEFORE UPDATE trigger) and by test.",
     "Yellow boxes are Arjun-owned data and actions. Purple boxes are system. Tags mark HubSpot sync, the morning brief and the soft-touch draft.",
-    "v2 is as built. Changes from v1: deal pipeline Enterprise Leads, churn workflow in code (API refused), PGlite seed fallback, proxy auth.",
+    "v2 as built. Changes from v1: Bing discovery, daily Hot List with HubSpot brief, Enterprise Leads deals, churn workflow in code, GitHub CI, Tokyo region.",
   ],
 };

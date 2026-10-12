@@ -290,6 +290,8 @@ export function scoreAccount(
   const lastEventAge = scored.length ? Math.min(...scored.map((e) => e.ageDays)) : Infinity;
   if (lastEventAge > scoring.goneQuietDays) flags.push("gone_quiet");
   if (lastContactGap >= scoring.reEngageDays && lastContactGap !== Infinity) flags.push("no_contact_30d");
+  // Keka's published customers are mostly 50 to 3,000 employees; above the size band is a stretch account.
+  if (account.employee_count != null && account.employee_count > scoring.fit.sizeBandMax) flags.push("above_icp_size");
 
   const nextAt = band === "cold" ? 4.5 : band === "warm" ? 7.5 : null;
   let toNextBand = "Already Hot.";

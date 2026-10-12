@@ -279,6 +279,25 @@
    "people": []
   },
   {
+   "name": "Neos Kosmos Technologies (Mesa School of Business)",
+   "domain": "mesaschool.co",
+   "aliases": [],
+   "sector": null,
+   "hq_city": null,
+   "employee_count": null,
+   "employee_count_source_url": null,
+   "employee_count_as_of": null,
+   "employee_count_is_estimate": false,
+   "employee_count_note": null,
+   "frontline_share": null,
+   "multi_site": null,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
+  },
+  {
    "name": "Noise",
    "domain": "gonoise.com",
    "aliases": [],

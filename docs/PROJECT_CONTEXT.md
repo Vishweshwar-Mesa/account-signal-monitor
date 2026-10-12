@@ -252,3 +252,10 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - HubSpot is the source of truth for renewal dates: hubspot-demo-deals.mts now fills a missing sm_renewal_date.
 - Seed re-exported from production.
 
+
+### 2026-10-12 15:22 IST, Claude Code (claude-opus-5-5)
+- Login (B11): passcode field removed in open-access mode; TEST BUILD badge removed from the header and login page.
+- ICP (B12): from Keka's 77 customer stories (keka.com sitemap) the ICP is Indian SMB and mid-market, about 50 to 3,000 employees, tech and services plus multi-location manufacturing, retail, D2C and healthcare. Our 73 accounts: 12 with 50 to 1,000 employees, 37 with 1,001 to 5,000, 23 above 5,000, 1 unknown. Added the above_icp_size flag and an 'Above ICP size' tag (list and detail) plus a test. 78 tests pass.
+- Neos Kosmos Technologies (Mesa School of Business): the user stated it is a Keka customer (first-hand; not in Keka's public stories). Created in HubSpot as a customer with a demo Closed Won deal and a note; the sync picked it up automatically as a new account. Headcount left unknown (not cited).
+- Components Map v2 refreshed (Bing, 9 trigger types, open login, daily Hot List with HubSpot brief, 73 HubSpot companies, churn task, CI).
+

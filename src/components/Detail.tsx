@@ -89,6 +89,7 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
         <span>Lane: <b>{a.lane ? LANE_LABEL[a.lane] : a.is_customer ? "Healthy, no action needed" : "None"}</b></span>
         {a.flags.includes("gone_quiet") && <Tag>Gone quiet</Tag>}
         {a.flags.includes("no_contact_30d") && <Tag>No contact 30+ days</Tag>}
+        {a.flags.includes("above_icp_size") && <Tag title="Keka's published customers are mostly 50 to 3,000 employees">Above ICP size</Tag>}
         {snoozed && <Tag>Snoozed until {fmtDate(a.snoozed_until)}</Tag>}
         <button type="button" className="btn text-sm ml-auto" disabled={pending}
           onClick={() => run(() => call(`/api/accounts/${a.id}`, "PATCH", { snoozed_until: snoozed ? null : new Date(Date.now() + 7 * 86_400_000).toISOString() }))}>
