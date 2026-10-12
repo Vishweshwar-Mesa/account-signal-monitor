@@ -69,7 +69,7 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
             )}
           </p>
           <div className="flex items-center gap-2 flex-wrap mt-2 text-sm">
-            <span>Deal stage: <b>{a.stage ?? "Not in CRM"}</b></span>
+            <span>{a.stage ? <>Deal stage: <b>{a.stage}</b></> : a.hubspot_company_id ? <>HubSpot: <b>Lead, no deal yet</b></> : <>HubSpot: <b>Not in CRM yet</b></>}</span>
             {a.is_customer && <Tag tone="primary">Customer</Tag>}
             {a.crm_is_demo && <DemoBadge label="DEMO CRM" />}
             {a.renewal_date && <span className="text-muted">Renewal {fmtDate(a.renewal_date)}</span>}
