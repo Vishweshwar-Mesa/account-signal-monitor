@@ -83,4 +83,4 @@ Last verified: 2026-10-12 03:20 IST (72 of 72 Vitest tests passing, `tsc --noEmi
 | Item | Status | Proof |
 |---|---|---|
 | BUILD_SPEC, BUILD_CHECKLIST, PROJECT_CONTEXT, CLAUDE.md, AGENTS.md | DONE | this commit |
-| README, VIVA, DEMO, hubspot-workflow, COMPONENTS-MAP, map v2 | DONE | README.md, docs/VIVA.md, docs/DEMO.md, docs/hubspot-workflow.md, docs/COMPONENTS-MAP.md, components-map-v2 |
+| README, DEMO, hubspot-workflow, COMPONENTS-MAP, map v2 | DONE | README.md, docs/DEMO.md, docs/hubspot-workflow.md, docs/COMPONENTS-MAP.md, components-map-v2 |

@@ -83,4 +83,4 @@ People are shown only from public, cited, role-based sources, with a source link
 - Soft-touch drafts and outreach angles are Gemini text checked by code rules. Read them before use. Nothing is ever sent to a prospect automatically.
 
 ## Docs
-docs/AUTOMATION_BRIEF.md (why, journey, nine checks, the cut), docs/DECISIONS.md, docs/VIVA.md, docs/DEMO.md, docs/hubspot-workflow.md, docs/COMPONENTS-MAP.md, docs/PROJECT_CONTEXT.md (status and handoff), docs/BUILD_CHECKLIST.md, docs/BUILD_SPEC.md.
+docs/AUTOMATION_BRIEF.md (why, journey, nine checks, the cut), docs/DECISIONS.md, docs/DEMO.md, docs/hubspot-workflow.md, docs/COMPONENTS-MAP.md, docs/PROJECT_CONTEXT.md (status and handoff), docs/BUILD_CHECKLIST.md, docs/BUILD_SPEC.md.

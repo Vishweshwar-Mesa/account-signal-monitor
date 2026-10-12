@@ -43,3 +43,4 @@ Every commit, oldest first. Times are IST. "Claude Code for X" means the commit 
 | 12 Oct 2026, 20:06 | Claude Code for Vishweshwar-Mesa | `b381d54` | History mode: 90-day verified signal history stored as context, never scored |
 | 12 Oct 2026, 20:08 | Claude Code for Vishweshwar-Mesa | `4cc78a1` | Score over time chart (computed from verified events), earlier-signals history section, HubSpot signal history property |
 | 12 Oct 2026, 20:22 | Claude Code for Vishweshwar-Mesa | `d611daa` | History run results, HubSpot signal history pushed, seed export |
+| 12 Oct 2026, 20:30 | Claude Code for Vishweshwar-Mesa | `03d03de` | Fix duplicate events across ISO-week boundary; repair script for production duplicates |

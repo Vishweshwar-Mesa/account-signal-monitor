@@ -293,3 +293,7 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Fix: upsertEvent now merges into an existing event of the same account, type and subject within 7 days, as well as an exact event_key match. Test: 'the same story on Sunday and Monday (two ISO weeks) is one event'. 80 tests pass.
 - Repair: scripts/merge-duplicate-events.mts merged 3 duplicates in production (Himadri, Carlsberg, Suzlon), deleted the extra Carlsberg retention task in HubSpot and the DB, and rescored. Seed re-exported.
 
+
+### 2026-10-12 20:52 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- Removed docs/VIVA.md from the repo at the user's request, along with its references in the README and the checklist.
+
