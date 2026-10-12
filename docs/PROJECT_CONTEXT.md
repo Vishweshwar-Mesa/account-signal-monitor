@@ -19,10 +19,10 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Live: https://account-signal-monitor.vercel.app (deployed with the Vercel CLI from main). Repo: https://github.com/Vishweshwar-Mesa/account-signal-monitor
 - Phases 0 to 3 are built. 72 tests pass. `tsc` and `next build` are clean.
 - Production ingest was verified on Vercel (3 min 38 s, Bing discovery, Gemini, HubSpot sync). Real Hot List and brief emails were sent to ARJUN_EMAIL.
-- Database: no DATABASE_URL yet, so the deployed app runs on an in-memory PGlite database loaded with the seed (banner shown). Edits and send locks do not persist across cold starts.
+- Database: Supabase Postgres (ap-northeast-1) connected through the session pooler. Migrations 0001 and 0002 applied, seed loaded (50 accounts), HubSpot ids linked (22 tasks, 22 activities). Trigger and RLS checked on the real DB.
 - Sign-in: works on the live URL. Arjun's Supabase user was created with scripts/create-user.mts; the passcode is in .env.local only. Sign-in, dashboard and sign-out were verified in a headless browser.
 - CI: .github/workflows/ci.yml is local only; the gh token needs the workflow scope.
-- GitHub to Vercel auto-deploy: not connected (the user must connect the repo in Vercel settings).
+- GitHub to Vercel: the original project account-signal-monitor is connected to the repo, so pushes to main deploy. The user also created a second project, keka-b2b-signal-monitor (URL account-signal-monitor-o97c.vercel.app), from the same repo. It should be deleted to avoid duplicate cron runs and emails.
 - HubSpot: Enterprise Leads pipeline live with 10 demo deals; daily sync works; email and workflow scopes are missing.
 
 ## Architecture snapshot
@@ -69,8 +69,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Demo (flagged in DB and badged in UI): stages, notes, last-contact dates, tasks, activities, meetings, renewal dates, customer status, HubSpot deals.
 
 ## Open issues
-- Needed from the user: the Supabase database password (for DATABASE_URL); `gh auth refresh -h github.com -s workflow`; connect the GitHub repo in Vercel; optionally the HubSpot scopes sales-email-read and automation.
-- On the in-memory fallback, the send lock does not persist across cold starts, so a second morning run on the same day could send again. This is fixed once DATABASE_URL is set.
+- Needed from the user: delete the duplicate Vercel project keka-b2b-signal-monitor; `gh auth refresh -h github.com -s workflow`; connect the GitHub repo in Vercel; optionally the HubSpot scopes sales-email-read and automation.
 - Eval accuracy is 86.7% against a 90% target. The labels need a human spot-check (eval/README.md).
 - Two seed events only (Travel Food Services and Thyrocare). That is the honest output of the live pipeline for this window.
 
@@ -189,3 +188,11 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Ran scripts/create-user.mts: Arjun's user was created with a confirmed email and a generated passcode (kept only in .env.local; given to the user in chat).
 - Live check with headless Chrome on the production URL: / redirects to /login; sign-in lands on the dashboard (Travel Food Services first); sign-out returns to /login, and revisiting / stays there. No console errors.
 - Still missing: the database password for DATABASE_URL.
+
+### 2026-10-12 10:16 IST, Claude Code (claude-opus-5-5)
+- Database password received. Found the pooler region by probing (aws-0-ap-northeast-1, confirmed by the user's screenshot). DATABASE_URL set in .env.local and in Vercel (sensitive).
+- scripts/migrate.mjs applied 0001 and 0002; scripts/seed.mts loaded 50 accounts with signals and demo CRM.
+- Checked on Supabase: an update with no writer is rejected; a system write to notes is rejected; anonymous REST read of accounts gets permission denied.
+- HubSpot sync on the real DB: 10 deals mapped (Updater and Krsnaa Closed Won, so customers). Found 8 duplicate activity rows: demo emails stored in HubSpot as "Email:" notes (email scope missing) did not match the seed emails. Fixed the sync matching rule, removed the 8 rows, re-synced: 22 of 22 activities linked, none duplicated.
+- Redeployed: health shows database postgres. A live ingest wrote to Supabase but took 4 min 47 s and stopped at the time budget, because functions ran in iad1 and the DB is in Tokyo. Pinned functions to hnd1 (B06).
+- `vercel git connect` now succeeds (the user installed the Vercel GitHub App). Pushes to main deploy the original project.

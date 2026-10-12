@@ -17,7 +17,7 @@ Last verified: 2026-10-12 03:20 IST (72 of 72 Vitest tests passing, `tsc --noEmi
 ## Phase 1
 | Item | Status | Proof |
 |---|---|---|
-| Schema, RLS, column-guard trigger | PARTIAL | migrations 0001 and 0002 run in PGlite in every test; not applied to Supabase until DATABASE_URL is provided (scripts/migrate.mjs ready) |
+| Schema, RLS, column-guard trigger | DONE | migrations applied to Supabase; trigger and RLS checked on the real DB |
 | Guarded writes (three functions, audit) | DONE | src/lib/accounts-write.ts |
 | Write-safety test (section 6) | DONE | tests/write-safety.test.ts, 7 tests passing |
 | Seed data: accounts and people (research) | DONE | data/seed/accounts.json, 50 accounts with cited headcount; 10 active with people |

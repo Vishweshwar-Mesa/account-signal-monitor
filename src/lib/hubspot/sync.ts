@@ -299,7 +299,10 @@ export async function syncHubspot(db: Db, opts: { hs?: Hs; now?: Date } = {}): P
           const summary = a.summary(x.properties) ?? "";
           const linked = await db.query(
             `update activities set hubspot_id = $1, summary = $4
-             where id = (select id from activities where account_id = $2 and kind = $3 and hubspot_id is null and summary = replace($4, '[DEMO] ', '') limit 1) returning id`,
+             where id = (select id from activities where account_id = $2 and hubspot_id is null and (
+                           (kind = $3 and summary = replace($4, '[DEMO] ', ''))
+                           -- demo emails are stored in HubSpot as notes "Email: ..." when the email scope is missing
+                           or ($3 = 'note' and kind = 'email' and summary = replace($4, '[DEMO] Email: ', ''))) limit 1) returning id`,
             [x.id, acc, a.kind, summary]);
           if (!linked.rows.length) {
             await db.query(
