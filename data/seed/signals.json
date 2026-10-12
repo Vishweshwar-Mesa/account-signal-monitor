@@ -1,6 +1,6 @@
 {
  "_note": "Real signals that passed the same gates and validators as production (live pipeline runs plus researched URLs run through the pipeline). Quotes max 25 words.",
- "generated_at": "2026-10-12T09:52:45.651Z",
+ "generated_at": "2026-10-12T14:51:56.005Z",
  "signals": [
   {
    "account_name": "Alldigi Tech Ltd",
@@ -142,28 +142,73 @@
    "rejected_reason": null
   },
   {
-   "account_name": "Carlsberg India Pvt Ltd",
-   "url": "https://hospitality.economictimes.indiatimes.com/news/operations/food-and-beverages/carlsberg-india-limited-gets-sebi-nod-for-ipo/134651797",
-   "publisher": "ETHospitalityWorld",
+   "account_name": "BMW Industries Ltd",
+   "url": "https://www.moneycontrol.com/markets/financials/balance-sheet/bmwindustrieslimited-BMW54266/",
+   "publisher": "Moneycontrol",
    "tier": "T2",
-   "published_at": "2026-10-03T06:00:00.000Z",
-   "title": "Carlsberg India Limited gets SEBI nod for IPO",
-   "evidence_quote": "Carlsberg India Limited has received approval from the Securities and Exchange Board of India (SEBI) for its confidential pre-filing of documents",
+   "published_at": "2026-10-11T17:00:00.000Z",
+   "title": "BMW INDUSTRIES LIMITED Balance Sheet Explained | BMW INDUSTRIES LIMITED Financial Statement Analysis & Accounts - Moneycontrol",
+   "evidence_quote": null,
    "extraction": {
-    "notes": [],
     "subject": null,
     "certainty": "confirmed",
-    "magnitude": "large",
+    "magnitude": "small",
     "time_scope": "new",
-    "trigger_type": "FUNDING_EVENT",
+    "trigger_type": null,
     "company_match": true,
     "subject_title": null,
-    "evidence_quote": "Carlsberg India Limited has received approval from the Securities and Exchange Board of India (SEBI) for its confidential pre-filing of documents",
-    "one_line_summary": "Carlsberg India Limited received SEBI approval for its confidential pre-filing for a proposed initial public offering",
+    "evidence_quote": null,
+    "one_line_summary": null,
     "competitor_hrms_mentioned": null
    },
-   "gate_result": "accepted",
-   "rejected_reason": null
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Cantabil Retail India Ltd",
+   "url": "https://www.moneycontrol.com/markets/financials/profit-loss/cantabilretailindia-CRI01/",
+   "publisher": "Moneycontrol",
+   "tier": "T2",
+   "published_at": "2026-10-08T17:00:00.000Z",
+   "title": "Cantabil Retail India Profit & Loss Account | Income Statement | Cantabil Retail India Financial Statement & Accounts - Moneycontrol",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Cantabil Retail India Ltd",
+   "url": "https://economictimes.indiatimes.com/cantabil-retail-india-ltd/stockreports/reportid-32357.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-11T07:09:00.000Z",
+   "title": "CANTABIL Stock Report - CANTABIL Stock Insights, CANTABIL Stock Analysis and details | The Economic Times",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
   },
   {
    "account_name": "Carlsberg India Pvt Ltd",
@@ -192,6 +237,54 @@
    "rejected_reason": null
   },
   {
+   "account_name": "Carlsberg India Pvt Ltd",
+   "url": "https://hospitality.economictimes.indiatimes.com/news/operations/food-and-beverages/carlsberg-india-limited-gets-sebi-nod-for-ipo/134651797",
+   "publisher": "ETHospitalityWorld",
+   "tier": "T2",
+   "published_at": "2026-10-03T06:00:00.000Z",
+   "title": "Carlsberg India Limited gets SEBI nod for IPO",
+   "evidence_quote": "Carlsberg India Limited has received approval from the Securities and Exchange Board of India (SEBI) for its confidential pre-filing of documents",
+   "extraction": {
+    "notes": [],
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "large",
+    "time_scope": "new",
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": "Carlsberg India Limited has received approval from the Securities and Exchange Board of India (SEBI) for its confidential pre-filing of documents",
+    "one_line_summary": "Carlsberg India Limited received SEBI approval for its confidential pre-filing for a proposed initial public offering",
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "accepted",
+   "rejected_reason": null
+  },
+  {
+   "account_name": "Carlsberg India Pvt Ltd",
+   "url": "https://economictimes.indiatimes.com/industry/cons-products/liquor/carlsberg-india-told-to-close-alwar-unit-over-pollution-breach-ahead-of-700-million-ipo-plans/articleshow/134876841.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-11T12:32:00.000Z",
+   "title": "Carlsberg India told to close Alwar unit over pollution breach ahead of $700 million IPO plans",
+   "evidence_quote": "Carlsberg India's operating consent for its Alwar brewery was revoked due to high particulate emissions.",
+   "extraction": {
+    "notes": [],
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "medium",
+    "time_scope": "new",
+    "trigger_type": "OPERATIONAL_CHALLENGE",
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": "Carlsberg India's operating consent for its Alwar brewery was revoked due to high particulate emissions.",
+    "one_line_summary": "Carlsberg India has been ordered to shut down its Alwar brewery due to pollution violations",
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "accepted",
+   "rejected_reason": null
+  },
+  {
    "account_name": "Chalet Hotels Limited",
    "url": "https://www.thehindubusinessline.com/markets/brokers-call-chalet-hotels-buy/article71532648.ece",
    "publisher": "Hindu BusinessLine",
@@ -203,6 +296,75 @@
     "subject": null,
     "certainty": "confirmed",
     "magnitude": "medium",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Devyani International Limited",
+   "url": "https://www.financialexpress.com/market/burger-pizza-and-profits-macquarie-predicts-27-rally-in-top-qsr-stocks-check-list-4326470/",
+   "publisher": "Financial Express",
+   "tier": "T2",
+   "published_at": "2026-08-27T10:46:32.000Z",
+   "title": "Burger, Pizza, and Profits: Macquarie predicts up to 27% rally in these QSR stocks — Check list",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Devyani International Limited",
+   "url": "https://retail.economictimes.indiatimes.com/tag/sapphire+foods",
+   "publisher": "ETRetail",
+   "tier": "T2",
+   "published_at": "2026-09-25T00:55:00.000Z",
+   "title": "Sapphire foods  - Latest sapphire foods , Information & Updates - Retail  -ET Retail",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "eClerx Services Ltd",
+   "url": "https://www.cnbctv18.com/market/earnings/mumbais-eclerx-expects-margin-recovery-after-first-quarter-bets-on-higher-deal-wins-to-drive-growth-q1-earnings-results-boardroom-artificial-intelligence-19964316.htm",
+   "publisher": "CNBC-TV18",
+   "tier": "T2",
+   "published_at": "2026-08-07T11:11:34.000Z",
+   "title": "eClerx expects margin recovery after first quarter, bets on higher deal wins to drive growth - CNBC TV18",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
     "time_scope": "new",
     "trigger_type": null,
     "company_match": true,
@@ -238,6 +400,76 @@
    "rejected_reason": "no_trigger"
   },
   {
+   "account_name": "Gokaldas Exports Ltd",
+   "url": "https://economictimes.indiatimes.com/gokaldas-exports-limited/stockreports/reportid-13003.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-10T03:58:00.000Z",
+   "title": "GOKEX Stock Report - GOKEX Stock Insights, GOKEX Stock Analysis and details | The Economic Times",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Gokaldas Exports Ltd",
+   "url": "https://economictimes.indiatimes.com/markets/stocks/news/trumps-tariff-tantrums-return-gokaldas-exports-other-textile-stocks-drop-up-to-5-after-trump-signs-russia-sanctions-bill/articleshow/134384836.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-09-21T01:38:00.000Z",
+   "title": "Trump’s tariff tantrums return? Gokaldas Exports, other textile stocks drop up to 5% after Trump signs Russia sanctions bill",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Himadri Speciality Chemical Ltd",
+   "url": "https://www.thehindubusinessline.com/news/himadri-targets-doubling-profit-to-1100-cr-by-fy28/article71574209.ece",
+   "publisher": "Hindu BusinessLine",
+   "tier": "T2",
+   "published_at": "2026-10-12T08:25:48.000Z",
+   "title": "Himadri targets doubling profit to ₹1,100 cr by FY28",
+   "evidence_quote": "The company plans to invest ₹70 crore in a 200-tonne-per-annum carbon nanotube plant, targeting applications in batteries, aerospace and semiconductors.",
+   "extraction": {
+    "notes": [],
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "large",
+    "time_scope": "new",
+    "trigger_type": "CAPACITY_EXPANSION",
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": "The company plans to invest ₹70 crore in a 200-tonne-per-annum carbon nanotube plant, targeting applications in batteries, aerospace and semiconductors.",
+    "one_line_summary": "Himadri plans to invest in carbon nanotube and cathode material plants under a 2000 crore capex plan",
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "accepted",
+   "rejected_reason": null
+  },
+  {
    "account_name": "Himadri Speciality Chemical Ltd",
    "url": "https://manufacturing.economictimes.indiatimes.com/news/chemicals/himadri-speciality-chemical-plans-5000-crore-investment-in-andhra-pradesh/134846905",
    "publisher": "ETManufacturing",
@@ -262,12 +494,58 @@
    "rejected_reason": null
   },
   {
+   "account_name": "Himadri Speciality Chemical Ltd",
+   "url": "https://economictimes.indiatimes.com/himadri-speciality-chemical-ltd/stockreports/reportid-11088.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-12T00:43:00.000Z",
+   "title": "HSCL Stock Report - HSCL Stock Insights, HSCL Stock Analysis and details | The Economic Times",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
    "account_name": "Jupiter Life Line Hospitals Ltd",
    "url": "https://indianexpress.com/article/lifestyle/health/cetirizine-for-allergies-doctor-explains-dosage-drowsiness-and-withdrawal-10877705/",
    "publisher": "The Indian Express",
    "tier": "T2",
    "published_at": "2026-10-08T16:30:27.000Z",
    "title": "Cetirizine for allergies: Doctor explains dosage, drowsiness and withdrawal",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Kaynes Technology India Ltd",
+   "url": "https://economictimes.indiatimes.com/kaynes-technology-india-ltd/stockreports/reportid-41301.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-12T01:47:00.000Z",
+   "title": "KAYNES Stock Report - KAYNES Stock Insights, KAYNES Stock Analysis and details | The Economic Times",
    "evidence_quote": null,
    "extraction": {
     "subject": null,
@@ -424,6 +702,52 @@
    "rejected_reason": "no_trigger"
   },
   {
+   "account_name": "Metropolis Healthcare Ltd",
+   "url": "https://www.moneycontrol.com/news/business/stocks/buy-metropolis-healthcare-target-of-rs-675-icici-securities-2-14017571.html",
+   "publisher": "Moneycontrol",
+   "tier": "T2",
+   "published_at": "2026-08-28T07:48:01.000Z",
+   "title": "Buy Metropolis Healthcare; target of Rs 675: ICICI Securities- Moneycontrol.com",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Metropolis Healthcare Ltd",
+   "url": "https://www.moneycontrol.com/news/tags/metropolis-healthcare-ltd.html",
+   "publisher": "Moneycontrol",
+   "tier": "T2",
+   "published_at": "2026-10-04T17:00:00.000Z",
+   "title": "Metropolis Healthcare Ltd | Latest & Breaking News on Metropolis Healthcare Ltd | Photos, Videos, Breaking Stories and Articles on Metropolis Healthcare Ltd",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
    "account_name": "Neuberg Diagnostics Pvt Ltd",
    "url": "https://health.economictimes.indiatimes.com/news/diagnostics/neuberg-diagnostics-merges-maharashtra-operations-with-nm-medical/134765066",
    "publisher": "ETHealthworld",
@@ -473,6 +797,29 @@
   },
   {
    "account_name": "PG Electroplast Ltd",
+   "url": "https://www.businesstoday.in/markets/stocks/story/cochin-shipyard-krbl-rites-ramky-infrastructure-among-stocks-to-turn-ex-dividend-on-september-18-556225-2026-09-17",
+   "publisher": "Business Today",
+   "tier": "T2",
+   "published_at": "2026-09-17T11:19:50.000Z",
+   "title": "Cochin Shipyard, KRBL, RITES, Ramky Infrastructure among stocks to turn ex dividend on September 18 - BusinessToday",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "PG Electroplast Ltd",
    "url": "https://www.financialexpress.com/market/6-buy-recommendations-by-nuvama-with-17-to-51-upside-potential-4349500/",
    "publisher": "Financial Express",
    "tier": "T2",
@@ -501,6 +848,29 @@
    "tier": "T2",
    "published_at": "2026-10-05T09:16:24.000Z",
    "title": "Power & Electrical Equipment stocks rise | What’s driving CESC, TD Power, RR Kabel Transformers & Rectifiers? | Stock Market News",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Rainbow Children's Medicare Ltd",
+   "url": "https://economictimes.indiatimes.com/rainbow-childrens-medicare-ltd/stockreports/reportid-42272.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-12T02:51:00.000Z",
+   "title": "RAINBOW Stock Report - RAINBOW Stock Insights, RAINBOW Stock Analysis and details | The Economic Times",
    "evidence_quote": null,
    "extraction": {
     "subject": null,
@@ -591,57 +961,34 @@
   },
   {
    "account_name": "Sagility Limited",
-   "url": "https://www.moneycontrol.com/news/business/stocks/buy-sagility-target-of-rs-54-motilal-oswal-14040967.html",
-   "publisher": "Moneycontrol",
-   "tier": "T2",
-   "published_at": "2026-09-29T09:36:33.000Z",
-   "title": "Buy Sagility; target of Rs 54: Motilal Oswal- Moneycontrol.com",
-   "evidence_quote": null,
-   "extraction": {
-    "subject": null,
-    "certainty": "confirmed",
-    "magnitude": "small",
-    "time_scope": "new",
-    "trigger_type": null,
-    "company_match": true,
-    "subject_title": null,
-    "evidence_quote": null,
-    "one_line_summary": null,
-    "competitor_hrms_mentioned": null
-   },
-   "gate_result": "no_trigger",
-   "rejected_reason": "no_trigger"
-  },
-  {
-   "account_name": "Sagility Limited",
-   "url": "https://www.moneycontrol.com/news/business/stocks/sagility-what-makes-it-a-compelling-idea-now-14041697.html",
-   "publisher": "Moneycontrol",
-   "tier": "T2",
-   "published_at": "2026-09-30T06:09:10.000Z",
-   "title": "Sagility: What makes it a compelling idea now?- Moneycontrol.com",
-   "evidence_quote": null,
-   "extraction": {
-    "subject": null,
-    "certainty": "confirmed",
-    "magnitude": "small",
-    "time_scope": "new",
-    "trigger_type": null,
-    "company_match": true,
-    "subject_title": null,
-    "evidence_quote": null,
-    "one_line_summary": null,
-    "competitor_hrms_mentioned": null
-   },
-   "gate_result": "no_trigger",
-   "rejected_reason": "no_trigger"
-  },
-  {
-   "account_name": "Sagility Limited",
    "url": "https://www.financialexpress.com/market/tech-mahindra-coforge-to-sagility-kotak-outlines-key-it-sector-picks-ahead-of-q2-earnings-4351132/",
    "publisher": "Financial Express",
    "tier": "T2",
    "published_at": "2026-10-01T01:52:06.000Z",
    "title": "Tech Mahindra, Coforge to Sagility: Kotak outlines key IT sector picks ahead of Q2 earnings",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Sagility Limited",
+   "url": "https://www.financialexpress.com/market/nuvama-initiates-coverage-on-this-tech-healthcare-stock-under-rs-50-sees-38-upside-4356571/",
+   "publisher": "Financial Express",
+   "tier": "T2",
+   "published_at": "2026-10-08T11:13:12.000Z",
+   "title": "Nuvama initiates coverage on this tech-healthcare stock under Rs 50; sees 38% upside",
    "evidence_quote": null,
    "extraction": {
     "subject": null,
@@ -683,11 +1030,11 @@
   },
   {
    "account_name": "Sagility Limited",
-   "url": "https://www.financialexpress.com/market/nuvama-initiates-coverage-on-this-tech-healthcare-stock-under-rs-50-sees-38-upside-4356571/",
-   "publisher": "Financial Express",
+   "url": "https://www.moneycontrol.com/news/business/stocks/sagility-what-makes-it-a-compelling-idea-now-14041697.html",
+   "publisher": "Moneycontrol",
    "tier": "T2",
-   "published_at": "2026-10-08T11:13:12.000Z",
-   "title": "Nuvama initiates coverage on this tech-healthcare stock under Rs 50; sees 38% upside",
+   "published_at": "2026-09-30T06:09:10.000Z",
+   "title": "Sagility: What makes it a compelling idea now?- Moneycontrol.com",
    "evidence_quote": null,
    "extraction": {
     "subject": null,
@@ -696,6 +1043,98 @@
     "time_scope": "new",
     "trigger_type": null,
     "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Sagility Limited",
+   "url": "https://www.moneycontrol.com/news/business/stocks/buy-sagility-target-of-rs-54-motilal-oswal-14040967.html",
+   "publisher": "Moneycontrol",
+   "tier": "T2",
+   "published_at": "2026-09-29T09:36:33.000Z",
+   "title": "Buy Sagility; target of Rs 54: Motilal Oswal- Moneycontrol.com",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "SAMHI Hotels Limited",
+   "url": "https://economictimes.indiatimes.com/samhi-hotels-limited/stockreports/reportid-1986314.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-12T00:43:00.000Z",
+   "title": "SAMHI Stock Report - SAMHI Stock Insights, SAMHI Stock Analysis and details | The Economic Times",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "SAMHI Hotels Limited",
+   "url": "https://travel.economictimes.indiatimes.com/news/people/apeejay-surrendra-park-hotels-appoints-manish-bhagat-as-cfo/134406911",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-09-22T13:45:00.000Z",
+   "title": "Apeejay Surrendra Park Hotels appoints Manish Bhagat as CFO",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "retrospective",
+    "trigger_type": null,
+    "company_match": false,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Shoppers Stop Ltd",
+   "url": "https://economictimes.indiatimes.com/markets/polycab-q3-results",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-11T17:00:00.000Z",
+   "title": "Polycab Q3 Results - Polycab Q3 earnings News, Polycab Q3 result updates | ET Markets",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": false,
     "subject_title": null,
     "evidence_quote": null,
     "one_line_summary": null,
@@ -753,12 +1192,12 @@
   },
   {
    "account_name": "Suzlon Energy Ltd",
-   "url": "https://manufacturing.economictimes.indiatimes.com/news/industry/suzlon-to-invest-550-crore-in-three-ai-powered-wind-blade-factories/134866164",
-   "publisher": "ETManufacturing",
+   "url": "https://www.businesstoday.in/markets/stocks/story/suzlon-shares-up-6-rise-most-in-five-months-two-factors-behind-the-rally-560992-2026-10-12",
+   "publisher": "Business Today",
    "tier": "T2",
-   "published_at": "2026-10-11T06:15:24.000Z",
-   "title": "Suzlon to invest ₹550 crore in three AI-powered wind blade factories",
-   "evidence_quote": "Suzlon Group is investing around ₹550 crore to set up three AI-powered blade factories to fast-track execution of its order book",
+   "published_at": "2026-10-12T08:27:58.000Z",
+   "title": "Suzlon shares up 6%, rise most in five months: Two factors behind the rally  - BusinessToday",
+   "evidence_quote": "Suzlon Group was investing around Rs 550 crore to set up three AI-powered blade factories",
    "extraction": {
     "notes": [],
     "subject": null,
@@ -768,8 +1207,8 @@
     "trigger_type": "CAPACITY_EXPANSION",
     "company_match": true,
     "subject_title": null,
-    "evidence_quote": "Suzlon Group is investing around ₹550 crore to set up three AI-powered blade factories to fast-track execution of its order book",
-    "one_line_summary": "Suzlon Group will invest 550 crore rupees to build three new wind blade manufacturing factories by 2027",
+    "evidence_quote": "Suzlon Group was investing around Rs 550 crore to set up three AI-powered blade factories",
+    "one_line_summary": "Suzlon Group is investing 550 crore rupees to build three blade manufacturing facilities across three states",
     "competitor_hrms_mentioned": null
    },
    "gate_result": "accepted",
@@ -794,6 +1233,30 @@
     "subject_title": null,
     "evidence_quote": "Suzlon Group, a leading wind energy equipment maker, is investing ₹200 crore to set up a new, large wind-blade manufacturing facility",
     "one_line_summary": "Suzlon is investing 200 crore rupees to establish a new wind blade manufacturing facility in Tamil Nadu.",
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "accepted",
+   "rejected_reason": null
+  },
+  {
+   "account_name": "Suzlon Energy Ltd",
+   "url": "https://manufacturing.economictimes.indiatimes.com/news/industry/suzlon-to-invest-550-crore-in-three-ai-powered-wind-blade-factories/134866164",
+   "publisher": "ETManufacturing",
+   "tier": "T2",
+   "published_at": "2026-10-11T06:15:24.000Z",
+   "title": "Suzlon to invest ₹550 crore in three AI-powered wind blade factories",
+   "evidence_quote": "Suzlon Group is investing around ₹550 crore to set up three AI-powered blade factories to fast-track execution of its order book",
+   "extraction": {
+    "notes": [],
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "large",
+    "time_scope": "new",
+    "trigger_type": "CAPACITY_EXPANSION",
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": "Suzlon Group is investing around ₹550 crore to set up three AI-powered blade factories to fast-track execution of its order book",
+    "one_line_summary": "Suzlon Group will invest 550 crore rupees to build three new wind blade manufacturing factories by 2027",
     "competitor_hrms_mentioned": null
    },
    "gate_result": "accepted",
@@ -847,11 +1310,11 @@
   },
   {
    "account_name": "TeamLease Services Ltd",
-   "url": "https://www.livemint.com/industry/india-staffing-firms-worker-productivity-quess-teamlease-adecco-11791267828638.html",
-   "publisher": "Mint",
+   "url": "https://hospitality.economictimes.indiatimes.com/news/hotels/travel-hospitality-salary-growth-picks-up-as-mice-experiential-tourism-and-emerging-cities-drive-demand/133963187",
+   "publisher": "ETHospitalityWorld",
    "tier": "T2",
-   "published_at": "2026-10-07T00:30:33.000Z",
-   "title": "Pay for performance: How India’s staffing model is getting a makeover | Mint",
+   "published_at": "2026-09-09T20:00:00.000Z",
+   "title": "Travel & hospitality salary growth picks up as MICE, experiential tourism and emerging cities drive demand",
    "evidence_quote": null,
    "extraction": {
     "subject": null,
@@ -869,12 +1332,12 @@
    "rejected_reason": "no_trigger"
   },
   {
-   "account_name": "Thyrocare Technologies Ltd",
-   "url": "https://economictimes.indiatimes.com/tech/funding/simple-energy-raises-180-million-in-largest-funding-round-eyes-top-five-ev-two-wheeler-spot/articleshow/134594135.cms",
-   "publisher": "The Economic Times",
+   "account_name": "TeamLease Services Ltd",
+   "url": "https://www.cnbctv18.com/economy/teamlease-salary-hike-trends-2026-ai-skills-it-sector-19988366.htm",
+   "publisher": "CNBC-TV18",
    "tier": "T2",
-   "published_at": "2026-09-30T15:03:08.000Z",
-   "title": "Simple Energy raises $180 million in largest funding round, eyes top-five EV two-wheeler spot - The Economic Times",
+   "published_at": "2026-09-10T08:18:58.000Z",
+   "title": "Salary hikes hit 45% for premium talent earning over ₹50 lakh, 6-7% for entry-level: TeamLease - CNBC TV18",
    "evidence_quote": null,
    "extraction": {
     "subject": null,
@@ -882,7 +1345,30 @@
     "magnitude": "small",
     "time_scope": "new",
     "trigger_type": null,
-    "company_match": false,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "TeamLease Services Ltd",
+   "url": "https://www.livemint.com/industry/india-staffing-firms-worker-productivity-quess-teamlease-adecco-11791267828638.html",
+   "publisher": "Mint",
+   "tier": "T2",
+   "published_at": "2026-10-07T00:30:33.000Z",
+   "title": "Pay for performance: How India’s staffing model is getting a makeover | Mint",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
     "subject_title": null,
     "evidence_quote": null,
     "one_line_summary": null,
@@ -916,6 +1402,75 @@
    "rejected_reason": null
   },
   {
+   "account_name": "Thyrocare Technologies Ltd",
+   "url": "https://economictimes.indiatimes.com/tech/funding/simple-energy-raises-180-million-in-largest-funding-round-eyes-top-five-ev-two-wheeler-spot/articleshow/134594135.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-09-30T15:03:08.000Z",
+   "title": "Simple Energy raises $180 million in largest funding round, eyes top-five EV two-wheeler spot - The Economic Times",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": false,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Transport Corporation of India Ltd",
+   "url": "https://www.cnbctv18.com/market/corporate-actions-this-week-shankara-buildpro-transport-corp-mold-tek-packaging-share-price-bonus-stock-split-buyback-record-date-20006522.htm",
+   "publisher": "CNBC-TV18",
+   "tier": "T2",
+   "published_at": "2026-10-07T08:53:15.000Z",
+   "title": "Bonus, Stock Split, Buyback Alert: Three major corporate actions that lie ahead this week - CNBC TV18",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Travel Food Services Limited",
+   "url": "https://www.financialexpress.com/market/sector/quick-service-restaurant-stocks/",
+   "publisher": "Financial Express",
+   "tier": "T2",
+   "published_at": "2026-10-01T09:01:00.000Z",
+   "title": "Quick Service Restaurant (QSR) Stocks: List of Quick Service Restaurant (QSR) Stocks in India Listed on NSE/BSE, Live Stock Price, Top Gainers, Losers | The Financial Express",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
    "account_name": "Travel Food Services Limited",
    "url": "https://www.hrkatha.com/people/movement/from-mahindra-manulife-to-travel-food-services-avinash-yogeshwar-joins-tfs-as-chro/",
    "publisher": "HR Katha",
@@ -938,6 +1493,29 @@
    },
    "gate_result": "accepted",
    "rejected_reason": null
+  },
+  {
+   "account_name": "Travel Food Services Limited",
+   "url": "https://www.moneycontrol.com/markets/financials/profit-loss/travelfoodservices-TFS01/",
+   "publisher": "Moneycontrol",
+   "tier": "T2",
+   "published_at": "2026-10-06T17:00:00.000Z",
+   "title": "Travel Food Services Profit & Loss Account | Income Statement | Travel Food Services Financial Statement & Accounts - Moneycontrol",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
   },
   {
    "account_name": "United Foodbrands Limited (formerly Barbeque-Nation Hospitality Limited)",
@@ -987,6 +1565,53 @@
    "rejected_reason": "no_trigger"
   },
   {
+   "account_name": "Varmora Granito Limited",
+   "url": "https://www.cnbctv18.com/business/companies/varmora-granito-sees-rs2500-crore-revenue-potential-by-fy29-after-rs450-crore-capex-alpha-article-20000682.htm",
+   "publisher": "CNBC-TV18",
+   "tier": "T2",
+   "published_at": "2026-09-29T09:45:55.000Z",
+   "title": "Varmora Granito sees ₹2,500 crore revenue potential by FY29 after ₹450 crore capex - CNBC TV18",
+   "evidence_quote": "Speaking on the company’s market debut following its ₹708 crore IPO, Varmora said the tile and ceramic maker is focusing on premium products",
+   "extraction": {
+    "notes": [],
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "large",
+    "time_scope": "new",
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": "Speaking on the company’s market debut following its ₹708 crore IPO, Varmora said the tile and ceramic maker is focusing on premium products",
+    "one_line_summary": "Varmora Granito completed its market debut following a 708 crore rupee initial public offering",
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "accepted",
+   "rejected_reason": null
+  },
+  {
+   "account_name": "Ventive Hospitality Limited",
+   "url": "https://www.livemint.com/topic/hotel-stocks",
+   "publisher": "Mint",
+   "tier": "T2",
+   "published_at": "2026-10-05T17:00:00.000Z",
+   "title": "Hotel-stocks: Latest Hotel-stocks News, Photos, Videos and Podcasts | Mint",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
    "account_name": "Ventive Hospitality Limited",
    "url": "https://www.financialexpress.com/market/indian-hotels-to-lemon-tree-motilal-oswal-sees-up-to-34-upside-in-hotel-sector-stocks-4352286/",
    "publisher": "Financial Express",
@@ -999,6 +1624,52 @@
     "certainty": "confirmed",
     "magnitude": "small",
     "time_scope": "new",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Vijaya Diagnostic Centre Ltd",
+   "url": "https://economictimes.indiatimes.com/markets/ipo/sme",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-11T07:48:00.000Z",
+   "title": "SME IPOs in India 2025: Upcoming, Open & Recently Listed SME IPOs - The Economic Times | The Economic Times",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "retrospective",
+    "trigger_type": null,
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": null,
+    "one_line_summary": null,
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "no_trigger",
+   "rejected_reason": "no_trigger"
+  },
+  {
+   "account_name": "Westlife Foodworld Limited",
+   "url": "https://economictimes.indiatimes.com/westlife-foodworld-ltd/stockreports/reportid-3837.cms",
+   "publisher": "The Economic Times",
+   "tier": "T2",
+   "published_at": "2026-10-10T19:05:00.000Z",
+   "title": "WESTLIFE Stock Report - WESTLIFE Stock Insights, WESTLIFE Stock Analysis and details | The Economic Times",
+   "evidence_quote": null,
+   "extraction": {
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "small",
+    "time_scope": "retrospective",
     "trigger_type": null,
     "company_match": true,
     "subject_title": null,
@@ -1056,6 +1727,54 @@
    },
    "gate_result": "accepted",
    "rejected_reason": null
+  },
+  {
+   "account_name": "Zetwerk Manufacturing Businesses Ltd",
+   "url": "https://www.livemint.com/market/ipo/zetwerk-targets-25-583-crore-valuation-in-5-012-crore-ipo-11791797668948.html",
+   "publisher": "Mint",
+   "tier": "T2",
+   "published_at": "2026-10-12T11:53:49.000Z",
+   "title": "Zetwerk targets  ₹25,583 crore valuation in  ₹5,012 crore IPO | Stock Market News",
+   "evidence_quote": "It has increased the size of the IPO to ₹5,012 crore.",
+   "extraction": {
+    "notes": [],
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "large",
+    "time_scope": "new",
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": "It has increased the size of the IPO to ₹5,012 crore.",
+    "one_line_summary": "Zetwerk has filed its red herring prospectus for an initial public offering worth 5012 crore rupees.",
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "accepted",
+   "rejected_reason": null
+  },
+  {
+   "account_name": "Zetwerk Manufacturing Businesses Ltd",
+   "url": "https://www.thehindubusinessline.com/markets/zetwerk-sees-ai-infrastructure-energy-orders-driving-growth-as-ipo-opens-on-october-15/article71575676.ece",
+   "publisher": "Hindu BusinessLine",
+   "tier": "T2",
+   "published_at": "2026-10-12T14:25:02.000Z",
+   "title": "Zetwerk sees AI infrastructure, energy orders driving growth as IPO opens on October 15",
+   "evidence_quote": "prepares to open its ₹5,012-crore initial public offering (IPO) on October 15 at a price band of ₹143-151 per share.",
+   "extraction": {
+    "notes": [],
+    "subject": null,
+    "certainty": "confirmed",
+    "magnitude": "large",
+    "time_scope": "new",
+    "trigger_type": "FUNDING_EVENT",
+    "company_match": true,
+    "subject_title": null,
+    "evidence_quote": "prepares to open its ₹5,012-crore initial public offering (IPO) on October 15 at a price band of ₹143-151 per share.",
+    "one_line_summary": "Zetwerk prepares to open its 5012 crore rupee initial public offering on October 15",
+    "competitor_hrms_mentioned": null
+   },
+   "gate_result": "accepted",
+   "rejected_reason": null
   }
  ],
  "events": [
@@ -1097,6 +1816,24 @@
   },
   {
    "account_name": "Carlsberg India Pvt Ltd",
+   "type": "OPERATIONAL_CHALLENGE",
+   "subject_key": "",
+   "summary": "Carlsberg India has been ordered to shut down its Alwar brewery due to pollution violations",
+   "event_date": "2026-10-11T12:32:00.000Z",
+   "magnitude": "medium",
+   "certainty": "confirmed",
+   "time_scope": "new",
+   "source_domains": [
+    "economictimes.indiatimes.com"
+   ],
+   "best_tier": "T2",
+   "competitor": null,
+   "signal_urls": [
+    "https://economictimes.indiatimes.com/industry/cons-products/liquor/carlsberg-india-told-to-close-alwar-unit-over-pollution-breach-ahead-of-700-million-ipo-plans/articleshow/134876841.cms"
+   ]
+  },
+  {
+   "account_name": "Carlsberg India Pvt Ltd",
    "type": "FUNDING_EVENT",
    "subject_key": "",
    "summary": "Carlsberg India Limited received SEBI approval for its confidential pre-filing for a proposed initial public offering",
@@ -1111,6 +1848,24 @@
    "competitor": null,
    "signal_urls": [
     "https://hospitality.economictimes.indiatimes.com/news/operations/food-and-beverages/carlsberg-india-limited-gets-sebi-nod-for-ipo/134651797"
+   ]
+  },
+  {
+   "account_name": "Himadri Speciality Chemical Ltd",
+   "type": "CAPACITY_EXPANSION",
+   "subject_key": "",
+   "summary": "Himadri plans to invest in carbon nanotube and cathode material plants under a 2000 crore capex plan",
+   "event_date": "2026-10-12T08:25:48.000Z",
+   "magnitude": "large",
+   "certainty": "confirmed",
+   "time_scope": "new",
+   "source_domains": [
+    "thehindubusinessline.com"
+   ],
+   "best_tier": "T2",
+   "competitor": null,
+   "signal_urls": [
+    "https://www.thehindubusinessline.com/news/himadri-targets-doubling-profit-to-1100-cr-by-fy28/article71574209.ece"
    ]
   },
   {
@@ -1261,6 +2016,24 @@
    "account_name": "Suzlon Energy Ltd",
    "type": "CAPACITY_EXPANSION",
    "subject_key": "",
+   "summary": "Suzlon Group is investing 550 crore rupees to build three blade manufacturing facilities across three states",
+   "event_date": "2026-10-12T08:27:58.000Z",
+   "magnitude": "large",
+   "certainty": "confirmed",
+   "time_scope": "new",
+   "source_domains": [
+    "businesstoday.in"
+   ],
+   "best_tier": "T2",
+   "competitor": null,
+   "signal_urls": [
+    "https://www.businesstoday.in/markets/stocks/story/suzlon-shares-up-6-rise-most-in-five-months-two-factors-behind-the-rally-560992-2026-10-12"
+   ]
+  },
+  {
+   "account_name": "Suzlon Energy Ltd",
+   "type": "CAPACITY_EXPANSION",
+   "subject_key": "",
    "summary": "Suzlon is investing 200 crore rupees to establish a new wind blade manufacturing facility in Tamil Nadu.",
    "event_date": "2026-10-08T05:47:48.000Z",
    "magnitude": "large",
@@ -1331,6 +2104,24 @@
    ]
   },
   {
+   "account_name": "Varmora Granito Limited",
+   "type": "FUNDING_EVENT",
+   "subject_key": "",
+   "summary": "Varmora Granito completed its market debut following a 708 crore rupee initial public offering",
+   "event_date": "2026-09-29T09:45:55.000Z",
+   "magnitude": "large",
+   "certainty": "confirmed",
+   "time_scope": "new",
+   "source_domains": [
+    "cnbctv18.com"
+   ],
+   "best_tier": "T2",
+   "competitor": null,
+   "signal_urls": [
+    "https://www.cnbctv18.com/business/companies/varmora-granito-sees-rs2500-crore-revenue-potential-by-fy29-after-rs450-crore-capex-alpha-article-20000682.htm"
+   ]
+  },
+  {
    "account_name": "Yatharth Hospital and Trauma Care Services Ltd",
    "type": "FUNDING_EVENT",
    "subject_key": "",
@@ -1358,12 +2149,16 @@
    "certainty": "confirmed",
    "time_scope": "new",
    "source_domains": [
-    "manufacturing.economictimes.indiatimes.com"
+    "manufacturing.economictimes.indiatimes.com",
+    "livemint.com",
+    "thehindubusinessline.com"
    ],
    "best_tier": "T2",
    "competitor": null,
    "signal_urls": [
-    "https://manufacturing.economictimes.indiatimes.com/news/industry/zetwerk-to-launch-5012-crore-ipo-on-october-15-at-143151-per-share/134885406"
+    "https://manufacturing.economictimes.indiatimes.com/news/industry/zetwerk-to-launch-5012-crore-ipo-on-october-15-at-143151-per-share/134885406",
+    "https://www.livemint.com/market/ipo/zetwerk-targets-25-583-crore-valuation-in-5-012-crore-ipo-11791797668948.html",
+    "https://www.thehindubusinessline.com/markets/zetwerk-sees-ai-infrastructure-energy-orders-driving-growth-as-ipo-opens-on-october-15/article71575676.ece"
    ]
   }
  ]

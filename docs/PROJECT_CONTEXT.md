@@ -280,3 +280,10 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - HubSpot: sm_signal_history (textarea) company property; the sync pushes each account's last 5 verified signals (date, summary, publisher, with ', context' for history items).
 - 79 tests pass. The history build is running on production.
 
+
+### 2026-10-12 20:22 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- History build finished: 250 fetched, 32 extracted, 6 new fresh events, 1 verified history item (Kaynes Technology PCB facility, ET, 21 Sep). History is sparse because Bing's undated feed mostly returns recent news; reported as is.
+- New fresh events: Suzlon (3 blade plants, 550 crore), Himadri (2,000 crore plan), Carlsberg (second outlet on the Alwar shutdown), Varmora Granito (IPO; a Keka customer, so expansion lane).
+- Bootstrap created sm_signal_history in HubSpot and pushed it for 73 companies. Rescore and sync: 4 Hot (Zetwerk 10, Himadri 9, Carlsberg 8, Suzlon 8), 6 Warm; one more retention task created.
+- Seed re-exported (73 accounts, 76 signals, 21 events).
+
