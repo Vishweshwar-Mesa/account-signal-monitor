@@ -14,3 +14,8 @@ export function devUserEmail(): string | null {
   const e = process.env.SM_DEV_USER;
   return e && isAllowedUser(e) ? e : null;
 }
+
+/** Test build: any email and passcode signs in as the demo user (ARJUN_EMAIL). Set SM_TEST_MODE=false to require the real passcode. */
+export function testMode() {
+  return process.env.SM_TEST_MODE === "true";
+}

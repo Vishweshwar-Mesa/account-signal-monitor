@@ -1,6 +1,6 @@
 # B2B Account Signal Monitor
 
-Live: https://account-signal-monitor.vercel.app (sign-in required)
+Live: https://account-signal-monitor.vercel.app (test build: any email and passcode sign in as the demo user)
 
 Arjun sells workforce management software (time and attendance, shifts, leave, payroll, HRIS) to mid-market companies in India. Reaching out with no reason is noise; two weeks late is too late. This app watches 50 accounts every day, finds verified trigger events in the news, explains what changed and why it matters now, and ranks every account from 1 to 10. It emails Arjun a Hot List every Monday and Thursday and a short brief every morning. It never overwrites anything Arjun wrote himself.
 
@@ -37,6 +37,9 @@ config/            sources.json (tiers), scoring.json (weights), product-facts.j
 5. Run: `npm run dev`. With no DATABASE_URL the app runs on an in-memory database loaded with the seed data, and shows a banner.
 6. Test: `npm test` and `npx tsc --noEmit`. Eval: `npx tsx --env-file=.env.local scripts/eval.mts`.
 
+## Test build
+With `SM_TEST_MODE=true` the login page says it is a test build, and any email and passcode sign in as the demo user (ARJUN_EMAIL), using the stored ARJUN_PASSWORD on the server. A TEST BUILD badge shows on every page. Set it to `false` to require the real passcode. Emails still go only to ARJUN_EMAIL.
+
 ## Environment variables
 | Name | Purpose |
 |---|---|
@@ -46,6 +49,7 @@ config/            sources.json (tiers), scoring.json (weights), product-facts.j
 | DATABASE_URL | Supabase pooler connection string for all server queries |
 | RESEND_API_KEY, RESEND_FROM | Email. Without a verified domain, Resend only delivers to the account owner |
 | ARJUN_EMAIL, ARJUN_PASSWORD | The only recipient and the only allowed user |
+| SM_TEST_MODE | `true` for the open test build |
 | HUBSPOT_PRIVATE_APP_TOKEN, HUBSPOT_PORTAL_ID | HubSpot sync and record links |
 | CRON_SECRET | Cron routes require `Authorization: Bearer CRON_SECRET` |
 | COMPANY_NAME, TEAM_NAME, USER_NAME | Header text (defaults Keka, Enterprise Sales Team, Arjun) |

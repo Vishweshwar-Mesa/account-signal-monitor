@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 
-export default function LoginForm() {
-  const [email, setEmail] = useState("");
+export default function LoginForm({ testMode, demoEmail }: { testMode: boolean; demoEmail: string }) {
+  const [email, setEmail] = useState(testMode ? demoEmail : "");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -12,8 +12,13 @@ export default function LoginForm() {
     setBusy(true);
     setError(null);
     try {
-      const { error } = await supabaseBrowser().auth.signInWithPassword({ email, password });
-      if (error) throw error;
+      if (testMode) {
+        const r = await fetch("/api/test-login", { method: "POST" });
+        if (!r.ok) throw new Error("test sign-in failed");
+      } else {
+        const { error } = await supabaseBrowser().auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      }
       window.location.href = "/";
     } catch {
       setError("Sign in failed. Check the work email and passcode.");
@@ -27,7 +32,7 @@ export default function LoginForm() {
           className="mt-1 w-full min-h-[44px] px-3 rounded-[8px] border border-border bg-surface text-text font-normal" />
       </label>
       <label className="block text-sm font-semibold">Passcode
-        <input type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)}
+        <input type="password" autoComplete="current-password" required={!testMode} placeholder={testMode ? "Any passcode works in the test build" : undefined} value={password} onChange={(e) => setPassword(e.target.value)}
           className="mt-1 w-full min-h-[44px] px-3 rounded-[8px] border border-border bg-surface text-text font-normal" />
       </label>
       {error && <p role="alert" className="text-sm text-hot">{error}</p>}

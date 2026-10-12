@@ -20,7 +20,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 - Phases 0 to 3 are built. 72 tests pass. `tsc` and `next build` are clean.
 - Production ingest was verified on Vercel (3 min 38 s, Bing discovery, Gemini, HubSpot sync). Real Hot List and brief emails were sent to ARJUN_EMAIL.
 - Database: Supabase Postgres (ap-northeast-1) connected through the session pooler. Migrations 0001 and 0002 applied, seed loaded (50 accounts), HubSpot ids linked (22 tasks, 22 activities). Trigger and RLS checked on the real DB.
-- Sign-in: works on the live URL. Arjun's Supabase user was created with scripts/create-user.mts; the passcode is in .env.local only. Sign-in, dashboard and sign-out were verified in a headless browser.
+- Sign-in: TEST BUILD mode is on (SM_TEST_MODE=true): any email and passcode sign in as the demo user. Real login also works when the flag is off. Arjun's Supabase user was created with scripts/create-user.mts; the passcode is in .env.local only. Sign-in, dashboard and sign-out were verified in a headless browser.
 - CI: .github/workflows/ci.yml is local only; the gh token needs the workflow scope.
 - GitHub to Vercel: the original project account-signal-monitor is connected to the repo, so pushes to main deploy. The user also created a second project, keka-b2b-signal-monitor (URL account-signal-monitor-o97c.vercel.app), from the same repo. It should be deleted to avoid duplicate cron runs and emails.
 - HubSpot: Enterprise Leads pipeline live with 10 demo deals; daily sync works; email and workflow scopes are missing.
@@ -201,3 +201,10 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - The push auto-deployed the original Vercel project from GitHub main (deploy Ready in 22 s).
 - Live ingest from hnd1: status ok, 3 min 38 s (it was 4 min 47 s and partial from iad1). 644 discovered, 120 fetched, 3 Gemini calls, HubSpot sync partial (email scope only).
 
+
+### 2026-10-12 13:41 IST, Claude Code (claude-opus-5-5)
+- The user asked for: finishing the leftovers, an open test build, and at least 10 companies with current signals; brand file and rubric to follow.
+- Deleted the duplicate Vercel project keka-b2b-signal-monitor (the user asked to complete what's left; the duplicate would have run the crons twice).
+- No Hot lead on live: Travel Food Services decayed from 7.56 to 7.48 raw, which rounds to 7 (Warm), as designed by D03. Of 333 G1 rejections, sampled ones were genuinely off-topic (Bing noise), so the gates are correct; the account list simply has few fresh triggers.
+- Started research on companies with verified triggers in the last 14 days (data/research/fresh-signals.json).
+- Test build (B07): SM_TEST_MODE env, /api/test-login (server signs in as the demo user), login page note and prefilled email, TEST BUILD badge in the header and on login. SM_TEST_MODE and ARJUN_PASSWORD set in Vercel (password as sensitive). Tests: test-login refused when the flag is off. 74 tests pass.

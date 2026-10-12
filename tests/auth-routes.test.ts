@@ -53,6 +53,18 @@ describe("signed-out requests are blocked", () => {
   });
 });
 
+describe("test build sign-in", () => {
+  it("is refused when SM_TEST_MODE is not true", async () => {
+    delete process.env.SM_TEST_MODE;
+    const r = await import("@/app/api/test-login/route");
+    expect((await r.POST()).status).toBe(403);
+  });
+  it("is a public route in the proxy only so the login page can call it", async () => {
+    const { proxy } = await import("@/proxy");
+    expect((await proxy(new NextRequest("https://x.test/api/test-login"))).status).toBe(200);
+  });
+});
+
 describe("allowed user", () => {
   it("only ARJUN_EMAIL is allowed", () => {
     expect(isAllowedUser("Arjun@Example.com")).toBe(true);
