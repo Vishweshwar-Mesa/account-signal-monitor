@@ -9,7 +9,7 @@
 6. Never write Arjun-owned columns from system code. Use src/lib/accounts-write.ts. A Postgres trigger also blocks it.
 7. Secrets live only in .env.local and in Vercel env. Never commit them. Only env var names appear in docs.
 8. Run `npm test` and `npx tsc --noEmit` before every commit.
-9. Update the "Current status" block and append to the session log below before every commit.
+9. Before every commit: update the "Current status" block, append a session-log entry (date, time IST, WHO made the change, what and why), run `npm run changelog`, then commit and push.
 10. No em dashes in product text or docs.
 
 ## What the project is
@@ -259,3 +259,9 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Neos Kosmos Technologies (Mesa School of Business): the user stated it is a Keka customer (first-hand; not in Keka's public stories). Created in HubSpot as a customer with a demo Closed Won deal and a note; the sync picked it up automatically as a new account. Headcount left unknown (not cited).
 - Components Map v2 refreshed (Bing, 9 trigger types, open login, daily Hot List with HubSpot brief, 73 HubSpot companies, churn task, CI).
 
+
+### 2026-10-12 15:49 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- Segments (B13), from the user's Keka definition: SMB under 100, MM 100 to 500, ENT 500+. Fit: ENT 500 to 5,000 scores 1.0, above 5,000 tapers to 0.7, MM 0.6, SMB 0.3. SegmentTag (SMB, MM, ENT) on every account in the list and detail; MM and SMB say to route to that team. Removed the earlier 'Above ICP size' flag (B12 replaced). Production rescored: 66 ENT, 6 MM; Zetwerk Hot 8, 9 Warm.
+- Secrets: audited every value in .env.local against the full git history, all tracked files and the live site's JS: none found (only the publishable Supabase key is public by design). Removed SUPABASE_SERVICE_ROLE_KEY from Vercel (not used at runtime; local only). GitHub secrets hold only GEMINI_API_KEY for CI. README has a 'Secrets: where each key lives' section.
+- Handoff: docs/CHANGELOG.md generated from git (when IST, who, what) by scripts/changelog.mjs (npm run changelog). The read-first and update instruction is in README, CHANGELOG, PROJECT_CONTEXT, CLAUDE.md and AGENTS.md. Session-log entries now name who made the change. Commits now carry a Co-Authored-By trailer.
+- VIVA: added Q13 (ICP and segments) and Q14 (key protection). 78 tests pass.

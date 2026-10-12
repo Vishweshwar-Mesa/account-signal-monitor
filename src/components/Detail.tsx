@@ -2,7 +2,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import type { DAccount, DashboardData } from "@/lib/dashboard-data";
-import { ScoreBadge, Tag, DemoBadge, Section, Empty, BAND_LABEL, LANE_LABEL, bandText, type Band } from "./ui";
+import { ScoreBadge, Tag, DemoBadge, SegmentTag, Section, Empty, BAND_LABEL, LANE_LABEL, bandText, type Band } from "./ui";
 
 const TYPE_LABEL: Record<string, string> = {
   HR_TECH_INTENT: "HR tech intent", LEADERSHIP_CHANGE: "Leadership change", HEADCOUNT_HIRING: "Hiring drive",
@@ -89,7 +89,9 @@ export default function Detail({ a, data }: { a: DAccount; data: DashboardData }
         <span>Lane: <b>{a.lane ? LANE_LABEL[a.lane] : a.is_customer ? "Healthy, no action needed" : "None"}</b></span>
         {a.flags.includes("gone_quiet") && <Tag>Gone quiet</Tag>}
         {a.flags.includes("no_contact_30d") && <Tag>No contact 30+ days</Tag>}
-        {a.flags.includes("above_icp_size") && <Tag title="Keka's published customers are mostly 50 to 3,000 employees">Above ICP size</Tag>}
+        <SegmentTag employees={a.employee_count} />
+        {a.flags.includes("segment_mid_market") && <span className="text-xs text-muted">Mid-market: route to the MM team</span>}
+        {a.flags.includes("segment_smb") && <span className="text-xs text-muted">SMB: route to the SMB team</span>}
         {snoozed && <Tag>Snoozed until {fmtDate(a.snoozed_until)}</Tag>}
         <button type="button" className="btn text-sm ml-auto" disabled={pending}
           onClick={() => run(() => call(`/api/accounts/${a.id}`, "PATCH", { snoozed_until: snoozed ? null : new Date(Date.now() + 7 * 86_400_000).toISOString() }))}>

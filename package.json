@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "map": "node scripts/render-map.mjs"
+    "map": "node scripts/render-map.mjs",
+    "changelog": "node scripts/changelog.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.8",

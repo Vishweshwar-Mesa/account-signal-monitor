@@ -43,3 +43,11 @@ export function Section({ title, right, children }: { title: string; right?: Rea
 export function Empty({ children }: { children: ReactNode }) {
   return <p className="text-muted text-sm border border-dashed border-border rounded-[10px] p-3">{children}</p>;
 }
+
+/** Keka segment tag: SMB under 100 employees, MM 100 to 500, ENT 500+. Arjun's team owns ENT. */
+export function SegmentTag({ employees }: { employees: number | null }) {
+  if (employees == null) return <Tag title="Headcount not cited, segment unknown">Size ?</Tag>;
+  if (employees < 100) return <Tag title="SMB (under 100 employees): route to the SMB team">SMB</Tag>;
+  if (employees < 500) return <Tag title="Mid-market (100 to 500 employees): route to the mid-market team">MM</Tag>;
+  return <Tag tone="primary" title="Enterprise (500+ employees): the enterprise team's segment">ENT</Tag>;
+}

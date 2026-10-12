@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { scoreAccount, decay, bandFor, eventPoints, type ScoringEvent, type ScoringAccount } from "@/lib/scoring";
+import { scoreAccount, decay, bandFor, eventPoints, fitPoints, type ScoringEvent, type ScoringAccount } from "@/lib/scoring";
 
 const NOW = new Date("2026-10-12T03:00:00Z");
 const daysAgo = (d: number) => new Date(NOW.getTime() - d * 86_400_000);
@@ -76,9 +76,15 @@ describe("scoring scenarios (section 8)", () => {
     expect(many / one).toBeCloseTo(1.3);
   });
 
-  it("flags accounts above the ICP size band", () => {
-    expect(scoreAccount({ ...ACCOUNT, employee_count: 42000 }, [], [], [], NOW).flags).toContain("above_icp_size");
-    expect(scoreAccount(ACCOUNT, [], [], [], NOW).flags).not.toContain("above_icp_size");
+  it("Keka segments: SMB under 100, mid-market 100 to 500, enterprise 500+; only enterprise is Arjun's", () => {
+    const flags = (n: number) => scoreAccount({ ...ACCOUNT, employee_count: n }, [], [], [], NOW).flags;
+    expect(flags(60)).toContain("segment_smb");
+    expect(flags(250)).toContain("segment_mid_market");
+    expect(flags(1800)).not.toContain("segment_mid_market");
+    expect(flags(42000).some((f) => f.startsWith("segment_"))).toBe(false);
+    const bare = { ...ACCOUNT, frontline_share: null, multi_site: false, india_footprint: false, sector: null };
+    expect(fitPoints({ ...bare, employee_count: 250 }).points).toBeLessThan(fitPoints({ ...bare, employee_count: 1800 }).points);
+    expect(fitPoints({ ...ACCOUNT, employee_count: 42000, frontline_share: null, multi_site: false, india_footprint: false, sector: null }).points).toBeGreaterThanOrEqual(0.7);
   });
 
   it("an account with no events and no history is cold, gone quiet", () => {

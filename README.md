@@ -1,5 +1,7 @@
 # B2B Account Signal Monitor
 
+> **For anyone (person or AI) continuing this build:** read docs/PROJECT_CONTEXT.md first (status, how to run, full session log), then docs/DECISIONS.md and docs/BUILD_CHECKLIST.md. Every change must update docs/PROJECT_CONTEXT.md (status plus a dated session-log entry saying who changed what and why) and docs/CHANGELOG.md (`npm run changelog`), then be committed and pushed so GitHub always matches. CI fails if code changes without the context file.
+
 Live: https://account-signal-monitor.vercel.app (test build: any email and passcode sign in as the demo user)
 
 Arjun sells workforce management software (time and attendance, shifts, leave, payroll, HRIS) to mid-market companies in India. Reaching out with no reason is noise; two weeks late is too late. This app watches 50 accounts every day, finds verified trigger events in the news, explains what changed and why it matters now, and ranks every account from 1 to 10. It emails Arjun a Hot List and a short brief every morning. It never overwrites anything Arjun wrote himself.
@@ -40,12 +42,19 @@ config/            sources.json (tiers), scoring.json (weights), product-facts.j
 ## Test build
 With `SM_TEST_MODE=true` the login page says it is a test build, and any email and passcode sign in as the demo user (ARJUN_EMAIL), using the stored ARJUN_PASSWORD on the server. A TEST BUILD badge shows on every page. Set it to `false` to require the real passcode. Emails still go only to ARJUN_EMAIL.
 
+## Secrets: where each key lives
+- **Never in git.** `.env*` and `.vercel` are git-ignored, and CI runs a secret scan on every push. A full scan of git history, the repo and the live site's JavaScript (12 Oct 2026) found no secret anywhere. The only key the browser sees is the Supabase publishable key, which is public by design; RLS blocks anonymous reads.
+- **Production runtime:** Vercel environment variables (encrypted). Only the keys the app uses at runtime are there. The Supabase secret key was removed from Vercel because only the local `create-user` script needs it.
+- **CI:** GitHub Actions secrets hold only what CI needs: `GEMINI_API_KEY`, for the eval.
+- **Local:** `.env.local` on the developer machine (git-ignored).
+- **Least privilege:** each place holds only the keys it needs.
+
 ## Environment variables
 | Name | Purpose |
 |---|---|
 | GEMINI_API_KEY, GEMINI_MODEL | Gemini Flash (default gemini-3.8-flash) |
 | NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY | Supabase Auth in the browser |
-| SUPABASE_SERVICE_ROLE_KEY | Server only; used by scripts/create-user.mts |
+| SUPABASE_SERVICE_ROLE_KEY | Local only (not in Vercel); used by scripts/create-user.mts |
 | DATABASE_URL | Supabase pooler connection string for all server queries |
 | RESEND_API_KEY, RESEND_FROM | Email. Without a verified domain, Resend only delivers to the account owner |
 | ARJUN_EMAIL, ARJUN_PASSWORD | The only recipient and the only allowed user |

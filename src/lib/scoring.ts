@@ -126,6 +126,17 @@ export function eventPoints(ev: ScoringEvent, now: Date) {
   return { points, ageDays, factors };
 }
 
+export type Segment = "smb" | "mid_market" | "enterprise";
+export const SEGMENT_LABEL: Record<Segment, string> = { smb: "SMB", mid_market: "mid-market", enterprise: "enterprise" };
+
+/** Keka segments: SMB under 100, mid-market 100 to 500, enterprise 500+. */
+export function segmentFor(n: number | null): Segment | null {
+  if (n == null) return null;
+  if (n < scoring.fit.segments.smbMax) return "smb";
+  if (n < scoring.fit.segments.midMarketMax) return "mid_market";
+  return "enterprise";
+}
+
 export function fitPoints(a: ScoringAccount): { points: number; parts: Contribution[] } {
   const f = scoring.fit;
   const parts: Contribution[] = [];
@@ -133,13 +144,15 @@ export function fitPoints(a: ScoringAccount): { points: number; parts: Contribut
   const n = a.employee_count;
   if (n == null) parts.push({ label: "Size unknown", points: 0 });
   else {
-    if (n < f.sizeBandMin) size = f.belowBand;
+    // Enterprise team: 500+ is the segment. Mid-market (100 to 500) scores lower, SMB lowest.
+    if (n < f.segments.smbMax) size = f.belowBand;
+    else if (n < f.sizeBandMin) size = f.midMarket;
     else if (n <= f.sizeBandMax) size = f.inBand;
     else {
       const t = Math.min(1, (n - f.sizeBandMax) / (f.taperToEmployees - f.sizeBandMax));
       size = f.inBand - t * (f.inBand - f.aboveBandFloor);
     }
-    parts.push({ label: `Size ${n.toLocaleString("en-IN")} employees`, points: r2(size) });
+    parts.push({ label: `Size ${n.toLocaleString("en-IN")} employees (${SEGMENT_LABEL[segmentFor(n)!]})`, points: r2(size) });
   }
   let attrs = 0;
   if (a.frontline_share === "high") { attrs += f.perAttribute; parts.push({ label: "High frontline share", points: f.perAttribute }); }
@@ -290,8 +303,10 @@ export function scoreAccount(
   const lastEventAge = scored.length ? Math.min(...scored.map((e) => e.ageDays)) : Infinity;
   if (lastEventAge > scoring.goneQuietDays) flags.push("gone_quiet");
   if (lastContactGap >= scoring.reEngageDays && lastContactGap !== Infinity) flags.push("no_contact_30d");
-  // Keka's published customers are mostly 50 to 3,000 employees; above the size band is a stretch account.
-  if (account.employee_count != null && account.employee_count > scoring.fit.sizeBandMax) flags.push("above_icp_size");
+  // Arjun is on the Enterprise Sales Team: SMB and mid-market accounts belong to other teams.
+  const seg = segmentFor(account.employee_count);
+  if (seg === "smb") flags.push("segment_smb");
+  if (seg === "mid_market") flags.push("segment_mid_market");
 
   const nextAt = band === "cold" ? 4.5 : band === "warm" ? 7.5 : null;
   let toNextBand = "Already Hot.";

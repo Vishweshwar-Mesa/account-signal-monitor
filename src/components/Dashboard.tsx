@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import type { DashboardData, DAccount } from "@/lib/dashboard-data";
-import { ScoreBadge, Tag, BAND_LABEL, bandText, type Band } from "./ui";
+import { ScoreBadge, Tag, SegmentTag, BAND_LABEL, bandText, type Band } from "./ui";
 import Detail from "./Detail";
 
 type Filter = "signals" | "all" | "hot" | "warm" | "customers";
@@ -98,7 +98,7 @@ export default function Dashboard({ data }: { data: DashboardData }) {
                           <span className="font-semibold truncate">{a.name}</span>
                           {a.is_customer && <Tag tone="primary">Customer</Tag>}
                           {a.flags.includes("gone_quiet") && <Tag>Gone quiet</Tag>}
-                          {a.flags.includes("above_icp_size") && <Tag title="Over 5,000 employees: outside Keka's core mid-market ICP">Above ICP size</Tag>}
+                          <SegmentTag employees={a.employee_count} />
                         </span>
                         <span className="block text-sm text-muted truncate">{a.top_signal_summary ?? "No verified signal in the window"}</span>
                       </span>

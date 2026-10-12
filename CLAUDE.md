@@ -12,7 +12,7 @@ B2B Account Signal Monitor. Next.js 16 on Vercel, Supabase Postgres, Gemini Flas
 - Start with `git pull --rebase origin main`.
 - Small commits. After each one: `git pull --rebase origin main && git push origin main`. Never force push.
 - Before every commit: `npm test` and `npx tsc --noEmit` must pass.
-- Before every commit: update "Current status" and append to the session log in docs/PROJECT_CONTEXT.md. CI fails if src/, supabase/, config/ or scripts/ changed without it.
+- Before every commit: update "Current status" and append a session-log entry (date, time IST, who, what, why) in docs/PROJECT_CONTEXT.md, and run `npm run changelog` (docs/CHANGELOG.md). CI fails if src/, supabase/, config/ or scripts/ changed without it.
 - Tag phase ends (phase-0-map, phase-1, phase-2, phase-3).
 - Never commit secrets. .env* and .vercel are ignored. Docs name env vars, never values.
 

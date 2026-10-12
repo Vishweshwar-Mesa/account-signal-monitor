@@ -55,3 +55,9 @@ eval/articles.jsonl has 30 real articles with hand labels, including bad cases: 
 
 **12. Why two kinds of text output?**
 The Hot List angle (one line) links the trigger to approved product facts only (config/product-facts.json). The soft-touch draft is engagement only: it cites the fact, makes one observation and asks one question, with no pitch. Code checks the draft for pitch words, urgency words, dashes and length, and it is never sent automatically (D11, D12).
+
+**13. Who is the right customer (ICP), and how does the app use it?**
+Keka segments by headcount: SMB under 100, mid-market 100 to 500, enterprise 500+. Arjun sells on the enterprise team, so 500 to 5,000 employees scores full fit and very large companies still count as enterprise. Every account carries an SMB, MM or ENT tag; MM and SMB accounts say to route to that team (B13). Keka's own 77 customer stories show mostly Indian mid-market and enterprise firms (tech and services, multi-site manufacturing, retail, healthcare), and our 8 real Keka customers come from those stories.
+
+**14. How are API keys protected?**
+No key is in git: env files are ignored, CI runs a secret scan on every push, and a full history scan found nothing. Runtime keys live encrypted in Vercel, CI holds only the Gemini key as a GitHub secret, and each place holds only what it needs (the Supabase secret key is not in production). The only browser-visible key is the publishable one, and RLS blocks anonymous reads with it.

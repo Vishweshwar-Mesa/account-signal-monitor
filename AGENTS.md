@@ -14,7 +14,7 @@ The B2B Account Signal Monitor, a university exam project. It watches about 50 I
 ## How to work
 - Small commits with clear messages. After each: `git pull --rebase origin main && git push origin main`. Never force push or rewrite pushed history.
 - Before each commit run `npm test` and `npx tsc --noEmit`. Do not commit a broken main branch.
-- Before each commit, update "Current status" and append a session log entry in docs/PROJECT_CONTEXT.md (date and time IST, tool or model, what changed and why, files, tests and result, next step). CI fails when src/, supabase/, config/ or scripts/ change without it.
+- Before each commit, update "Current status" and append a session log entry in docs/PROJECT_CONTEXT.md (date and time IST, who made the change (person, or tool and model plus the person running it), what changed and why, files, tests and result, next step), and run `npm run changelog` to refresh docs/CHANGELOG.md. CI fails when src/, supabase/, config/ or scripts/ change without it.
 - Update docs/BUILD_CHECKLIST.md when an item changes state. Only mark DONE what you ran.
 - Never commit secrets. Docs list env var names only.
 
