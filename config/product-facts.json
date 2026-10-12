@@ -13,14 +13,74 @@
     "performance": "Performance management"
   },
   "angles": {
-    "LEADERSHIP_CHANGE": { "angle": "First 90 days, consolidating attendance and payroll across sites", "facts": ["attendance", "payroll"] },
-    "HEADCOUNT_HIRING": { "angle": "Onboarding and shift setup at volume", "facts": ["onboarding", "shifts"] },
-    "CAPACITY_EXPANSION": { "angle": "Attendance and shifts across new sites", "facts": ["attendance", "shifts"] },
-    "OPERATIONAL_CHALLENGE": { "angle": "Visibility into overtime and attendance", "facts": ["leave_overtime", "attendance"] },
-    "FUNDING_EVENT": { "angle": "Scaling HR processes with headcount", "facts": ["hris", "onboarding"] },
-    "DIGITALISATION_STATEMENT": { "angle": "Build on the stated direction", "facts": ["hris", "attendance"] },
-    "COMPLIANCE_PRESSURE": { "angle": "Statutory payroll compliance", "facts": ["compliance", "payroll"] },
-    "HR_TECH_INTENT": { "angle": "Respond to the stated need", "facts": ["attendance", "payroll", "hris"] },
-    "HR_TECH_INTENT_CUSTOMER": { "angle": "Retention check-in, no pitch", "facts": [] }
+    "LEADERSHIP_CHANGE": {
+      "angle": "First 90 days, consolidating attendance and payroll across sites",
+      "facts": [
+        "attendance",
+        "payroll"
+      ]
+    },
+    "HEADCOUNT_HIRING": {
+      "angle": "Onboarding and shift setup at volume",
+      "facts": [
+        "onboarding",
+        "shifts"
+      ]
+    },
+    "CAPACITY_EXPANSION": {
+      "angle": "Attendance and shifts across new sites",
+      "facts": [
+        "attendance",
+        "shifts"
+      ]
+    },
+    "OPERATIONAL_CHALLENGE": {
+      "angle": "Visibility into overtime and attendance",
+      "facts": [
+        "leave_overtime",
+        "attendance"
+      ]
+    },
+    "FUNDING_EVENT": {
+      "angle": "Scaling HR processes with headcount",
+      "facts": [
+        "hris",
+        "onboarding"
+      ]
+    },
+    "DIGITALISATION_STATEMENT": {
+      "angle": "Build on the stated direction",
+      "facts": [
+        "hris",
+        "attendance"
+      ]
+    },
+    "COMPLIANCE_PRESSURE": {
+      "angle": "Statutory payroll compliance",
+      "facts": [
+        "compliance",
+        "payroll"
+      ]
+    },
+    "HR_TECH_INTENT": {
+      "angle": "Respond to the stated need",
+      "facts": [
+        "attendance",
+        "payroll",
+        "hris"
+      ]
+    },
+    "HR_TECH_INTENT_CUSTOMER": {
+      "angle": "Retention check-in, no pitch",
+      "facts": []
+    },
+    "VENDOR_PARTNERSHIP": {
+      "angle": "Connect workforce data to the new systems being rolled out",
+      "facts": [
+        "hris",
+        "attendance",
+        "payroll"
+      ]
+    }
   }
 }

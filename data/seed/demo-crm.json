@@ -569,6 +569,244 @@
      "summary": "Asked how to add a new plant entity"
     }
    ]
+  },
+  "Oliva Skin & Hair Clinic": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 55,
+   "last_contacted_days_ago": 6,
+   "notes": "DEMO CRM. Named as a Keka customer on keka.com (https://www.keka.com/customer-story/oliva).",
+   "relationship_read": "Customer.",
+   "tasks": [
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 18,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 300,
+     "summary": "Onboarding kickoff"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 35,
+     "summary": "Quarterly review"
+    },
+    {
+     "kind": "email",
+     "direction": "inbound",
+     "days_ago": 6,
+     "summary": "Asked about adding a new branch"
+    }
+   ]
+  },
+  "RA Chem Pharma Limited": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 120,
+   "last_contacted_days_ago": 20,
+   "notes": "DEMO CRM. Named as a Keka customer on keka.com (https://www.keka.com/customer-story/ra-chem).",
+   "relationship_read": "Customer.",
+   "tasks": [
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 40,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 400,
+     "summary": "Payroll go-live review"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 20,
+     "summary": "Check-in with plant HR"
+    }
+   ]
+  },
+  "Metrochem API Private Limited": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 30,
+   "last_contacted_days_ago": 190,
+   "notes": "DEMO CRM. Named as a Keka customer on keka.com (https://www.keka.com/customer-story/metrochem).",
+   "relationship_read": "Customer.",
+   "tasks": [
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 10,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 380,
+     "summary": "Go-live for attendance"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 190,
+     "summary": "Last quarterly review, satisfied"
+    }
+   ]
+  },
+  "Varmora Granito Limited": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 200,
+   "last_contacted_days_ago": 12,
+   "notes": "DEMO CRM. Named as a Keka customer on keka.com (https://www.keka.com/customer-story/varmora).",
+   "relationship_read": "Customer.",
+   "tasks": [
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 66,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 150,
+     "summary": "Onboarding for new plant staff"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 12,
+     "summary": "HR asked about biometric devices for kiln shifts"
+    }
+   ]
+  },
+  "RAHI Care": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 80,
+   "last_contacted_days_ago": 45,
+   "notes": "DEMO CRM. Named as a Keka customer on keka.com (https://www.keka.com/customer-story/rahi-care).",
+   "relationship_read": "Customer.",
+   "tasks": [
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 26,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 500,
+     "summary": "Renewal signed"
+    },
+    {
+     "kind": "email",
+     "direction": "inbound",
+     "days_ago": 45,
+     "summary": "Shared usage report"
+    }
+   ]
+  },
+  "Konnect Diagnostics": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 15,
+   "last_contacted_days_ago": 8,
+   "notes": "DEMO CRM. Named as a Keka customer on keka.com (https://www.keka.com/customer-story/konnect-diagnostics).",
+   "relationship_read": "Customer.",
+   "tasks": [
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 5,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 330,
+     "summary": "Rollout across branches"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 8,
+     "summary": "Renewal discussion started"
+    }
+   ]
+  },
+  "Ajmera Tyres": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 250,
+   "last_contacted_days_ago": 60,
+   "notes": "DEMO CRM. Named as a Keka customer on keka.com (https://www.keka.com/customer-story/ajmera).",
+   "relationship_read": "Customer.",
+   "tasks": [
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 83,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 120,
+     "summary": "Store onboarding"
+    },
+    {
+     "kind": "note",
+     "direction": "outbound",
+     "days_ago": 60,
+     "summary": "Usage steady across stores"
+    }
+   ]
+  },
+  "Noise": {
+   "stage": "Closed Won",
+   "is_customer": true,
+   "renewal_in_days": 90,
+   "last_contacted_days_ago": 3,
+   "notes": "DEMO CRM. Named as a Keka customer on keka.com (https://www.keka.com/customer-story/noise).",
+   "relationship_read": "Customer.",
+   "tasks": [
+    {
+     "title": "Quarterly business review",
+     "due_in_days": 30,
+     "kind": "task"
+    }
+   ],
+   "activities": [
+    {
+     "kind": "meeting",
+     "direction": "outbound",
+     "days_ago": 260,
+     "summary": "Rollout for retail staff"
+    },
+    {
+     "kind": "call",
+     "direction": "outbound",
+     "days_ago": 3,
+     "summary": "Asked about leave policy setup"
+    }
+   ]
   }
  }
 }

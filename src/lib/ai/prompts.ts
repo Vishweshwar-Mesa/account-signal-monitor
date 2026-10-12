@@ -13,6 +13,7 @@ Trigger types (pick at most one, the most important):
 - FUNDING_EVENT: fundraise, IPO, QIP, PE or strategic investment into the company.
 - DIGITALISATION_STATEMENT: a public statement by the company about workforce or HR digitalisation.
 - COMPLIANCE_PRESSURE: new labour codes or regulation, only when the article ties it to the target company.
+- VENDOR_PARTNERSHIP: the company has newly appointed or signed a technology, ERP, HR, payroll or workforce services vendor or implementation partner (for example "selects X to implement its ERP" or "outsources payroll to Y"). If the vendor is an HRMS or payroll software company, also fill competitor_hrms_mentioned.
 
 Rules:
 - company_match is true only if the article is about the target company itself, not a different company with a similar name.
@@ -37,7 +38,7 @@ Extract the facts for the target company only.`;
 export const EXTRACTION_JSON_SCHEMA = {
   type: "object",
   properties: {
-    trigger_type: { type: ["string", "null"], enum: ["HR_TECH_INTENT", "LEADERSHIP_CHANGE", "HEADCOUNT_HIRING", "OPERATIONAL_CHALLENGE", "CAPACITY_EXPANSION", "FUNDING_EVENT", "DIGITALISATION_STATEMENT", "COMPLIANCE_PRESSURE", null] },
+    trigger_type: { type: ["string", "null"], enum: ["HR_TECH_INTENT", "LEADERSHIP_CHANGE", "HEADCOUNT_HIRING", "OPERATIONAL_CHALLENGE", "CAPACITY_EXPANSION", "FUNDING_EVENT", "DIGITALISATION_STATEMENT", "COMPLIANCE_PRESSURE", "VENDOR_PARTNERSHIP", null] },
     company_match: { type: "boolean" },
     subject: { type: ["string", "null"] },
     subject_title: { type: ["string", "null"] },

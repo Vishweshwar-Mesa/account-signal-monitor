@@ -185,6 +185,7 @@ export function activityPoints(tasks: ScoringTask[], acts: ScoringActivity[], no
 
 const GROWTH: TriggerType[] = ["HEADCOUNT_HIRING", "CAPACITY_EXPANSION", "FUNDING_EVENT", "DIGITALISATION_STATEMENT", "COMPLIANCE_PRESSURE"];
 const RISK: TriggerType[] = ["HR_TECH_INTENT", "OPERATIONAL_CHALLENGE", "LEADERSHIP_CHANGE"];
+// A new vendor partner is growth for a prospect, but a churn risk at a customer when the vendor is an HR or payroll provider.
 
 export function bandFor(score: number): Band {
   if (score >= scoring.bands.hot) return "hot";
@@ -277,7 +278,9 @@ export function scoreAccount(
   const live = scored.filter((e) => e.points >= 1);
   let lane: Lane | null = "outreach";
   if (account.is_customer) {
-    if (live.some((e) => RISK.includes(e.type))) lane = "churn_risk";
+    const vendorRisk = live.some((e) => e.type === "VENDOR_PARTNERSHIP" && (e as unknown as { _ev: ScoringEvent })._ev.competitor);
+    if (vendorRisk || live.some((e) => RISK.includes(e.type))) lane = "churn_risk";
+    else if (live.some((e) => e.type === "VENDOR_PARTNERSHIP")) lane = "expansion";
     else if (live.some((e) => GROWTH.includes(e.type))) lane = "expansion";
     else if (lastContactGap >= scoring.reEngageDays) lane = "re_engage";
     else lane = null;

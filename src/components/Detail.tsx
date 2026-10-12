@@ -7,7 +7,7 @@ import { ScoreBadge, Tag, DemoBadge, Section, Empty, BAND_LABEL, LANE_LABEL, ban
 const TYPE_LABEL: Record<string, string> = {
   HR_TECH_INTENT: "HR tech intent", LEADERSHIP_CHANGE: "Leadership change", HEADCOUNT_HIRING: "Hiring drive",
   OPERATIONAL_CHALLENGE: "Operational challenge", CAPACITY_EXPANSION: "Capacity expansion", FUNDING_EVENT: "Funding",
-  DIGITALISATION_STATEMENT: "Digitalisation statement", COMPLIANCE_PRESSURE: "Compliance pressure",
+  DIGITALISATION_STATEMENT: "Digitalisation statement", COMPLIANCE_PRESSURE: "Compliance pressure", VENDOR_PARTNERSHIP: "New vendor partner",
 };
 const SECTOR_LABEL: Record<string, string> = {
   retail: "Retail", logistics: "Logistics", hospitality_qsr: "Hospitality and QSR", healthcare: "Healthcare",

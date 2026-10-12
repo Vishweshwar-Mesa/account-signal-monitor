@@ -3,6 +3,49 @@
  "generated_at": "2026-10-12",
  "accounts": [
   {
+   "name": "Ajmera Tyres",
+   "domain": "ajmeratyres.com",
+   "aliases": [
+    "Ajmera"
+   ],
+   "sector": "retail",
+   "hq_city": "Nagpur",
+   "employee_count": 200,
+   "employee_count_source_url": "https://www.keka.com/customer-story/ajmera",
+   "employee_count_as_of": null,
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Figure stated in the Keka customer story (undated, industry Retail, region Nagpur). Company site lists 13 stores across Nagpur, Pune and Amravati. Keka customer per https://www.keka.com/customer-story/ajmera.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
+  },
+  {
+   "name": "Carlsberg India Pvt Ltd",
+   "domain": "carlsbergindia.com",
+   "aliases": [
+    "Carlsberg India",
+    "Carlsberg India Limited"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Gurugram",
+   "employee_count": 1100,
+   "employee_count_source_url": "https://danskindustri.dk/di-business/arkiv/news/2018/8/carlsberg-uses-elephant-to-open-up-doors-in-india",
+   "employee_count_as_of": "2018-08-01",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Dated 2018 figure (1,100 employees in India) from Danish Industry article via search snippet; no current disclosure until IPO documents are public. Runs 7 owned breweries per company site.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
+  },
+  {
    "name": "Go Fashion (India) Ltd",
    "domain": "gocolors.com",
    "aliases": [
@@ -81,6 +124,49 @@
      "why": "Appointed COO India effective 2 Apr 2026. Runs the India plant operations."
     }
    ]
+  },
+  {
+   "name": "Himadri Speciality Chemical Ltd",
+   "domain": "himadri.com",
+   "aliases": [
+    "Himadri",
+    "HSCL"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Kolkata",
+   "employee_count": 3193,
+   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/HSCL_15052026194024_BRSRFY202526.pdf",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "BRSR FY2025-26: 1,395 employees (1,107 permanent) plus 1,798 workers (1,744 other-than-permanent).",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
+  },
+  {
+   "name": "Konnect Diagnostics",
+   "domain": "konnectdiagnostics.com",
+   "aliases": [
+    "Konnect"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Hyderabad",
+   "employee_count": 400,
+   "employee_count_source_url": "https://www.keka.com/customer-story/konnect-diagnostics",
+   "employee_count_as_of": null,
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Figure stated in the Keka customer story (undated), which describes 8 branches based out of Hyderabad. Keka customer per https://www.keka.com/customer-story/konnect-diagnostics.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
   },
   {
    "name": "Krsnaa Diagnostics Ltd",
@@ -169,6 +255,112 @@
      "why": "Senior operations leader listed in FY26 senior management table"
     }
    ]
+  },
+  {
+   "name": "Metrochem API Private Limited",
+   "domain": null,
+   "aliases": [
+    "Metrochem",
+    "Metrochem API"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Hyderabad",
+   "employee_count": 2500,
+   "employee_count_source_url": "https://www.keka.com/customer-story/metrochem",
+   "employee_count_as_of": null,
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Figure stated in the Keka customer story (undated). Story says data is handled centrally for plant units at different places. Official domain not found (metrochemapi.com did not resolve). Keka customer per https://www.keka.com/customer-story/metrochem.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
+  },
+  {
+   "name": "Noise",
+   "domain": "gonoise.com",
+   "aliases": [],
+   "sector": "retail",
+   "hq_city": "Gurugram",
+   "employee_count": 450,
+   "employee_count_source_url": "https://www.keka.com/customer-story/noise",
+   "employee_count_as_of": null,
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Figure stated in the Keka customer story (undated, industry Retail, region Gurgaon). Consumer electronics brand; frontline share is a judgement, not sourced. Keka customer per https://www.keka.com/customer-story/noise.",
+   "frontline_share": "medium",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
+  },
+  {
+   "name": "Oliva Skin & Hair Clinic",
+   "domain": "olivaclinic.com",
+   "aliases": [
+    "Oliva",
+    "Oliva Clinics"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Hyderabad",
+   "employee_count": 750,
+   "employee_count_source_url": "https://www.keka.com/customer-story/oliva",
+   "employee_count_as_of": null,
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Figure stated in the 'Employees' field of the Keka customer story (undated). Company site says 35+ clinics across India (https://www.olivaclinic.com/); the Keka story cites 23 branches in 7 cities, so headcount has likely grown since. Keka customer per https://www.keka.com/customer-story/oliva.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
+  },
+  {
+   "name": "RA Chem Pharma Limited",
+   "domain": "rachempharma.com",
+   "aliases": [
+    "RA Chem",
+    "RA Chem Pharma"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Hyderabad",
+   "employee_count": 2729,
+   "employee_count_source_url": "https://www.keka.com/customer-story/ra-chem",
+   "employee_count_as_of": null,
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Figure stated in the Keka customer story (undated). Third-party estimates differ: Revelio Labs about 1,900 (Sep 2025, https://www.reveliolabs.com/companies/ra-chem-pharma/employees). Domain per third-party profile (Patsnap); not confirmed from the company itself. Keka customer per https://www.keka.com/customer-story/ra-chem.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
+  },
+  {
+   "name": "RAHI Care",
+   "domain": "rahicare.in",
+   "aliases": [
+    "Rahi Care"
+   ],
+   "sector": "healthcare",
+   "hq_city": "Chandigarh",
+   "employee_count": 550,
+   "employee_count_source_url": "https://www.rahicare.in/",
+   "employee_count_as_of": "2026-10-12",
+   "employee_count_is_estimate": true,
+   "employee_count_note": "Company site says '550+ Team members' and 70+ cities (lower bound, fetched 2026-10-12). Keka story lists 500 employees, region Chandigarh. PitchBook lists the company as out of business, which conflicts with the live site; treat with care. Keka customer per https://www.keka.com/customer-story/rahi-care.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
   },
   {
    "name": "Sagility Limited",
@@ -369,6 +561,27 @@
      "why": "Took over COO responsibilities after COO Vineet Jain left on 15 Jul 2026."
     }
    ]
+  },
+  {
+   "name": "Varmora Granito Limited",
+   "domain": "varmora.com",
+   "aliases": [
+    "Varmora"
+   ],
+   "sector": "manufacturing",
+   "hq_city": "Morbi",
+   "employee_count": 1153,
+   "employee_count_source_url": "https://www.samco.in/knowledge-center/?p=70278",
+   "employee_count_as_of": "2026-03-31",
+   "employee_count_is_estimate": false,
+   "employee_count_note": "Samco IPO note: 'it employed 1,153 permanent employees as of March 31, 2026' (offer-document derived). Keka story lists 1150 employees and 11 plants. Shares listed on NSE/BSE on 2026-09-29 (https://www.businesstoday.in/markets/stocks/story/varmora-granito-makes-a-positive-stock-market-debut-shares-list-at-5-premium-on-nse-558418-2026-09-29); not an HR signal type, recorded as context only. Keka customer per https://www.keka.com/customer-story/varmora.",
+   "frontline_share": "high",
+   "multi_site": true,
+   "india_footprint": true,
+   "newsroom_url": null,
+   "newsroom_rss": null,
+   "is_active": true,
+   "people": []
   },
   {
    "name": "Yatharth Hospital and Trauma Care Services Ltd",
@@ -585,28 +798,6 @@
    "people": []
   },
   {
-   "name": "Carlsberg India Pvt Ltd",
-   "domain": "carlsbergindia.com",
-   "aliases": [
-    "Carlsberg India",
-    "Carlsberg India Limited"
-   ],
-   "sector": "manufacturing",
-   "hq_city": "Gurugram",
-   "employee_count": 1100,
-   "employee_count_source_url": "https://danskindustri.dk/di-business/arkiv/news/2018/8/carlsberg-uses-elephant-to-open-up-doors-in-india",
-   "employee_count_as_of": "2018-08-01",
-   "employee_count_is_estimate": true,
-   "employee_count_note": "Dated 2018 figure (1,100 employees in India) from Danish Industry article via search snippet; no current disclosure until IPO documents are public. Runs 7 owned breweries per company site.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
    "name": "Chalet Hotels Limited",
    "domain": "chalethotels.com",
    "aliases": [
@@ -734,28 +925,6 @@
    "employee_count_as_of": "2026-03-31",
    "employee_count_is_estimate": false,
    "employee_count_note": "BRSR FY26 (consolidated, all units of company and subsidiaries): permanent employees 6,759; other than permanent 1,596; total employees 8,355. Above 5,000 band.",
-   "frontline_share": "high",
-   "multi_site": true,
-   "india_footprint": true,
-   "newsroom_url": null,
-   "newsroom_rss": null,
-   "is_active": false,
-   "people": []
-  },
-  {
-   "name": "Himadri Speciality Chemical Ltd",
-   "domain": "himadri.com",
-   "aliases": [
-    "Himadri",
-    "HSCL"
-   ],
-   "sector": "manufacturing",
-   "hq_city": "Kolkata",
-   "employee_count": 3193,
-   "employee_count_source_url": "https://nsearchives.nseindia.com/corporate/HSCL_15052026194024_BRSRFY202526.pdf",
-   "employee_count_as_of": "2026-03-31",
-   "employee_count_is_estimate": false,
-   "employee_count_note": "BRSR FY2025-26: 1,395 employees (1,107 permanent) plus 1,798 workers (1,744 other-than-permanent).",
    "frontline_share": "high",
    "multi_site": true,
    "india_footprint": true,

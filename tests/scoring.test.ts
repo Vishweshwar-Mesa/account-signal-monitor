@@ -114,6 +114,12 @@ describe("lanes (D05)", () => {
     expect(r.lane).toBe("re_engage");
     expect(r.flags).toContain("no_contact_30d");
   });
+  it("customer + new HR or payroll vendor partner = churn risk; other vendor = expansion", () => {
+    const vendor = (competitor: string | null) => ({ ...leadership(1), type: "VENDOR_PARTNERSHIP" as const, competitor });
+    expect(scoreAccount(cust, [vendor("Darwinbox")], [], [], NOW).lane).toBe("churn_risk");
+    expect(scoreAccount(cust, [vendor(null)], [], [], NOW).lane).toBe("expansion");
+    expect(scoreAccount(ACCOUNT, [vendor(null)], [], [], NOW).lane).toBe("outreach");
+  });
   it("prospect = outreach", () => {
     expect(scoreAccount(ACCOUNT, [leadership(1)], [], [], NOW).lane).toBe("outreach");
   });

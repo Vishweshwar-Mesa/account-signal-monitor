@@ -1,45 +1,122 @@
 {
   "_note": "All numbers tunable. Base weight is on a 0 to 10 scale for a fresh event. Half life in days.",
   "events": {
-    "HR_TECH_INTENT": { "base": 10, "halfLifeDays": 21, "label": "HR tech intent" },
-    "LEADERSHIP_CHANGE": { "base": 9, "halfLifeDays": 14, "label": "Leadership change" },
-    "HEADCOUNT_HIRING": { "base": 8, "halfLifeDays": 4, "label": "Hiring drive" },
-    "OPERATIONAL_CHALLENGE": { "base": 7, "halfLifeDays": 3, "label": "Operational challenge" },
-    "CAPACITY_EXPANSION": { "base": 6.5, "halfLifeDays": 5, "label": "Capacity expansion" },
-    "FUNDING_EVENT": { "base": 6.5, "halfLifeDays": 7, "label": "Funding" },
-    "DIGITALISATION_STATEMENT": { "base": 5.5, "halfLifeDays": 7, "label": "Digitalisation statement" },
-    "COMPLIANCE_PRESSURE": { "base": 5, "halfLifeDays": 5, "label": "Compliance pressure" }
+    "HR_TECH_INTENT": {
+      "base": 10,
+      "halfLifeDays": 21,
+      "label": "HR tech intent"
+    },
+    "LEADERSHIP_CHANGE": {
+      "base": 9,
+      "halfLifeDays": 14,
+      "label": "Leadership change"
+    },
+    "HEADCOUNT_HIRING": {
+      "base": 8,
+      "halfLifeDays": 4,
+      "label": "Hiring drive"
+    },
+    "OPERATIONAL_CHALLENGE": {
+      "base": 7,
+      "halfLifeDays": 3,
+      "label": "Operational challenge"
+    },
+    "CAPACITY_EXPANSION": {
+      "base": 6.5,
+      "halfLifeDays": 5,
+      "label": "Capacity expansion"
+    },
+    "FUNDING_EVENT": {
+      "base": 6.5,
+      "halfLifeDays": 7,
+      "label": "Funding"
+    },
+    "DIGITALISATION_STATEMENT": {
+      "base": 5.5,
+      "halfLifeDays": 7,
+      "label": "Digitalisation statement"
+    },
+    "COMPLIANCE_PRESSURE": {
+      "base": 5,
+      "halfLifeDays": 5,
+      "label": "Compliance pressure"
+    },
+    "VENDOR_PARTNERSHIP": {
+      "base": 6,
+      "halfLifeDays": 10,
+      "label": "New tech or HR vendor partner"
+    }
   },
-  "magnitude": { "small": 0.6, "medium": 0.9, "large": 1.2 },
-  "tier": { "T1": 1.0, "T2": 0.9 },
-  "certainty": { "confirmed": 1.0, "rumour": 0.7 },
+  "magnitude": {
+    "small": 0.6,
+    "medium": 0.9,
+    "large": 1.2
+  },
+  "tier": {
+    "T1": 1.0,
+    "T2": 0.9
+  },
+  "certainty": {
+    "confirmed": 1.0,
+    "rumour": 0.7
+  },
   "corroborationPerExtraDomain": 0.1,
   "corroborationCap": 1.3,
   "retrospectiveHiringMultiplier": 0.5,
   "secondEventWeight": 0.5,
-  "convergence": { "minPointsEach": 2.0, "bonus": 0.5 },
+  "convergence": {
+    "minPointsEach": 2.0,
+    "bonus": 0.5
+  },
   "competitorBoost": 0.5,
   "fit": {
-    "sizeBandMin": 50, "sizeBandMax": 5000,
-    "inBand": 1.0, "belowBand": 0.3, "aboveBandFloor": 0.4, "taperToEmployees": 50000,
-    "perAttribute": 0.25, "cap": 1.5,
-    "targetSectors": ["retail", "logistics", "hospitality_qsr", "healthcare", "manufacturing", "facility_staffing", "bpo"]
+    "sizeBandMin": 50,
+    "sizeBandMax": 5000,
+    "inBand": 1.0,
+    "belowBand": 0.3,
+    "aboveBandFloor": 0.4,
+    "taperToEmployees": 50000,
+    "perAttribute": 0.25,
+    "cap": 1.5,
+    "targetSectors": [
+      "retail",
+      "logistics",
+      "hospitality_qsr",
+      "healthcare",
+      "manufacturing",
+      "facility_staffing",
+      "bpo"
+    ]
   },
   "relationship": {
-    "recentContactDays": 14, "recentContactPoints": -0.5,
-    "midGapDays": 30, "midGapPoints": 0.5,
-    "longGapDays": 90, "longGapPoints": 1.0,
-    "renewalWithinDays": 30, "renewalPoints": 0.5,
-    "min": -0.5, "max": 1.0
+    "recentContactDays": 14,
+    "recentContactPoints": -0.5,
+    "midGapDays": 30,
+    "midGapPoints": 0.5,
+    "longGapDays": 90,
+    "longGapPoints": 1.0,
+    "renewalWithinDays": 30,
+    "renewalPoints": 0.5,
+    "min": -0.5,
+    "max": 1.0
   },
   "activity": {
-    "pilotCheckpointDays": 14, "pilotCheckpointPoints": 0.5,
-    "meetingWithinDays": 7, "meetingPoints": 0.5,
-    "inboundWindowDays": 14, "inboundPoints": 0.5,
+    "pilotCheckpointDays": 14,
+    "pilotCheckpointPoints": 0.5,
+    "meetingWithinDays": 7,
+    "meetingPoints": 0.5,
+    "inboundWindowDays": 14,
+    "inboundPoints": 0.5,
     "cap": 1.5
   },
-  "bands": { "hot": 8, "warm": 5 },
-  "hotGate": { "maxAgeDays": 14, "minPoints": 4 },
+  "bands": {
+    "hot": 8,
+    "warm": 5
+  },
+  "hotGate": {
+    "maxAgeDays": 14,
+    "minPoints": 4
+  },
   "warmCapWithoutGate": 7,
   "rumourOnlyCap": 4,
   "freshnessDays": 14,

@@ -244,3 +244,11 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Research on publicly named Keka customers with risk signals is running in the background.
 - gh workflow scope granted by the user; pushing .github/workflows/ci.yml.
 
+
+### 2026-10-12 15:15 IST, Claude Code (claude-opus-5-5)
+- CI green on GitHub (run 38230879125): Anthropic check, secret scan, context check, typecheck, tests, Gemini eval.
+- B10: VENDOR_PARTNERSHIP trigger type (config, prompt enum, lane rules, Detail label, test). 77 tests pass.
+- Research data/research/keka-customers.json: 8 companies named as Keka customers on keka.com customer stories; no public risk signal in the 14-day window (honest result). Added as active customer accounts with demo Closed Won deals, renewals and history in HubSpot (sm_demo). 12 customers in total: Carlsberg churn_risk (retention task in HubSpot), Himadri expansion, 4 re-engage, the rest healthy.
+- HubSpot is the source of truth for renewal dates: hubspot-demo-deals.mts now fills a missing sm_renewal_date.
+- Seed re-exported from production.
+

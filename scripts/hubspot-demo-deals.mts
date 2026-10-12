@@ -17,7 +17,17 @@ for (const [name, c] of Object.entries(crm)) {
   const dealname = `${name} - Enterprise rollout`;
   const found = (await hs.req<{ results: { id: string }[] }>("POST", "/crm/v3/objects/deals/search", {
     filterGroups: [{ filters: [{ propertyName: "dealname", operator: "EQ", value: dealname }] }], limit: 1 })).results[0];
-  if (found) continue;
+  if (found) {
+    // Keep the demo renewal date in HubSpot (source of truth) when it is missing.
+    if (c.renewal_in_days != null) {
+      const cur = await hs.req<{ properties: { sm_renewal_date?: string | null } }>("GET", `/crm/v3/objects/companies/${co.id}?properties=sm_renewal_date`);
+      if (!cur.properties.sm_renewal_date) {
+        await hs.req("PATCH", `/crm/v3/objects/companies/${co.id}`, { properties: { sm_renewal_date: new Date(Date.now() + c.renewal_in_days * DAY).toISOString().slice(0, 10) } });
+        console.log(`renewal set: ${name}`);
+      }
+    }
+    continue;
+  }
   const deal = await hs.req<{ id: string }>("POST", "/crm/v3/objects/deals", { properties: {
     dealname, pipeline: pipe.pipelineId!, dealstage: pipe.stageIdByLabel[c.stage], hubspot_owner_id: owner, sm_demo: "true",
     ...(c.stage === "Closed Won" ? { closedate: new Date(Date.now() - 240 * DAY).toISOString() } : {}),
