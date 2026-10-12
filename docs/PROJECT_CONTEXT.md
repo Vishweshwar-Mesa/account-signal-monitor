@@ -227,3 +227,10 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Result on production: 16 accounts with verified events, 10 scoring 5 or more (Zetwerk and BMW Industries Hot 8; Carlsberg India, Travel Food Services, Himadri, SJS, Yatharth, Suzlon, PN Gadgil and Regency Warm). New companies created in HubSpot as leads.
 - scripts/export-seed.mts wrote data/seed/accounts.json (64) and signals.json (45 signals, 17 events) from production, so the seed fallback matches.
 
+
+### 2026-10-12 14:24 IST, Claude Code (claude-opus-5-5)
+- Grading rubric received (build 60: components map 10, working Vercel link 10, design 10, backend and build quality 25, demo video 5; viva 40; due end of 12 Oct; Hard track fits).
+- Brand (B09): Keka colours read from keka.com HTML and CSS; tokens updated in globals.css and in the email templates; contrast checked (lowest 5.25:1).
+- docs/DEMO.md rewritten as a 2.5 minute video script for today's features.
+- scripts/send-preview.mts: sends a [Preview] Hot List from the production DB without touching the send lock. Sent: 10 accounts (Zetwerk 8, BMW Industries 8, Carlsberg 7, Himadri 7, Travel Food Services 7, SJS 6, PN Gadgil, Suzlon, Regency, Yatharth 5). Today's real send was already made at 13:40 IST by a Run now.
+

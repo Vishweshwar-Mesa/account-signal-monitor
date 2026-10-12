@@ -1,13 +1,18 @@
-# Two-minute demo script
+# Demo video script (about 2.5 minutes)
 
-1. **Sign in (10s).** Open https://account-signal-monitor.vercel.app. Signed out, it shows the sign-in card. Enter Arjun's email and passcode. Point out the theme toggle; switch to dark and back with no flash.
-2. **Counts (10s).** The four cards: Hot, Warm, Cold, Customer health. Say: "These come from verified events only. Quiet accounts fall on their own."
-3. **Open a Hot or top account (20s).** Click the first row. Read the about line: headcount with its source link and date, deal stage with the DEMO CRM badge, and "Open in HubSpot".
-4. **Why this rating (20s).** Read the chips: top event, fit, relationship, activity. Show the threshold line and "points to next band". Open "Verify it yourself".
-5. **Open a source (10s).** In Signals, click the publisher link. It opens the original article. The quote is copied word for word and is at most 25 words.
-6. **Draft and tones (15s).** In Soft-touch draft, pick Curious and press Regenerate. Note: no pitch, cites the publication, no auto-send. Press Edit, change a word, Save my copy. Regenerate again and show that "Your edited copy" is still there.
-7. **Run log (15s).** User menu, Run log. Show the last ingest: fetched, gated out by reason, rejected by validator, events written, Gemini calls. Press "Run ingest now" if time allows.
-8. **Notes survive (10s).** Back on the account, show "Your notes". Say: "The system cannot write these. A database trigger blocks it, and tests/write-safety.test.ts proves it after a full run."
-9. **HubSpot linked task (10s).** In Tasks and activity, tick a task. Open HubSpot: the same "[DEMO]" task is now completed. Show the deal in the Enterprise Leads pipeline.
+Record the screen at 1366 wide in Chrome. Have three tabs open: the app, your inbox (today's Hot List email), and HubSpot (Deals, Enterprise Leads board).
 
-Backup if the network is down: run `npm test` and show the write-safety test and the scoring scenarios passing.
+1. **The problem (10s).** "Arjun sells workforce management software. Reaching out with no reason is noise; two weeks late is too late. This app watches 64 Indian companies every day and tells him who to call and why."
+2. **Sign in (10s).** Open https://account-signal-monitor.vercel.app. Point at the TEST BUILD note: any passcode works for evaluators. Sign in. Toggle dark mode and back to show there is no flash.
+3. **Counts and list (15s).** The four cards: Hot, Warm, Cold, Customer health. "Only verified events can make an account Hot. Quiet accounts fall on their own through time decay."
+4. **A Hot account (30s).** Click Zetwerk or BMW Industries. Read the about line (headcount with source and date). Read "Why this rating": top event points, fit, relationship, and the threshold line. Open "Verify it yourself".
+5. **The source (10s).** In Signals, click the publisher link. The quote is word for word from the article, 25 words at most.
+6. **Draft (15s).** Pick Curious, press Regenerate. "It cites the publication, asks one question, and never pitches. Nothing is auto-sent." Press Edit, change a word, save. Regenerate again: "Your edited copy" stays.
+7. **Daily Hot List email (25s).** Switch to the inbox. Show one account: why now, supporting articles with quotes, who to approach, outreach angle, and the "From HubSpot" box (deal stage, last touch, open tasks). Mention updates: when a follow-up article appears, the account shows under "Updates".
+8. **HubSpot (15s).** Show the Enterprise Leads pipeline with the demo deals, and a company's sm_ properties (score, band, top signal) pushed by the sync. Tick a task in the dashboard and show it completed in HubSpot.
+9. **Run log (15s).** User menu, Run log. Show the last ingest: discovered, fetched, gated out by reason, rejected by validator, events written, Gemini calls, HubSpot sync.
+10. **Safety (15s).** "Arjun's notes can never be overwritten by the system. Code throws, a Postgres trigger blocks it, and a test runs the full pipeline and checks the notes are byte-identical." Show "Your notes" with the "never changed by the system" tag.
+
+Close (5s): "Gemini extracts facts, code decides scores, every claim has a source."
+
+Backup if the network is down: run `npm test` (76 tests) and show tests/write-safety.test.ts and the scoring scenarios passing.
