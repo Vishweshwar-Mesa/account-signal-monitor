@@ -17,7 +17,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 
 ## Current status (rewritten each session)
 - Live: https://account-signal-monitor.vercel.app (deployed with the Vercel CLI from main). Repo: https://github.com/Vishweshwar-Mesa/account-signal-monitor
-- Phases 0 to 3 are built. 72 tests pass. `tsc` and `next build` are clean.
+- Phases 0 to 3 are built. 83 tests pass. `tsc` and `next build` are clean.
 - Production ingest was verified on Vercel (3 min 38 s, Bing discovery, Gemini, HubSpot sync). Real Hot List and brief emails were sent to ARJUN_EMAIL.
 - Database: Supabase Postgres (ap-northeast-1) connected through the session pooler. Migrations 0001 and 0002 applied, seed loaded (50 accounts), HubSpot ids linked (22 tasks, 22 activities). Trigger and RLS checked on the real DB.
 - Sign-in: TEST BUILD mode is on (SM_TEST_MODE=true): any email and passcode sign in as the demo user. Real login also works when the flag is off. Arjun's Supabase user was created with scripts/create-user.mts; the passcode is in .env.local only. Sign-in, dashboard and sign-out were verified in a headless browser.
@@ -307,3 +307,8 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Live check, headless Chrome, with reduce-motion off and on: CLS 0, count-ups end on the right values (4 Hot, 6 Warm, 63 Cold, 3 customer health), no element left hidden, no console errors.
 - If a Git deploy shows Error with git_info_fail, run 'npx vercel deploy --prod' from main.
 
+
+### 2026-10-13 12:03 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- Status check (13 Oct). Healthy: git in sync, CI green, 80 tests, live site on Postgres, 06:42 ingest ran (142 fetched, 3 events), write guard clean.
+- Found: the 08:33 morning run was stuck at 'running' and hotlist:2026-10-13 at 'pending', so no email went out. Cause: the function timed out (maxDuration 120 s) while Gemini wrote the why-now and angle notes one account at a time; the killed function left its send lock pending. Also, the 06:42 ingest was 'partial' only because one publisher timed out, which wrongly made the email say 'data may be stale'.
+- Fixes: morning maxDuration 300; Hot List notes built in parallel with a 20 s timeout per Gemini call and a template fallback (withTimeout in hotlist.ts, also used for brief prep notes); acquireSendLock takes over a lock left 'pending' for 15+ minutes (never a 'sent' one); startRun marks runs stuck at 'running' for 15+ minutes as failed (feeds the failed-twice alert); a publisher fetch error or timeout is now gated_out fetch_timeout or fetch_error, not a partial run. Tests: stale lock takeover, stuck run marked failed, publisher timeout is not partial. 83 tests pass.

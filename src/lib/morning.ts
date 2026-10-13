@@ -2,12 +2,13 @@ import type { Db } from "./db";
 import { istDate, fmtIst, appUrl } from "./time";
 import { type Mailer, resendMailer, arjunEmail } from "./email/send";
 import { hotListHtml, briefHtml, type BriefData } from "./email/templates";
-import { buildHotList, hotListWindow } from "./hotlist";
+import { buildHotList, hotListWindow, withTimeout } from "./hotlist";
 import { writeText, geminiConfigured } from "./ai/gemini";
 import { prepNotePrompt } from "./ai/prompts";
 import { startRun, finishRun, failedTwice } from "./pipeline/runs";
 
 const DAY = 86_400_000;
+export const STALE_LOCK_MS = 15 * 60_000;
 export { hotListWindow } from "./hotlist";
 
 export function nextHotListDay(now: Date) {
@@ -22,7 +23,15 @@ export async function acquireSendLock(db: Db, kind: "hotlist" | "brief" | "alert
      on conflict (send_key) do nothing returning id`,
     [kind, key, now, extra.start ?? null, extra.end ?? null, recipient, extra.accountIds ?? []],
   );
-  return r.rows[0]?.id ?? null;
+  if (r.rows[0]) return r.rows[0].id;
+  // A lock still 'pending' after 15 minutes means the job was killed mid-send (for example a platform timeout).
+  // Take it over so the email still goes out. A lock marked 'sent' is never taken over, so no double send.
+  const stale = await db.query<{ id: string }>(
+    `update sends set sent_at = $2, window_start = $3, window_end = $4
+     where send_key = $1 and status = 'pending' and sent_at < $5 returning id`,
+    [key, now, extra.start ?? null, extra.end ?? null, new Date(now.getTime() - STALE_LOCK_MS)],
+  );
+  return stale.rows[0]?.id ?? null;
 }
 
 async function briefData(db: Db, now: Date, text: (p: string) => Promise<string>, stale: boolean): Promise<BriefData> {
@@ -56,8 +65,8 @@ async function briefData(db: Db, now: Date, text: (p: string) => Promise<string>
       "select name, title from people where account_id = $1 and removed_at is null order by case role_group when 'hr_head' then 0 else 1 end limit 1", [t.id])).rows[0];
     let note = "";
     try {
-      note = await text(prepNotePrompt({ company: t.name, item: "who to approach today",
-        facts: `score ${t.score} (${t.band}); lane ${t.lane ?? "none"}; top signal: ${t.top_signal_summary ?? "none"}; contact: ${person ? `${person.name}, ${person.title}` : "no verified contact"}` }));
+      note = await withTimeout(text(prepNotePrompt({ company: t.name, item: "who to approach today",
+        facts: `score ${t.score} (${t.band}); lane ${t.lane ?? "none"}; top signal: ${t.top_signal_summary ?? "none"}; contact: ${person ? `${person.name}, ${person.title}` : "no verified contact"}` })));
     } catch {
       note = "";
     }

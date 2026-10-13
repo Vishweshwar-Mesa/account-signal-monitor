@@ -11,6 +11,11 @@ import type { HotItem, HotArticle, CrmBrief } from "./email/templates";
 // Window: since the previous send, never shorter than 1 day (3 days for the very first send).
 
 const DAY = 86_400_000;
+export const AI_NOTE_TIMEOUT_MS = 20_000;
+
+export function withTimeout<T>(p: Promise<T>, ms = AI_NOTE_TIMEOUT_MS): Promise<T> {
+  return Promise.race([p, new Promise<T>((_, reject) => setTimeout(() => reject(new Error("timeout")), ms))]);
+}
 export const RECENT_LIST_DAYS = 14;
 
 export function hotListWindow(lastSend: Date | null, now: Date) {
@@ -89,8 +94,9 @@ export async function buildHotList(db: Db, start: Date, now: Date, text: (p: str
     [new Date(now.getTime() - RECENT_LIST_DAYS * DAY), now])).rows;
 
   const out: HotList = { items: [], updates: [], stillHot: [], accountIds: [] };
+  const toBuild: { a: Candidate; arts: HotArticle[]; update: boolean }[] = [];
   for (const a of rows) {
-    if (out.items.length + out.updates.length >= 10) break; // top 10, never padded
+    if (toBuild.length >= 10) break; // top 10, never padded
     const arts = await articles(db, a.id, now, newSince);
     const wasSent = prev.has(a.id);
     const hasNew = arts.some((x) => x.isNew);
@@ -99,10 +105,14 @@ export async function buildHotList(db: Db, start: Date, now: Date, text: (p: str
       out.accountIds.push(a.id);
       continue;
     }
-    const item = await buildItem(db, a, arts, now, text);
-    (wasSent ? out.updates : out.items).push(item);
-    out.accountIds.push(a.id);
+    toBuild.push({ a, arts, update: wasSent });
   }
+  // Gemini notes for all items run in parallel, so the morning job stays well inside the function time limit.
+  const built = await Promise.all(toBuild.map((t) => buildItem(db, t.a, t.arts, now, text)));
+  built.forEach((item, i) => {
+    (toBuild[i].update ? out.updates : out.items).push(item);
+    out.accountIds.push(toBuild[i].a.id);
+  });
   return out;
 }
 
@@ -124,16 +134,14 @@ async function buildItem(db: Db, a: Candidate, arts: HotArticle[], now: Date, te
     ...arts.slice(0, 3).map((x) => `Verified article (${x.publisher}, ${x.date}): ${x.summary ?? x.title}`),
     `CRM: ${crm.stage}. Last touch: ${crm.lastTouch}${crm.daysSinceTouch != null ? ` (${crm.daysSinceTouch} days ago)` : ""}. Activities in the last 15 days: ${crm.activity15d}.`,
   ].join("\n");
-  try {
-    if (ev) angle = await text(outreachAnglePrompt({ company: a.name, trigger: ev.type, summary: ev.summary, angle: angleCfg.angle, facts }));
-  } catch {
-    angle = angleCfg.angle; // template fallback, still product facts only
-  }
-  try {
-    why = await text(whyNowPrompt({ company: a.name, verified }));
-  } catch {
-    why = `${ev?.summary ?? "A verified trigger was reported"}. ${crm.daysSinceTouch != null ? `Last contact was ${crm.daysSinceTouch} days ago.` : "No contact is logged yet."}`;
-  }
+  // Both notes in parallel, each with a time limit; on failure or timeout fall back to template text (still verified facts only).
+  const [angleRes, whyRes] = await Promise.allSettled([
+    ev ? withTimeout(text(outreachAnglePrompt({ company: a.name, trigger: ev.type, summary: ev.summary, angle: angleCfg.angle, facts }))) : Promise.reject(new Error("no event")),
+    withTimeout(text(whyNowPrompt({ company: a.name, verified }))),
+  ]);
+  angle = angleRes.status === "fulfilled" ? angleRes.value : angleCfg.angle;
+  why = whyRes.status === "fulfilled" ? whyRes.value
+    : `${ev?.summary ?? "A verified trigger was reported"}. ${crm.daysSinceTouch != null ? `Last contact was ${crm.daysSinceTouch} days ago.` : "No contact is logged yet."}`;
   return {
     name: a.name, score: a.score, band: a.band, lane: a.lane, isCustomer: a.is_customer,
     summary: ev?.summary ?? "", why, articles: arts, crm,

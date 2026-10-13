@@ -21,6 +21,10 @@ export const newCounts = (): RunCounts => ({
 });
 
 export async function startRun(db: Db, job: "ingest" | "morning", now = new Date()) {
+  // A run still 'running' after 15 minutes was killed by the platform (timeout). Record it as failed so alerts can fire.
+  await db.query(
+    "update runs set status = 'failed', finished_at = $2, error = coalesce(error, 'No finish recorded: the function was stopped (likely a platform timeout).') where job = $1 and status = 'running' and started_at < $3",
+    [job, now, new Date(now.getTime() - 15 * 60_000)]);
   const r = await db.query<{ id: string }>("insert into runs (job, started_at) values ($1, $2) returning id", [job, now]);
   return r.rows[0].id;
 }

@@ -137,7 +137,8 @@ export async function processArticle(
     return "pregated";
   }
 
-  const art = await deps.fetchArticle(resolved);
+  // A slow or failing publisher is a skipped article, not a failed run.
+  const art = await deps.fetchArticle(resolved).catch((e: Error) => ({ blocked: /abort|timeout/i.test(String(e?.message)) ? "timeout" : "error" }));
   counts.fetched++;
   if ("blocked" in art) {
     bump(counts.gated_out, `fetch_${art.blocked}`);

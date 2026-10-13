@@ -1,7 +1,7 @@
 import { bearerOk, json } from "@/lib/api";
 import { morningJob } from "@/lib/jobs";
 
-export const maxDuration = 120;
+export const maxDuration = 300;
 export const dynamic = "force-dynamic";
 
 // Vercel Cron: 30 2 * * * (08:00 IST). Hot List and brief every day. Requires Bearer CRON_SECRET.

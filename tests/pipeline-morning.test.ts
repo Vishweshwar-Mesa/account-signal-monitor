@@ -70,6 +70,13 @@ describe("ingest on fixtures", () => {
     expect(run.status).toBe("partial");
   });
 
+  it("a publisher timeout is a skipped article, not a partial run", async () => {
+    await account("Test Retail Co");
+    const r = await runIngest(db, { now: NOW, deps: fixtureDeps({ fetchArticle: async () => { throw new Error("This operation was aborted"); } }) });
+    expect(r.status).toBe("ok");
+    expect(r.counts.gated_out.fetch_timeout).toBeGreaterThan(0);
+  });
+
   it("stops at the article cap and logs it", async () => {
     await account("Test Retail Co");
     const r = await runIngest(db, { now: NOW, deps: fixtureDeps(), maxArticles: 1 });
@@ -204,6 +211,26 @@ describe("Hot List eligibility and emails", () => {
     const m = fakeMailer();
     await runMorning(db, { now: new Date("2026-10-14T03:30:00Z"), mailer: m, text: fakeText });
     expect(m.sent).toHaveLength(2);
+  });
+
+  it("a lock left 'pending' by a killed job is taken over after 15 minutes; a 'sent' lock never is", async () => {
+    const t0 = new Date("2026-10-13T03:03:00Z");
+    const first = await acquireSendLock(db, "hotlist", t0, "arjun@example.com");
+    expect(first).not.toBeNull();
+    expect(await acquireSendLock(db, "hotlist", new Date(t0.getTime() + 5 * 60_000), "arjun@example.com")).toBeNull();
+    const taken = await acquireSendLock(db, "hotlist", new Date(t0.getTime() + 20 * 60_000), "arjun@example.com");
+    expect(taken).toBe(first);
+    await db.query("update sends set status = 'sent' where id = $1", [taken]);
+    expect(await acquireSendLock(db, "hotlist", new Date(t0.getTime() + 60 * 60_000), "arjun@example.com")).toBeNull();
+  });
+
+  it("a run stuck at 'running' is marked failed when the next run of that job starts", async () => {
+    const { startRun } = await import("@/lib/pipeline/runs");
+    const t0 = new Date("2026-10-13T03:03:00Z");
+    const stuck = await startRun(db, "morning", t0);
+    await startRun(db, "morning", new Date(t0.getTime() + 20 * 60_000));
+    const r = (await db.query<{ status: string }>("select status from runs where id = $1", [stuck])).rows[0];
+    expect(r.status).toBe("failed");
   });
 
   it("R6: the mailer refuses any recipient other than ARJUN_EMAIL", async () => {
