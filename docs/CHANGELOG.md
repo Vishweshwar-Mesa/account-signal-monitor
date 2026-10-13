@@ -47,3 +47,4 @@ Every commit, oldest first. Times are IST. "Claude Code for X" means the commit 
 | 12 Oct 2026, 20:52 | Claude Code for Vishweshwar-Mesa | `f812e39` | Remove viva notes file from the repo |
 | 12 Oct 2026, 21:04 | Claude Code for Vishweshwar-Mesa | `84d9e11` | GSAP motion (count-up, cascades, chart draw) and spotlight hover cards; reduced-motion respected |
 | 12 Oct 2026, 21:20 | Claude Code for Vishweshwar-Mesa | `113c4b6` | Log GSAP live verification and Vercel git_info_fail redeploy |
+| 13 Oct 2026, 12:03 | Claude Code for Vishweshwar-Mesa | `cf9ba8f` | Fix morning job timeout: parallel Gemini notes with time limits, stale send-lock takeover, stuck-run cleanup; publisher timeouts no longer mark ingest partial |

@@ -312,3 +312,8 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - Status check (13 Oct). Healthy: git in sync, CI green, 80 tests, live site on Postgres, 06:42 ingest ran (142 fetched, 3 events), write guard clean.
 - Found: the 08:33 morning run was stuck at 'running' and hotlist:2026-10-13 at 'pending', so no email went out. Cause: the function timed out (maxDuration 120 s) while Gemini wrote the why-now and angle notes one account at a time; the killed function left its send lock pending. Also, the 06:42 ingest was 'partial' only because one publisher timed out, which wrongly made the email say 'data may be stale'.
 - Fixes: morning maxDuration 300; Hot List notes built in parallel with a 20 s timeout per Gemini call and a template fallback (withTimeout in hotlist.ts, also used for brief prep notes); acquireSendLock takes over a lock left 'pending' for 15+ minutes (never a 'sent' one); startRun marks runs stuck at 'running' for 15+ minutes as failed (feeds the failed-twice alert); a publisher fetch error or timeout is now gated_out fetch_timeout or fetch_error, not a partial run. Tests: stale lock takeover, stuck run marked failed, publisher timeout is not partial. 83 tests pass.
+
+### 2026-10-13 13:20 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- The fix (cf9ba8f) is live (Vercel deployment from GitHub, READY). Re-ran the morning job on production at 13:13 IST: it took over the stale hotlist lock from 08:33 and sent today's Hot List (10 new accounts) and brief. The stuck 08:33 run is now recorded as failed ('function was stopped').
+- Local network was flaky during this session (git could not resolve github.com at times); pushes were retried with timeouts. Production was not affected.
+
