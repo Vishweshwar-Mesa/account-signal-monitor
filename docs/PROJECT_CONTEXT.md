@@ -17,7 +17,7 @@ Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-mark
 
 ## Current status (rewritten each session)
 - Live: https://account-signal-monitor.vercel.app (deployed with the Vercel CLI from main). Repo: https://github.com/Vishweshwar-Mesa/account-signal-monitor
-- Phases 0 to 3 are built. 83 tests pass. `tsc` and `next build` are clean.
+- Phases 0 to 3 are built. 85 tests pass. `tsc` and `next build` are clean.
 - Production ingest was verified on Vercel (3 min 38 s, Bing discovery, Gemini, HubSpot sync). Real Hot List and brief emails were sent to ARJUN_EMAIL.
 - Database: Supabase Postgres (ap-northeast-1) connected through the session pooler. Migrations 0001 and 0002 applied, seed loaded (50 accounts), HubSpot ids linked (22 tasks, 22 activities). Trigger and RLS checked on the real DB.
 - Sign-in: TEST BUILD mode is on (SM_TEST_MODE=true): any email and passcode sign in as the demo user. Real login also works when the flag is off. Arjun's Supabase user was created with scripts/create-user.mts; the passcode is in .env.local only. Sign-in, dashboard and sign-out were verified in a headless browser.
@@ -317,3 +317,9 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 - The fix (cf9ba8f) is live (Vercel deployment from GitHub, READY). Re-ran the morning job on production at 13:13 IST: it took over the stale hotlist lock from 08:33 and sent today's Hot List (10 new accounts) and brief. The stuck 08:33 run is now recorded as failed ('function was stopped').
 - Local network was flaky during this session (git could not resolve github.com at times); pushes were retried with timeouts. Production was not affected.
 
+
+### 2026-10-14 11:45 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- Status check (14 Oct). Healthy: git in sync, CI green, live site 200, 83 tests and tsc clean before changes. 06:42 ingest ran (123 fetched, 2 events); 08:33 morning sent the Hot List (7 still hot, 1 update) and brief in 36 s.
+- Why every email said "Data may be stale": the ingest is marked partial every day, and any non-ok run set the stale flag. Two causes: (1) it stops at its 4-minute time budget; accounts are scanned alphabetically, so it reached about 40 of 73 accounts and the same 33 (Mahindra Logistics to Zetwerk) were never checked by the daily run; (2) three accounts' feeds are unreachable every day (Ajmera Tyres, Konnect Diagnostics, Neos Kosmos Technologies).
+- Fixes (B16): the ingest resumes from the account where the last run stopped (counts.resume_from, accounts_checked, accounts_total); one unreachable feed is logged as feed_errors, not partial (all feeds down is still partial); ingestNote in runs.ts is shared by the emails and the dashboard banner: 'Data may be stale' only when the last ingest failed, never ran or is over 26 hours old, otherwise a coverage note such as 'checked 40 of 73 accounts before its time limit'. Tests: feed error not partial, resume after time limit, note wording. 85 tests pass.
+- Still open: HubSpot emails search returns 403 (missing sales-email-read scope); logged in the run error, does not affect status.

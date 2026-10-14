@@ -13,7 +13,7 @@ const list = await buildHotList(db, hotListWindow(null, now).start, now, writeTe
 // Preview treats every account as new, so the full detail shows.
 const all = { items: [...list.items, ...list.updates], updates: [], stillHot: list.stillHot };
 const warm = Number((await db.query<{ n: string }>("select count(*) n from accounts where band = 'warm'")).rows[0].n);
-const { subject, html } = hotListHtml({ ...all, date: fmtIst(now, { day: "numeric", month: "short", year: "numeric" }), warmCount: warm, nextDay: "tomorrow", stale: false, dashboardUrl: appUrl() === "http://localhost:3000" ? "https://account-signal-monitor.vercel.app" : appUrl() });
+const { subject, html } = hotListHtml({ ...all, date: fmtIst(now, { day: "numeric", month: "short", year: "numeric" }), warmCount: warm, nextDay: "tomorrow", dataNote: null, dashboardUrl: appUrl() === "http://localhost:3000" ? "https://account-signal-monitor.vercel.app" : appUrl() });
 await resendMailer.send(arjunEmail(), `[Preview] ${subject}`, html);
 console.log("sent preview:", subject, "| items:", all.items.map((i) => `${i.name} ${i.score}`).join(", "), "| still:", list.stillHot.length);
 await db.close();

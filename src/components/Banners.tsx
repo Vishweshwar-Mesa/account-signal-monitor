@@ -4,7 +4,7 @@ export default function Banners({ h }: { h: Health }) {
   const items: string[] = [];
   if (h.database !== "postgres") items.push("Database not connected. Showing seed data held in memory; edits are not saved between visits.");
   if (h.hubspot !== "connected") items.push("Running on seed data, HubSpot not connected.");
-  if (h.lastIngest && h.lastIngest.status !== "ok") items.push(`Last ingest run was ${h.lastIngest.status}. Data may be stale.`);
+  if (h.lastIngest?.note) items.push(h.lastIngest.note);
   if (!items.length) return null;
   return (
     <div className="space-y-2 mb-3" role="status">

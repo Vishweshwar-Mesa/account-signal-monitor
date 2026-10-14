@@ -220,13 +220,29 @@ export async function runIngest(db: Db, opts: IngestOptions = {}) {
        ${opts.accountIds ? "where id = any($1)" : ""} order by is_active desc, name`,
       opts.accountIds ? [opts.accountIds] : [],
     );
+    // Resume from the account where the last run stopped, so a run that hits its budget does not skip the same tail every day.
+    let list = acc.rows;
+    if (!opts.accountIds) {
+      const prev = (await db.query<{ counts: { resume_from?: string } }>(
+        "select counts from runs where job = 'ingest' and status <> 'running' and id <> $1 order by started_at desc limit 1", [runId])).rows[0];
+      const i = prev?.counts?.resume_from ? list.findIndex((a) => a.name === prev.counts.resume_from) : -1;
+      if (i > 0) list = [...list.slice(i), ...list.slice(0, i)];
+    }
+    counts.accounts_total = list.length;
+    counts.accounts_checked = 0;
+    let feedErrors = 0;
     let processed = 0;
-    outer: for (const a of acc.rows) {
+    // A stop inside an account means that account is not finished: it is not counted and the next run starts with it.
+    const stop = (why: string, a: AccountRow, started = true) => { counts.stopped = why; counts.resume_from = a.name; partial = true; if (started) counts.accounts_checked = (counts.accounts_checked ?? 1) - 1; };
+    outer: for (const a of list) {
+      if (Date.now() > deadline) { stop("time_budget", a, false); break; }
+      counts.accounts_checked = (counts.accounts_checked ?? 0) + 1;
       let items: FeedItem[] = [];
       try {
         items = await deps.discover(a);
       } catch (e) {
-        partial = true;
+        // One account's feed being unreachable is logged, not a partial run (like a publisher timeout).
+        feedErrors++;
         errors.push(`feed ${a.name}: ${(e as Error).message}`);
         continue;
       }
@@ -235,19 +251,21 @@ export async function runIngest(db: Db, opts: IngestOptions = {}) {
       let n = 0;
       for (const it of items) {
         if (n >= perAccount) break;
-        if (processed >= maxArticles) { counts.stopped = "max_articles"; partial = true; break outer; }
-        if (deps.geminiCalls() >= cap) { counts.stopped = "gemini_cap"; partial = true; break outer; }
-        if (Date.now() > deadline) { counts.stopped = "time_budget"; partial = true; break outer; }
+        if (processed >= maxArticles) { stop("max_articles", a); break outer; }
+        if (deps.geminiCalls() >= cap) { stop("gemini_cap", a); break outer; }
+        if (Date.now() > deadline) { stop("time_budget", a); break outer; }
         try {
           const r = await processArticle(db, a, it, deps, counts, now, opts.isSeed);
           if (r === "stored") { n++; processed++; } // only fetched articles use the per-account and per-run budget
         } catch (e) {
-          if (e instanceof GeminiCapError) { counts.stopped = "gemini_cap"; partial = true; break outer; }
+          if (e instanceof GeminiCapError) { stop("gemini_cap", a); break outer; }
           partial = true;
           errors.push(`${a.name}: ${(e as Error).message}`.slice(0, 300));
         }
       }
     }
+    counts.feed_errors = feedErrors;
+    if (feedErrors && feedErrors === counts.accounts_checked) partial = true; // every feed down is a real outage
     counts.accounts_rescored = await rescoreAll(db, now);
     counts.gemini_calls = deps.geminiCalls();
     const status = partial ? "partial" : "ok";

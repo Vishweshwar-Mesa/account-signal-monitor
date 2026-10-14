@@ -15,7 +15,7 @@ export interface HotItem {
 
 export interface BriefData {
   date: string;
-  stale: boolean;
+  dataNote: string | null;
   signals: { name: string; title: string; publisher: string; url: string; summary: string | null }[];
   moves: { name: string; old: number; new: number }[];
   tasks: { name: string; title: string; due: string; kind: string; overdue: boolean }[];
@@ -35,8 +35,8 @@ const LANE: Record<string, string> = { outreach: "Outreach", churn_risk: "Churn 
 const wrap = (body: string) => `<!doctype html><html><body style="margin:0;padding:24px;background:#f8f9fc;font-family:Arial,Helvetica,sans-serif;color:#090014;font-size:14px;line-height:1.5">
 <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e4e0f2;border-radius:14px;padding:24px">${body}</div></body></html>`;
 
-const staleNote = (stale: boolean) =>
-  stale ? `<p style="background:#fdf0c8;color:#5b4204;padding:8px 12px;border-radius:8px">Data may be stale. The last ingest run did not finish cleanly.</p>` : "";
+const noteHtml = (note: string | null) =>
+  note ? `<p style="background:#fdf0c8;color:#5b4204;padding:8px 12px;border-radius:8px">${esc(note)}</p>` : "";
 
 function itemHtml(it: HotItem, i: number, update: boolean) {
   const arts = it.articles.map((x) => `<li style="margin-bottom:6px">${update && x.isNew ? '<b style="color:#c2410c">New:</b> ' : ""}<a href="${esc(x.url)}" style="color:#5412ae">${esc(x.title || x.summary)}</a><br><span style="color:#5f5a70">${esc(x.publisher)}${x.date ? `, ${esc(x.date)}` : ""}</span>${x.quote ? `<br><i>"${esc(x.quote)}"</i>` : ""}</li>`).join("");
@@ -61,7 +61,7 @@ function itemHtml(it: HotItem, i: number, update: boolean) {
 
 export function hotListHtml(input: {
   items: HotItem[]; updates?: HotItem[]; stillHot?: { name: string; score: number; band: string; summary: string }[];
-  date: string; warmCount: number; nextDay: string; stale: boolean; dashboardUrl: string;
+  date: string; warmCount: number; nextDay: string; dataNote: string | null; dashboardUrl: string;
 }) {
   const { items } = input;
   const updates = input.updates ?? [];
@@ -74,14 +74,14 @@ export function hotListHtml(input: {
   if (!n) {
     return {
       subject: `Hot List: 0 accounts to reach out to (${input.date})`,
-      html: wrap(`<h2 style="margin-top:0">Hot List, ${esc(input.date)}</h2>${staleNote(input.stale)}
+      html: wrap(`<h2 style="margin-top:0">Hot List, ${esc(input.date)}</h2>${noteHtml(input.dataNote)}
 <p>Nothing hot this time. ${input.warmCount} accounts are warm. Next list on ${esc(input.nextDay)}.</p>${stillHtml}
 <p><a href="${input.dashboardUrl}" style="color:#5412ae">View in dashboard</a></p>${footer}`),
     };
   }
   return {
     subject: `Hot List: ${n} accounts to reach out to (${input.date})`,
-    html: wrap(`<h2 style="margin-top:0">Hot List, ${esc(input.date)}</h2>${staleNote(input.stale)}
+    html: wrap(`<h2 style="margin-top:0">Hot List, ${esc(input.date)}</h2>${noteHtml(input.dataNote)}
 <p>${items.length} new account${items.length === 1 ? "" : "s"}${updates.length ? ` and ${updates.length} update${updates.length === 1 ? "" : "s"}` : ""} with fresh verified signals. Nothing is sent to prospects automatically.</p>
 ${items.length ? `<h3 style="margin:16px 0 0">New on the list</h3>${items.map((it, i) => itemHtml(it, i, false)).join("")}` : ""}
 ${updates.length ? `<h3 style="margin:20px 0 0">Updates on accounts already sent</h3>${updates.map((it, i) => itemHtml(it, i, true)).join("")}` : ""}
@@ -118,7 +118,7 @@ export function briefHtml(d: BriefData) {
   const snap = `<p style="margin:0">Hot ${s.hot} · Warm ${s.warm} · Cold ${s.cold} · Customers ${s.customers} (churn risk ${s.churn}, expansion ${s.expansion})</p>`;
   return {
     subject: `Morning brief, ${d.date}`,
-    html: wrap(`<h2 style="margin-top:0">Morning brief, ${esc(d.date)}</h2>${staleNote(d.stale)}
+    html: wrap(`<h2 style="margin-top:0">Morning brief, ${esc(d.date)}</h2>${noteHtml(d.dataNote)}
 ${section("1. What happened yesterday", happened)}
 ${section("2. Prepare this week", prep)}
 ${section("3. Who to approach today", approach)}

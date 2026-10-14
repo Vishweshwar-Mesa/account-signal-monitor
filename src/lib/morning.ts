@@ -5,7 +5,7 @@ import { hotListHtml, briefHtml, type BriefData } from "./email/templates";
 import { buildHotList, hotListWindow, withTimeout } from "./hotlist";
 import { writeText, geminiConfigured } from "./ai/gemini";
 import { prepNotePrompt } from "./ai/prompts";
-import { startRun, finishRun, failedTwice } from "./pipeline/runs";
+import { startRun, finishRun, failedTwice, ingestNote } from "./pipeline/runs";
 
 const DAY = 86_400_000;
 export const STALE_LOCK_MS = 15 * 60_000;
@@ -34,7 +34,7 @@ export async function acquireSendLock(db: Db, kind: "hotlist" | "brief" | "alert
   return stale.rows[0]?.id ?? null;
 }
 
-async function briefData(db: Db, now: Date, text: (p: string) => Promise<string>, stale: boolean): Promise<BriefData> {
+async function briefData(db: Db, now: Date, text: (p: string) => Promise<string>, dataNote: string | null): Promise<BriefData> {
   const since = new Date(now.getTime() - DAY);
   const signals = await db.query<{ name: string; title: string; publisher: string; url: string; summary: string | null }>(
     `select a.name, s.title, s.publisher, s.url, s.extraction->>'one_line_summary' as summary
@@ -78,7 +78,7 @@ async function briefData(db: Db, now: Date, text: (p: string) => Promise<string>
      from accounts`)).rows[0];
   return {
     date: fmtIst(now, { weekday: "long", day: "numeric", month: "short" }),
-    stale,
+    dataNote,
     signals: signals.rows,
     moves: moves.rows,
     tasks: tasks.rows.map((t) => ({ ...t, due: fmtIst(t.due_at, { day: "numeric", month: "short" }), overdue: new Date(t.due_at) < now })),
@@ -106,10 +106,11 @@ export async function runMorning(db: Db, opts: MorningOptions = {}) {
   const counts: Record<string, unknown> = {};
   try {
     const to = arjunEmail();
-    const lastIngest = (await db.query<{ status: string; started_at: string }>(
-      "select status, started_at from runs where job = 'ingest' and status <> 'running' order by started_at desc limit 1")).rows[0];
-    const stale = !lastIngest || lastIngest.status !== "ok" || now.getTime() - new Date(lastIngest.started_at).getTime() > 26 * 3600_000;
-    counts.stale = stale;
+    const lastIngest = (await db.query<{ status: string; started_at: string; counts: Record<string, unknown> }>(
+      "select status, started_at, counts from runs where job = 'ingest' and status <> 'running' order by started_at desc limit 1")).rows[0];
+    const note = ingestNote(lastIngest, now);
+    const dataNote = note?.text ?? null;
+    counts.stale = note?.stale ?? false;
 
     // Hot List every morning (B08): new accounts, updates with continuation articles, still-hot one-liners.
     {
@@ -122,7 +123,7 @@ export async function runMorning(db: Db, opts: MorningOptions = {}) {
         try {
           const list = await buildHotList(db, win.start, now, text);
           const warm = Number((await db.query<{ n: string }>("select count(*) n from accounts where band = 'warm'")).rows[0].n);
-          const { subject, html } = hotListHtml({ ...list, date: fmtIst(now, { day: "numeric", month: "short", year: "numeric" }), warmCount: warm, nextDay: nextHotListDay(now), stale, dashboardUrl: appUrl() });
+          const { subject, html } = hotListHtml({ ...list, date: fmtIst(now, { day: "numeric", month: "short", year: "numeric" }), warmCount: warm, nextDay: nextHotListDay(now), dataNote, dashboardUrl: appUrl() });
           await mailer.send(to, subject, html);
           await db.query("update sends set status = 'sent', account_ids = $2 where id = $1", [lock, list.accountIds]);
           counts.hotlist = { new: list.items.length, updates: list.updates.length, still: list.stillHot.length };
@@ -138,7 +139,7 @@ export async function runMorning(db: Db, opts: MorningOptions = {}) {
     if (!lock) counts.brief = "already_sent";
     else {
       try {
-        const data = await briefData(db, now, text, stale);
+        const data = await briefData(db, now, text, dataNote);
         const { subject, html } = briefHtml(data);
         await mailer.send(to, subject, html);
         await db.query("update sends set status = 'sent' where id = $1", [lock]);

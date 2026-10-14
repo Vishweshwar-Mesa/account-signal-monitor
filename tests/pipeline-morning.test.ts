@@ -57,7 +57,7 @@ describe("ingest on fixtures", () => {
     expect(r2.counts.skipped_seen).toBeGreaterThan(0);
   });
 
-  it("a failing feed or Gemini marks the run partial and continues", async () => {
+  it("a failing Gemini marks the run partial and continues", async () => {
     await account("Test Retail Co");
     await account("Other Co");
     const r = await runIngest(db, { now: NOW, deps: fixtureDeps({
@@ -68,6 +68,36 @@ describe("ingest on fixtures", () => {
     expect(r.errors.join(" ")).toMatch(/feed down/);
     const run = (await db.query<{ status: string }>("select status from runs where id = $1", [r.runId])).rows[0];
     expect(run.status).toBe("partial");
+  });
+
+  it("one unreachable feed is logged, not a partial run; every feed down is", async () => {
+    await account("Test Retail Co");
+    await account("Other Co");
+    const one = await runIngest(db, { now: NOW, deps: fixtureDeps({
+      discover: async (a) => { if (a.name === "Other Co") throw new Error("no feed reachable"); return fixtureDeps().discover(a); } }) });
+    expect(one.status).toBe("ok");
+    expect(one.counts.feed_errors).toBe(1);
+    expect(one.errors.join(" ")).toMatch(/Other Co: no feed reachable/);
+    const all = await runIngest(db, { now: NOW, deps: fixtureDeps({ discover: async () => { throw new Error("no feed reachable"); } }) });
+    expect(all.status).toBe("partial");
+  });
+
+  it("a run stopped by its time limit resumes from that account next time", async () => {
+    for (const n of ["A Co", "B Co", "C Co"]) await account(n);
+    const seen: string[] = [];
+    const deps = (slow: boolean) => fixtureDeps({ discover: async (a) => {
+      seen.push(a.name);
+      if (slow) await new Promise((r) => setTimeout(r, 60));
+      return [];
+    } });
+    const r1 = await runIngest(db, { now: NOW, deps: deps(true), timeBudgetMs: 30 });
+    expect(r1.status).toBe("partial");
+    expect(r1.counts).toMatchObject({ stopped: "time_budget", resume_from: "B Co", accounts_checked: 1, accounts_total: 3 });
+    seen.length = 0;
+    const r2 = await runIngest(db, { now: new Date(NOW.getTime() + DAY), deps: deps(false) });
+    expect(seen).toEqual(["B Co", "C Co", "A Co"]);
+    expect(r2.status).toBe("ok");
+    expect(r2.counts.resume_from).toBeUndefined();
   });
 
   it("a publisher timeout is a skipped article, not a partial run", async () => {
@@ -170,7 +200,7 @@ describe("Hot List eligibility and emails", () => {
   });
 
   it("empty list sends the short note", () => {
-    const { subject, html } = hotListHtml({ items: [], date: "12 Oct 2026", warmCount: 3, nextDay: "Thursday 15 Oct", stale: false, dashboardUrl: "https://x" });
+    const { subject, html } = hotListHtml({ items: [], date: "12 Oct 2026", warmCount: 3, nextDay: "Thursday 15 Oct", dataNote: null, dashboardUrl: "https://x" });
     expect(subject).toBe("Hot List: 0 accounts to reach out to (12 Oct 2026)");
     expect(html).toContain("Nothing hot this time. 3 accounts are warm. Next list on Thursday 15 Oct.");
     expect(html).not.toContain("Still on the list");
@@ -197,12 +227,23 @@ describe("Hot List eligibility and emails", () => {
     expect(m.sent.map((s) => s.subject)).toEqual([expect.stringMatching(/^Hot List: 0/), expect.stringMatching(/^Morning brief/)]);
   });
 
-  it("brief says data may be stale after a partial ingest", async () => {
+  it("a partial ingest gets a coverage note, not 'stale'; a failed or day-old one is stale", async () => {
     await account("Test Retail Co");
     await runIngest(db, { now: NOW, deps: fixtureDeps({ extract: async () => { throw new Error("down"); } }) });
     const m = fakeMailer();
-    await runMorning(db, { now: NOW, mailer: m, text: fakeText });
-    expect(m.sent.at(-1)!.html).toContain("Data may be stale");
+    const r = await runMorning(db, { now: NOW, mailer: m, text: fakeText });
+    expect(r.counts.stale).toBe(false);
+    expect(m.sent.at(-1)!.html).toContain("skipped some articles");
+    expect(m.sent.at(-1)!.html).not.toContain("Data may be stale");
+
+    const { ingestNote } = await import("@/lib/pipeline/runs");
+    const at = NOW.toISOString();
+    expect(ingestNote({ status: "ok", started_at: at }, NOW)).toBeNull();
+    expect(ingestNote({ status: "partial", started_at: at, counts: { stopped: "time_budget", accounts_checked: 40, accounts_total: 73 } }, NOW)!.text)
+      .toBe("The last ingest checked 40 of 73 accounts before its time limit. The next run starts with the rest.");
+    expect(ingestNote({ status: "failed", started_at: at }, NOW)!.stale).toBe(true);
+    expect(ingestNote({ status: "ok", started_at: new Date(NOW.getTime() - 27 * 3600_000) }, NOW)!.stale).toBe(true);
+    expect(ingestNote(null, NOW)!.stale).toBe(true);
   });
 
   it("a failed send releases the lock so a retry can send", async () => {

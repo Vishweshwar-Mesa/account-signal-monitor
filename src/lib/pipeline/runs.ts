@@ -11,6 +11,10 @@ export interface RunCounts {
   accounts_rescored: number;
   gemini_calls: number;
   stopped?: string;
+  accounts_checked?: number;
+  accounts_total?: number;
+  resume_from?: string;
+  feed_errors?: number;
   hubspot?: string;
   [k: string]: unknown;
 }
@@ -37,4 +41,22 @@ export async function finishRun(db: Db, id: string, status: "ok" | "partial" | "
 export async function failedTwice(db: Db, job: "ingest" | "morning") {
   const r = await db.query<{ status: string }>("select status from runs where job = $1 and status <> 'running' order by started_at desc limit 2", [job]);
   return r.rows.length === 2 && r.rows.every((x) => x.status === "failed");
+}
+
+const STOP_REASON: Record<string, string> = { time_budget: "time limit", max_articles: "article cap", gemini_cap: "Gemini call cap" };
+
+/**
+ * What the email and dashboard say about the last ingest. 'stale' only when it failed, never ran or is over 26 hours old.
+ * A run stopped by its budget is fresh data with partial coverage; the next run resumes where it stopped.
+ */
+export function ingestNote(run: { status: string; started_at: string | Date; counts?: Partial<RunCounts> | null } | null | undefined, now: Date): { stale: boolean; text: string } | null {
+  if (!run) return { stale: true, text: "No ingest run yet. Data may be stale." };
+  if (run.status === "failed") return { stale: true, text: "The last ingest run failed. Data may be stale." };
+  if (now.getTime() - new Date(run.started_at).getTime() > 26 * 3600_000) return { stale: true, text: "The last ingest run was over a day ago. Data may be stale." };
+  if (run.status !== "partial") return null;
+  const c = run.counts ?? {};
+  const checked = Number(c.accounts_checked), total = Number(c.accounts_total);
+  if (c.stopped && checked && total) return { stale: false, text: `The last ingest checked ${checked} of ${total} accounts before its ${STOP_REASON[c.stopped] ?? c.stopped}. The next run starts with the rest.` };
+  if (c.stopped) return { stale: false, text: "The last ingest did not reach every account. The next run starts with the rest." };
+  return { stale: false, text: "The last ingest skipped some articles after errors. See the run log." };
 }

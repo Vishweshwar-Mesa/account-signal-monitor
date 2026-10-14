@@ -1,5 +1,6 @@
 import "server-only";
 import { getDb } from "./db";
+import { ingestNote } from "./pipeline/runs";
 import { supabaseConfigured } from "./supabase/config";
 import { geminiConfigured } from "./ai/gemini";
 
@@ -10,7 +11,7 @@ export interface Health {
   resend: boolean;
   hubspot: "connected" | "not_configured" | "failed";
   cronSecret: boolean;
-  lastIngest: { status: string; at: string } | null;
+  lastIngest: { status: string; at: string; note: string | null } | null;
   lastMorning: { status: string; at: string } | null;
 }
 
@@ -20,12 +21,12 @@ export async function health(): Promise<Health> {
   try {
     const db = await getDb();
     database = db.mode === "postgres" ? "postgres" : "seed (in-memory)";
-    const runs = await db.query<{ job: string; status: string; started_at: string; counts: { hubspot?: string } }>(
+    const runs = await db.query<{ job: string; status: string; started_at: string; counts: { hubspot?: string; [k: string]: unknown } }>(
       "select distinct on (job) job, status, started_at, counts from runs where status <> 'running' order by job, started_at desc");
     for (const r of runs.rows) {
       const v = { status: r.status, at: new Date(r.started_at).toISOString() };
       if (r.job === "ingest") {
-        lastIngest = v;
+        lastIngest = { ...v, note: ingestNote({ status: r.status, started_at: r.started_at, counts: r.counts }, new Date())?.text ?? null };
         if (hubspot === "connected" && r.counts?.hubspot && !["ok", "synced", "partial"].includes(r.counts.hubspot)) hubspot = "failed";
       } else lastMorning = v;
     }
