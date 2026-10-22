@@ -78,3 +78,20 @@ describe("allowed user", () => {
     vi.unstubAllEnvs();
   });
 });
+
+describe("project on hold", () => {
+  it("shows the hold notice on every page and returns 503 for every API, crons included", async () => {
+    vi.stubEnv("SM_ON_HOLD", "true");
+    const { proxy } = await import("@/proxy");
+    const page = await proxy(new NextRequest("https://x.test/"));
+    expect(page.headers.get("x-middleware-rewrite")).toBe("https://x.test/hold");
+    const login = await proxy(new NextRequest("https://x.test/login"));
+    expect(login.headers.get("x-middleware-rewrite")).toBe("https://x.test/hold");
+    for (const p of ["/api/cron/ingest", "/api/cron/morning", "/api/run", "/api/tasks/1"]) {
+      const r = await proxy(new NextRequest(`https://x.test${p}`));
+      expect(r.status).toBe(503);
+      expect((await r.json()).error).toMatch(/on hold.*contact ADMIN/i);
+    }
+    vi.unstubAllEnvs();
+  });
+});

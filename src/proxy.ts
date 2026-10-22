@@ -1,11 +1,17 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import { onHold, HOLD_MESSAGE } from "@/lib/hold";
 
 // Auth gate (R4). Pages redirect to /login, APIs return 401. Cron routes check their own bearer token.
 const PUBLIC = [/^\/login$/, /^\/api\/cron\//, /^\/api\/health$/, /^\/api\/test-login$/];
 
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  if (onHold()) {
+    if (path.startsWith("/api/")) return NextResponse.json({ error: HOLD_MESSAGE }, { status: 503 });
+    if (path === "/hold") return NextResponse.next({ request });
+    return NextResponse.rewrite(new URL("/hold", request.url));
+  }
   let response = NextResponse.next({ request });
   if (PUBLIC.some((r) => r.test(path))) return response;
 
