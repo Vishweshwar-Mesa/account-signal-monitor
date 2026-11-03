@@ -5,7 +5,6 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["tests/**/*.test.ts"],
-    env: { SM_ON_HOLD: "false" },
     testTimeout: 60_000,
     hookTimeout: 60_000,
   },

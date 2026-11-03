@@ -16,7 +16,7 @@
 Arjun sells workforce management SaaS (reference product: Keka HRMS) to mid-market companies in India. This app watches about 50 accounts daily, finds verified trigger events in the news (new HR head, hiring drive, expansion and so on), scores each account from 1 to 10 with a full explanation, emails a Hot List and a morning brief every day, and never overwrites anything Arjun wrote.
 
 ## Current status (rewritten each session)
-- ON HOLD since 22 Oct 2026 (B17): the assignment is submitted and assessed. Every page shows "This project is on hold. Please contact ADMIN.", every API returns 503, and the Vercel crons are removed, so no ingest, Gemini, HubSpot sync or emails run. Set SM_ON_HOLD=false and restore the crons in vercel.json to bring it back.
+- Live again since 3 Nov 2026 for testing (B17 hold lifted): pages, APIs and both Vercel crons run normally. To put it back on hold, set SM_ON_HOLD=true in Vercel and redeploy.
 - Live: https://account-signal-monitor.vercel.app (deployed with the Vercel CLI from main). Repo: https://github.com/Vishweshwar-Mesa/account-signal-monitor
 - Phases 0 to 3 are built. 85 tests pass. `tsc` and `next build` are clean.
 - Production ingest was verified on Vercel (3 min 38 s, Bing discovery, Gemini, HubSpot sync). Real Hot List and brief emails were sent to ARJUN_EMAIL.
@@ -328,3 +328,6 @@ Re-read only CLAUDE.md, AGENTS.md and this file, then answered:
 ### 2026-10-22 15:55 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
 - The user put the project on hold after the assignment was assessed: stop everything except the Vercel site, which shows a hold message.
 - Added src/lib/hold.ts (onHold, on unless SM_ON_HOLD=false) and src/app/hold/page.tsx. proxy.ts rewrites every page to /hold and returns 503 with the hold message for every API, crons included. Removed both crons from vercel.json. Tests run with SM_ON_HOLD=false; a new test checks the hold. 86 tests pass.
+
+### 2026-11-03 17:05 IST, by Claude Code (claude-opus-5-5) for Vishweshwar Gupta
+- The user asked to take the project live again for testing. The hold switch is now off by default (onHold only when SM_ON_HOLD=true), and both crons are back in vercel.json (ingest 06:00 IST, morning 08:00 IST). The hold page and test stay so the hold can be turned on again with one env var. 86 tests pass.
